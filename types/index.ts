@@ -1,0 +1,135 @@
+export type ServiceFaq = {
+  question: string;
+  answer: string;
+};
+
+export type ServiceCategory = {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  order: number;
+  published: boolean;
+};
+
+export type Service = {
+  id: string;
+  title: string;
+  slug: string;
+  categorySlug: string;
+  shortDescription: string;
+  description: string;
+  startingPrice: number;
+  priceNote?: string;
+  duration?: string;
+  order?: number;
+  featured: boolean;
+  published: boolean;
+  benefits: string[];
+  inclusions: string[];
+  requirements: string[];
+  processSteps: string[];
+  faqs: ServiceFaq[];
+};
+
+export type ServiceOption = Pick<Service, "id" | "title" | "slug">;
+
+export type Article = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
+  content: string;
+  publishedAt: string;
+  featured: boolean;
+  published: boolean;
+  coverImageUrl?: string;
+};
+
+export type Testimonial = {
+  id: string;
+  name: string;
+  company: string;
+  role: string;
+  quote: string;
+  rating: number;
+  featured: boolean;
+  published: boolean;
+  avatarUrl?: string;
+};
+
+export type Partner = {
+  id: string;
+  name: string;
+  type: "partner" | "client";
+  website?: string;
+  logoUrl?: string;
+  published: boolean;
+  order: number;
+};
+
+export type Faq = {
+  id: string;
+  question: string;
+  answer: string;
+  category: string;
+  order: number;
+  published: boolean;
+};
+
+export type TeamMember = {
+  id: string;
+  name: string;
+  role: string;
+  bio: string;
+  photoUrl?: string;
+  order: number;
+  published: boolean;
+};
+
+export type CaseStudy = {
+  id: string;
+  title: string;
+  client: string;
+  challenge: string;
+  solution: string;
+  result: string;
+  published: boolean;
+  featured: boolean;
+};
+
+export type SiteStat = {
+  label: string;
+  value: string;
+};
+
+export type SiteSettings = {
+  id: string;
+  brandName: string;
+  brandTagline: string;
+  heroEyebrow: string;
+  heroTitle: string;
+  heroDescription: string;
+  whatsapp: string;
+  email: string;
+  address: string;
+  instagram?: string;
+  linkedin?: string;
+  tiktok?: string;
+  officeHours?: string;
+  stats: SiteStat[];
+};
+
+export type Lead = {
+  id?: string;
+  name: string;
+  whatsapp: string;
+  email?: string;
+  serviceSlug?: string;
+  message: string;
+  source: string;
+  status: "baru" | "dihubungi" | "follow-up" | "jadi-klien" | "tidak-lanjut";
+  createdAt?: unknown;
+  updatedAt?: unknown;
+};

@@ -1,0 +1,604 @@
+{
+  "meta": {
+    "name": "Yuk Jadi Legal MVP Seed",
+    "reference": "https://bukalegal.com",
+    "note": "Kategori layanan, sebagian nama layanan, dan harga awal menggunakan informasi publik Bukalegal sebagai referensi awal. Copywriting ditulis ulang untuk Yuk Jadi Legal. Verifikasi kembali daftar layanan dan harga sebelum production."
+  },
+  "serviceCategories": [
+    {
+      "id": "mulai-bisnis",
+      "name": "Mulai Bisnis",
+      "slug": "mulai-bisnis",
+      "description": "Bentuk badan usaha dan fondasi legal dasar untuk bisnis yang baru dimulai atau sedang naik kelas.",
+      "order": 1,
+      "published": true
+    },
+    {
+      "id": "perizinan-usaha",
+      "name": "Perizinan Usaha",
+      "slug": "perizinan-usaha",
+      "description": "Bantu urus identitas, izin, dan kebutuhan kepatuhan dasar agar operasional bisnis lebih siap.",
+      "order": 2,
+      "published": true
+    },
+    {
+      "id": "lindungi-brand",
+      "name": "Lindungi Brand",
+      "slug": "lindungi-brand",
+      "description": "Perlindungan merek dan kekayaan intelektual untuk menjaga aset brand dan karya bisnis.",
+      "order": 3,
+      "published": true
+    },
+    {
+      "id": "perubahan-perusahaan",
+      "name": "Perubahan Perusahaan",
+      "slug": "perubahan-perusahaan",
+      "description": "Pendampingan saat bisnis berubah: pengurus, saham, alamat, kegiatan usaha, hingga struktur perusahaan.",
+      "order": 4,
+      "published": true
+    },
+    {
+      "id": "dokumen-kontrak",
+      "name": "Dokumen & Kontrak",
+      "slug": "dokumen-kontrak",
+      "description": "Penyusunan dan peninjauan dokumen legal agar kesepakatan bisnis lebih jelas sejak awal.",
+      "order": 5,
+      "published": true
+    }
+  ],
+  "services": [
+    {
+      "id": "pendirian-pt-lengkap",
+      "title": "Pendirian PT Lengkap",
+      "slug": "pendirian-pt-lengkap",
+      "categorySlug": "mulai-bisnis",
+      "shortDescription": "Paket pendirian PT dengan dokumen inti untuk membantu bisnis memiliki badan hukum dan legalitas dasar yang lebih siap.",
+      "description": "Cocok untuk bisnis yang ingin membangun struktur perusahaan lebih formal. Tim mendampingi dari pengecekan kebutuhan, persiapan data, proses dokumen, sampai legalitas dasar selesai sesuai ruang lingkup paket.",
+      "startingPrice": 5500000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Estimasi menyesuaikan kelengkapan data dan proses instansi terkait",
+      "featured": true,
+      "published": true,
+      "benefits": [
+        "Struktur usaha lebih siap berkembang",
+        "Pendampingan kebutuhan dokumen",
+        "Tahapan proses dijelaskan dengan bahasa sederhana"
+      ],
+      "inclusions": [
+        "Akta pendirian",
+        "SK badan hukum",
+        "NPWP badan",
+        "NIB sesuai ruang lingkup paket"
+      ],
+      "requirements": [
+        "Data identitas para pendiri",
+        "Pilihan nama perusahaan",
+        "Alamat usaha",
+        "Rencana kegiatan usaha / KBLI",
+        "Komposisi modal dan kepemilikan"
+      ],
+      "processSteps": [
+        "Konsultasi kebutuhan",
+        "Pengecekan dan verifikasi data",
+        "Penyusunan serta pengajuan dokumen",
+        "Pemrosesan legalitas",
+        "Penyerahan hasil"
+      ],
+      "faqs": [
+        {
+          "question": "Apakah saya harus sudah memahami KBLI?",
+          "answer": "Tidak. Anda bisa menjelaskan kegiatan usaha terlebih dahulu lalu tim membantu mengarahkan data yang perlu disiapkan."
+        },
+        {
+          "question": "Apakah harga di website bersifat final?",
+          "answer": "Harga akhir mengikuti kebutuhan dan ruang lingkup layanan yang disepakati sebelum proses dimulai."
+        }
+      ],
+      "order": 1
+    },
+    {
+      "id": "pendirian-cv-lengkap",
+      "title": "Pendirian CV Lengkap",
+      "slug": "pendirian-cv-lengkap",
+      "categorySlug": "mulai-bisnis",
+      "shortDescription": "Pendampingan pendirian CV untuk usaha yang membutuhkan badan usaha dengan proses dan dokumen yang lebih terstruktur.",
+      "description": "Layanan ini membantu menyiapkan proses pendirian CV, melengkapi dokumen dasar, dan mengarahkan kebutuhan perizinan sesuai paket yang dipilih.",
+      "startingPrice": 4799000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Menyesuaikan kelengkapan data",
+      "featured": true,
+      "published": true,
+      "benefits": [
+        "Proses lebih terarah",
+        "Checklist dokumen jelas",
+        "Pendampingan dari awal sampai selesai"
+      ],
+      "inclusions": [
+        "Akta CV",
+        "Pendaftaran badan usaha",
+        "NPWP badan",
+        "NIB sesuai ruang lingkup paket"
+      ],
+      "requirements": [
+        "Identitas sekutu aktif dan pasif",
+        "Nama CV",
+        "Alamat usaha",
+        "Kegiatan usaha"
+      ],
+      "processSteps": [
+        "Konsultasi",
+        "Kirim data",
+        "Verifikasi",
+        "Proses dokumen",
+        "Selesai"
+      ],
+      "faqs": [],
+      "order": 2
+    },
+    {
+      "id": "pt-perorangan",
+      "title": "PT Perorangan",
+      "slug": "pt-perorangan",
+      "categorySlug": "mulai-bisnis",
+      "shortDescription": "Pilihan badan hukum untuk pelaku usaha perorangan yang memenuhi kriteria sesuai ketentuan yang berlaku.",
+      "description": "Pendampingan untuk pelaku usaha yang ingin membentuk PT Perorangan dengan proses yang ringkas dan data yang mudah dipersiapkan.",
+      "startingPrice": 1500000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Menyesuaikan verifikasi data",
+      "featured": true,
+      "published": true,
+      "benefits": [
+        "Cocok untuk bisnis perorangan tertentu",
+        "Alur lebih sederhana",
+        "Pendampingan data dan pengajuan"
+      ],
+      "inclusions": [
+        "Dokumen pendirian sesuai paket",
+        "Panduan legalitas dasar"
+      ],
+      "requirements": [
+        "Identitas pemilik",
+        "Nama usaha",
+        "Alamat",
+        "Kegiatan usaha"
+      ],
+      "processSteps": [
+        "Cek kebutuhan",
+        "Kirim data",
+        "Pengajuan",
+        "Selesai"
+      ],
+      "faqs": [],
+      "order": 3
+    },
+    {
+      "id": "pendirian-yayasan",
+      "title": "Pendirian Yayasan",
+      "slug": "pendirian-yayasan",
+      "categorySlug": "mulai-bisnis",
+      "shortDescription": "Pendampingan pendirian badan hukum yayasan untuk kegiatan sosial, kemanusiaan, pendidikan, atau tujuan relevan lainnya.",
+      "description": "Tim membantu menyiapkan kebutuhan data, struktur organ yayasan, dokumen pendirian, dan alur pengajuan sesuai ruang lingkup layanan.",
+      "startingPrice": 5990000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Menyesuaikan kelengkapan data dan proses instansi",
+      "featured": false,
+      "published": true,
+      "benefits": [
+        "Pendampingan struktur yayasan",
+        "Checklist data lebih jelas",
+        "Proses terarah"
+      ],
+      "inclusions": [
+        "Dokumen pendirian sesuai paket",
+        "Pendampingan pengajuan"
+      ],
+      "requirements": [
+        "Data pendiri dan pengurus",
+        "Nama yayasan",
+        "Alamat",
+        "Tujuan kegiatan"
+      ],
+      "processSteps": [
+        "Konsultasi",
+        "Persiapan data",
+        "Penyusunan dokumen",
+        "Pengajuan",
+        "Selesai"
+      ],
+      "faqs": [],
+      "order": 4
+    },
+    {
+      "id": "oss-nib",
+      "title": "OSS & NIB",
+      "slug": "oss-nib",
+      "categorySlug": "perizinan-usaha",
+      "shortDescription": "Bantuan pengurusan NIB dan kebutuhan dasar melalui OSS sesuai profil dan kegiatan usaha.",
+      "description": "Layanan ini membantu pelaku usaha memahami data yang diperlukan untuk proses OSS, menentukan kegiatan usaha yang relevan, dan mengurus NIB sesuai ruang lingkup layanan.",
+      "startingPrice": 1500000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Tergantung kesiapan data dan tingkat risiko kegiatan usaha",
+      "featured": true,
+      "published": true,
+      "benefits": [
+        "Data usaha lebih rapi",
+        "Pendampingan OSS",
+        "Arahan kebutuhan legalitas lanjutan"
+      ],
+      "inclusions": [
+        "Pendampingan data OSS",
+        "Pengurusan NIB sesuai lingkup layanan"
+      ],
+      "requirements": [
+        "Identitas pemilik/pengurus",
+        "Data badan usaha bila ada",
+        "Alamat",
+        "Kegiatan usaha"
+      ],
+      "processSteps": [
+        "Pemetaan kebutuhan",
+        "Verifikasi data",
+        "Pengisian OSS",
+        "Penerbitan hasil"
+      ],
+      "faqs": [],
+      "order": 5
+    },
+    {
+      "id": "npwp-badan",
+      "title": "NPWP Badan",
+      "slug": "npwp-badan",
+      "categorySlug": "perizinan-usaha",
+      "shortDescription": "Pendampingan pengurusan identitas perpajakan badan usaha sesuai kebutuhan dan kesiapan dokumen.",
+      "description": "Kami bantu menyiapkan alur dan data pengurusan NPWP badan agar proses lebih terarah.",
+      "startingPrice": 500000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Menyesuaikan data dan proses",
+      "featured": false,
+      "published": true,
+      "benefits": [
+        "Checklist data",
+        "Pendampingan proses",
+        "Informasi lebih mudah dipahami"
+      ],
+      "inclusions": [
+        "Pendampingan pengajuan sesuai paket"
+      ],
+      "requirements": [
+        "Dokumen badan usaha",
+        "Identitas pengurus",
+        "Alamat dan data pendukung"
+      ],
+      "processSteps": [
+        "Kirim data",
+        "Verifikasi",
+        "Pengajuan",
+        "Selesai"
+      ],
+      "faqs": [],
+      "order": 6
+    },
+    {
+      "id": "sertifikasi-halal",
+      "title": "Sertifikasi Halal",
+      "slug": "sertifikasi-halal",
+      "categorySlug": "perizinan-usaha",
+      "shortDescription": "Pendampingan administrasi untuk pelaku usaha yang membutuhkan proses sertifikasi halal sesuai kategori usahanya.",
+      "description": "Tim membantu memetakan dokumen dan tahapan administrasi yang diperlukan sebelum proses pengajuan dilakukan.",
+      "startingPrice": 2000000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Menyesuaikan skema dan kelengkapan dokumen",
+      "featured": false,
+      "published": true,
+      "benefits": [
+        "Pendampingan administrasi",
+        "Checklist dokumen",
+        "Alur proses lebih jelas"
+      ],
+      "inclusions": [
+        "Pendampingan administrasi sesuai paket"
+      ],
+      "requirements": [
+        "Data pelaku usaha",
+        "Data produk",
+        "Dokumen proses produksi yang relevan"
+      ],
+      "processSteps": [
+        "Analisis kebutuhan",
+        "Persiapan dokumen",
+        "Pengajuan",
+        "Monitoring"
+      ],
+      "faqs": [],
+      "order": 7
+    },
+    {
+      "id": "pendaftaran-merek",
+      "title": "Pendaftaran Merek",
+      "slug": "pendaftaran-merek",
+      "categorySlug": "lindungi-brand",
+      "shortDescription": "Bantu lindungi nama dan identitas brand melalui proses pendaftaran merek yang lebih terarah.",
+      "description": "Mulai dari memahami kelas barang/jasa, pengecekan awal, sampai menyiapkan pengajuan. Layanan dirancang agar pemilik bisnis memahami apa yang sedang diproses, bukan sekadar menyerahkan dokumen.",
+      "startingPrice": 1500000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Proses merek mengikuti tahapan pemeriksaan DJKI",
+      "featured": true,
+      "published": true,
+      "benefits": [
+        "Membantu memetakan kelas merek",
+        "Pengecekan awal sebelum pengajuan",
+        "Pendampingan proses administrasi"
+      ],
+      "inclusions": [
+        "Konsultasi awal",
+        "Pemetaan kelas",
+        "Pendampingan pengajuan sesuai paket"
+      ],
+      "requirements": [
+        "Nama/logo merek",
+        "Identitas pemohon",
+        "Daftar produk atau jasa",
+        "Dokumen pendukung sesuai kategori pemohon"
+      ],
+      "processSteps": [
+        "Konsultasi merek",
+        "Pengecekan awal",
+        "Tentukan kelas",
+        "Pengajuan",
+        "Monitoring proses"
+      ],
+      "faqs": [
+        {
+          "question": "Apakah satu merek bisa didaftarkan di beberapa kelas?",
+          "answer": "Bisa. Kebutuhan kelas perlu disesuaikan dengan produk atau jasa yang benar-benar digunakan dan rencana pengembangan brand."
+        }
+      ],
+      "order": 8
+    },
+    {
+      "id": "pengecekan-merek",
+      "title": "Pengecekan Merek",
+      "slug": "pengecekan-merek",
+      "categorySlug": "lindungi-brand",
+      "shortDescription": "Pengecekan awal untuk membantu melihat potensi kemiripan sebelum merek diajukan.",
+      "description": "Pengecekan bukan jaminan merek akan diterima, tetapi membantu pemilik bisnis memahami risiko awal dan membuat keputusan lebih baik sebelum mengajukan.",
+      "startingPrice": 0,
+      "priceNote": "Hubungi tim untuk menentukan kebutuhan dan ruang lingkup layanan.",
+      "duration": "Menyesuaikan kompleksitas pengecekan",
+      "featured": false,
+      "published": true,
+      "benefits": [
+        "Melihat potensi kemiripan",
+        "Membantu menentukan langkah sebelum daftar",
+        "Mengurangi keputusan berdasarkan tebakan"
+      ],
+      "inclusions": [
+        "Pengecekan awal sesuai ruang lingkup"
+      ],
+      "requirements": [
+        "Nama merek",
+        "Jenis produk/jasa"
+      ],
+      "processSteps": [
+        "Kirim nama merek",
+        "Analisis awal",
+        "Diskusi hasil"
+      ],
+      "faqs": [],
+      "order": 9
+    },
+    {
+      "id": "perubahan-pengurus-pt",
+      "title": "Perubahan Pengurus PT",
+      "slug": "perubahan-pengurus-pt",
+      "categorySlug": "perubahan-perusahaan",
+      "shortDescription": "Pendampingan perubahan direksi atau komisaris dan dokumen perusahaan yang berkaitan.",
+      "description": "Cocok untuk perusahaan yang mengalami pergantian atau penyesuaian struktur pengurus dan membutuhkan pembaruan dokumen secara terarah.",
+      "startingPrice": 5000000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Menyesuaikan dokumen dan jenis perubahan",
+      "featured": false,
+      "published": true,
+      "benefits": [
+        "Dokumen perubahan lebih terstruktur",
+        "Pendampingan data",
+        "Arahan tindak lanjut"
+      ],
+      "inclusions": [
+        "Pendampingan dokumen perubahan sesuai paket"
+      ],
+      "requirements": [
+        "Dokumen perusahaan terakhir",
+        "Data pengurus lama dan baru",
+        "Keputusan pemegang saham sesuai kebutuhan"
+      ],
+      "processSteps": [
+        "Review dokumen",
+        "Kelengkapan data",
+        "Proses perubahan",
+        "Penyerahan hasil"
+      ],
+      "faqs": [],
+      "order": 10
+    },
+    {
+      "id": "perubahan-alamat-pt",
+      "title": "Perubahan Tempat Kedudukan PT",
+      "slug": "perubahan-tempat-kedudukan-pt",
+      "categorySlug": "perubahan-perusahaan",
+      "shortDescription": "Pendampingan perubahan tempat kedudukan perusahaan beserta penyesuaian dokumen yang relevan.",
+      "description": "Tim membantu memetakan dokumen yang harus diperbarui ketika perusahaan berpindah tempat kedudukan.",
+      "startingPrice": 4490000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Menyesuaikan cakupan perubahan",
+      "featured": false,
+      "published": true,
+      "benefits": [
+        "Perubahan data lebih terarah",
+        "Checklist dokumen jelas",
+        "Pendampingan proses"
+      ],
+      "inclusions": [
+        "Pendampingan perubahan sesuai paket"
+      ],
+      "requirements": [
+        "Dokumen perusahaan",
+        "Alamat lama dan baru",
+        "Dokumen tempat usaha"
+      ],
+      "processSteps": [
+        "Review",
+        "Kelengkapan",
+        "Pengajuan perubahan",
+        "Selesai"
+      ],
+      "faqs": [],
+      "order": 11
+    },
+    {
+      "id": "review-kontrak",
+      "title": "Review Kontrak",
+      "slug": "review-kontrak",
+      "categorySlug": "dokumen-kontrak",
+      "shortDescription": "Peninjauan dokumen kerja sama untuk membantu menemukan bagian yang perlu diperjelas sebelum disepakati.",
+      "description": "Review kontrak membantu Anda memahami hak, kewajiban, risiko, dan klausul penting sebelum dokumen digunakan atau ditandatangani.",
+      "startingPrice": 750000,
+      "priceNote": "Harga dapat menyesuaikan ruang lingkup dan kebutuhan layanan.",
+      "duration": "Menyesuaikan panjang dan kompleksitas dokumen",
+      "featured": true,
+      "published": true,
+      "benefits": [
+        "Klausul lebih mudah dipahami",
+        "Risiko utama lebih terlihat",
+        "Masukan lebih terstruktur"
+      ],
+      "inclusions": [
+        "Review dokumen sesuai ruang lingkup",
+        "Catatan atau rekomendasi perbaikan"
+      ],
+      "requirements": [
+        "Dokumen kontrak",
+        "Konteks transaksi",
+        "Tujuan kerja sama"
+      ],
+      "processSteps": [
+        "Kirim dokumen",
+        "Brief konteks",
+        "Review",
+        "Diskusi hasil"
+      ],
+      "faqs": [],
+      "order": 12
+    }
+  ],
+  "articles": [
+    {
+      "id": "pt-atau-cv",
+      "title": "PT atau CV: Mana yang Lebih Cocok untuk Bisnismu?",
+      "slug": "pt-atau-cv-mana-yang-cocok",
+      "excerpt": "Kenali perbedaan dasar PT dan CV sebelum menentukan bentuk usaha yang paling sesuai dengan kebutuhan bisnis.",
+      "category": "Memulai Usaha",
+      "content": "Memilih bentuk usaha sebaiknya tidak hanya berdasarkan tren. Pertimbangkan jumlah pendiri, kebutuhan pemisahan aset, rencana masuknya investor, jenis kegiatan usaha, serta kebutuhan kerja sama dengan pihak lain. PT memiliki status badan hukum, sedangkan CV merupakan badan usaha bukan badan hukum. Sebelum menentukan pilihan, petakan dulu bagaimana bisnis akan berjalan dalam satu sampai tiga tahun ke depan. Jika masih ragu, gunakan konsultasi awal untuk menguji kebutuhanmu sebelum memproses dokumen.",
+      "publishedAt": "2026-08-01",
+      "featured": true,
+      "published": true
+    },
+    {
+      "id": "tahapan-daftar-merek",
+      "title": "Tahapan yang Perlu Dipahami Sebelum Mengajukan Merek",
+      "slug": "tahapan-sebelum-mengajukan-merek",
+      "excerpt": "Pendaftaran merek bukan sekadar unggah logo. Ada kelas, pengecekan awal, dokumen pemohon, dan proses pemeriksaan yang perlu dipahami.",
+      "category": "Merek & HKI",
+      "content": "Mulailah dengan memastikan siapa pemilik merek dan produk atau jasa apa yang akan dilindungi. Setelah itu tentukan kelas yang relevan, lakukan pengecekan awal terhadap merek yang sudah ada, siapkan dokumen pemohon, lalu baru masuk ke tahap pengajuan. Setelah pengajuan, merek masih melewati tahapan pemeriksaan sesuai proses DJKI. Karena itu, keputusan kelas dan strategi nama sebaiknya dilakukan sebelum pengajuan, bukan setelah muncul masalah.",
+      "publishedAt": "2026-08-03",
+      "featured": true,
+      "published": true
+    },
+    {
+      "id": "apa-itu-nib",
+      "title": "Apa Itu NIB dan Kenapa Banyak Bisnis Membutuhkannya?",
+      "slug": "apa-itu-nib",
+      "excerpt": "NIB menjadi salah satu identitas penting dalam ekosistem perizinan berusaha berbasis risiko melalui OSS.",
+      "category": "Perizinan",
+      "content": "NIB atau Nomor Induk Berusaha digunakan sebagai identitas pelaku usaha dalam sistem perizinan berusaha. Kebutuhan lanjutan setelah NIB dapat berbeda tergantung kegiatan usaha dan tingkat risikonya. Karena itu, jangan berhenti pada pertanyaan 'sudah punya NIB atau belum'. Pastikan juga data kegiatan usaha, lokasi, dan perizinan lanjutan sesuai dengan aktivitas bisnis yang benar-benar dijalankan.",
+      "publishedAt": "2026-08-05",
+      "featured": true,
+      "published": true
+    }
+  ],
+  "testimonials": [],
+  "partners": [],
+  "faqs": [
+    {
+      "id": "faq-konsultasi",
+      "question": "Bisa konsultasi dulu sebelum memilih layanan?",
+      "answer": "Bisa. Jelaskan kondisi dan kebutuhan bisnismu terlebih dahulu agar tim dapat membantu mengarahkan layanan yang relevan.",
+      "category": "Umum",
+      "order": 1,
+      "published": true
+    },
+    {
+      "id": "faq-dokumen",
+      "question": "Kalau dokumen saya belum lengkap bagaimana?",
+      "answer": "Tidak masalah. Kamu bisa mulai dari konsultasi dan tim akan memberikan checklist dokumen yang perlu dipersiapkan.",
+      "category": "Umum",
+      "order": 2,
+      "published": true
+    },
+    {
+      "id": "faq-online",
+      "question": "Apakah proses bisa dilakukan secara online?",
+      "answer": "Sebagian besar komunikasi dan pengumpulan data dapat dilakukan secara online. Beberapa layanan mungkin membutuhkan tahapan tambahan sesuai jenis dokumen dan ketentuan yang berlaku.",
+      "category": "Umum",
+      "order": 3,
+      "published": true
+    },
+    {
+      "id": "faq-harga",
+      "question": "Apakah harga di website sudah final?",
+      "answer": "Harga dapat ditampilkan sebagai harga mulai dari. Nilai final sebaiknya dikonfirmasi setelah kebutuhan dan ruang lingkup layanan diperiksa.",
+      "category": "Umum",
+      "order": 4,
+      "published": true
+    },
+    {
+      "id": "faq-layanan",
+      "question": "Saya belum tahu layanan apa yang dibutuhkan. Harus pilih yang mana?",
+      "answer": "Tidak perlu menebak sendiri. Ceritakan jenis usaha dan masalah yang ingin diselesaikan melalui form konsultasi atau WhatsApp.",
+      "category": "Umum",
+      "order": 5,
+      "published": true
+    }
+  ],
+  "teamMembers": [],
+  "caseStudies": [],
+  "siteSettings": {
+    "id": "main",
+    "brandName": "Yuk Jadi Legal",
+    "brandTagline": "Legalitas bisnis, tanpa bikin pusing.",
+    "heroEyebrow": "LEGALITAS BISNIS YANG LEBIH MUDAH DIPAHAMI",
+    "heroTitle": "Bisnismu sudah jalan. Sekarang, yuk jadi legal.",
+    "heroDescription": "Mulai dari pendirian usaha, perizinan, perlindungan merek, sampai dokumen bisnis. Kami bantu prosesnya jadi lebih jelas dari awal.",
+    "whatsapp": "",
+    "email": "",
+    "address": "",
+    "instagram": "",
+    "linkedin": "",
+    "tiktok": "",
+    "officeHours": "Senin–Jumat, 09.00–17.00 WIB",
+    "stats": [
+      {
+        "label": "Klien dibantu",
+        "value": ""
+      },
+      {
+        "label": "Legalitas diproses",
+        "value": ""
+      },
+      {
+        "label": "Mitra profesional",
+        "value": ""
+      }
+    ]
+  }
+}

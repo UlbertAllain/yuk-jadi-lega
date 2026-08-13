@@ -1,0 +1,111 @@
+diff --git a/app/(public)/kontak/page.tsx b/app/(public)/kontak/page.tsx
+index 3a3bf37..2c09390 100644
+--- a/app/(public)/kontak/page.tsx
++++ b/app/(public)/kontak/page.tsx
+@@ -15,6 +15,11 @@ export default async function ContactPage() {
+     getServices(),
+   ]);
+   const whatsappHref = getWhatsAppHref(settings.whatsapp);
++  const serviceOptions = services.map(({ id, title, slug }) => ({
++    id,
++    title,
++    slug,
++  }));
+ 
+   return (
+     <main>
+@@ -84,7 +89,7 @@ export default async function ContactPage() {
+           ) : null}
+         </div>
+ 
+-        <LeadForm services={services} />
++        <LeadForm services={serviceOptions} />
+       </section>
+     </main>
+   );
+diff --git a/app/(public)/layanan/[slug]/page.tsx b/app/(public)/layanan/[slug]/page.tsx
+index 7ca5447..d750a37 100644
+--- a/app/(public)/layanan/[slug]/page.tsx
++++ b/app/(public)/layanan/[slug]/page.tsx
+@@ -59,6 +59,11 @@ export default async function ServiceDetailPage({
+   const waMessage = `Halo Yuk Jadi Legal, saya sedang melihat layanan ${service.title} dan ingin konsultasi.`;
+   const whatsappHref = getWhatsAppHref(settings.whatsapp, waMessage);
+   const consultationHref = whatsappHref || "/kontak";
++  const serviceOptions = allServices.map(({ id, title, slug: serviceSlug }) => ({
++    id,
++    title,
++    slug: serviceSlug,
++  }));
+ 
+   return (
+     <main>
+@@ -228,7 +233,7 @@ export default async function ServiceDetailPage({
+               Isi kebutuhanmu melalui formulir berikut. Tim kami akan menindaklanjuti informasi yang kamu kirim melalui kontak yang tersedia.
+             </p>
+           </div>
+-          <LeadForm services={allServices} defaultService={service.slug} />
++          <LeadForm services={serviceOptions} defaultService={service.slug} />
+         </div>
+       </section>
+ 
+diff --git a/components/home/home-content.tsx b/components/home/home-content.tsx
+index 5ae631a..5c5787b 100644
+--- a/components/home/home-content.tsx
++++ b/components/home/home-content.tsx
+@@ -14,6 +14,12 @@ export function HomeContent({
+   faqs: Faq[];
+   services: Service[];
+ }) {
++  const serviceOptions = services.map(({ id, title, slug }) => ({
++    id,
++    title,
++    slug,
++  }));
++
+   return (
+     <>
+       {articles.length ? (
+@@ -118,7 +124,7 @@ export function HomeContent({
+               Ceritakan kondisi bisnismu. Tim Yuk Jadi Legal akan membantu memahami kebutuhan awal sebelum proses dimulai.
+             </p>
+           </div>
+-          <LeadForm services={services} />
++          <LeadForm services={serviceOptions} />
+         </div>
+       </section>
+     </>
+diff --git a/components/site/lead-form.tsx b/components/site/lead-form.tsx
+index 06e13b0..607fef5 100644
+--- a/components/site/lead-form.tsx
++++ b/components/site/lead-form.tsx
+@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
+ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+ import { ArrowRight, CheckCircle2 } from "lucide-react";
+ import { db } from "@/lib/firebase";
+-import type { Service } from "@/types";
++import type { ServiceOption } from "@/types";
+ 
+ type FormState = "idle" | "loading" | "success" | "error";
+ 
+@@ -12,7 +12,7 @@ export function LeadForm({
+   services,
+   defaultService = "",
+ }: {
+-  services: Service[];
++  services: ServiceOption[];
+   defaultService?: string;
+ }) {
+   const [name, setName] = useState("");
+diff --git a/types/index.ts b/types/index.ts
+index cfa9624..d751881 100644
+--- a/types/index.ts
++++ b/types/index.ts
+@@ -32,6 +32,8 @@ export type Service = {
+   faqs: ServiceFaq[];
+ };
+ 
++export type ServiceOption = Pick<Service, "id" | "title" | "slug">;
++
+ export type Article = {
+   id: string;
+   title: string;

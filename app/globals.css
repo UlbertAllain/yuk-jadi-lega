@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-ink: #0e1b2b;
+  --color-brand-green: #163f34;
+  --color-brand-green-dark: #102f27;
+  --color-brand-paper: #f7f5ef;
+  --color-brand-gold: #b88a2b;
+  --color-brand-gold-soft: #d9b55f;
+  --color-brand-gold-dark: #8c671c;
+  --color-brand-sand: #e8dfc7;
+  --color-admin-surface: #f4f6f7;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--color-brand-ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-brand-green);
+  color: white;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-soft {
+  animation: float-soft 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-marquee,
+  .animate-float-soft {
+    animation: none;
+  }
+}
