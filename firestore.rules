@@ -36,6 +36,11 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    match /kbli/{docId} {
+      allow read: if isAdmin() || resource.data.published == true;
+      allow write: if isAdmin();
+    }
+
     match /testimonials/{docId} {
       allow read: if isAdmin() || resource.data.published == true;
       allow write: if isAdmin();

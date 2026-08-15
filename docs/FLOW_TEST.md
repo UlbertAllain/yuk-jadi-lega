@@ -1,4 +1,4 @@
-# Flow Test — Yuk Jadi Legal MVP
+# Flow Test — Yuk Jadi Legal
 
 ## A. Setup awal
 
@@ -6,7 +6,7 @@
 - [ ] Firebase Authentication Email/Password aktif
 - [ ] UID admin sudah terdaftar di `admins/{uid}` dengan `active=true`
 - [ ] Firestore Rules sudah dipublish
-- [ ] `npm run seed` berhasil
+- [ ] `npm run seed:reset` berhasil untuk migrasi katalog lama
 - [ ] Homepage membaca data dari Firestore
 - [ ] Tidak ada fallback data lokal ketika Firestore kosong/error
 
@@ -22,8 +22,12 @@
 - [ ] Tim hanya tampil jika ada data
 - [ ] Artikel tampil
 - [ ] FAQ tampil
+- [ ] Search layanan bekerja
+- [ ] Filter 9 kategori bekerja
+- [ ] Deep-link `/layanan?category=<slug>` bekerja
 - [ ] Detail layanan dapat dibuka dari slug
 - [ ] Detail artikel dapat dibuka dari slug
+- [ ] Halaman KBLI dapat dicari berdasarkan kode/judul/uraian
 - [ ] Tombol WhatsApp memakai nomor dari Site Settings
 - [ ] Jika WhatsApp kosong, CTA konsultasi mengarah ke halaman kontak
 
@@ -43,13 +47,15 @@
 - [ ] CRUD kategori layanan bekerja
 - [ ] CRUD layanan bekerja
 - [ ] CRUD artikel bekerja
+- [ ] CRUD KBLI bekerja
+- [ ] Import JSON KBLI bekerja
 - [ ] CRUD partner/client bekerja
 - [ ] CRUD testimonial bekerja
 - [ ] CRUD FAQ bekerja
 - [ ] CRUD team bekerja
 - [ ] CRUD case study bekerja
 - [ ] Lead dapat dibaca dan statusnya dapat diubah
-- [ ] Site Settings dapat disimpan
+- [ ] Site Settings dan section homepage dapat disimpan
 
 ## E. Dynamic content
 

@@ -2,16 +2,15 @@ import { HomeContent } from "@/components/home/home-content";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomeServices } from "@/components/home/home-services";
 import { HomeTrust } from "@/components/home/home-trust";
+import { HomeProcess } from "@/components/home/home-process";
 import {
   getArticles,
-  getCaseStudies,
   getFaqs,
   getFeaturedServices,
   getPartners,
   getServiceCategories,
   getServices,
   getSiteSettings,
-  getTeamMembers,
   getTestimonials,
 } from "@/lib/data";
 
@@ -25,8 +24,6 @@ export default async function HomePage() {
     testimonials,
     articles,
     faqs,
-    team,
-    caseStudies,
   ] = await Promise.all([
     getSiteSettings(),
     getServiceCategories(),
@@ -36,24 +33,19 @@ export default async function HomePage() {
     getTestimonials(),
     getArticles(),
     getFaqs(),
-    getTeamMembers(),
-    getCaseStudies(),
   ]);
 
   return (
     <main>
-      <HomeHero settings={settings} partners={partners} />
+      <HomeHero settings={settings} services={services} categories={categories} />
       <HomeServices
         categories={categories}
         featuredServices={featuredServices}
         settings={settings}
       />
-      <HomeTrust
-        caseStudies={caseStudies}
-        testimonials={testimonials}
-        team={team}
-      />
-      <HomeContent articles={articles} faqs={faqs} services={services} />
+      <HomeTrust partners={partners} testimonials={testimonials} />
+      <HomeProcess />
+      <HomeContent articles={articles} faqs={faqs} settings={settings} />
     </main>
   );
 }

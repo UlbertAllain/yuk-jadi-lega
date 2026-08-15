@@ -1,4 +1,4 @@
-# MVP Scope — Yuk Jadi Legal
+# Product Scope — Yuk Jadi Legal
 
 ## Goal
 
@@ -21,8 +21,10 @@ Membuat company profile legal service yang terasa sebagai versi modern/level-up 
 /artikel
 /artikel/[slug]
 /faq
+/kbli
 /kontak
 /kebijakan-privasi
+/syarat-ketentuan
 ```
 
 ## Admin Information Architecture
@@ -32,6 +34,7 @@ Membuat company profile legal service yang terasa sebagai versi modern/level-up 
 /admin/login
 /admin/services
 /admin/articles
+/admin/kbli
 /admin/partners
 /admin/testimonials
 /admin/faqs

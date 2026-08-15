@@ -14,9 +14,9 @@ export function FloatingConsultation({ whatsapp }: { whatsapp: string }) {
       target="_blank"
       rel="noreferrer"
       aria-label="Konsultasi melalui WhatsApp"
-      className="fixed bottom-5 right-5 z-40 flex items-center gap-3 rounded-full border border-white/20 bg-brand-green px-4 py-3 text-sm font-bold text-white shadow-2xl shadow-slate-900/20 transition hover:-translate-y-1"
+      className="fixed bottom-5 right-5 z-40 flex items-center gap-3 border border-white/15 bg-brand-navy px-4 py-3 text-xs font-semibold text-white shadow-[0_16px_44px_rgba(7,26,52,.22)] transition hover:bg-brand-navy-dark"
     >
-      <MessageCircle className="h-5 w-5" />
+      <MessageCircle className="h-4 w-4 text-brand-gold-soft" />
       <span className="hidden sm:inline">Konsultasi</span>
     </a>
   );

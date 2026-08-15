@@ -1,4 +1,4 @@
-# Code Audit — Yuk Jadi Legal MVP
+# Code Audit — Yuk Jadi Legal
 
 ## Prinsip arsitektur
 
@@ -8,20 +8,22 @@ Project ini sengaja dipertahankan sebagai **company profile + CMS**, bukan platf
 
 Public:
 - company profile
-- katalog + detail layanan
+- katalog + detail layanan dengan search/filter
 - partner/client
 - testimonial
 - team
 - studi kasus
 - artikel
 - FAQ
+- KBLI searchable
 - kontak + lead form
 
 Admin:
 - Firebase Authentication untuk admin
 - CRUD konten yang memang perlu berubah
 - lead management sederhana
-- website settings
+- website settings/homepage sections
+- CRUD + import KBLI
 - media upload via Cloudinary
 
 Tidak ada payment gateway, akun client, client portal, invoice, tracking dokumen, chat, membership, atau CRM kompleks.
@@ -63,7 +65,7 @@ scripts/
 
 ## Seed
 
-`data/seed-data.json` digunakan sekali untuk mengisi data awal Firestore. Seed memuat kategori, layanan, artikel, FAQ, dan pengaturan dasar. Partner, client, testimonial, team, studi kasus, kontak, serta statistik sengaja kosong karena harus menggunakan data resmi Yuk Jadi Legal.
+`data/seed-data.json` digunakan sekali untuk mengisi data awal Firestore. Seed memuat 9 kategori, katalog layanan, subset KBLI terverifikasi, artikel, FAQ, dan pengaturan dasar. Partner, client, testimonial, team, studi kasus, kontak, serta statistik sengaja kosong karena harus menggunakan data resmi Yuk Jadi Legal.
 
 ## Clean-code decisions
 
@@ -91,7 +93,7 @@ scripts/
 Sebelum handoff production jalankan:
 
 ```bash
-npm install
+npm ci
 npm run lint
 npm run build
 ```

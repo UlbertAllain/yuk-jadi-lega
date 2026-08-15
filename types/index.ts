@@ -3,6 +3,8 @@ export type ServiceFaq = {
   answer: string;
 };
 
+export type ServicePriceType = "fixed" | "starting-from" | "consultation";
+
 export type ServiceCategory = {
   id: string;
   name: string;
@@ -20,6 +22,7 @@ export type Service = {
   shortDescription: string;
   description: string;
   startingPrice: number;
+  priceType?: ServicePriceType;
   priceNote?: string;
   duration?: string;
   order?: number;
@@ -30,6 +33,9 @@ export type Service = {
   requirements: string[];
   processSteps: string[];
   faqs: ServiceFaq[];
+  seoTitle?: string;
+  seoDescription?: string;
+  keywords?: string[];
 };
 
 export type ServiceOption = Pick<Service, "id" | "title" | "slug">;
@@ -99,6 +105,17 @@ export type CaseStudy = {
   featured: boolean;
 };
 
+export type KbliEntry = {
+  id: string;
+  code: string;
+  title: string;
+  description: string;
+  category?: string;
+  source?: string;
+  order?: number;
+  published: boolean;
+};
+
 export type SiteStat = {
   label: string;
   value: string;
@@ -111,6 +128,13 @@ export type SiteSettings = {
   heroEyebrow: string;
   heroTitle: string;
   heroDescription: string;
+  servicesEyebrow?: string;
+  servicesTitle?: string;
+  servicesDescription?: string;
+  whyUsTitle?: string;
+  whyUsDescription?: string;
+  ctaTitle?: string;
+  ctaDescription?: string;
   whatsapp: string;
   email: string;
   address: string;
@@ -119,6 +143,8 @@ export type SiteSettings = {
   tiktok?: string;
   officeHours?: string;
   stats: SiteStat[];
+  menuServiceSlugs?: string[];
+  menuCategorySlugs?: string[];
 };
 
 export type Lead = {

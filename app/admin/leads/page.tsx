@@ -136,7 +136,7 @@ export default function LeadsAdminPage() {
                             rel="noreferrer"
                             aria-label={`Hubungi ${lead.name} melalui WhatsApp`}
                             title={`Hubungi ${lead.name} melalui WhatsApp`}
-                            className="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-brand-green"
+                            className="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-brand-navy"
                           >
                             <ExternalLink className="h-4 w-4" />
                           </a>

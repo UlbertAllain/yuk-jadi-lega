@@ -1,64 +1,41 @@
 import type { Metadata } from "next";
-import { ServiceCard } from "@/components/site/service-card";
+import { ServicesBrowser } from "@/components/site/services-browser";
+import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getServiceCategories, getServices } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Layanan",
+  title: "Layanan Legalitas Bisnis",
   description:
-    "Temukan layanan legalitas bisnis Yuk Jadi Legal berdasarkan kebutuhan usahamu.",
+    "Cari layanan pendirian perusahaan, perizinan, HKI, kontrak, pertanahan, keimigrasian, pajak, dan konsultasi di Yuk Jadi Legal.",
 };
 
-export default async function ServicesPage() {
-  const [categories, services] = await Promise.all([
+export default async function ServicesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  const [{ category }, categories, services] = await Promise.all([
+    searchParams,
     getServiceCategories(),
     getServices(),
   ]);
 
   return (
-    <main>
-      <section className="bg-brand-ink text-white">
-        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-brand-gold-soft">
-            Layanan
-          </p>
-          <h1 className="mt-5 max-w-5xl text-5xl font-black tracking-[-0.06em] sm:text-6xl lg:text-7xl">
-            Cari berdasarkan kebutuhan bisnis, bukan istilah yang bikin bingung.
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300">
-            Mulai usaha, urus perizinan, lindungi brand, atau rapikan dokumen perusahaan. Pilih kategori yang paling dekat dengan kebutuhanmu.
-          </p>
-        </div>
-      </section>
+    <main className="bg-brand-surface">
+      <PublicPageHero
+        eyebrow="Direktori layanan"
+        title="Temukan layanan legal sesuai kebutuhan bisnis."
+        description="Cari berdasarkan nama, kata kunci, atau kategori. Informasi biaya dan estimasi ditampilkan sejak awal agar pilihan lebih mudah dibandingkan."
+        meta={
+          <div className="flex items-center gap-5 text-xs font-semibold text-brand-muted">
+            <span><strong className="text-brand-ink">{services.length}</strong> layanan</span>
+            <span><strong className="text-brand-ink">{categories.length}</strong> kategori</span>
+          </div>
+        }
+      />
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-        <div className="space-y-20">
-          {categories.map((category) => {
-            const categoryServices = services.filter(
-              (service) => service.categorySlug === category.slug,
-            );
-
-            if (!categoryServices.length) return null;
-
-            return (
-              <section key={category.id} id={category.slug} className="scroll-mt-28">
-                <div className="grid gap-5 lg:grid-cols-[.5fr_1fr] lg:items-end">
-                  <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-                    {category.name}
-                  </p>
-                  <p className="max-w-2xl text-sm leading-7 text-slate-600">
-                    {category.description}
-                  </p>
-                </div>
-
-                <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                  {categoryServices.map((service) => (
-                    <ServiceCard key={service.id} service={service} />
-                  ))}
-                </div>
-              </section>
-            );
-          })}
-        </div>
+      <section className="page-shell py-10 lg:py-14">
+        <ServicesBrowser categories={categories} services={services} initialCategory={category} />
       </section>
     </main>
   );

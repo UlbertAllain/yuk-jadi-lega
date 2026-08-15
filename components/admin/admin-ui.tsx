@@ -127,10 +127,10 @@ export function IconButton({
 }
 
 export const inputClass =
-  "h-11 rounded-xl border border-slate-200 bg-white px-3.5 font-normal outline-none transition focus:border-brand-green";
+  "h-11 rounded-xl border border-slate-200 bg-white px-3.5 font-normal outline-none transition focus:border-brand-navy";
 
 export const textareaClass =
-  "rounded-xl border border-slate-200 bg-white px-3.5 py-3 font-normal leading-6 outline-none transition focus:border-brand-green";
+  "rounded-xl border border-slate-200 bg-white px-3.5 py-3 font-normal leading-6 outline-none transition focus:border-brand-navy";
 
 export const buttonPrimary =
-  "inline-flex h-11 items-center justify-center rounded-full bg-brand-green px-5 text-sm font-black text-white transition hover:bg-brand-green-dark disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex h-11 items-center justify-center rounded-full bg-brand-navy px-5 text-sm font-black text-white transition hover:bg-brand-navy-dark disabled:cursor-not-allowed disabled:opacity-50";

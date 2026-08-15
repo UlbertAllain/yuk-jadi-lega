@@ -1,8 +1,8 @@
-# Yuk Jadi Legal — MVP
+# Yuk Jadi Legal — Company Profile + CMS
 
 Modern legal company profile + dynamic CMS untuk **Yuk Jadi Legal**.
 
-## Scope MVP
+## Scope Produk
 
 Public website:
 
@@ -36,7 +36,7 @@ Admin CMS:
 - Global website settings
 - Cloudinary image upload (unsigned preset)
 
-Yang **sengaja tidak masuk MVP**:
+Yang **sengaja tidak masuk scope company profile + CMS**:
 
 - Payment gateway
 - Login/register client
@@ -177,7 +177,7 @@ npx firebase-tools use --add
 npx firebase-tools deploy --only firestore:rules
 ```
 
-Rules MVP:
+Rules:
 
 - Konten published bisa dibaca public
 - Hanya UID yang terdaftar di `admins` dan `active=true` yang bisa mengubah CMS
@@ -247,7 +247,7 @@ NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=nama_cloud
 NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=nama_unsigned_preset
 ```
 
-MVP upload langsung dari browser ke Cloudinary menggunakan unsigned preset, sehingga **Cloudinary API Secret tidak pernah dikirim ke browser**.
+Upload langsung dari browser ke Cloudinary menggunakan unsigned preset, sehingga **Cloudinary API Secret tidak pernah dikirim ke browser**.
 
 Untuk production, atur preset seketat mungkin (jenis file, ukuran, folder, transformasi, dan policy lain yang tersedia di akun Cloudinary).
 
@@ -273,7 +273,7 @@ http://localhost:3000/admin/login
 
 ---
 
-# Flow Test MVP
+# Flow Test
 
 ## Public
 

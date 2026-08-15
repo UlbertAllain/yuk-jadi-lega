@@ -15,12 +15,28 @@ import type {
   CaseStudy,
   Faq,
   Partner,
+  KbliEntry,
   Service,
   ServiceCategory,
   SiteSettings,
   TeamMember,
   Testimonial,
 } from "@/types";
+
+function toPublicDocument<T>(data: Record<string, unknown>, id: string): T {
+  const plain: Record<string, unknown> = {
+    ...data,
+    id,
+  };
+
+  // Firestore Timestamp instances are not serializable across the
+  // Server Component -> Client Component boundary. These fields are
+  // internal CMS metadata and are not part of the public DTOs.
+  delete plain.createdAt;
+  delete plain.updatedAt;
+
+  return plain as T;
+}
 
 async function publishedCollection<T>(name: string): Promise<T[]> {
   if (!db) return [];
@@ -30,8 +46,8 @@ async function publishedCollection<T>(name: string): Promise<T[]> {
       query(collection(db, name), where("published", "==", true)),
     );
 
-    return snapshot.docs.map(
-      (item) => ({ ...item.data(), id: item.id }) as T,
+    return snapshot.docs.map((item) =>
+      toPublicDocument<T>(item.data(), item.id),
     );
   } catch (error) {
     console.error(`[data] failed to read ${name}:`, error);
@@ -39,10 +55,13 @@ async function publishedCollection<T>(name: string): Promise<T[]> {
   }
 }
 
-export const getServiceCategories = cache(async (): Promise<ServiceCategory[]> => {
-  const items = await publishedCollection<ServiceCategory>("serviceCategories");
-  return [...items].sort((a, b) => a.order - b.order);
-});
+export const getServiceCategories = cache(
+  async (): Promise<ServiceCategory[]> => {
+    const items =
+      await publishedCollection<ServiceCategory>("serviceCategories");
+    return [...items].sort((a, b) => a.order - b.order);
+  },
+);
 
 export const getServices = cache(async (): Promise<Service[]> => {
   const items = await publishedCollection<Service>("services");
@@ -76,7 +95,7 @@ export const getServiceBySlug = cache(
       if (snapshot.empty) return null;
 
       const item = snapshot.docs[0];
-      return { ...item.data(), id: item.id } as Service;
+      return toPublicDocument<Service>(item.data(), item.id);
     } catch (error) {
       console.error("[data] failed to read service by slug:", error);
       return null;
@@ -88,7 +107,8 @@ export const getArticles = cache(async (): Promise<Article[]> => {
   const articles = await publishedCollection<Article>("articles");
 
   return [...articles].sort((a, b) => {
-    if (a.featured !== b.featured) return Number(b.featured) - Number(a.featured);
+    if (a.featured !== b.featured)
+      return Number(b.featured) - Number(a.featured);
     return b.publishedAt.localeCompare(a.publishedAt);
   });
 });
@@ -110,7 +130,7 @@ export const getArticleBySlug = cache(
       if (snapshot.empty) return null;
 
       const item = snapshot.docs[0];
-      return { ...item.data(), id: item.id } as Article;
+      return toPublicDocument<Article>(item.data(), item.id);
     } catch (error) {
       console.error("[data] failed to read article by slug:", error);
       return null;
@@ -122,7 +142,8 @@ export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
   const testimonials = await publishedCollection<Testimonial>("testimonials");
 
   return [...testimonials].sort((a, b) => {
-    if (a.featured !== b.featured) return Number(b.featured) - Number(a.featured);
+    if (a.featured !== b.featured)
+      return Number(b.featured) - Number(a.featured);
     return a.name.localeCompare(b.name, "id");
   });
 });
@@ -146,8 +167,18 @@ export const getCaseStudies = cache(async (): Promise<CaseStudy[]> => {
   const cases = await publishedCollection<CaseStudy>("caseStudies");
 
   return [...cases].sort((a, b) => {
-    if (a.featured !== b.featured) return Number(b.featured) - Number(a.featured);
+    if (a.featured !== b.featured)
+      return Number(b.featured) - Number(a.featured);
     return a.title.localeCompare(b.title, "id");
+  });
+});
+
+export const getKbliEntries = cache(async (): Promise<KbliEntry[]> => {
+  const items = await publishedCollection<KbliEntry>("kbli");
+  return [...items].sort((a, b) => {
+    const orderA = a.order ?? Number.MAX_SAFE_INTEGER;
+    const orderB = b.order ?? Number.MAX_SAFE_INTEGER;
+    return orderA - orderB || a.code.localeCompare(b.code, "id");
   });
 });
 
@@ -158,11 +189,16 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
     const snapshot = await getDoc(doc(db, "siteSettings", "main"));
     if (!snapshot.exists()) return DEFAULT_SITE_SETTINGS;
 
+    const settings = toPublicDocument<SiteSettings>(
+      snapshot.data(),
+      snapshot.id,
+    );
+
     return {
       ...DEFAULT_SITE_SETTINGS,
-      ...snapshot.data(),
+      ...settings,
       id: snapshot.id,
-    } as SiteSettings;
+    };
   } catch (error) {
     console.error("[data] failed to read site settings:", error);
     return DEFAULT_SITE_SETTINGS;

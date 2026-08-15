@@ -1,218 +1,136 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  Clock3,
-  FileText,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Clock3, FileText, ShieldCheck } from "lucide-react";
 import { LeadForm } from "@/components/site/lead-form";
-import { ServiceCard } from "@/components/site/service-card";
 import { getWhatsAppHref } from "@/lib/contact";
-import { getServiceBySlug, getServices, getSiteSettings } from "@/lib/data";
-import { formatRupiah } from "@/lib/format";
+import { getServiceBySlug, getServiceCategories, getServices, getSiteSettings } from "@/lib/data";
+import { servicePriceLabel } from "@/lib/format";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
-
-  if (!service) {
-    return { title: "Layanan Tidak Ditemukan" };
-  }
-
+  if (!service) return { title: "Layanan Tidak Ditemukan" };
   return {
-    title: service.title,
-    description: service.shortDescription,
+    title: service.seoTitle || service.title,
+    description: service.seoDescription || service.shortDescription,
+    keywords: service.keywords,
   };
 }
 
-export default async function ServiceDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [service, allServices, settings] = await Promise.all([
+  const [service, allServices, categories, settings] = await Promise.all([
     getServiceBySlug(slug),
     getServices(),
+    getServiceCategories(),
     getSiteSettings(),
   ]);
 
-  if (!service) {
-    notFound();
-  }
+  if (!service) notFound();
 
-  const related = allServices
-    .filter(
-      (item) =>
-        item.id !== service.id && item.categorySlug === service.categorySlug,
-    )
-    .slice(0, 3);
-  const price = formatRupiah(service.startingPrice);
-  const waMessage = `Halo Yuk Jadi Legal, saya sedang melihat layanan ${service.title} dan ingin konsultasi.`;
-  const whatsappHref = getWhatsAppHref(settings.whatsapp, waMessage);
+  const related = allServices.filter((item) => item.id !== service.id && item.categorySlug === service.categorySlug).slice(0, 4);
+  const price = servicePriceLabel(service.startingPrice, service.priceType);
+  const categoryName = categories.find((item) => item.slug === service.categorySlug)?.name || service.categorySlug.replaceAll("-", " ");
+  const whatsappHref = getWhatsAppHref(settings.whatsapp, `Halo Yuk Jadi Legal, saya sedang melihat layanan ${service.title} dan ingin konsultasi.`);
   const consultationHref = whatsappHref || "/kontak";
-  const serviceOptions = allServices.map(({ id, title, slug: serviceSlug }) => ({
-    id,
-    title,
-    slug: serviceSlug,
-  }));
+  const serviceOptions = allServices.map(({ id, title, slug: serviceSlug }) => ({ id, title, slug: serviceSlug }));
 
   return (
-    <main>
-      <section className="bg-brand-ink text-white">
-        <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
-          <Link
-            href="/layanan"
-            className="inline-flex items-center gap-2 text-sm font-bold text-slate-300"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Semua layanan
+    <main className="bg-brand-surface">
+      <section className="relative overflow-hidden border-b border-brand-navy/10 bg-white">
+        <div className="page-hero-grid absolute inset-0 opacity-65" />
+        <div className="page-shell relative py-10 lg:py-14">
+          <Link href="/layanan" className="inline-flex items-center gap-2 text-xs font-semibold text-brand-muted transition hover:text-brand-navy">
+            <ArrowLeft className="h-4 w-4" /> Kembali ke layanan
           </Link>
 
-          <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_.5fr] lg:items-end">
+          <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-14">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold-soft">
-                {service.categorySlug.replaceAll("-", " ")}
-              </p>
-              <h1 className="mt-4 max-w-4xl text-5xl font-black tracking-[-0.06em] sm:text-6xl lg:text-7xl">
-                {service.title}
-              </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300">
-                {service.shortDescription}
-              </p>
+              <p className="section-kicker">{categoryName}</p>
+              <h1 className="mt-4 max-w-4xl text-[clamp(2.45rem,4.8vw,4.8rem)] font-semibold leading-[1.02] tracking-[-0.055em] text-brand-ink">{service.title}</h1>
+              <p className="mt-5 max-w-3xl text-[16px] font-normal leading-8 text-brand-muted">{service.shortDescription}</p>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-7 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
-                Mulai dari
-              </p>
-              <p className="mt-2 text-3xl font-black tracking-[-0.05em] text-white">
-                {price}
-              </p>
-              {service.priceNote ? (
-                <p className="mt-3 text-xs leading-5 text-amber-200">
-                  {service.priceNote}
-                </p>
-              ) : null}
-              <a
-                href={consultationHref}
-                target={whatsappHref ? "_blank" : undefined}
-                rel={whatsappHref ? "noreferrer" : undefined}
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-gold-soft px-5 py-3 text-sm font-black text-brand-ink"
-              >
-                Konsultasikan
-                <ArrowRight className="h-4 w-4" />
+            <div className="rounded-[24px] border border-brand-navy/10 bg-brand-navy p-6 text-white shadow-[0_20px_52px_rgba(6,23,46,.14)]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-soft">Biaya layanan</p>
+              <p className="mt-2 text-2xl font-semibold tracking-[-0.04em]">{price}</p>
+              {service.priceNote ? <p className="mt-2 text-xs font-normal leading-6 text-slate-300">{service.priceNote}</p> : null}
+              <a href={consultationHref} target={whatsappHref ? "_blank" : undefined} rel={whatsappHref ? "noreferrer" : undefined} className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-gold px-4 py-3 text-sm font-semibold text-brand-navy transition hover:bg-brand-gold-soft">
+                Konsultasikan layanan <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-[1fr_.42fr] lg:px-8 lg:py-28">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-            Tentang layanan
-          </p>
-          <p className="mt-5 max-w-3xl text-2xl font-semibold leading-10 tracking-[-0.03em] text-slate-800">
-            {service.description}
-          </p>
-
-          <div className="mt-12 grid gap-5 sm:grid-cols-3">
-            <InfoCard
-              icon={<Clock3 className="h-5 w-5 text-brand-green" />}
-              label="Estimasi"
-              value={service.duration || "Menyesuaikan proses"}
-            />
-            <InfoCard
-              icon={<FileText className="h-5 w-5 text-brand-green" />}
-              label="Dokumen"
-              value="Checklist dibantu tim"
-            />
-            <InfoCard
-              icon={<ShieldCheck className="h-5 w-5 text-brand-green" />}
-              label="Pendampingan"
-              value="Sesuai ruang lingkup"
-            />
+          <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:max-w-4xl">
+            <MetaCard icon={<Clock3 className="h-4 w-4" />} label="Estimasi" value={service.duration || "Menyesuaikan proses"} />
+            <MetaCard icon={<FileText className="h-4 w-4" />} label="Dokumen" value="Checklist dibantu tim" />
+            <MetaCard icon={<ShieldCheck className="h-4 w-4" />} label="Pendampingan" value="Sesuai ruang lingkup" />
           </div>
         </div>
-
-        {service.benefits.length ? (
-          <aside className="rounded-[2rem] border border-slate-200 p-7">
-            <p className="font-black text-slate-950">Cocok kalau kamu...</p>
-            <CheckList items={service.benefits} />
-          </aside>
-        ) : null}
       </section>
 
-      {(service.inclusions.length || service.requirements.length) && (
-        <section className="bg-brand-paper py-20 lg:py-28">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:px-8">
-            <ListPanel
-              eyebrow="Yang kamu dapatkan"
-              title="Ruang lingkup layanan"
-              items={service.inclusions}
-            />
-            <ListPanel
-              eyebrow="Yang perlu disiapkan"
-              title="Checklist awal"
-              items={service.requirements}
-            />
+      <section className="page-shell py-14 lg:py-20">
+        <div className="grid gap-10 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
+          <div>
+            <p className="section-kicker">Tentang layanan</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Apa yang perlu kamu tahu.</h2>
+          </div>
+          <div>
+            <p className="max-w-4xl text-lg font-medium leading-8 text-brand-ink sm:text-xl">{service.description}</p>
+            {service.benefits.length ? (
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {service.benefits.map((item) => <CheckCard key={item}>{item}</CheckCard>)}
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </section>
+
+      {(service.inclusions.length || service.requirements.length) ? (
+        <section className="border-y border-brand-navy/9 bg-white py-14 lg:py-20">
+          <div className="page-shell grid gap-5 lg:grid-cols-2">
+            <InfoList title="Yang Anda dapatkan" subtitle="Ruang lingkup layanan" items={service.inclusions} tone="navy" />
+            <InfoList title="Yang perlu disiapkan" subtitle="Checklist awal" items={service.requirements} tone="paper" />
           </div>
         </section>
-      )}
+      ) : null}
 
       {service.processSteps.length ? (
-        <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-            Tahapan
-          </p>
-          <h2 className="mt-4 text-4xl font-black tracking-[-0.055em] text-slate-950 sm:text-5xl">
-            Dari konsultasi sampai selesai.
-          </h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-            {service.processSteps.map((step, index) => (
-              <div
-                key={step}
-                className="rounded-[1.75rem] border border-slate-200 p-6"
-              >
-                <p className="text-3xl font-black tracking-[-0.06em] text-slate-200">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <p className="mt-7 text-sm font-black text-slate-900">{step}</p>
-              </div>
-            ))}
+        <section className="page-shell py-14 lg:py-20">
+          <div className="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
+            <div>
+              <p className="section-kicker">Tahapan proses</p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Langkahnya terlihat dari awal.</h2>
+            </div>
+            <ol className="grid gap-3 sm:grid-cols-2">
+              {service.processSteps.map((step, index) => (
+                <li key={step} className="card-premium card-accent-top rounded-[22px] p-5">
+                  <span className="text-3xl font-semibold tracking-[-0.06em] text-brand-navy/12">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="mt-5 text-base font-semibold leading-6 text-brand-ink">{step}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
       ) : null}
 
       {service.faqs.length ? (
-        <section className="bg-brand-ink py-20 text-white lg:py-28">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[.6fr_1fr] lg:px-8">
+        <section className="border-y border-brand-navy/9 bg-brand-paper py-14 lg:py-20">
+          <div className="page-shell grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold-soft">
-                FAQ layanan
-              </p>
-              <h2 className="mt-4 text-4xl font-black tracking-[-0.055em]">
-                Sebelum mulai, mungkin kamu ingin tahu ini.
-              </h2>
+              <p className="section-kicker">FAQ layanan</p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Pertanyaan sebelum mulai.</h2>
             </div>
-            <div className="divide-y divide-white/10 border-y border-white/10">
-              {service.faqs.map((faq) => (
-                <details key={faq.question} className="py-5">
-                  <summary className="cursor-pointer font-bold">
-                    {faq.question}
+            <div className="overflow-hidden rounded-[24px] border border-brand-navy/10 bg-white">
+              {service.faqs.map((faq, index) => (
+                <details key={faq.question} className="group border-b border-brand-navy/9 last:border-b-0 open:bg-brand-surface">
+                  <summary className="grid cursor-pointer list-none grid-cols-[34px_minmax(0,1fr)_34px] items-center gap-3 px-5 py-5">
+                    <span className="text-[10px] font-semibold text-brand-gold-dark">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="text-sm font-semibold leading-6 text-brand-ink">{faq.question}</span>
+                    <span className="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/12 text-brand-navy transition group-open:rotate-45 group-open:bg-brand-gold">+</span>
                   </summary>
-                  <p className="pt-4 text-sm leading-7 text-slate-300">
-                    {faq.answer}
-                  </p>
+                  <p className="px-[72px] pb-5 pr-8 text-sm font-normal leading-7 text-brand-muted">{faq.answer}</p>
                 </details>
               ))}
             </div>
@@ -220,35 +138,39 @@ export default async function ServiceDetailPage({
         </section>
       ) : null}
 
-      <section className="bg-brand-paper py-20 lg:py-28">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[.7fr_1.3fr] lg:px-8">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-              Konsultasi {service.title}
-            </p>
-            <h2 className="mt-4 text-4xl font-black tracking-[-0.055em] text-slate-950">
-              Ceritakan kebutuhanmu sebelum mengambil keputusan.
-            </h2>
-            <p className="mt-5 text-sm leading-7 text-slate-600">
-              Isi kebutuhanmu melalui formulir berikut. Tim kami akan menindaklanjuti informasi yang kamu kirim melalui kontak yang tersedia.
-            </p>
+      <section className="page-shell py-14 lg:py-20">
+        <div className="grid overflow-hidden rounded-[28px] border border-brand-navy/10 bg-white shadow-[0_22px_60px_rgba(6,23,46,.07)] lg:grid-cols-[.72fr_1.28fr]">
+          <div className="bg-brand-navy p-7 text-white sm:p-8">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-soft">Konsultasi {service.title}</p>
+            <h2 className="mt-3 text-3xl font-semibold leading-[1.08] tracking-[-0.04em]">Pastikan konteksnya jelas sebelum mulai.</h2>
+            <p className="mt-4 text-sm font-normal leading-7 text-slate-200">Tim akan menindaklanjuti informasi awal melalui kontak yang kamu berikan.</p>
           </div>
           <LeadForm services={serviceOptions} defaultService={service.slug} />
         </div>
       </section>
 
       {related.length ? (
-        <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-            Layanan terkait
-          </p>
-          <h2 className="mt-4 text-4xl font-black tracking-[-0.055em]">
-            Mungkin kamu juga butuh ini.
-          </h2>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {related.map((item) => (
-              <ServiceCard key={item.id} service={item} />
-            ))}
+        <section className="border-t border-brand-navy/9 bg-white py-14 lg:py-20">
+          <div className="page-shell">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="section-kicker">Layanan terkait</p>
+                <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Kebutuhan lain di kategori yang sama.</h2>
+              </div>
+              <Link href={`/layanan?category=${service.categorySlug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark">Lihat kategori <ArrowRight className="h-4 w-4" /></Link>
+            </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {related.map((item, index) => (
+                <Link key={item.id} href={`/layanan/${item.slug}`} className="card-premium card-accent-top group rounded-[22px] p-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="text-[10px] font-semibold text-brand-gold-dark">0{index + 1}</span>
+                    <ArrowUpRight className="h-4 w-4 text-brand-navy/35 transition group-hover:text-brand-gold-dark" />
+                  </div>
+                  <h3 className="mt-6 text-lg font-semibold leading-[1.18] tracking-[-0.025em] text-brand-ink">{item.title}</h3>
+                  <p className="mt-3 text-xs font-semibold text-brand-muted">{servicePriceLabel(item.startingPrice, item.priceType)}</p>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       ) : null}
@@ -256,59 +178,40 @@ export default async function ServiceDetailPage({
   );
 }
 
-function InfoCard({
-  icon,
-  label,
-  value,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-}) {
+function MetaCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="rounded-2xl bg-brand-paper p-5">
-      {icon}
-      <p className="mt-4 text-xs font-black uppercase tracking-wider text-slate-500">
-        {label}
-      </p>
-      <p className="mt-1 text-sm font-bold text-slate-900">{value}</p>
+    <div className="rounded-2xl border border-brand-navy/9 bg-brand-surface p-4">
+      <span className="text-brand-gold-dark">{icon}</span>
+      <p className="mt-3 text-[9px] font-semibold uppercase tracking-[0.1em] text-brand-muted">{label}</p>
+      <p className="mt-1 text-xs font-semibold text-brand-ink">{value}</p>
     </div>
   );
 }
 
-function CheckList({ items }: { items: string[] }) {
+function CheckCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mt-5 space-y-4 text-sm leading-6 text-slate-600">
-      {items.map((item) => (
-        <p key={item} className="flex gap-3">
-          <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-gold" />
-          {item}
-        </p>
-      ))}
+    <div className="flex gap-3 rounded-2xl border border-brand-navy/9 bg-white p-4">
+      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-brand-gold/15 text-brand-gold-dark"><Check className="h-3.5 w-3.5" /></span>
+      <p className="text-sm font-medium leading-6 text-brand-muted">{children}</p>
     </div>
   );
 }
 
-function ListPanel({
-  eyebrow,
-  title,
-  items,
-}: {
-  eyebrow: string;
-  title: string;
-  items: string[];
-}) {
+function InfoList({ title, subtitle, items, tone }: { title: string; subtitle: string; items: string[]; tone: "navy" | "paper" }) {
   if (!items.length) return null;
-
+  const dark = tone === "navy";
   return (
-    <div className="rounded-[2rem] bg-white p-8">
-      <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-        {eyebrow}
-      </p>
-      <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-slate-950">
-        {title}
-      </h2>
-      <CheckList items={items} />
+    <div className={`rounded-[26px] p-6 sm:p-7 ${dark ? "bg-brand-navy text-white" : "border border-brand-navy/10 bg-brand-paper text-brand-ink"}`}>
+      <p className={`text-[10px] font-semibold uppercase tracking-[0.12em] ${dark ? "text-brand-gold-soft" : "text-brand-gold-dark"}`}>{title}</p>
+      <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em]">{subtitle}</h2>
+      <div className={`mt-6 divide-y ${dark ? "divide-white/12" : "divide-brand-navy/9"}`}>
+        {items.map((item, index) => (
+          <div key={item} className="grid grid-cols-[30px_1fr] gap-3 py-3.5">
+            <span className={`text-[10px] font-semibold ${dark ? "text-brand-gold-soft" : "text-brand-gold-dark"}`}>{String(index + 1).padStart(2, "0")}</span>
+            <p className={`text-sm font-medium leading-6 ${dark ? "text-slate-200" : "text-brand-muted"}`}>{item}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

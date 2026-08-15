@@ -22,3 +22,7 @@ Yang **tidak** disalin sebagai milik Yuk Jadi Legal:
 Karena data-data tersebut akan menjadi klaim faktual tentang Yuk Jadi Legal, seed membiarkannya kosong. Masukkan data resmi melalui CMS setelah tersedia.
 
 Semua harga, estimasi waktu, persyaratan, dan ruang lingkup layanan tetap perlu diverifikasi oleh pihak Yuk Jadi Legal sebelum website production.
+
+## KBLI
+
+Subset KBLI pada seed berasal dari kode/judul yang diverifikasi melalui publikasi KBLI 2020 BPS dan direktori OSS RBA. CMS menyediakan import JSON agar dataset resmi yang lebih lengkap dapat dimasukkan tanpa menambah hardcode di source.

@@ -40,61 +40,54 @@ export default async function ArticlePage({
   const consultationHref = whatsappHref || "/kontak";
 
   return (
-    <main>
+    <main className="bg-brand-surface">
       <article>
-        <header className="bg-brand-paper">
-          <div className="mx-auto max-w-4xl px-5 py-16 lg:px-8 lg:py-24">
-            <Link
-              href="/artikel"
-              className="inline-flex items-center gap-2 text-sm font-bold text-slate-500"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Semua insight
+        <header className="legal-grid-bg border-b border-brand-navy/10">
+          <div className="page-shell py-14 lg:py-20">
+            <Link href="/artikel" className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 transition hover:text-brand-navy">
+              <ArrowLeft className="h-4 w-4" /> Semua insight
             </Link>
-            <p className="mt-10 text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-              {article.category} · {formatDate(article.publishedAt)}
-            </p>
-            <h1 className="mt-5 text-5xl font-black tracking-[-0.06em] text-slate-950 sm:text-6xl">
-              {article.title}
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-600">{article.excerpt}</p>
+
+            <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_.5fr] lg:items-end lg:gap-16">
+              <div>
+                <p className="eyebrow">{article.category}</p>
+                <h1 className="mt-6 max-w-5xl text-[clamp(2.8rem,5vw,5rem)] font-semibold leading-[.96] tracking-[-0.06em] text-brand-ink">{article.title}</h1>
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{article.excerpt}</p>
+              </div>
+              <div className="border-l-2 border-brand-gold pl-5">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-400">Diterbitkan</p>
+                <p className="mt-2 text-sm font-semibold text-brand-ink">{formatDate(article.publishedAt)}</p>
+                <p className="mt-4 text-xs leading-6 text-slate-500">Insight disusun untuk membantu memahami konteks sebelum menentukan langkah legal berikutnya.</p>
+              </div>
+            </div>
           </div>
         </header>
 
         {article.coverImageUrl ? (
-          <div className="mx-auto max-w-5xl px-5 pt-12 lg:px-8">
-            <CmsImage
-              src={article.coverImageUrl}
-              alt={article.title}
-              className="aspect-[16/8] w-full rounded-[2rem] object-cover"
-            />
+          <div className="page-shell pt-12 lg:pt-16">
+            <CmsImage src={article.coverImageUrl} alt={article.title} className="aspect-[16/7] w-full object-cover" />
           </div>
         ) : null}
 
-        <div className="mx-auto max-w-3xl px-5 py-16 lg:px-8 lg:py-20">
-          <div className="whitespace-pre-line text-[1.05rem] leading-9 text-slate-700">
-            {article.content}
-          </div>
+        <div className="page-shell grid gap-10 py-16 lg:grid-cols-[220px_minmax(0,760px)] lg:justify-center lg:gap-14 lg:py-20">
+          <aside className="hidden lg:block">
+            <div className="sticky top-28 border-t border-brand-navy/14 py-5">
+              <p className="editorial-kicker">Reading note</p>
+              <p className="mt-4 text-xs leading-6 text-slate-500">Informasi pada artikel bersifat edukatif. Kondisi bisnis spesifik dapat membutuhkan penilaian lebih lanjut.</p>
+            </div>
+          </aside>
+          <div className="whitespace-pre-line text-[1.05rem] leading-9 text-slate-700">{article.content}</div>
         </div>
       </article>
 
-      <section className="bg-brand-ink py-16 text-white">
-        <div className="mx-auto flex max-w-4xl flex-col gap-6 px-5 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+      <section className="bg-brand-navy py-16 text-white lg:py-20">
+        <div className="page-shell flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-gold-soft">
-              Masih ada pertanyaan?
-            </p>
-            <h2 className="mt-2 text-3xl font-black tracking-[-0.05em]">
-              Diskusikan kondisi bisnismu.
-            </h2>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-gold-soft">Masih ada pertanyaan?</p>
+            <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-4xl">Diskusikan kondisi bisnis Anda.</h2>
           </div>
-          <a
-            href={consultationHref}
-            target={whatsappHref ? "_blank" : undefined}
-            rel={whatsappHref ? "noreferrer" : undefined}
-            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-black text-brand-ink"
-          >
-            Konsultasi <ArrowRight className="h-4 w-4" />
+          <a href={consultationHref} target={whatsappHref ? "_blank" : undefined} rel={whatsappHref ? "noreferrer" : undefined} className="inline-flex items-center gap-3 bg-white px-6 py-3 text-sm font-semibold text-brand-navy">
+            Konsultasi <ArrowRight className="h-4 w-4 text-brand-gold-dark" />
           </a>
         </div>
       </section>

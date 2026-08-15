@@ -8,6 +8,9 @@ import type { ServiceOption } from "@/types";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
+const fieldClass =
+  "h-12 w-full border border-brand-navy/12 bg-white px-3.5 font-normal text-brand-ink outline-none transition placeholder:text-slate-400 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20";
+
 export function LeadForm({
   services,
   defaultService = "",
@@ -32,7 +35,6 @@ export function LeadForm({
     event.preventDefault();
     setState("loading");
 
-    // Honeypot: basic protection against automated form spam.
     if (website) {
       setState("success");
       return;
@@ -70,30 +72,27 @@ export function LeadForm({
 
   if (state === "success") {
     return (
-      <div className="rounded-[2rem] border border-emerald-200 bg-emerald-50 p-8">
-        <CheckCircle2 className="h-10 w-10 text-emerald-700" />
-        <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-slate-950">
-          Konsultasimu sudah terkirim.
+      <div className="border-l-[3px] border-brand-gold bg-brand-paper p-7 sm:p-8">
+        <CheckCircle2 className="h-9 w-9 text-brand-navy" strokeWidth={1.7} />
+        <h3 className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-brand-ink">
+          Konsultasi sudah terkirim.
         </h3>
-        <p className="mt-3 text-sm leading-7 text-slate-600">
-          Tim Yuk Jadi Legal akan meninjau kebutuhan yang kamu kirim dan menghubungi melalui kontak yang tersedia.
+        <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600">
+          Tim Yuk Jadi Legal akan meninjau kebutuhan yang Anda kirim dan menghubungi melalui kontak yang tersedia.
         </p>
         <button
           type="button"
           onClick={() => setState("idle")}
-          className="mt-6 text-sm font-bold text-brand-green"
+          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy"
         >
-          Kirim konsultasi lain →
+          Kirim konsultasi lain <ArrowRight className="h-4 w-4" />
         </button>
       </div>
     );
   }
 
   return (
-    <form
-      onSubmit={submit}
-      className="relative rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-8"
-    >
+    <form onSubmit={submit} className="relative bg-white p-6 sm:p-8">
       <div className="pointer-events-none absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
         <label>
           Website
@@ -107,8 +106,7 @@ export function LeadForm({
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-bold text-slate-700">
-          Nama lengkap
+        <FieldLabel label="Nama lengkap">
           <input
             value={name}
             onChange={(event) => setName(event.target.value)}
@@ -116,13 +114,12 @@ export function LeadForm({
             minLength={2}
             maxLength={120}
             autoComplete="name"
-            className="h-12 rounded-xl border border-slate-200 px-4 font-normal outline-none transition focus:border-brand-green"
-            placeholder="Nama kamu"
+            className={fieldClass}
+            placeholder="Nama Anda"
           />
-        </label>
+        </FieldLabel>
 
-        <label className="grid gap-2 text-sm font-bold text-slate-700">
-          WhatsApp
+        <FieldLabel label="WhatsApp">
           <input
             value={whatsapp}
             onChange={(event) => setWhatsapp(event.target.value.replace(/\D/g, ""))}
@@ -131,30 +128,28 @@ export function LeadForm({
             maxLength={30}
             inputMode="tel"
             autoComplete="tel"
-            className="h-12 rounded-xl border border-slate-200 px-4 font-normal outline-none transition focus:border-brand-green"
+            className={fieldClass}
             placeholder="08xxxxxxxxxx"
           />
-        </label>
+        </FieldLabel>
 
-        <label className="grid gap-2 text-sm font-bold text-slate-700">
-          Email <span className="font-normal text-slate-400">(opsional)</span>
+        <FieldLabel label="Email" optional>
           <input
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             maxLength={160}
             autoComplete="email"
-            className="h-12 rounded-xl border border-slate-200 px-4 font-normal outline-none transition focus:border-brand-green"
+            className={fieldClass}
             placeholder="nama@email.com"
           />
-        </label>
+        </FieldLabel>
 
-        <label className="grid gap-2 text-sm font-bold text-slate-700">
-          Layanan
+        <FieldLabel label="Layanan">
           <select
             value={serviceSlug}
             onChange={(event) => setServiceSlug(event.target.value)}
-            className="h-12 rounded-xl border border-slate-200 bg-white px-4 font-normal outline-none transition focus:border-brand-green"
+            className={fieldClass}
           >
             <option value="">Belum yakin / konsultasi umum</option>
             {services.map((service) => (
@@ -163,11 +158,11 @@ export function LeadForm({
               </option>
             ))}
           </select>
-        </label>
+        </FieldLabel>
       </div>
 
-      <label className="mt-5 grid gap-2 text-sm font-bold text-slate-700">
-        Ceritakan kebutuhanmu
+      <label className="mt-5 grid gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-brand-ink">
+        Ceritakan kebutuhan Anda
         <textarea
           value={message}
           onChange={(event) => setMessage(event.target.value)}
@@ -175,29 +170,54 @@ export function LeadForm({
           minLength={3}
           maxLength={3000}
           rows={5}
-          className="rounded-xl border border-slate-200 px-4 py-3 font-normal leading-6 outline-none transition focus:border-brand-green"
+          className="w-full border border-brand-navy/12 bg-white px-3.5 py-3 font-normal normal-case leading-6 tracking-normal text-brand-ink outline-none transition placeholder:text-slate-400 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20"
           placeholder={
             selectedService
               ? `Saya ingin konsultasi tentang ${selectedService.title}...`
-              : "Contoh: usaha saya sudah berjalan tetapi belum punya badan usaha..."
+              : "Contoh: usaha saya sudah berjalan tetapi belum memiliki badan usaha..."
           }
         />
       </label>
 
       {state === "error" ? (
-        <p className="mt-4 rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700">
-          Konsultasi belum berhasil terkirim. Silakan coba lagi atau gunakan tombol WhatsApp untuk menghubungi tim kami.
+        <p className="mt-4 border-l-2 border-rose-500 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+          Konsultasi belum berhasil terkirim. Silakan coba lagi atau gunakan WhatsApp untuk menghubungi tim kami.
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={state === "loading"}
-        className="mt-6 inline-flex h-12 items-center gap-2 rounded-full bg-brand-green px-6 text-sm font-black text-white transition hover:bg-brand-green-dark disabled:cursor-not-allowed disabled:opacity-60"
-      >
-        {state === "loading" ? "Mengirim..." : "Kirim Konsultasi"}
-        <ArrowRight className="h-4 w-4" />
-      </button>
+      <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-brand-navy/10 pt-6">
+        <p className="max-w-sm text-[10px] leading-5 text-slate-400">
+          Dengan mengirim form, Anda menyetujui informasi awal digunakan untuk menindaklanjuti konsultasi.
+        </p>
+        <button
+          type="submit"
+          disabled={state === "loading"}
+          className="inline-flex h-12 items-center gap-3 bg-brand-navy px-6 text-sm font-semibold text-white transition hover:bg-brand-navy-dark disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {state === "loading" ? "Mengirim..." : "Kirim Konsultasi"}
+          <ArrowRight className="h-4 w-4 text-brand-gold-soft" />
+        </button>
+      </div>
     </form>
+  );
+}
+
+function FieldLabel({
+  label,
+  optional,
+  children,
+}: {
+  label: string;
+  optional?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <label className="grid gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-brand-ink">
+      <span>
+        {label}
+        {optional ? <span className="ml-1 font-semibold normal-case tracking-normal text-slate-400">(opsional)</span> : null}
+      </span>
+      {children}
+    </label>
   );
 }

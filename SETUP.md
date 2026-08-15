@@ -1,4 +1,4 @@
-# Setup Singkat — Yuk Jadi Legal MVP
+# Setup Singkat — Yuk Jadi Legal
 
 ## 1. Install
 

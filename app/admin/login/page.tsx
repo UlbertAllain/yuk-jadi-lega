@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { ArrowRight, Eye, EyeOff, Scale } from "lucide-react";
+import { ArrowRight, Eye, EyeOff } from "lucide-react";
 import { auth, isFirebaseConfigured } from "@/lib/firebase";
+import { BrandMark } from "@/components/shared/brand-mark";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -47,11 +48,11 @@ export default function AdminLoginPage() {
     <main className="grid min-h-screen bg-brand-ink lg:grid-cols-2">
       <section className="hidden items-end p-12 text-white lg:flex">
         <div className="max-w-xl">
-          <Scale className="h-10 w-10 text-brand-gold-soft" />
-          <p className="mt-8 text-xs font-black uppercase tracking-[0.2em] text-brand-gold-soft">
+          <BrandMark frameClassName="h-16 w-16 rounded-2xl" />
+          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold-soft">
             Yuk Jadi Legal
           </p>
-          <h1 className="mt-4 text-5xl font-black tracking-[-0.06em]">
+          <h1 className="mt-4 text-5xl font-semibold tracking-[-0.06em]">
             Kelola website dari satu tempat.
           </h1>
           <p className="mt-5 text-sm leading-7 text-slate-300">
@@ -65,10 +66,10 @@ export default function AdminLoginPage() {
           onSubmit={submit}
           className="w-full max-w-md rounded-[2rem] bg-white p-7 shadow-2xl shadow-slate-900/10 sm:p-9"
         >
-          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand-green text-sm font-black text-white">
+          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand-navy text-sm font-semibold text-white">
             YJL
           </div>
-          <h2 className="mt-6 text-3xl font-black tracking-[-0.05em] text-slate-950">
+          <h2 className="mt-6 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
             Masuk Admin
           </h2>
           <p className="mt-2 text-sm leading-6 text-slate-500">
@@ -81,7 +82,7 @@ export default function AdminLoginPage() {
             </p>
           ) : null}
 
-          <label className="mt-7 grid gap-2 text-sm font-bold text-slate-700">
+          <label className="mt-7 grid gap-2 text-sm font-medium text-slate-700">
             Email
             <input
               type="email"
@@ -89,12 +90,12 @@ export default function AdminLoginPage() {
               autoComplete="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="h-12 rounded-xl border border-slate-200 px-4 font-normal outline-none focus:border-brand-green"
+              className="h-12 rounded-xl border border-slate-200 px-4 font-normal outline-none focus:border-brand-navy"
               placeholder="admin@yukjadilegal.id"
             />
           </label>
 
-          <label className="mt-4 grid gap-2 text-sm font-bold text-slate-700">
+          <label className="mt-4 grid gap-2 text-sm font-medium text-slate-700">
             Password
             <div className="relative">
               <input
@@ -103,7 +104,7 @@ export default function AdminLoginPage() {
                 autoComplete="current-password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                className="h-12 w-full rounded-xl border border-slate-200 px-4 pr-12 font-normal outline-none focus:border-brand-green"
+                className="h-12 w-full rounded-xl border border-slate-200 px-4 pr-12 font-normal outline-none focus:border-brand-navy"
                 placeholder="••••••••"
               />
               <button
@@ -129,7 +130,7 @@ export default function AdminLoginPage() {
 
           <button
             disabled={loading || !isFirebaseConfigured}
-            className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-green text-sm font-black text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-navy text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? "Memproses..." : "Masuk"}
             <ArrowRight className="h-4 w-4" />

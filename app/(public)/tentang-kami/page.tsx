@@ -1,71 +1,47 @@
 import type { Metadata } from "next";
-import { CheckCircle2 } from "lucide-react";
-import { getPartners, getTeamMembers } from "@/lib/data";
+import { Check } from "lucide-react";
+import { getTeamMembers } from "@/lib/data";
 import { CmsImage } from "@/components/shared/cms-image";
+import { PublicPageHero } from "@/components/site/public-page-hero";
 
 export const metadata: Metadata = {
   title: "Tentang Kami",
-  description:
-    "Kenali cara Yuk Jadi Legal membantu bisnis memahami dan mengurus kebutuhan legal secara lebih sederhana.",
+  description: "Kenali cara Yuk Jadi Legal membantu bisnis memahami dan mengurus kebutuhan legal secara lebih sederhana.",
 };
 
+const values = [
+  ["Mudah dipahami", "Bahasa yang dekat dengan pemilik bisnis tanpa kehilangan konteks."],
+  ["Transparan", "Scope, kebutuhan, dan titik penting proses dibicarakan sejak awal."],
+  ["Terarah", "Setiap proses punya checklist dan langkah berikutnya yang jelas."],
+  ["Human", "Konsultasi tetap terasa seperti percakapan, bukan sekadar tiket."],
+] as const;
+
 export default async function AboutPage() {
-  const [team, partners] = await Promise.all([getTeamMembers(), getPartners()]);
+  const team = await getTeamMembers();
 
   return (
-    <main>
-      <section className="bg-brand-paper">
-        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-brand-gold">
-            Tentang Yuk Jadi Legal
-          </p>
-          <h1 className="mt-5 max-w-5xl text-5xl font-black tracking-[-0.06em] text-slate-950 sm:text-6xl lg:text-7xl">
-            Legalitas seharusnya bisa dipahami pemilik bisnis, bukan hanya orang legal.
-          </h1>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">
-            Yuk Jadi Legal dibangun untuk membuat percakapan soal badan usaha,
-            perizinan, merek, dan dokumen bisnis terasa lebih jelas dari awal.
-          </p>
-        </div>
-      </section>
+    <main className="bg-brand-surface">
+      <PublicPageHero
+        eyebrow="Tentang Yuk Jadi Legal"
+        title="Membuat proses legal lebih mudah dipahami pemilik bisnis."
+        description="Kami membantu menerjemahkan kebutuhan badan usaha, perizinan, merek, dan dokumen bisnis menjadi langkah yang lebih jelas dan terstruktur."
+      />
 
-      <section className="mx-auto grid max-w-7xl gap-14 px-5 py-24 lg:grid-cols-2 lg:px-8 lg:py-32">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-            Cara kami berpikir
-          </p>
-          <h2 className="mt-4 text-4xl font-black tracking-[-0.055em] text-slate-950">
-            Bukan sekadar “urus dokumen”.
-          </h2>
-        </div>
-        <div className="space-y-5 text-base leading-8 text-slate-600">
-          <p>
-            Masalah legal sering terasa berat bukan karena semua prosesnya selalu
-            rumit, tetapi karena calon klien tidak tahu harus mulai dari mana,
-            dokumen apa yang perlu disiapkan, dan istilah apa yang benar-benar
-            relevan.
-          </p>
-          <p>
-            Karena itu pengalaman Yuk Jadi Legal dirancang dari sudut pandang
-            pemilik bisnis: pahami kebutuhan, jelaskan pilihan, susun langkah,
-            lalu proses sesuai ruang lingkup yang disepakati.
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-brand-ink py-24 text-white lg:py-32">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              ["Mudah dipahami", "Bahasa yang dekat dengan pemilik bisnis."],
-              ["Transparan", "Ruang lingkup dan kebutuhan dijelaskan sebelum proses."],
-              ["Terarah", "Kamu tahu apa yang dilakukan dan langkah berikutnya."],
-              ["Human", "Konsultasi tetap terasa seperti bicara dengan manusia."],
-            ].map(([title, description]) => (
-              <div key={title} className="rounded-[2rem] border border-white/10 p-7">
-                <CheckCircle2 className="h-6 w-6 text-brand-gold-soft" />
-                <h3 className="mt-7 text-xl font-black tracking-[-0.04em]">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-300">{description}</p>
+      <section className="page-shell py-16 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-14">
+          <div>
+            <p className="section-kicker">Cara kami bekerja</p>
+            <h2 className="mt-4 text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">Bukan sekadar mengurus dokumen.</h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {values.map(([title, description], index) => (
+              <div key={title} className="card-premium card-accent-top rounded-[22px] p-5 sm:p-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-3xl font-semibold tracking-[-0.06em] text-brand-navy/12">0{index + 1}</span>
+                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-navy text-white"><Check className="h-4 w-4" /></span>
+                </div>
+                <h3 className="mt-6 text-xl font-semibold tracking-[-0.03em] text-brand-ink">{title}</h3>
+                <p className="mt-2 text-sm font-normal leading-7 text-brand-muted">{description}</p>
               </div>
             ))}
           </div>
@@ -73,85 +49,39 @@ export default async function AboutPage() {
       </section>
 
       {team.length ? (
-        <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-            Tim
-          </p>
-          <h2 className="mt-4 max-w-3xl text-4xl font-black tracking-[-0.055em] text-slate-950 sm:text-5xl">
-            Orang-orang di balik layanan.
-          </h2>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {team.map((member, index) => (
-              <article
-                key={member.id}
-                className="overflow-hidden rounded-[2rem] border border-slate-200"
-              >
-                <div className="grid aspect-[4/3] place-items-center bg-gradient-to-br from-brand-green to-brand-ink text-7xl font-black text-white/10">
-                  {member.photoUrl ? (
-                    <CmsImage
-                      src={member.photoUrl}
-                      alt={member.name}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    `0${index + 1}`
-                  )}
-                </div>
-                <div className="p-7">
-                  <h3 className="text-xl font-black tracking-[-0.04em]">{member.name}</h3>
-                  <p className="mt-1 text-sm font-bold text-brand-gold-dark">{member.role}</p>
-                  <p className="mt-4 text-sm leading-7 text-slate-600">{member.bio}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      ) : null}
+        <section className="border-y border-brand-navy/9 bg-white py-16 lg:py-24">
+          <div className="page-shell">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-14">
+              <div>
+                <p className="section-kicker">Tim</p>
+                <h2 className="section-title mt-4">Orang-orang di balik proses.</h2>
+              </div>
+              <p className="section-copy">Pendampingan tetap dijalankan oleh manusia yang memahami konteks kebutuhan bisnis.</p>
+            </div>
 
-      {partners.length ? (
-        <section className="bg-brand-paper py-24 lg:py-28">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-gold">
-              Ekosistem kerja sama
-            </p>
-            <h2 className="mt-4 text-4xl font-black tracking-[-0.055em] text-slate-950">
-              Partner dan klien.
-            </h2>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {partners.map((partner) => {
-                const content = partner.logoUrl ? (
-                  <CmsImage
-                    src={partner.logoUrl}
-                    alt={partner.name}
-                    className="max-h-10 max-w-40 object-contain"
-                  />
-                ) : (
-                  partner.name
-                );
-
-                const className =
-                  "flex min-h-28 items-center justify-center rounded-2xl bg-white p-6 text-center font-black text-slate-700";
-
-                return partner.website ? (
-                  <a
-                    key={partner.id}
-                    href={partner.website}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={className}
-                  >
-                    {content}
-                  </a>
-                ) : (
-                  <div key={partner.id} className={className}>
-                    {content}
+            <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {team.slice(0, 6).map((member, index) => (
+                <article key={member.id} className="card-premium overflow-hidden rounded-[24px]">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-brand-navy">
+                    {member.photoUrl ? (
+                      <CmsImage src={member.photoUrl} alt={member.name} className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="page-hero-grid grid h-full place-items-center"><span className="text-7xl font-semibold text-white/10">0{index + 1}</span></div>
+                    )}
+                    <span className="absolute bottom-4 left-4 rounded-lg bg-brand-gold px-2.5 py-1.5 text-[10px] font-semibold text-brand-navy">0{index + 1}</span>
                   </div>
-                );
-              })}
+                  <div className="p-5">
+                    <h3 className="text-xl font-semibold tracking-[-0.03em] text-brand-ink">{member.name}</h3>
+                    <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.11em] text-brand-gold-dark">{member.role}</p>
+                    <p className="mt-3 line-clamp-3 text-sm font-normal leading-6 text-brand-muted">{member.bio}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
       ) : null}
+
     </main>
   );
 }

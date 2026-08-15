@@ -7,9 +7,11 @@ const staticRoutes = [
   "/tentang-kami",
   "/cara-kerja",
   "/artikel",
+  "/kbli",
   "/faq",
   "/kontak",
   "/kebijakan-privasi",
+  "/syarat-ketentuan",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

@@ -86,7 +86,7 @@ export function MediaUploader({
           type="url"
           value={value || ""}
           onChange={(event) => onChange(event.target.value)}
-          className="h-11 flex-1 rounded-xl border border-slate-200 px-3.5 text-sm outline-none focus:border-brand-green"
+          className="h-11 flex-1 rounded-xl border border-slate-200 px-3.5 text-sm outline-none focus:border-brand-navy"
           placeholder="https://res.cloudinary.com/..."
         />
         <input

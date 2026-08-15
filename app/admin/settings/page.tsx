@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
 import {
   AdminPageHeader,
   Field,
@@ -9,15 +9,18 @@ import {
   inputClass,
   textareaClass,
 } from "@/components/admin/admin-ui";
+import { NavigationMenuSettings } from "@/components/admin/navigation-menu-settings";
 import { DEFAULT_SITE_SETTINGS } from "@/lib/site-defaults";
 import { db } from "@/lib/firebase";
-import type { SiteSettings, SiteStat } from "@/types";
+import type { Service, ServiceCategory, SiteSettings, SiteStat } from "@/types";
 
 export default function SettingsAdminPage() {
   const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SITE_SETTINGS);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const [services, setServices] = useState<Service[]>([]);
+  const [categories, setCategories] = useState<ServiceCategory[]>([]);
 
   useEffect(() => {
     if (!db) {
@@ -27,10 +30,32 @@ export default function SettingsAdminPage() {
 
     async function load() {
       try {
-        const snapshot = await getDoc(doc(db!, "siteSettings", "main"));
-        if (snapshot.exists()) {
-          setSettings({ id: snapshot.id, ...snapshot.data() } as SiteSettings);
+        const [settingsSnapshot, servicesSnapshot, categoriesSnapshot] = await Promise.all([
+          getDoc(doc(db!, "siteSettings", "main")),
+          getDocs(collection(db!, "services")),
+          getDocs(collection(db!, "serviceCategories")),
+        ]);
+
+        if (settingsSnapshot.exists()) {
+          setSettings({
+            ...DEFAULT_SITE_SETTINGS,
+            ...settingsSnapshot.data(),
+            id: settingsSnapshot.id,
+          } as SiteSettings);
         }
+
+        setServices(
+          servicesSnapshot.docs
+            .map((item) => ({ ...item.data(), id: item.id } as Service))
+            .filter((item) => item.published)
+            .sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999)),
+        );
+        setCategories(
+          categoriesSnapshot.docs
+            .map((item) => ({ ...item.data(), id: item.id } as ServiceCategory))
+            .filter((item) => item.published)
+            .sort((a, b) => a.order - b.order),
+        );
       } finally {
         setLoading(false);
       }
@@ -81,7 +106,7 @@ export default function SettingsAdminPage() {
       <AdminPageHeader
         eyebrow="Website"
         title="Pengaturan"
-        description="Kelola identitas, hero, kontak, statistik, dan tautan sosial yang digunakan di seluruh website."
+        description="Kelola identitas, konten homepage, kontak, statistik, dan tautan sosial tanpa mengubah source code."
       />
 
       {loading ? (
@@ -100,7 +125,7 @@ export default function SettingsAdminPage() {
                 onChange={(event) => update("brandName", event.target.value)}
               />
             </Field>
-            <Field label="Tagline">
+            <Field label="Deskripsi singkat brand" hint="Ditampilkan pada footer website.">
               <input
                 className={inputClass}
                 value={settings.brandTagline}
@@ -110,13 +135,6 @@ export default function SettingsAdminPage() {
           </div>
 
           <SettingsSection title="Hero homepage">
-            <Field label="Eyebrow">
-              <input
-                className={inputClass}
-                value={settings.heroEyebrow}
-                onChange={(event) => update("heroEyebrow", event.target.value)}
-              />
-            </Field>
             <Field label="Headline">
               <textarea
                 rows={3}
@@ -133,6 +151,48 @@ export default function SettingsAdminPage() {
                 onChange={(event) => update("heroDescription", event.target.value)}
               />
             </Field>
+          </SettingsSection>
+
+
+          <SettingsSection title="Section layanan homepage">
+            <Field label="Judul">
+              <textarea rows={2} className={textareaClass} value={settings.servicesTitle || ""} onChange={(event) => update("servicesTitle", event.target.value)} />
+            </Field>
+            <Field label="Deskripsi">
+              <textarea rows={3} className={textareaClass} value={settings.servicesDescription || ""} onChange={(event) => update("servicesDescription", event.target.value)} />
+            </Field>
+          </SettingsSection>
+
+          <SettingsSection title="Value proposition homepage">
+            <Field label="Judul">
+              <textarea rows={2} className={textareaClass} value={settings.whyUsTitle || ""} onChange={(event) => update("whyUsTitle", event.target.value)} />
+            </Field>
+            <Field label="Deskripsi">
+              <textarea rows={3} className={textareaClass} value={settings.whyUsDescription || ""} onChange={(event) => update("whyUsDescription", event.target.value)} />
+            </Field>
+          </SettingsSection>
+
+          <SettingsSection title="CTA konsultasi homepage">
+            <Field label="Judul">
+              <textarea rows={2} className={textareaClass} value={settings.ctaTitle || ""} onChange={(event) => update("ctaTitle", event.target.value)} />
+            </Field>
+            <Field label="Deskripsi">
+              <textarea rows={3} className={textareaClass} value={settings.ctaDescription || ""} onChange={(event) => update("ctaDescription", event.target.value)} />
+            </Field>
+          </SettingsSection>
+
+          <SettingsSection title="Menu navigasi / dropdown">
+            <p className="-mt-1 text-xs leading-5 text-slate-500">
+              Tentukan layanan dan kategori yang muncul saat pengunjung mengarahkan cursor ke menu Layanan atau Kategori di navbar.
+            </p>
+            <NavigationMenuSettings
+              services={services}
+              categories={categories}
+              selectedServices={settings.menuServiceSlugs || []}
+              selectedCategories={settings.menuCategorySlugs || []}
+              onServicesChange={(value) => update("menuServiceSlugs", value)}
+              onCategoriesChange={(value) => update("menuCategorySlugs", value)}
+            />
           </SettingsSection>
 
           <SettingsSection title="Kontak" columns="sm:grid-cols-2">
@@ -184,7 +244,7 @@ export default function SettingsAdminPage() {
                 <div key={`${stat.label}-${index}`} className="rounded-xl bg-slate-50 p-4">
                   <input
                     aria-label={`Nilai statistik ${index + 1}`}
-                    className="h-10 w-full rounded-lg border border-slate-200 px-3 text-sm font-black outline-none focus:border-brand-green"
+                    className="h-10 w-full rounded-lg border border-slate-200 px-3 text-sm font-black outline-none focus:border-brand-navy"
                     value={stat.value === "—" ? "" : stat.value}
                     placeholder="Contoh: 100+"
                     onChange={(event) =>
@@ -193,7 +253,7 @@ export default function SettingsAdminPage() {
                   />
                   <input
                     aria-label={`Label statistik ${index + 1}`}
-                    className="mt-2 h-10 w-full rounded-lg border border-slate-200 px-3 text-sm outline-none focus:border-brand-green"
+                    className="mt-2 h-10 w-full rounded-lg border border-slate-200 px-3 text-sm outline-none focus:border-brand-navy"
                     value={stat.label}
                     onChange={(event) =>
                       updateStat(index, "label", event.target.value)

@@ -119,7 +119,24 @@ export function ServiceEditorModal({
             />
           </Field>
 
-          <Field label="Harga mulai dari" hint="Kosongkan untuk menampilkan 'Konsultasikan'.">
+          <Field label="Model harga">
+            <select
+              className={inputClass}
+              value={service.priceType || "starting-from"}
+              onChange={(event) =>
+                setService((current) => ({
+                  ...current,
+                  priceType: event.target.value as Service["priceType"],
+                }))
+              }
+            >
+              <option value="starting-from">Mulai dari</option>
+              <option value="fixed">Harga tetap</option>
+              <option value="consultation">Konsultasikan</option>
+            </select>
+          </Field>
+
+          <Field label="Nominal harga" hint="Isi 0 jika model harga Konsultasikan.">
             <input
               inputMode="numeric"
               className={inputClass}
@@ -238,6 +255,42 @@ export function ServiceEditorModal({
           />
         </Field>
 
+
+        <div className="grid gap-5 rounded-2xl border border-slate-200 p-5">
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-brand-gold">SEO</p>
+          <Field label="SEO title" hint="Opsional. Jika kosong, nama layanan digunakan.">
+            <input
+              className={inputClass}
+              value={service.seoTitle || ""}
+              onChange={(event) =>
+                setService((current) => ({ ...current, seoTitle: event.target.value }))
+              }
+            />
+          </Field>
+          <Field label="SEO description" hint="Opsional. Idealnya 140–160 karakter.">
+            <textarea
+              rows={3}
+              className={textareaClass}
+              value={service.seoDescription || ""}
+              onChange={(event) =>
+                setService((current) => ({ ...current, seoDescription: event.target.value }))
+              }
+            />
+          </Field>
+          <Field label="Kata kunci" hint="Pisahkan dengan koma.">
+            <input
+              className={inputClass}
+              value={(service.keywords || []).join(", ")}
+              onChange={(event) =>
+                setService((current) => ({
+                  ...current,
+                  keywords: event.target.value.split(",").map((item) => item.trim()).filter(Boolean),
+                }))
+              }
+            />
+          </Field>
+        </div>
+
         <div className="flex flex-wrap gap-5 rounded-xl bg-slate-50 p-4 text-sm font-bold text-slate-700">
           <label className="flex items-center gap-2">
             <input
@@ -295,125 +348,5 @@ function ListEditor({
         onChange={(event) => onChange(parseLines(event.target.value))}
       />
     </Field>
-  );
-}
-
-type CategoryEditorProps = {
-  open: boolean;
-  category: ServiceCategory;
-  saving: boolean;
-  onClose: () => void;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-  onDelete: () => void;
-  setCategory: Dispatch<SetStateAction<ServiceCategory>>;
-};
-
-export function CategoryEditorModal({
-  open,
-  category,
-  saving,
-  onClose,
-  onSubmit,
-  onDelete,
-  setCategory,
-}: CategoryEditorProps) {
-  return (
-    <Modal
-      open={open}
-      onClose={onClose}
-      title={category.id ? "Edit Kategori" : "Tambah Kategori"}
-    >
-      <form onSubmit={onSubmit} className="grid gap-5">
-        <Field label="Nama kategori">
-          <input
-            required
-            className={inputClass}
-            value={category.name}
-            onChange={(event) =>
-              setCategory((current) => ({
-                ...current,
-                name: event.target.value,
-                slug: current.id ? current.slug : slugify(event.target.value),
-              }))
-            }
-          />
-        </Field>
-
-        <Field
-          label="Slug"
-          hint={category.id ? "Slug kategori dikunci setelah dibuat agar relasi layanan tetap aman." : undefined}
-        >
-          <input
-            required
-            className={inputClass}
-            value={category.slug}
-            disabled={Boolean(category.id)}
-            onChange={(event) =>
-              setCategory((current) => ({
-                ...current,
-                slug: slugify(event.target.value),
-              }))
-            }
-          />
-        </Field>
-
-        <Field label="Deskripsi">
-          <textarea
-            rows={4}
-            className={textareaClass}
-            value={category.description}
-            onChange={(event) =>
-              setCategory((current) => ({
-                ...current,
-                description: event.target.value,
-              }))
-            }
-          />
-        </Field>
-
-        <Field label="Urutan">
-          <input
-            inputMode="numeric"
-            className={inputClass}
-            value={String(category.order)}
-            onChange={(event) =>
-              setCategory((current) => ({
-                ...current,
-                order: Number(event.target.value.replace(/\D/g, "")) || 1,
-              }))
-            }
-          />
-        </Field>
-
-        <label className="flex items-center gap-2 text-sm font-bold">
-          <input
-            type="checkbox"
-            checked={category.published}
-            onChange={(event) =>
-              setCategory((current) => ({
-                ...current,
-                published: event.target.checked,
-              }))
-            }
-          />
-          Tayang
-        </label>
-
-        <div className="flex gap-3">
-          <button disabled={saving} className={buttonPrimary}>
-            {saving ? "Menyimpan..." : "Simpan Kategori"}
-          </button>
-          {category.id ? (
-            <button
-              type="button"
-              onClick={onDelete}
-              className="h-11 rounded-full border border-rose-200 px-5 text-sm font-black text-rose-600"
-            >
-              Hapus
-            </button>
-          ) : null}
-        </div>
-      </form>
-    </Modal>
   );
 }

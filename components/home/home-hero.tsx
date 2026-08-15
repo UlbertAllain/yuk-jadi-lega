@@ -1,189 +1,112 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
-import type { Partner, SiteSettings } from "@/types";
-import { CmsImage } from "@/components/shared/cms-image";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getWhatsAppHref } from "@/lib/contact";
+import { LegalQuickFinder } from "@/components/home/legal-quick-finder";
+import type { Service, ServiceCategory, SiteSettings } from "@/types";
+
+const fallbackProof = [
+  { value: "Online", label: "Proses terarah" },
+  { value: "Jelas", label: "Biaya & scope" },
+  { value: "Aman", label: "Dokumen bisnis" },
+];
+
+
+function splitHeroTitle(title: string) {
+  const words = title.trim().split(/\s+/);
+
+  if (words.length <= 3) {
+    return { lead: title, accent: "" };
+  }
+
+  return {
+    lead: words.slice(0, -2).join(" "),
+    accent: words.slice(-2).join(" "),
+  };
+}
 
 export function HomeHero({
   settings,
-  partners,
+  services,
+  categories,
 }: {
   settings: SiteSettings;
-  partners: Partner[];
+  services: Service[];
+  categories: ServiceCategory[];
 }) {
-  const clientCount = partners.filter((item) => item.type === "client").length;
-  const partnerCount = partners.filter((item) => item.type === "partner").length;
   const whatsappHref = getWhatsAppHref(
     settings.whatsapp,
     "Halo Yuk Jadi Legal, saya ingin konsultasi mengenai legalitas bisnis.",
   );
   const consultationHref = whatsappHref || "/kontak";
   const consultationExternal = Boolean(whatsappHref);
+  const proof = settings.stats.filter((item) => item.value.trim() && item.value.trim() !== "—").slice(0, 3);
+  const visibleProof = proof.length ? proof : fallbackProof;
+  const title = splitHeroTitle(settings.heroTitle);
 
   return (
-    <>
-      <section className="relative overflow-hidden bg-brand-paper">
-        <div className="absolute right-[-12rem] top-[-12rem] h-[34rem] w-[34rem] rounded-full border-[90px] border-brand-sand" />
-        <div className="absolute bottom-[-12rem] left-[-10rem] h-[30rem] w-[30rem] rounded-full bg-brand-green/5" />
+    <section className="hero-v74 relative overflow-hidden border-b border-brand-navy/10 bg-[linear-gradient(180deg,#fffef9_0%,#fbf8ef_100%)]">
+      <div className="hero-v74-grid absolute inset-0" />
+      <div className="hero-v74-glow absolute left-[4%] top-[12%] h-44 w-44 rounded-full" />
+      <div className="hero-v74-architecture absolute bottom-0 left-0 top-0 hidden w-[34%] lg:block">
+        <Image src="/visuals/hero-columns.svg" alt="" fill priority className="object-contain object-left-bottom opacity-[0.78]" />
+      </div>
+      <div className="hero-v74-orbit absolute left-[14%] top-[18%] hidden h-[420px] w-[420px] rounded-full lg:block" />
 
-        <div className="relative mx-auto grid min-h-[720px] max-w-7xl items-center gap-14 px-5 py-20 lg:grid-cols-[1.08fr_.92fr] lg:px-8 lg:py-28">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-gold/30 bg-white/70 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-brand-gold-dark">
-              <Sparkles className="h-3.5 w-3.5" />
-              {settings.heroEyebrow}
-            </div>
+      <div className="page-shell relative grid gap-10 py-14 lg:grid-cols-[.95fr_1.05fr] lg:items-center lg:gap-14 lg:py-20 xl:min-h-[650px]">
+        <div className="relative max-w-[650px] pl-0 lg:pl-6 xl:pl-12">
+          <div className="absolute bottom-2 left-0 top-4 hidden w-px bg-gradient-to-b from-brand-gold/0 via-brand-gold/55 to-brand-gold/0 lg:block" />
 
-            <h1 className="mt-7 max-w-4xl text-5xl font-black leading-[.98] tracking-[-0.065em] text-slate-950 sm:text-6xl lg:text-[5.4rem]">
-              {settings.heroTitle}
-            </h1>
-            <p className="mt-7 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-              {settings.heroDescription}
-            </p>
-
-            <div className="mt-9 flex flex-wrap gap-3">
-              <a
-                href={consultationHref}
-                target={consultationExternal ? "_blank" : undefined}
-                rel={consultationExternal ? "noreferrer" : undefined}
-                className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-brand-green-dark"
-              >
-                Konsultasi Sekarang <ArrowRight className="h-4 w-4" />
-              </a>
-              <Link
-                href="/layanan"
-                className="rounded-full border border-slate-300 bg-white/80 px-6 py-3.5 text-sm font-black text-slate-900 transition hover:border-slate-400"
-              >
-                Lihat Layanan
-              </Link>
-            </div>
-
-            <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-slate-600">
-              {["Bahasa mudah dipahami", "Proses lebih jelas", "Konsultasi sesuai kebutuhan"].map(
-                (item) => (
-                  <span key={item} className="inline-flex items-center gap-2">
-                    <Check className="h-4 w-4 text-brand-gold" />
-                    {item}
-                  </span>
-                ),
-              )}
-            </div>
-          </div>
-
-          <div className="relative mx-auto w-full max-w-lg lg:ml-auto">
-            <div className="absolute -right-7 -top-8 h-28 w-28 rounded-full bg-brand-gold/15 blur-2xl" />
-            <div className="animate-float-soft relative overflow-hidden rounded-[2.5rem] border border-white/80 bg-white p-6 shadow-[0_35px_90px_rgba(14,27,43,.14)] sm:p-8">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-5">
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.16em] text-brand-gold">
-                    Gambaran alur layanan
-                  </p>
-                  <p className="mt-1 text-xl font-black tracking-[-0.04em] text-slate-950">
-                    Pendirian PT
-                  </p>
-                </div>
-                <span className="rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700">
-                  Sedang diproses
+          <h1 className="max-w-[620px] text-[clamp(2.85rem,4.8vw,5rem)] font-semibold leading-[0.98] tracking-[-0.058em] text-brand-navy-dark">
+            {title.lead}
+            {title.accent ? (
+              <>
+                <br />
+                <span className="bg-[linear-gradient(180deg,#d9b53a_0%,#b98b12_100%)] bg-clip-text text-transparent">
+                  {title.accent}
                 </span>
-              </div>
+              </>
+            ) : null}
+          </h1>
 
-              <div className="mt-6 space-y-5">
-                {[
-                  ["Konsultasi kebutuhan", true],
-                  ["Data & dokumen diterima", true],
-                  ["Verifikasi dan proses", true],
-                  ["Dokumen selesai", false],
-                ].map(([label, done], index) => (
-                  <div key={String(label)} className="flex items-center gap-4">
-                    <div
-                      className={`grid h-10 w-10 shrink-0 place-items-center rounded-full ${
-                        done ? "bg-brand-green text-white" : "bg-slate-100 text-slate-400"
-                      }`}
-                    >
-                      {done ? (
-                        <Check className="h-4 w-4" />
-                      ) : (
-                        <span className="text-xs font-black">0{index + 1}</span>
-                      )}
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-bold text-slate-900">{String(label)}</p>
-                      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100">
-                        <div
-                          className={`h-full rounded-full ${
-                            done ? "w-full bg-brand-gold" : "w-1/4 bg-slate-200"
-                          }`}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <p className="mt-6 max-w-[560px] text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
+            {settings.heroDescription}
+          </p>
 
-              <p className="mt-7 rounded-2xl bg-brand-paper p-4 text-sm leading-6 text-slate-600">
-                Setiap layanan memiliki tahapan yang berbeda. Tim akan menjelaskan kebutuhan dan alurnya sebelum proses dimulai.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {partners.length ? (
-        <section className="overflow-hidden border-y border-slate-200 bg-white py-7">
-          <div className="mx-auto mb-5 flex max-w-7xl items-center justify-between px-5 lg:px-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">
-              Partner & klien
-            </p>
-            <div className="hidden gap-2 text-xs text-slate-400 sm:flex">
-              <span>{partnerCount} partner</span>
-              <span>•</span>
-              <span>{clientCount} klien</span>
-            </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/layanan" className="button-gold inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold">
+              Lihat layanan <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href={consultationHref}
+              target={consultationExternal ? "_blank" : undefined}
+              rel={consultationExternal ? "noreferrer" : undefined}
+              className="button-outline inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold"
+            >
+              Konsultasi gratis <ArrowUpRight className="h-4 w-4" />
+            </a>
           </div>
 
-          <div className="flex w-max animate-marquee px-4">
-            {[false, true].map((isClone) => (
+          <div className="mt-10 grid max-w-[620px] gap-3 sm:grid-cols-3">
+            {visibleProof.map((item) => (
               <div
-                key={isClone ? "clone" : "original"}
-                aria-hidden={isClone || undefined}
-                className="flex shrink-0 gap-4 pr-4"
+                key={item.label}
+                className="relative rounded-[18px] border border-brand-navy/10 bg-white/86 px-4 py-4 pl-5 shadow-[0_14px_32px_rgba(4,29,54,.05)] backdrop-blur-sm"
               >
-                {partners.map((item) => (
-                  <PartnerBadge key={`${item.id}-${isClone}`} item={item} />
-                ))}
+                <span className="absolute bottom-4 left-0 top-4 w-[3px] rounded-r-full bg-brand-gold" />
+                <p className="text-sm font-semibold text-brand-navy-dark sm:text-base">{item.value}</p>
+                <p className="mt-1 text-[10px] font-medium text-brand-muted">{item.label}</p>
               </div>
             ))}
           </div>
-        </section>
-      ) : null}
-    </>
-  );
-}
+        </div>
 
-function PartnerBadge({ item }: { item: Partner }) {
-  const content = item.logoUrl ? (
-    <CmsImage
-      src={item.logoUrl}
-      alt={item.name}
-      className="max-h-8 max-w-32 object-contain"
-    />
-  ) : (
-    item.name
-  );
-  const className =
-    "flex h-16 min-w-52 items-center justify-center rounded-2xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-700";
-
-  if (!item.website) {
-    return <div className={className}>{content}</div>;
-  }
-
-  return (
-    <a
-      href={item.website}
-      target="_blank"
-      rel="noreferrer"
-      className={className}
-    >
-      {content}
-    </a>
+        <div className="relative lg:pl-2">
+          <div className="absolute -right-14 -top-14 h-52 w-52 rounded-full bg-brand-gold/10 blur-3xl" />
+          <div className="absolute -bottom-12 -left-10 h-44 w-44 rounded-full bg-brand-bluewash/90 blur-3xl" />
+          <LegalQuickFinder services={services} categories={categories} />
+        </div>
+      </div>
+    </section>
   );
 }

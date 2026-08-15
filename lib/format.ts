@@ -30,3 +30,12 @@ export function formatDate(value: string | Date) {
     year: "numeric",
   }).format(date);
 }
+
+export function servicePriceLabel(
+  startingPrice: number,
+  priceType?: "fixed" | "starting-from" | "consultation",
+) {
+  if (priceType === "consultation" || !startingPrice) return "Konsultasikan";
+  const formatted = formatRupiah(startingPrice);
+  return priceType === "fixed" ? formatted : `Mulai ${formatted}`;
+}

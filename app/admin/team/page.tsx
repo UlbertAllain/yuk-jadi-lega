@@ -83,7 +83,7 @@ export default function TeamAdminPage() {
             key={item.id}
             className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white"
           >
-            <div className="grid aspect-[4/3] place-items-center bg-gradient-to-br from-brand-green to-brand-ink text-6xl font-black text-white/10">
+            <div className="grid aspect-[4/3] place-items-center bg-gradient-to-br from-brand-navy to-brand-ink text-6xl font-black text-white/10">
               {item.photoUrl ? (
                 <CmsImage
                   src={item.photoUrl}

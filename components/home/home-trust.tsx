@@ -1,151 +1,87 @@
 import { Star } from "lucide-react";
-import { SectionHeading } from "@/components/site/section-heading";
-import type { CaseStudy, TeamMember, Testimonial } from "@/types";
 import { CmsImage } from "@/components/shared/cms-image";
+import type { Partner, Testimonial } from "@/types";
 
-export function HomeTrust({
-  caseStudies,
-  testimonials,
-  team,
-}: {
-  caseStudies: CaseStudy[];
-  testimonials: Testimonial[];
-  team: TeamMember[];
-}) {
+export function HomeTrust({ partners, testimonials }: { partners: Partner[]; testimonials: Testimonial[] }) {
+  const visiblePartners = partners.slice(0, 10);
+  const visibleTestimonials = testimonials.slice(0, 3);
+
+  if (!visiblePartners.length && !visibleTestimonials.length) return null;
+
   return (
-    <>
-      {caseStudies.length ? (
-        <section className="bg-brand-green py-24 text-white lg:py-32">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <div className="grid gap-14 lg:grid-cols-[.8fr_1.2fr]">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-brand-gold-soft">
-                  Studi kasus
-                </p>
-                <h2 className="mt-4 text-4xl font-black tracking-[-0.055em] sm:text-5xl">
-                  Bukti kerja lebih kuat daripada janji.
-                </h2>
-                <p className="mt-5 text-sm leading-7 text-emerald-100/80">
-                  Lihat bagaimana kebutuhan klien dipetakan, diproses, dan diselesaikan secara terarah.
-                </p>
-              </div>
-
-              <div className="grid gap-5 sm:grid-cols-2">
-                {caseStudies.slice(0, 2).map((item) => (
-                  <article key={item.id} className="rounded-[2rem] bg-white p-7 text-slate-900">
-                    <p className="text-xs font-black uppercase tracking-[0.16em] text-brand-gold">
-                      {item.client}
-                    </p>
-                    <h3 className="mt-4 text-2xl font-black tracking-[-0.045em]">
-                      {item.title}
-                    </h3>
-                    <div className="mt-6 space-y-5 text-sm leading-6 text-slate-600">
-                      <div>
-                        <p className="font-black text-slate-950">Tantangan</p>
-                        <p className="mt-1">{item.challenge}</p>
-                      </div>
-                      <div>
-                        <p className="font-black text-slate-950">Solusi</p>
-                        <p className="mt-1">{item.solution}</p>
-                      </div>
-                      <div>
-                        <p className="font-black text-slate-950">Hasil</p>
-                        <p className="mt-1">{item.result}</p>
-                      </div>
-                    </div>
-                  </article>
-                ))}
+    <section className="trust-v71 border-b border-brand-navy/8">
+      {visiblePartners.length ? (
+        <div className="partner-v71 overflow-hidden border-b border-brand-navy/8">
+          <div className="page-shell py-14 lg:py-16">
+            <h2 className="text-center text-2xl font-semibold tracking-[-0.035em] text-brand-navy-dark sm:text-3xl">
+              Dipercaya berbagai bisnis dan organisasi
+            </h2>
+            <div className="partner-marquee-v71 relative mt-9 overflow-hidden rounded-[18px] border border-brand-navy/10 bg-white py-5 shadow-[0_14px_34px_rgba(5,31,58,.045)]">
+              <div className="partner-marquee-fade-left absolute inset-y-0 left-0 z-10 w-16 sm:w-28" />
+              <div className="partner-marquee-fade-right absolute inset-y-0 right-0 z-10 w-16 sm:w-28" />
+              <div className="partner-marquee-track-v71 flex w-max items-center">
+                <PartnerGroup partners={visiblePartners} />
+                <PartnerGroup partners={visiblePartners} ariaHidden />
               </div>
             </div>
           </div>
-        </section>
+        </div>
       ) : null}
 
-      {testimonials.length ? (
-        <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-          <SectionHeading
-            eyebrow="Testimoni"
-            title="Pengalaman klien, diceritakan apa adanya."
-            description="Cerita langsung dari klien membantu calon pengguna memahami pengalaman bekerja bersama Yuk Jadi Legal."
-          />
+      {visibleTestimonials.length ? (
+        <div className="testimonial-v71 py-20 lg:py-24">
+          <div className="page-shell">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <h2 className="section-title max-w-2xl">Apa kata klien kami?</h2>
+              <p className="max-w-md text-sm leading-7 text-brand-muted">Pengalaman klien setelah menggunakan layanan Yuk Jadi Legal.</p>
+            </div>
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {testimonials.slice(0, 3).map((item) => (
-              <blockquote
-                key={item.id}
-                className="flex h-full flex-col rounded-[2rem] border border-slate-200 p-7"
-              >
-                <div className="flex gap-1 text-brand-gold">
-                  {Array.from({ length: item.rating }).map((_, index) => (
-                    <Star key={index} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-
-                <p className="mt-6 flex-1 text-lg font-semibold leading-8 text-slate-800">
-                  “{item.quote}”
-                </p>
-
-                <footer className="mt-8 flex items-center gap-3 border-t border-slate-100 pt-5">
-                  {item.avatarUrl ? (
-                    <CmsImage
-                      src={item.avatarUrl}
-                      alt={item.name}
-                      className="h-11 w-11 rounded-full object-cover"
-                    />
-                  ) : (
-                    <div className="grid h-11 w-11 place-items-center rounded-full bg-brand-paper text-xs font-black text-brand-green">
-                      {item.name.slice(0, 1).toUpperCase()}
+            <div className="mt-9 grid gap-4 lg:grid-cols-3">
+              {visibleTestimonials.map((testimonial, index) => (
+                <article key={testimonial.id} className={`testimonial-card-v71 relative rounded-[20px] border p-6 ${index === 1 ? "border-brand-navy/15 bg-brand-bluewash/55" : "border-brand-navy/12 bg-white"}`}>
+                  <div className="flex items-center gap-1 text-brand-gold">
+                    {Array.from({ length: Math.max(1, Math.min(5, testimonial.rating || 5)) }).map((_, starIndex) => (
+                      <Star key={starIndex} className="h-3.5 w-3.5 fill-current" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-5 min-h-[110px] text-sm leading-7 text-brand-ink">“{testimonial.quote}”</blockquote>
+                  <div className="mt-6 flex items-center gap-3 border-t border-brand-navy/9 pt-4">
+                    <Avatar testimonial={testimonial} />
+                    <div className="min-w-0">
+                      <p className="truncate text-xs font-semibold text-brand-navy-dark">{testimonial.name}</p>
+                      <p className="mt-0.5 truncate text-[10px] text-brand-muted">{[testimonial.role, testimonial.company].filter(Boolean).join(" · ")}</p>
                     </div>
-                  )}
-                  <div>
-                    <p className="font-black text-slate-950">{item.name}</p>
-                    <p className="mt-1 text-sm text-slate-500">
-                      {[item.role, item.company].filter(Boolean).join(" — ")}
-                    </p>
-                  </div>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      {team.length ? (
-        <section className="bg-brand-paper py-24 lg:py-32">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <SectionHeading
-              eyebrow="Tim"
-              title="Legal tetap soal manusia dan kepercayaan."
-              description="Kenali orang-orang yang membantu menangani kebutuhan legalitas bisnis."
-            />
-
-            <div className="mt-12 grid gap-5 md:grid-cols-3">
-              {team.slice(0, 3).map((member, index) => (
-                <article key={member.id} className="overflow-hidden rounded-[2rem] bg-white">
-                  <div className="grid aspect-[4/3] place-items-center bg-gradient-to-br from-brand-green to-brand-ink text-7xl font-black text-white/10">
-                    {member.photoUrl ? (
-                      <CmsImage
-                        src={member.photoUrl}
-                        alt={member.name}
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      `0${index + 1}`
-                    )}
-                  </div>
-                  <div className="p-7">
-                    <p className="text-xl font-black tracking-[-0.04em] text-slate-950">
-                      {member.name}
-                    </p>
-                    <p className="mt-1 text-sm font-bold text-brand-gold-dark">{member.role}</p>
-                    <p className="mt-4 text-sm leading-7 text-slate-600">{member.bio}</p>
                   </div>
                 </article>
               ))}
             </div>
           </div>
-        </section>
+        </div>
       ) : null}
-    </>
+    </section>
   );
+}
+
+function PartnerGroup({ partners, ariaHidden = false }: { partners: Partner[]; ariaHidden?: boolean }) {
+  return (
+    <div className="flex shrink-0 items-center gap-14 pr-14 sm:gap-20 sm:pr-20" aria-hidden={ariaHidden || undefined}>
+      {partners.map((partner, index) => (
+        <div key={`${partner.id}-${index}`} className="flex h-12 min-w-[150px] items-center justify-center px-3">
+          {partner.logoUrl ? (
+            <CmsImage src={partner.logoUrl} alt={ariaHidden ? "" : partner.name} className="max-h-9 w-auto max-w-[145px] object-contain opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0" />
+          ) : (
+            <span className="whitespace-nowrap text-center text-sm font-semibold text-brand-navy/60">{partner.name}</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Avatar({ testimonial }: { testimonial: Testimonial }) {
+  const initials = testimonial.name.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
+  if (testimonial.avatarUrl) {
+    return <CmsImage src={testimonial.avatarUrl} alt={testimonial.name} className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-brand-navy/10" />;
+  }
+  return <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-navy text-[9px] font-semibold text-white">{initials || "YJL"}</span>;
 }

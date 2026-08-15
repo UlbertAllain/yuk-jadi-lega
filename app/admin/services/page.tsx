@@ -2,27 +2,26 @@
 
 import { useMemo, useState } from "react";
 import { Edit3, Plus, Trash2 } from "lucide-react";
-import {
-  CategoryEditorModal,
-  ServiceEditorModal,
-} from "@/components/admin/service-editors";
+import { CategoryEditorModal } from "@/components/admin/category-editor-modal";
+import { ServiceEditorModal } from "@/components/admin/service-editor-modal";
 import {
   AdminPageHeader,
   IconButton,
   buttonPrimary,
 } from "@/components/admin/admin-ui";
 import { useAdminCollection } from "@/components/admin/use-admin-collection";
-import { formatRupiah, slugify } from "@/lib/format";
+import { servicePriceLabel, slugify } from "@/lib/format";
 import type { Service, ServiceCategory } from "@/types";
 
 const emptyService: Service = {
   id: "",
   title: "",
   slug: "",
-  categorySlug: "mulai-bisnis",
+  categorySlug: "pendirian-perusahaan",
   shortDescription: "",
   description: "",
   startingPrice: 0,
+  priceType: "starting-from",
   priceNote: "",
   duration: "",
   order: 1,
@@ -73,7 +72,7 @@ export default function ServicesAdminPage() {
   function openNewService() {
     setEditingService({
       ...emptyService,
-      categorySlug: sortedCategories[0]?.slug || "mulai-bisnis",
+      categorySlug: sortedCategories[0]?.slug || "pendirian-perusahaan",
       order: sortedServices.length + 1,
     });
     setServiceModalOpen(true);
@@ -225,7 +224,7 @@ export default function ServicesAdminPage() {
                     {categoryLabel(sortedCategories, item.categorySlug)}
                   </td>
                   <td className="px-6 py-4 font-bold text-slate-700">
-                    {formatRupiah(item.startingPrice)}
+                    {servicePriceLabel(item.startingPrice, item.priceType)}
                   </td>
                   <td className="px-6 py-4">
                     <span

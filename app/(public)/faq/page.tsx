@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ArrowUpRight } from "lucide-react";
+import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getWhatsAppHref } from "@/lib/contact";
 import { getFaqs, getSiteSettings } from "@/lib/data";
 
@@ -14,53 +16,35 @@ export default async function FaqPage() {
   const consultationHref = whatsappHref || "/kontak";
 
   return (
-    <main>
-      <section className="bg-brand-ink text-white">
-        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-brand-gold-soft">
-            FAQ
-          </p>
-          <h1 className="mt-5 max-w-4xl text-5xl font-black tracking-[-0.06em] sm:text-6xl lg:text-7xl">
-            Pertanyaan sebelum kamu mulai.
-          </h1>
-        </div>
-      </section>
+    <main className="bg-brand-surface">
+      <PublicPageHero
+        eyebrow="FAQ"
+        title="Jawaban untuk pertanyaan yang paling sering muncul."
+        description="Baca hal dasar tentang konsultasi, proses, persyaratan, dan layanan sebelum menghubungi tim."
+        meta={<p className="text-xs font-semibold text-brand-muted"><strong className="text-brand-ink">{faqs.length}</strong> pertanyaan tersedia</p>}
+      />
 
-      <section className="mx-auto grid max-w-7xl gap-14 px-5 py-20 lg:grid-cols-[.55fr_1fr] lg:px-8 lg:py-28">
-        <div>
-          <h2 className="text-3xl font-black tracking-[-0.05em] text-slate-950">
-            Belum menemukan jawaban?
-          </h2>
-          <p className="mt-4 text-sm leading-7 text-slate-600">
-            Kondisi setiap bisnis bisa berbeda. Konsultasikan pertanyaan yang lebih spesifik agar kami bisa memahami konteksnya.
-          </p>
-          <a
-            href={consultationHref}
-            target={whatsappHref ? "_blank" : undefined}
-            rel={whatsappHref ? "noreferrer" : undefined}
-            className="mt-6 inline-flex rounded-full bg-brand-green px-5 py-3 text-sm font-black text-white"
-          >
-            Kirim Pertanyaan
-          </a>
-        </div>
+      <section className="page-shell grid gap-8 py-12 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-10 lg:py-16">
+        <aside>
+          <div className="sticky top-28 rounded-[24px] bg-brand-navy p-6 text-white shadow-[0_22px_54px_rgba(6,23,46,.14)]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-soft">Butuh jawaban spesifik?</p>
+            <h2 className="mt-3 text-2xl font-semibold leading-[1.1] tracking-[-0.035em]">Kondisi setiap bisnis bisa berbeda.</h2>
+            <p className="mt-3 text-sm font-normal leading-7 text-slate-200">Kalau pertanyaannya sangat spesifik, konsultasikan konteksnya agar jawabannya lebih relevan.</p>
+            <a href={consultationHref} target={whatsappHref ? "_blank" : undefined} rel={whatsappHref ? "noreferrer" : undefined} className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-gold px-4 py-2.5 text-sm font-semibold text-brand-navy">
+              Kirim pertanyaan <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+        </aside>
 
-        <div className="divide-y divide-slate-200 border-y border-slate-200">
+        <div className="overflow-hidden rounded-[24px] border border-brand-navy/10 bg-white shadow-[0_14px_36px_rgba(6,23,46,.05)]">
           {faqs.map((faq, index) => (
-            <details key={faq.id} className="group py-6">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-black tracking-[-0.025em] text-slate-950">
-                <span>
-                  <span className="mr-4 text-xs text-brand-gold">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  {faq.question}
-                </span>
-                <span className="text-xl text-slate-400 transition group-open:rotate-45">
-                  +
-                </span>
+            <details key={faq.id} className="group border-b border-brand-navy/9 last:border-b-0 open:bg-brand-paper/55">
+              <summary className="grid cursor-pointer list-none grid-cols-[34px_minmax(0,1fr)_36px] items-center gap-3 px-5 py-5 sm:px-6">
+                <span className="text-[10px] font-semibold text-brand-gold-dark">{String(index + 1).padStart(2, "0")}</span>
+                <span className="text-base font-semibold leading-6 text-brand-ink">{faq.question}</span>
+                <span className="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/12 bg-white text-brand-navy transition group-open:rotate-45 group-open:border-brand-gold group-open:bg-brand-gold">+</span>
               </summary>
-              <p className="max-w-3xl pb-2 pl-9 pt-4 text-sm leading-7 text-slate-600">
-                {faq.answer}
-              </p>
+              <p className="px-[72px] pb-5 pr-8 text-sm font-normal leading-7 text-brand-muted">{faq.answer}</p>
             </details>
           ))}
         </div>

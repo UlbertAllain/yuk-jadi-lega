@@ -75,7 +75,7 @@ export default function AdminDashboard() {
             className="rounded-[1.5rem] border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5"
           >
             <div className="flex items-center justify-between">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-paper text-brand-green">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-paper text-brand-navy">
                 <Icon className="h-5 w-5" />
               </span>
               <ArrowRight className="h-4 w-4 text-slate-300" />
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
               Permintaan dari website
             </h2>
           </div>
-          <Link href="/admin/leads" className="text-sm font-black text-brand-green">
+          <Link href="/admin/leads" className="text-sm font-black text-brand-navy">
             Lihat semua →
           </Link>
         </div>

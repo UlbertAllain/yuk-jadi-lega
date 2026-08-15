@@ -3,11 +3,21 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, getFirestore, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  serverTimestamp,
+  writeBatch,
+} from "firebase/firestore";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
-const raw = JSON.parse(await fs.readFile(path.join(root, "data", "seed-data.json"), "utf8"));
+const raw = JSON.parse(
+  await fs.readFile(path.join(root, "data", "seed-data.json"), "utf8"),
+);
 
 const required = [
   "NEXT_PUBLIC_FIREBASE_API_KEY",
@@ -35,11 +45,16 @@ const app = initializeApp({
 
 const auth = getAuth(app);
 const db = getFirestore(app);
+const BATCH_SIZE = 400;
 
 console.log("\nYuk Jadi Legal — seeder");
 console.log("--------------------------------");
 console.log(`Login sebagai ${process.env.SEED_ADMIN_EMAIL}...`);
-const credential = await signInWithEmailAndPassword(auth, process.env.SEED_ADMIN_EMAIL, process.env.SEED_ADMIN_PASSWORD);
+const credential = await signInWithEmailAndPassword(
+  auth,
+  process.env.SEED_ADMIN_EMAIL,
+  process.env.SEED_ADMIN_PASSWORD,
+);
 
 const adminSnapshot = await getDoc(doc(db, "admins", credential.user.uid));
 if (!adminSnapshot.exists() || adminSnapshot.data().active !== true) {
@@ -49,20 +64,49 @@ if (!adminSnapshot.exists() || adminSnapshot.data().active !== true) {
   process.exit(1);
 }
 
+const reset = process.argv.includes("--reset");
+
+async function commitInChunks(items, apply) {
+  for (let start = 0; start < items.length; start += BATCH_SIZE) {
+    const batch = writeBatch(db);
+    for (const item of items.slice(start, start + BATCH_SIZE)) {
+      apply(batch, item);
+    }
+    await batch.commit();
+  }
+}
+
+async function clearCollection(name) {
+  const snapshot = await getDocs(collection(db, name));
+  if (snapshot.empty) return;
+
+  console.log(`Membersihkan ${name} (${snapshot.size})...`);
+  await commitInChunks(snapshot.docs, (batch, item) => batch.delete(item.ref));
+}
+
 async function seedCollection(name, items) {
   console.log(`Seeding ${name} (${items.length})...`);
-  for (const item of items) {
+  if (!items.length) return;
+
+  await commitInChunks(items, (batch, item) => {
     const { id, ...data } = item;
-    await setDoc(doc(db, name, id), {
+    batch.set(doc(db, name, id), {
       ...data,
       updatedAt: serverTimestamp(),
     });
+  });
+}
+
+if (reset) {
+  for (const name of ["serviceCategories", "services", "kbli"]) {
+    await clearCollection(name);
   }
 }
 
 await seedCollection("serviceCategories", raw.serviceCategories);
 await seedCollection("services", raw.services);
 await seedCollection("articles", raw.articles);
+await seedCollection("kbli", raw.kbli || []);
 await seedCollection("testimonials", raw.testimonials);
 await seedCollection("partners", raw.partners);
 await seedCollection("faqs", raw.faqs);
@@ -70,12 +114,19 @@ await seedCollection("teamMembers", raw.teamMembers);
 await seedCollection("caseStudies", raw.caseStudies);
 
 const { id: settingsId, ...settings } = raw.siteSettings;
-await setDoc(doc(db, "siteSettings", settingsId), {
+const settingsBatch = writeBatch(db);
+settingsBatch.set(doc(db, "siteSettings", settingsId), {
   ...settings,
   updatedAt: serverTimestamp(),
 });
+await settingsBatch.commit();
 
 console.log("\nSeed selesai.");
-console.log("Seed awal selesai. Partner, client, testimonial, tim, studi kasus, kontak, dan statistik sengaja tidak diisi.");
-console.log("Masukkan data resmi Yuk Jadi Legal melalui CMS sebelum website dipublikasikan.\n");
+console.log(`Mode: ${reset ? "reset + seed" : "merge seed"}`);
+console.log(
+  "Partner, client, testimonial, tim, studi kasus, kontak, dan statistik tetap diisi melalui CMS sesuai data resmi.",
+);
+console.log(
+  "Masukkan data resmi Yuk Jadi Legal melalui CMS sebelum website dipublikasikan.\n",
+);
 process.exit(0);
