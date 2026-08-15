@@ -1,14 +1,5 @@
 import { cache } from "react";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  limit,
-  query,
-  where,
-} from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { adminDb } from "@/lib/firebase-admin";
 import { DEFAULT_SITE_SETTINGS } from "@/lib/site-defaults";
 import type {
   Article,
@@ -29,9 +20,8 @@ function toPublicDocument<T>(data: Record<string, unknown>, id: string): T {
     id,
   };
 
-  // Firestore Timestamp instances are not serializable across the
-  // Server Component -> Client Component boundary. These fields are
-  // internal CMS metadata and are not part of the public DTOs.
+  // Internal Firestore metadata is deliberately kept out of the public DTOs.
+  // This also prevents Timestamp instances from crossing the RSC -> client boundary.
   delete plain.createdAt;
   delete plain.updatedAt;
 
@@ -39,12 +29,13 @@ function toPublicDocument<T>(data: Record<string, unknown>, id: string): T {
 }
 
 async function publishedCollection<T>(name: string): Promise<T[]> {
-  if (!db) return [];
+  if (!adminDb) {
+    console.error(`[data] Firebase Admin belum dikonfigurasi; ${name} tidak dapat dibaca di server.`);
+    return [];
+  }
 
   try {
-    const snapshot = await getDocs(
-      query(collection(db, name), where("published", "==", true)),
-    );
+    const snapshot = await adminDb.collection(name).where("published", "==", true).get();
 
     return snapshot.docs.map((item) =>
       toPublicDocument<T>(item.data(), item.id),
@@ -55,13 +46,10 @@ async function publishedCollection<T>(name: string): Promise<T[]> {
   }
 }
 
-export const getServiceCategories = cache(
-  async (): Promise<ServiceCategory[]> => {
-    const items =
-      await publishedCollection<ServiceCategory>("serviceCategories");
-    return [...items].sort((a, b) => a.order - b.order);
-  },
-);
+export const getServiceCategories = cache(async (): Promise<ServiceCategory[]> => {
+  const items = await publishedCollection<ServiceCategory>("serviceCategories");
+  return [...items].sort((a, b) => a.order - b.order);
+});
 
 export const getServices = cache(async (): Promise<Service[]> => {
   const items = await publishedCollection<Service>("services");
@@ -80,17 +68,15 @@ export const getFeaturedServices = cache(async (): Promise<Service[]> => {
 
 export const getServiceBySlug = cache(
   async (slug: string): Promise<Service | null> => {
-    if (!db) return null;
+    if (!adminDb) return null;
 
     try {
-      const snapshot = await getDocs(
-        query(
-          collection(db, "services"),
-          where("slug", "==", slug),
-          where("published", "==", true),
-          limit(1),
-        ),
-      );
+      const snapshot = await adminDb
+        .collection("services")
+        .where("slug", "==", slug)
+        .where("published", "==", true)
+        .limit(1)
+        .get();
 
       if (snapshot.empty) return null;
 
@@ -107,25 +93,22 @@ export const getArticles = cache(async (): Promise<Article[]> => {
   const articles = await publishedCollection<Article>("articles");
 
   return [...articles].sort((a, b) => {
-    if (a.featured !== b.featured)
-      return Number(b.featured) - Number(a.featured);
+    if (a.featured !== b.featured) return Number(b.featured) - Number(a.featured);
     return b.publishedAt.localeCompare(a.publishedAt);
   });
 });
 
 export const getArticleBySlug = cache(
   async (slug: string): Promise<Article | null> => {
-    if (!db) return null;
+    if (!adminDb) return null;
 
     try {
-      const snapshot = await getDocs(
-        query(
-          collection(db, "articles"),
-          where("slug", "==", slug),
-          where("published", "==", true),
-          limit(1),
-        ),
-      );
+      const snapshot = await adminDb
+        .collection("articles")
+        .where("slug", "==", slug)
+        .where("published", "==", true)
+        .limit(1)
+        .get();
 
       if (snapshot.empty) return null;
 
@@ -142,8 +125,7 @@ export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
   const testimonials = await publishedCollection<Testimonial>("testimonials");
 
   return [...testimonials].sort((a, b) => {
-    if (a.featured !== b.featured)
-      return Number(b.featured) - Number(a.featured);
+    if (a.featured !== b.featured) return Number(b.featured) - Number(a.featured);
     return a.name.localeCompare(b.name, "id");
   });
 });
@@ -167,8 +149,7 @@ export const getCaseStudies = cache(async (): Promise<CaseStudy[]> => {
   const cases = await publishedCollection<CaseStudy>("caseStudies");
 
   return [...cases].sort((a, b) => {
-    if (a.featured !== b.featured)
-      return Number(b.featured) - Number(a.featured);
+    if (a.featured !== b.featured) return Number(b.featured) - Number(a.featured);
     return a.title.localeCompare(b.title, "id");
   });
 });
@@ -183,16 +164,13 @@ export const getKbliEntries = cache(async (): Promise<KbliEntry[]> => {
 });
 
 export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
-  if (!db) return DEFAULT_SITE_SETTINGS;
+  if (!adminDb) return DEFAULT_SITE_SETTINGS;
 
   try {
-    const snapshot = await getDoc(doc(db, "siteSettings", "main"));
-    if (!snapshot.exists()) return DEFAULT_SITE_SETTINGS;
+    const snapshot = await adminDb.collection("siteSettings").doc("main").get();
+    if (!snapshot.exists) return DEFAULT_SITE_SETTINGS;
 
-    const settings = toPublicDocument<SiteSettings>(
-      snapshot.data(),
-      snapshot.id,
-    );
+    const settings = toPublicDocument<SiteSettings>(snapshot.data() ?? {}, snapshot.id);
 
     return {
       ...DEFAULT_SITE_SETTINGS,

@@ -8,10 +8,12 @@
     "start": "next start",
     "lint": "eslint .",
     "seed": "node --env-file=.env.local scripts/seed.mjs",
-    "seed:reset": "node --env-file=.env.local scripts/seed.mjs --reset"
+    "seed:reset": "node --env-file=.env.local scripts/seed.mjs --reset",
+    "env:check": "node --env-file=.env.local scripts/check-env.mjs"
   },
   "dependencies": {
     "firebase": "12.0.0",
+    "firebase-admin": "13.10.0",
     "lucide-react": "0.468.0",
     "next": "16.2.0",
     "react": "19.2.0",
@@ -22,7 +24,7 @@
     "@types/node": "22.0.0",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
-    "eslint": "9.0.0",
+    "eslint": "^9.39.5",
     "eslint-config-next": "16.2.0",
     "postcss": "^8.5.26",
     "tailwindcss": "4.3.3",

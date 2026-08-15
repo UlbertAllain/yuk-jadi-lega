@@ -86,7 +86,7 @@ scripts/
 - Public hanya dapat membuat lead dengan field terbatas.
 - CMS write hanya untuk UID admin aktif.
 - Collection `admins` tidak dapat ditulis dari aplikasi.
-- Cloudinary memakai unsigned preset; API secret tidak diekspos ke browser.
+- V8 mengganti Cloudinary unsigned preset menjadi signed upload dengan signature server-side dan verifikasi admin.
 
 ## Validation checklist
 

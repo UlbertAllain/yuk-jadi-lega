@@ -88,7 +88,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
       try {
         const adminSnapshot = await getDoc(doc(db!, "admins", nextUser.uid));
-        const allowed = adminSnapshot.exists() && adminSnapshot.data().active === true;
+        const allowed =
+          adminSnapshot.exists() && adminSnapshot.data().active === true;
 
         setAuthorized(allowed);
         if (!allowed) {
@@ -136,7 +137,9 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <div className="flex h-16 shrink-0 items-center gap-3 border-b border-white/10 px-2">
             <BrandMark frameClassName="h-10 w-10 rounded-xl ring-white/10" />
             <div className="min-w-0">
-              <p className="truncate text-sm font-semibold tracking-[-0.02em]">Yuk Jadi Legal</p>
+              <p className="truncate text-sm font-semibold tracking-[-0.02em]">
+                Yuk Jadi Legal
+              </p>
               <p className="mt-0.5 text-xs text-slate-400">Admin Website</p>
             </div>
           </div>
@@ -150,7 +153,10 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                   </p>
                   <div className="mt-2 grid gap-1">
                     {group.items.map(([label, href, Icon]) => {
-                      const active = href === "/admin" ? pathname === href : pathname.startsWith(href);
+                      const active =
+                        href === "/admin"
+                          ? pathname === href
+                          : pathname.startsWith(href);
 
                       return (
                         <Link
@@ -177,7 +183,9 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
           <div className="mt-3 shrink-0 border-t border-white/10 pt-3">
             <div className="rounded-2xl border border-white/10 bg-white/[.035] p-3">
-              <p className="truncate text-[11px] text-slate-400">{user?.email}</p>
+              <p className="truncate text-[11px] text-slate-400">
+                {user?.email}
+              </p>
               <button
                 onClick={logout}
                 className="mt-2 flex w-full items-center gap-2 rounded-xl px-2 py-2 text-sm font-medium text-white transition hover:bg-white/8"
@@ -209,11 +217,19 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           </button>
 
           <div className="hidden lg:block">
-            <p className="text-[10px] font-medium uppercase tracking-[0.13em] text-slate-400">Admin Website</p>
-            <p className="mt-1 text-sm font-medium text-slate-700">Kelola informasi yang tampil untuk calon klien.</p>
+            <p className="text-[10px] font-medium uppercase tracking-[0.13em] text-slate-400">
+              Admin Website
+            </p>
+            <p className="mt-1 text-sm font-medium text-slate-700">
+              Kelola informasi yang tampil untuk calon klien.
+            </p>
           </div>
 
-          <Link href="/" target="_blank" className="text-sm font-semibold text-brand-navy hover:text-brand-gold-dark">
+          <Link
+            href="/"
+            target="_blank"
+            className="text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
+          >
             Lihat website ↗
           </Link>
         </header>
@@ -229,11 +245,18 @@ function MissingConfiguration() {
     <main className="grid min-h-screen place-items-center bg-brand-paper p-6">
       <div className="max-w-xl rounded-[2rem] border border-amber-200 bg-white p-8 shadow-xl shadow-slate-900/5">
         <Building2 className="h-9 w-9 text-brand-navy" />
-        <h1 className="mt-5 text-3xl font-semibold tracking-[-0.05em] text-slate-950">Setup admin belum selesai.</h1>
+        <h1 className="mt-5 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
+          Setup admin belum selesai.
+        </h1>
         <p className="mt-4 text-sm leading-7 text-slate-600">
-          Lengkapi konfigurasi Firebase di file lingkungan project, lalu jalankan ulang development server. Panduan lengkap tersedia di SETUP.md.
+          Lengkapi konfigurasi Firebase di file lingkungan project, lalu
+          jalankan ulang development server. Panduan lengkap tersedia di
+          SETUP.md.
         </p>
-        <Link href="/" className="mt-6 inline-block text-sm font-semibold text-brand-navy">
+        <Link
+          href="/"
+          className="mt-6 inline-block text-sm font-semibold text-brand-navy"
+        >
           ← Kembali ke website
         </Link>
       </div>

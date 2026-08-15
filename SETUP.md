@@ -50,16 +50,24 @@ Seed mengisi kategori layanan, layanan, artikel, FAQ, dan pengaturan dasar. Part
 
 Setelah sukses, hapus `SEED_ADMIN_PASSWORD` jika tidak diperlukan lagi.
 
-## 4. Cloudinary — opsional
+## 4. Production hardening (V8)
 
-Buat **Unsigned Upload Preset**, lalu isi:
+V8 memakai **Cloudinary signed upload**, Firebase Admin SDK untuk server-side reads, dan Firebase App Check untuk browser traffic.
 
-```env
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
-NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=
+Isi environment tambahan sesuai `.env.example` dan panduan:
+
+```text
+docs/PRODUCTION-HARDENING-V8.md
 ```
 
-Tanpa Cloudinary, website tetap berjalan dan admin masih bisa paste image URL manual.
+Setelah patch V8, jalankan:
+
+```bash
+npm install
+npm run env:check
+```
+
+Upload URL manual tetap tersedia jika media belum dikonfigurasi, tetapi tombol upload membutuhkan konfigurasi Cloudinary signed upload.
 
 ## 5. Start
 

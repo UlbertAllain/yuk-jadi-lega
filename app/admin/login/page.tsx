@@ -17,8 +17,15 @@ export default function AdminLoginPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+
     if (params.get("error") === "not-admin") {
-      setError("Akun ini belum memiliki akses admin.");
+      const timeoutId = window.setTimeout(() => {
+        setError("Akun ini belum memiliki akses admin.");
+      }, 0);
+
+      return () => {
+        window.clearTimeout(timeoutId);
+      };
     }
   }, []);
 
@@ -38,7 +45,9 @@ export default function AdminLoginPage() {
       router.replace("/admin");
     } catch (signInError) {
       console.error(signInError);
-      setError("Email atau password tidak sesuai, atau akun belum memiliki akses.");
+      setError(
+        "Email atau password tidak sesuai, atau akun belum memiliki akses.",
+      );
     } finally {
       setLoading(false);
     }
@@ -56,7 +65,8 @@ export default function AdminLoginPage() {
             Kelola website dari satu tempat.
           </h1>
           <p className="mt-5 text-sm leading-7 text-slate-300">
-            Perbarui layanan, artikel, partner, testimoni, FAQ, tim, studi kasus, dan konsultasi yang masuk tanpa mengubah kode.
+            Perbarui layanan, artikel, partner, testimoni, FAQ, tim, studi
+            kasus, dan konsultasi yang masuk tanpa mengubah kode.
           </p>
         </div>
       </section>
@@ -78,7 +88,8 @@ export default function AdminLoginPage() {
 
           {!isFirebaseConfigured ? (
             <p className="mt-5 rounded-xl bg-amber-50 p-4 text-sm text-amber-800">
-              Konfigurasi aplikasi belum lengkap. Selesaikan setup sebelum masuk ke panel admin.
+              Konfigurasi aplikasi belum lengkap. Selesaikan setup sebelum masuk
+              ke panel admin.
             </p>
           ) : null}
 
@@ -111,7 +122,9 @@ export default function AdminLoginPage() {
                 type="button"
                 onClick={() => setShowPassword((value) => !value)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
-                aria-label={showPassword ? "Sembunyikan password" : "Lihat password"}
+                aria-label={
+                  showPassword ? "Sembunyikan password" : "Lihat password"
+                }
               >
                 {showPassword ? (
                   <EyeOff className="h-5 w-5" />

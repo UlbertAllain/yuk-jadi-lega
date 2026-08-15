@@ -1,8 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { getToken as getAppCheckToken } from "firebase/app-check";
 import { ImagePlus, Loader2, Trash2 } from "lucide-react";
 import { CmsImage } from "@/components/shared/cms-image";
+import { appCheck, auth } from "@/lib/firebase";
 
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -11,6 +13,15 @@ type MediaUploaderProps = {
   value?: string;
   onChange: (url: string) => void;
   folder?: string;
+};
+
+type SignedUploadConfig = {
+  cloudName: string;
+  apiKey: string;
+  timestamp: number;
+  folder: string;
+  signature: string;
+  error?: string;
 };
 
 export function MediaUploader({
@@ -33,11 +44,9 @@ export function MediaUploader({
       return;
     }
 
-    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-    const preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
-
-    if (!cloudName || !preset) {
-      setError("Upload gambar belum dikonfigurasi. URL gambar tetap bisa diisi manual.");
+    const user = auth?.currentUser;
+    if (!user) {
+      setError("Sesi admin tidak ditemukan. Silakan login ulang.");
       return;
     }
 
@@ -45,13 +54,37 @@ export function MediaUploader({
     setError("");
 
     try {
+      const idToken = await user.getIdToken();
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${idToken}`,
+      };
+
+      if (appCheck) {
+        const token = await getAppCheckToken(appCheck, false);
+        headers["X-Firebase-AppCheck"] = token.token;
+      }
+
+      const signatureResponse = await fetch("/api/admin/cloudinary-signature", {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ folder }),
+      });
+
+      const signed = (await signatureResponse.json()) as SignedUploadConfig;
+      if (!signatureResponse.ok) {
+        throw new Error(signed.error || "Gagal membuat signature upload.");
+      }
+
       const form = new FormData();
       form.append("file", file);
-      form.append("upload_preset", preset);
-      form.append("folder", folder);
+      form.append("api_key", signed.apiKey);
+      form.append("timestamp", String(signed.timestamp));
+      form.append("folder", signed.folder);
+      form.append("signature", signed.signature);
 
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        `https://api.cloudinary.com/v1_1/${signed.cloudName}/image/upload`,
         {
           method: "POST",
           body: form,
@@ -59,7 +92,7 @@ export function MediaUploader({
       );
 
       if (!response.ok) {
-        throw new Error("Cloudinary upload failed");
+        throw new Error("Cloudinary signed upload failed");
       }
 
       const data = (await response.json()) as { secure_url?: string };
@@ -70,7 +103,11 @@ export function MediaUploader({
       onChange(data.secure_url);
     } catch (uploadError) {
       console.error(uploadError);
-      setError("Upload belum berhasil. Periksa konfigurasi media lalu coba lagi.");
+      setError(
+        uploadError instanceof Error
+          ? uploadError.message
+          : "Upload belum berhasil. Periksa konfigurasi media lalu coba lagi.",
+      );
     } finally {
       setLoading(false);
       if (inputRef.current) {
@@ -103,7 +140,7 @@ export function MediaUploader({
           type="button"
           disabled={loading}
           onClick={() => inputRef.current?.click()}
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-bold text-slate-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-700 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -120,7 +157,7 @@ export function MediaUploader({
           <button
             type="button"
             onClick={() => onChange("")}
-            className="flex w-full items-center justify-center gap-2 border-t border-slate-100 px-3 py-2 text-xs font-bold text-rose-600"
+            className="flex w-full items-center justify-center gap-2 border-t border-slate-100 px-3 py-2 text-xs font-semibold text-rose-600"
           >
             <Trash2 className="h-3.5 w-3.5" />
             Hapus gambar

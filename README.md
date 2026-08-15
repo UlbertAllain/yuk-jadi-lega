@@ -34,7 +34,7 @@ Admin CMS:
 - CRUD case study
 - Lead management + status follow-up
 - Global website settings
-- Cloudinary image upload (unsigned preset)
+- Cloudinary signed image upload (server-generated signature)
 
 Yang **sengaja tidak masuk scope company profile + CMS**:
 
@@ -234,22 +234,23 @@ Sebelum production, verifikasi kembali daftar layanan, harga, estimasi proses, d
 
 Cloudinary hanya diperlukan jika admin ingin upload gambar langsung dari CMS. Tanpa Cloudinary, admin masih bisa paste URL gambar secara manual.
 
-## 8. Buat unsigned upload preset
+## 8. Konfigurasi signed upload
 
-Cloudinary Console → Settings → Upload → Upload presets.
-
-Buat preset dengan mode **Unsigned** dan batasi sesuai kebutuhan, misalnya folder Yuk Jadi Legal.
-
-Isi `.env.local`:
+V8 tidak lagi membutuhkan unsigned upload preset. Ambil Cloud Name, API Key, dan API Secret dari Cloudinary Console, lalu isi `.env.local` bersama konfigurasi Firebase Admin dan App Check:
 
 ```env
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=nama_cloud
-NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=nama_unsigned_preset
+NEXT_PUBLIC_FIREBASE_APP_CHECK_SITE_KEY=recaptcha_enterprise_site_key
+FIREBASE_ADMIN_PROJECT_ID=firebase_project_id
+FIREBASE_ADMIN_CLIENT_EMAIL=service_account_email
+FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\\n...\\n-----END PRIVATE KEY-----\\n"
+CLOUDINARY_CLOUD_NAME=nama_cloud
+CLOUDINARY_API_KEY=cloudinary_api_key
+CLOUDINARY_API_SECRET=cloudinary_api_secret
 ```
 
-Upload langsung dari browser ke Cloudinary menggunakan unsigned preset, sehingga **Cloudinary API Secret tidak pernah dikirim ke browser**.
+Browser meminta signature ke endpoint server `/api/admin/cloudinary-signature`. Endpoint tersebut memverifikasi Firebase ID token, memastikan `admins/{uid}.active == true`, lalu menghasilkan signature menggunakan `CLOUDINARY_API_SECRET`. API Secret tetap berada di server dan tidak pernah dikirim ke browser.
 
-Untuk production, atur preset seketat mungkin (jenis file, ukuran, folder, transformasi, dan policy lain yang tersedia di akun Cloudinary).
+Panduan lengkap V8 ada di `docs/PRODUCTION-HARDENING-V8.md`.
 
 ---
 
@@ -325,8 +326,13 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
 NEXT_PUBLIC_FIREBASE_APP_ID
 NEXT_PUBLIC_SITE_URL
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+NEXT_PUBLIC_FIREBASE_APP_CHECK_SITE_KEY
+FIREBASE_ADMIN_PROJECT_ID
+FIREBASE_ADMIN_CLIENT_EMAIL
+FIREBASE_ADMIN_PRIVATE_KEY
+CLOUDINARY_CLOUD_NAME
+CLOUDINARY_API_KEY
+CLOUDINARY_API_SECRET
 ```
 
 **Jangan masukkan:**
@@ -382,3 +388,8 @@ siteSettings/main
 - Test WhatsApp URL
 - Set custom domain + production env
 
+
+
+## Production hardening V8
+
+Setup Firebase Admin SDK, App Check, Cloudinary signed upload, security headers, dan environment production dijelaskan di `docs/PRODUCTION-HARDENING-V8.md`. Setelah melengkapi `.env.local`, jalankan `npm run env:check`.
