@@ -11,10 +11,7 @@ export default function PrivacyPage() {
     <main>
       <section className="bg-brand-paper">
         <div className="mx-auto max-w-4xl px-5 py-20 lg:px-8 lg:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold">
-            Privasi
-          </p>
-          <h1 className="mt-5 text-5xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-6xl">
+          <h1 className="text-5xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-6xl">
             Kebijakan Privasi
           </h1>
           <p className="mt-6 max-w-2xl text-sm leading-7 text-slate-600">
@@ -28,14 +25,14 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl font-semibold text-slate-950">1. Informasi yang kami terima</h2>
             <p className="mt-3">
-              Saat kamu mengirim formulir konsultasi, kami dapat menerima nama, nomor WhatsApp, email, layanan yang diminati, dan pesan yang kamu sampaikan.
+              Saat Anda mengirim formulir konsultasi, kami dapat menerima nama, nomor WhatsApp, email, layanan yang diminati, dan pesan yang Anda sampaikan.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-slate-950">2. Penggunaan informasi</h2>
             <p className="mt-3">
-              Informasi digunakan untuk menanggapi pertanyaan, memahami kebutuhanmu, melakukan tindak lanjut konsultasi, serta meningkatkan kualitas layanan dan komunikasi kami.
+              Informasi digunakan untuk menanggapi pertanyaan, memahami kebutuhan Anda, melakukan tindak lanjut konsultasi, serta meningkatkan kualitas layanan dan komunikasi kami.
             </p>
           </section>
 
@@ -49,14 +46,14 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl font-semibold text-slate-950">4. Layanan pihak ketiga</h2>
             <p className="mt-3">
-              Website dapat menggunakan penyedia layanan pihak ketiga untuk mendukung komunikasi, penyimpanan media, atau operasional website. Saat kamu membuka layanan eksternal seperti WhatsApp, penggunaan data juga mengikuti kebijakan platform tersebut.
+              Website dapat menggunakan penyedia layanan pihak ketiga untuk mendukung komunikasi, penyimpanan media, atau operasional website. Saat Anda membuka layanan eksternal seperti WhatsApp, penggunaan data juga mengikuti kebijakan platform tersebut.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-slate-950">5. Pertanyaan tentang privasi</h2>
             <p className="mt-3">
-              Untuk pertanyaan mengenai informasi yang kamu kirim melalui website, hubungi tim Yuk Jadi Legal melalui kanal kontak resmi yang tersedia di website.
+              Untuk pertanyaan mengenai informasi yang Anda kirim melalui website, hubungi tim Yuk Jadi Legal melalui kanal kontak resmi yang tersedia di website.
             </p>
           </section>
         </div>

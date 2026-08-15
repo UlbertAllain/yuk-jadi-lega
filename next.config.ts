@@ -27,6 +27,13 @@ const securityHeaders = [
   },
 ];
 
+const noIndexHeaders = [
+  {
+    key: "X-Robots-Tag",
+    value: "noindex, nofollow, noarchive",
+  },
+];
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -35,6 +42,14 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: securityHeaders,
+      },
+      {
+        source: "/admin/:path*",
+        headers: noIndexHeaders,
+      },
+      {
+        source: "/api/:path*",
+        headers: noIndexHeaders,
       },
     ];
   },

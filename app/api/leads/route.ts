@@ -4,9 +4,14 @@ import { adminDb } from "@/lib/firebase-admin";
 import { sendLeadNotification } from "@/lib/lead-notification";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const WHATSAPP_PATTERN = /^\d{8,30}$/;
+
+const NO_STORE_HEADERS = {
+  "Cache-Control": "no-store, max-age=0",
+};
 
 type LeadRequest = {
   name?: unknown;
@@ -21,16 +26,20 @@ function text(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function json(body: Record<string, unknown>, status = 200) {
+  return NextResponse.json(body, {
+    status,
+    headers: NO_STORE_HEADERS,
+  });
+}
+
 function invalid(message: string) {
-  return NextResponse.json({ error: message }, { status: 400 });
+  return json({ error: message }, 400);
 }
 
 export async function POST(request: Request) {
   if (!adminDb) {
-    return NextResponse.json(
-      { error: "Layanan konsultasi belum tersedia." },
-      { status: 503 },
-    );
+    return json({ error: "Layanan konsultasi belum tersedia." }, 503);
   }
 
   let body: LeadRequest;
@@ -42,7 +51,7 @@ export async function POST(request: Request) {
 
   // Honeypot: bot dianggap sukses agar tidak mendapat sinyal untuk mencoba ulang.
   if (text(body.website)) {
-    return NextResponse.json({ ok: true });
+    return json({ ok: true });
   }
 
   const name = text(body.name);
@@ -71,33 +80,41 @@ export async function POST(request: Request) {
     return invalid("Pesan harus terdiri dari 3 sampai 3000 karakter.");
   }
 
-  const leadRef = adminDb.collection("leads").doc();
-
-  await leadRef.set({
-    name,
-    whatsapp,
-    email,
-    serviceSlug,
-    message,
-    source: "website-form",
-    status: "baru",
-    createdAt: FieldValue.serverTimestamp(),
-    updatedAt: FieldValue.serverTimestamp(),
-  });
-
   try {
-    await sendLeadNotification({
-      id: leadRef.id,
+    const leadRef = adminDb.collection("leads").doc();
+
+    await leadRef.set({
       name,
       whatsapp,
       email,
       serviceSlug,
       message,
+      source: "website-form",
+      status: "baru",
+      createdAt: FieldValue.serverTimestamp(),
+      updatedAt: FieldValue.serverTimestamp(),
     });
-  } catch (error) {
-    // Email notification is operational convenience only. Never fail a valid lead.
-    console.error("[lead-notification] notification failed", error);
-  }
 
-  return NextResponse.json({ ok: true }, { status: 201 });
+    try {
+      await sendLeadNotification({
+        id: leadRef.id,
+        name,
+        whatsapp,
+        email,
+        serviceSlug,
+        message,
+      });
+    } catch (error) {
+      // Email notification is operational convenience only. Never fail a valid lead.
+      console.error("[lead-notification] notification failed", error);
+    }
+
+    return json({ ok: true }, 201);
+  } catch (error) {
+    console.error("[leads] failed to persist lead", error);
+    return json(
+      { error: "Konsultasi belum berhasil dikirim. Silakan coba lagi." },
+      500,
+    );
+  }
 }
