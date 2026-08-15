@@ -16,8 +16,8 @@ const WRITE_ERROR = "Perubahan belum berhasil disimpan. Silakan coba lagi.";
 
 export function useAdminCollection<T extends { id: string }>(collectionName: string) {
   const [items, setItems] = useState<T[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(Boolean(db));
+  const [error, setError] = useState(db ? "" : "Database belum tersedia.");
 
   const refresh = useCallback(async () => {
     if (!db) {
@@ -45,8 +45,33 @@ export function useAdminCollection<T extends { id: string }>(collectionName: str
   }, [collectionName]);
 
   useEffect(() => {
-    void refresh();
-  }, [refresh]);
+    if (!db) return;
+
+    let active = true;
+
+    getDocs(collection(db, collectionName))
+      .then((snapshot) => {
+        if (!active) return;
+
+        setItems(
+          snapshot.docs.map(
+            (item) => ({ ...item.data(), id: item.id }) as T,
+          ),
+        );
+        setError("");
+      })
+      .catch((err) => {
+        console.error(err);
+        if (active) setError(READ_ERROR);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [collectionName]);
 
   async function save(id: string, data: Omit<Partial<T>, "id">) {
     if (!db) {

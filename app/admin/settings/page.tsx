@@ -1,14 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
 import {
   AdminPageHeader,
   Field,
@@ -23,26 +16,22 @@ import type { Service, ServiceCategory, SiteSettings, SiteStat } from "@/types";
 
 export default function SettingsAdminPage() {
   const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SITE_SETTINGS);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(Boolean(db));
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [services, setServices] = useState<Service[]>([]);
   const [categories, setCategories] = useState<ServiceCategory[]>([]);
 
   useEffect(() => {
-    if (!db) {
-      setLoading(false);
-      return;
-    }
+    if (!db) return;
 
     async function load() {
       try {
-        const [settingsSnapshot, servicesSnapshot, categoriesSnapshot] =
-          await Promise.all([
-            getDoc(doc(db!, "siteSettings", "main")),
-            getDocs(collection(db!, "services")),
-            getDocs(collection(db!, "serviceCategories")),
-          ]);
+        const [settingsSnapshot, servicesSnapshot, categoriesSnapshot] = await Promise.all([
+          getDoc(doc(db!, "siteSettings", "main")),
+          getDocs(collection(db!, "services")),
+          getDocs(collection(db!, "serviceCategories")),
+        ]);
 
         if (settingsSnapshot.exists()) {
           setSettings({
@@ -54,13 +43,13 @@ export default function SettingsAdminPage() {
 
         setServices(
           servicesSnapshot.docs
-            .map((item) => ({ ...item.data(), id: item.id }) as Service)
+            .map((item) => ({ ...item.data(), id: item.id } as Service))
             .filter((item) => item.published)
             .sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999)),
         );
         setCategories(
           categoriesSnapshot.docs
-            .map((item) => ({ ...item.data(), id: item.id }) as ServiceCategory)
+            .map((item) => ({ ...item.data(), id: item.id } as ServiceCategory))
             .filter((item) => item.published)
             .sort((a, b) => a.order - b.order),
         );
@@ -72,10 +61,7 @@ export default function SettingsAdminPage() {
     void load();
   }, []);
 
-  function update<K extends keyof SiteSettings>(
-    key: K,
-    value: SiteSettings[K],
-  ) {
+  function update<K extends keyof SiteSettings>(key: K, value: SiteSettings[K]) {
     setSettings((current) => ({ ...current, [key]: value }));
   }
 
@@ -136,10 +122,7 @@ export default function SettingsAdminPage() {
                 onChange={(event) => update("brandName", event.target.value)}
               />
             </Field>
-            <Field
-              label="Deskripsi singkat brand"
-              hint="Ditampilkan pada footer website."
-            >
+            <Field label="Deskripsi singkat brand" hint="Ditampilkan pada footer website.">
               <input
                 className={inputClass}
                 value={settings.brandTagline}
@@ -162,82 +145,42 @@ export default function SettingsAdminPage() {
                 rows={4}
                 className={textareaClass}
                 value={settings.heroDescription}
-                onChange={(event) =>
-                  update("heroDescription", event.target.value)
-                }
+                onChange={(event) => update("heroDescription", event.target.value)}
               />
             </Field>
           </SettingsSection>
 
+
           <SettingsSection title="Section layanan homepage">
             <Field label="Judul">
-              <textarea
-                rows={2}
-                className={textareaClass}
-                value={settings.servicesTitle || ""}
-                onChange={(event) =>
-                  update("servicesTitle", event.target.value)
-                }
-              />
+              <textarea rows={2} className={textareaClass} value={settings.servicesTitle || ""} onChange={(event) => update("servicesTitle", event.target.value)} />
             </Field>
             <Field label="Deskripsi">
-              <textarea
-                rows={3}
-                className={textareaClass}
-                value={settings.servicesDescription || ""}
-                onChange={(event) =>
-                  update("servicesDescription", event.target.value)
-                }
-              />
+              <textarea rows={3} className={textareaClass} value={settings.servicesDescription || ""} onChange={(event) => update("servicesDescription", event.target.value)} />
             </Field>
           </SettingsSection>
 
           <SettingsSection title="Value proposition homepage">
             <Field label="Judul">
-              <textarea
-                rows={2}
-                className={textareaClass}
-                value={settings.whyUsTitle || ""}
-                onChange={(event) => update("whyUsTitle", event.target.value)}
-              />
+              <textarea rows={2} className={textareaClass} value={settings.whyUsTitle || ""} onChange={(event) => update("whyUsTitle", event.target.value)} />
             </Field>
             <Field label="Deskripsi">
-              <textarea
-                rows={3}
-                className={textareaClass}
-                value={settings.whyUsDescription || ""}
-                onChange={(event) =>
-                  update("whyUsDescription", event.target.value)
-                }
-              />
+              <textarea rows={3} className={textareaClass} value={settings.whyUsDescription || ""} onChange={(event) => update("whyUsDescription", event.target.value)} />
             </Field>
           </SettingsSection>
 
           <SettingsSection title="CTA konsultasi homepage">
             <Field label="Judul">
-              <textarea
-                rows={2}
-                className={textareaClass}
-                value={settings.ctaTitle || ""}
-                onChange={(event) => update("ctaTitle", event.target.value)}
-              />
+              <textarea rows={2} className={textareaClass} value={settings.ctaTitle || ""} onChange={(event) => update("ctaTitle", event.target.value)} />
             </Field>
             <Field label="Deskripsi">
-              <textarea
-                rows={3}
-                className={textareaClass}
-                value={settings.ctaDescription || ""}
-                onChange={(event) =>
-                  update("ctaDescription", event.target.value)
-                }
-              />
+              <textarea rows={3} className={textareaClass} value={settings.ctaDescription || ""} onChange={(event) => update("ctaDescription", event.target.value)} />
             </Field>
           </SettingsSection>
 
           <SettingsSection title="Menu navigasi / dropdown">
             <p className="-mt-1 text-xs leading-5 text-slate-500">
-              Tentukan layanan dan kategori yang muncul saat pengunjung
-              mengarahkan cursor ke menu Layanan atau Kategori di navbar.
+              Tentukan layanan dan kategori yang muncul saat pengunjung mengarahkan cursor ke menu Layanan atau Kategori di navbar.
             </p>
             <NavigationMenuSettings
               services={services}
@@ -291,15 +234,11 @@ export default function SettingsAdminPage() {
               Achievement / Numbers
             </p>
             <p className="mb-5 mt-2 text-xs leading-5 text-slate-400">
-              Isi hanya dengan data yang dapat dipertanggungjawabkan. Kosongkan
-              nilai jika belum tersedia.
+              Isi hanya dengan data yang dapat dipertanggungjawabkan. Kosongkan nilai jika belum tersedia.
             </p>
             <div className="grid gap-4 sm:grid-cols-3">
               {settings.stats.map((stat, index) => (
-                <div
-                  key={`${stat.label}-${index}`}
-                  className="rounded-xl bg-slate-50 p-4"
-                >
+                <div key={`${stat.label}-${index}`} className="rounded-xl bg-slate-50 p-4">
                   <input
                     aria-label={`Nilai statistik ${index + 1}`}
                     className="h-10 w-full rounded-lg border border-slate-200 px-3 text-sm font-black outline-none focus:border-brand-navy"

@@ -7,7 +7,7 @@ type CmsImageProps = ImgHTMLAttributes<HTMLImageElement>;
  * URLs can come from Cloudinary or another configured HTTPS source, so this
  * intentionally avoids Next Image host allow-list coupling.
  */
-export function CmsImage({ loading = "lazy", ...props }: CmsImageProps) {
+export function CmsImage({ loading = "lazy", alt = "", ...props }: CmsImageProps) {
   // eslint-disable-next-line @next/next/no-img-element
-  return <img loading={loading} {...props} />;
+  return <img loading={loading} alt={alt} {...props} />;
 }
