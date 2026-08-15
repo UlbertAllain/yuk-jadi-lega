@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export function PublicPageHero({ title, description, meta }: { eyebrow: string; title: ReactNode; description: string; meta?: ReactNode }) {
+export function PublicPageHero({ title, description, meta }: { title: ReactNode; description: string; meta?: ReactNode }) {
   return (
     <section className="public-hero-v7 relative overflow-hidden border-b border-brand-navy/10">
       <div className="hero-v7-grid absolute inset-0" />

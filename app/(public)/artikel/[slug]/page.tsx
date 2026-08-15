@@ -130,8 +130,7 @@ export default async function ArticlePage({
         <div className="page-shell grid gap-10 py-16 lg:grid-cols-[220px_minmax(0,760px)] lg:justify-center lg:gap-14 lg:py-20">
           <aside className="hidden lg:block">
             <div className="sticky top-28 border-t border-brand-navy/14 py-5">
-              <p className="editorial-kicker">Reading note</p>
-              <p className="mt-4 text-xs leading-6 text-slate-500">Informasi pada artikel bersifat edukatif. Kondisi bisnis spesifik dapat membutuhkan penilaian lebih lanjut.</p>
+              <p className="text-xs leading-6 text-slate-500">Informasi pada artikel bersifat edukatif. Kondisi bisnis spesifik dapat membutuhkan penilaian lebih lanjut.</p>
             </div>
           </aside>
           <div className="whitespace-pre-line text-[1.05rem] leading-9 text-slate-700">{article.content}</div>
@@ -141,8 +140,7 @@ export default async function ArticlePage({
       <section className="bg-brand-navy py-16 text-white lg:py-20">
         <div className="page-shell flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-gold-soft">Masih ada pertanyaan?</p>
-            <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-4xl">Diskusikan kondisi bisnis Anda.</h2>
+            <h2 className="max-w-2xl text-3xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-4xl">Diskusikan kondisi bisnis Anda.</h2>
           </div>
           <a href={consultationHref} target={whatsappHref ? "_blank" : undefined} rel={whatsappHref ? "noreferrer" : undefined} className="inline-flex items-center gap-3 bg-white px-6 py-3 text-sm font-semibold text-brand-navy">
             Konsultasi <ArrowRight className="h-4 w-4 text-brand-gold-dark" />

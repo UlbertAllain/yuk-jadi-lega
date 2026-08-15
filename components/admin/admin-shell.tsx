@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { onAuthStateChanged, signOut, type User } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -23,6 +23,8 @@ import {
 import { auth, db, isFirebaseConfigured } from "@/lib/firebase";
 import { cn } from "@/lib/format";
 import { BrandMark } from "@/components/shared/brand-mark";
+
+const subscribeToClientReady = () => () => {};
 
 const navigationGroups = [
   {
@@ -58,10 +60,13 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const isLoginPage = pathname === "/admin/login";
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(
-    !isLoginPage && isFirebaseConfigured && Boolean(auth && db),
+  const isClientReady = useSyncExternalStore(
+    subscribeToClientReady,
+    () => true,
+    () => false,
   );
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(!isLoginPage && isFirebaseConfigured);
   const [authorized, setAuthorized] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -102,14 +107,15 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   }, [isLoginPage, router]);
 
   if (isLoginPage) return <>{children}</>;
+
+  if (!isClientReady) {
+    return <AdminAccessLoading />;
+  }
+
   if (!isFirebaseConfigured || !auth || !db) return <MissingConfiguration />;
 
   if (loading || !authorized) {
-    return (
-      <main className="grid min-h-screen place-items-center bg-brand-paper text-sm font-medium text-slate-600">
-        Memeriksa akses admin...
-      </main>
-    );
+    return <AdminAccessLoading />;
   }
 
   async function logout() {
@@ -214,6 +220,14 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         <main className="p-5 lg:p-8">{children}</main>
       </div>
     </div>
+  );
+}
+
+function AdminAccessLoading() {
+  return (
+    <main className="grid min-h-screen place-items-center bg-brand-paper text-sm font-medium text-slate-600">
+      Memeriksa akses admin...
+    </main>
   );
 }
 

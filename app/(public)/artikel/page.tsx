@@ -18,7 +18,6 @@ export default async function ArticlesPage() {
   return (
     <main className="bg-brand-surface">
       <PublicPageHero
-        eyebrow="Insight"
         title="Penjelasan legal yang lebih mudah dipahami."
         description="Bacaan praktis tentang badan usaha, perizinan, merek, dokumen bisnis, dan keputusan legal yang sering ditemui pemilik usaha."
         meta={<p className="text-xs font-semibold text-brand-muted"><strong className="text-brand-ink">{articles.length}</strong> artikel tersedia</p>}

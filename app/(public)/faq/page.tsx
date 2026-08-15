@@ -19,7 +19,6 @@ export default async function FaqPage() {
   return (
     <main className="bg-brand-surface">
       <PublicPageHero
-        eyebrow="FAQ"
         title="Jawaban untuk pertanyaan yang paling sering muncul."
         description="Baca hal dasar tentang konsultasi, proses, persyaratan, dan layanan sebelum menghubungi tim."
         meta={<p className="text-xs font-semibold text-brand-muted"><strong className="text-brand-ink">{faqs.length}</strong> pertanyaan tersedia</p>}

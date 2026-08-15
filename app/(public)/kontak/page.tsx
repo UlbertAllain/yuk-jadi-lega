@@ -26,7 +26,6 @@ export default async function ContactPage() {
   return (
     <main className="bg-brand-surface">
       <PublicPageHero
-        eyebrow="Kontak & konsultasi"
         title="Ceritakan kebutuhan bisnis. Tim bantu petakan langkahnya."
         description="Tidak harus tahu nama layanannya. Jelaskan kondisi bisnis, tujuan, dan kebutuhan awal agar tim bisa mengarahkan pilihan yang paling relevan."
       />
@@ -50,8 +49,7 @@ export default async function ContactPage() {
 
         <div className="overflow-hidden rounded-[26px] border border-brand-navy/10 bg-white shadow-[0_22px_60px_rgba(6,23,46,.08)]">
           <div className="border-b border-brand-navy/10 bg-brand-navy px-6 py-5 text-white sm:px-8">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-soft">Form konsultasi</p>
-            <p className="mt-1 text-sm font-normal text-slate-200">Isi informasi awal agar tim memahami konteks sebelum menghubungi Anda.</p>
+            <p className="text-sm font-normal text-slate-200">Isi informasi awal agar tim memahami konteks sebelum menghubungi Anda.</p>
           </div>
           <LeadForm services={serviceOptions} />
         </div>

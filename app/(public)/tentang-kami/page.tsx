@@ -23,7 +23,6 @@ export default async function AboutPage() {
   return (
     <main className="bg-brand-surface">
       <PublicPageHero
-        eyebrow="Tentang Yuk Jadi Legal"
         title="Membuat proses legal lebih mudah dipahami pemilik bisnis."
         description="Kami membantu menerjemahkan kebutuhan badan usaha, perizinan, merek, dan dokumen bisnis menjadi langkah yang lebih jelas dan terstruktur."
       />
@@ -31,8 +30,7 @@ export default async function AboutPage() {
       <section className="page-shell py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-14">
           <div>
-            <p className="section-kicker">Cara kami bekerja</p>
-            <h2 className="mt-4 text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">Bukan sekadar mengurus dokumen.</h2>
+            <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">Bukan sekadar mengurus dokumen.</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {values.map(([title, description], index) => (
@@ -54,8 +52,7 @@ export default async function AboutPage() {
           <div className="page-shell">
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-14">
               <div>
-                <p className="section-kicker">Tim</p>
-                <h2 className="section-title mt-4">Orang-orang di balik proses.</h2>
+                <h2 className="section-title">Orang-orang di balik proses.</h2>
               </div>
               <p className="section-copy">Pendampingan tetap dijalankan oleh manusia yang memahami konteks kebutuhan bisnis.</p>
             </div>

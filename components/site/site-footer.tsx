@@ -28,6 +28,7 @@ export function SiteFooter({ settings, services }: { settings: SiteSettings; ser
               <Link href="/cara-kerja" className="hover:text-white">Cara Kerja</Link>
               <Link href="/tentang-kami" className="hover:text-white">Tentang Kami</Link>
               <Link href="/artikel" className="hover:text-white">Insight</Link>
+              <Link href="/kontak" className="hover:text-white">Kontak</Link>
             </div>
           </div>
 

@@ -77,8 +77,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
           <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-14">
             <div>
-              <p className="section-kicker">{categoryName}</p>
-              <h1 className="mt-4 max-w-4xl text-[clamp(2.45rem,4.8vw,4.8rem)] font-semibold leading-[1.02] tracking-[-0.055em] text-brand-ink">{service.title}</h1>
+              <p className="text-sm font-medium text-brand-gold-dark">{categoryName}</p>
+              <h1 className="mt-3 max-w-4xl text-[clamp(2.45rem,4.8vw,4.8rem)] font-semibold leading-[1.02] tracking-[-0.055em] text-brand-ink">{service.title}</h1>
               <p className="mt-5 max-w-3xl text-[16px] font-normal leading-8 text-brand-muted">{service.shortDescription}</p>
             </div>
 
@@ -103,8 +103,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <section className="page-shell py-14 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
           <div>
-            <p className="section-kicker">Tentang layanan</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Apa yang perlu kamu tahu.</h2>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Apa yang perlu kamu tahu.</h2>
           </div>
           <div>
             <p className="max-w-4xl text-lg font-medium leading-8 text-brand-ink sm:text-xl">{service.description}</p>
@@ -130,8 +129,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <section className="page-shell py-14 lg:py-20">
           <div className="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
             <div>
-              <p className="section-kicker">Tahapan proses</p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Langkahnya terlihat dari awal.</h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Langkahnya terlihat dari awal.</h2>
             </div>
             <ol className="grid gap-3 sm:grid-cols-2">
               {service.processSteps.map((step, index) => (
@@ -149,8 +147,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <section className="border-y border-brand-navy/9 bg-brand-paper py-14 lg:py-20">
           <div className="page-shell grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
             <div>
-              <p className="section-kicker">FAQ layanan</p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Pertanyaan sebelum mulai.</h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Pertanyaan sebelum mulai.</h2>
             </div>
             <div className="overflow-hidden rounded-[24px] border border-brand-navy/10 bg-white">
               {service.faqs.map((faq, index) => (
@@ -171,8 +168,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <section className="page-shell py-14 lg:py-20">
         <div className="grid overflow-hidden rounded-[28px] border border-brand-navy/10 bg-white shadow-[0_22px_60px_rgba(6,23,46,.07)] lg:grid-cols-[.72fr_1.28fr]">
           <div className="bg-brand-navy p-7 text-white sm:p-8">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-soft">Konsultasi {service.title}</p>
-            <h2 className="mt-3 text-3xl font-semibold leading-[1.08] tracking-[-0.04em]">Pastikan konteksnya jelas sebelum mulai.</h2>
+            <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.04em]">Pastikan konteksnya jelas sebelum mulai.</h2>
             <p className="mt-4 text-sm font-normal leading-7 text-slate-200">Tim akan menindaklanjuti informasi awal melalui kontak yang kamu berikan.</p>
           </div>
           <LeadForm services={serviceOptions} defaultService={service.slug} />
@@ -184,7 +180,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <div className="page-shell">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="section-kicker">Layanan terkait</p>
                 <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Kebutuhan lain di kategori yang sama.</h2>
               </div>
               <Link href={`/layanan?category=${service.categorySlug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark">Lihat kategori <ArrowRight className="h-4 w-4" /></Link>

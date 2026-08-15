@@ -23,7 +23,6 @@ export default async function ServicesPage({
   return (
     <main className="bg-brand-surface">
       <PublicPageHero
-        eyebrow="Direktori layanan"
         title="Temukan layanan legal sesuai kebutuhan bisnis."
         description="Cari berdasarkan nama, kata kunci, atau kategori. Informasi biaya dan estimasi ditampilkan sejak awal agar pilihan lebih mudah dibandingkan."
         meta={

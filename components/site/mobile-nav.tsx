@@ -42,8 +42,6 @@ export function MobileNav({
         >
           <div className="h-[3px] bg-brand-gold" />
           <div className="p-4">
-            <p className="editorial-kicker px-1 pb-3">Navigasi</p>
-
             <details className="group border-y border-brand-navy/10">
               <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-sm font-semibold text-brand-ink">
                 Layanan utama <ChevronDown className="h-4 w-4 transition group-open:rotate-180" />

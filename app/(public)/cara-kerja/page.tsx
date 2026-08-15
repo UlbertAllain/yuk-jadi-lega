@@ -31,7 +31,6 @@ export default async function HowItWorksPage() {
   return (
     <main className="bg-brand-surface">
       <PublicPageHero
-        eyebrow="Cara kerja"
         title="Alur yang jelas dari konsultasi sampai selesai."
         description="Kamu tahu apa yang perlu disiapkan, apa yang sedang diproses, dan kapan perlu mengambil tindakan berikutnya."
       />
@@ -54,8 +53,7 @@ export default async function HowItWorksPage() {
       <section className="border-y border-brand-navy/9 bg-white py-14 lg:py-20">
         <div className="page-shell grid gap-8 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-14">
           <div>
-            <p className="section-kicker">Perlu diketahui</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Detail alur dapat berbeda per layanan.</h2>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Detail alur dapat berbeda per layanan.</h2>
           </div>
           <div className="grid gap-3">
             {notes.map((item) => (
@@ -71,8 +69,7 @@ export default async function HowItWorksPage() {
       <section className="bg-brand-navy py-14 text-white lg:py-20">
         <div className="page-shell flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-soft">Siap mulai?</p>
-            <h2 className="mt-2 max-w-2xl text-3xl font-semibold tracking-[-0.04em]">Mulai dari konsultasi, bukan menebak sendiri.</h2>
+            <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em]">Mulai dari konsultasi, bukan menebak sendiri.</h2>
           </div>
           <a href={consultationHref} target={whatsappHref ? "_blank" : undefined} rel={whatsappHref ? "noreferrer" : undefined} className="inline-flex items-center gap-2 rounded-xl bg-brand-gold px-5 py-3 text-sm font-semibold text-brand-navy">
             Mulai konsultasi <ArrowRight className="h-4 w-4" />
