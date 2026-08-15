@@ -6,6 +6,8 @@ import { getWhatsAppHref } from "@/lib/contact";
 import { getArticleBySlug, getSiteSettings } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { CmsImage } from "@/components/shared/cms-image";
+import { JsonLd } from "@/components/shared/json-ld";
+import { absoluteUrl, createPageMetadata, getSiteUrl } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -16,7 +18,14 @@ export async function generateMetadata({
   const article = await getArticleBySlug(slug);
 
   return article
-    ? { title: article.title, description: article.excerpt }
+    ? createPageMetadata({
+        title: article.title,
+        description: article.excerpt,
+        path: `/artikel/${article.slug}`,
+        image: article.coverImageUrl,
+        type: "article",
+        publishedTime: article.publishedAt,
+      })
     : { title: "Artikel Tidak Ditemukan" };
 }
 
@@ -38,9 +47,58 @@ export default async function ArticlePage({
     `Halo Yuk Jadi Legal, saya membaca artikel "${article.title}" dan ingin konsultasi.`,
   );
   const consultationHref = whatsappHref || "/kontak";
+  const canonicalUrl = absoluteUrl(`/artikel/${article.slug}`);
+  const socialImage = absoluteUrl(article.coverImageUrl || "/brand/yuk-jadi-legal-social-preview.png");
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Beranda",
+        item: getSiteUrl(),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Artikel",
+        item: absoluteUrl("/artikel"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.title,
+        item: canonicalUrl,
+      },
+    ],
+  };
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.title,
+    description: article.excerpt,
+    image: [socialImage],
+    datePublished: article.publishedAt,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${getSiteUrl()}/#organization`,
+      name: settings.brandName || "Yuk Jadi Legal",
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/brand/yuk-jadi-legal-logo.png"),
+      },
+    },
+    inLanguage: "id-ID",
+  };
 
   return (
     <main className="bg-brand-surface">
+      <JsonLd data={[breadcrumbJsonLd, articleJsonLd]} />
       <article>
         <header className="legal-grid-bg border-b border-brand-navy/10">
           <div className="page-shell py-14 lg:py-20">

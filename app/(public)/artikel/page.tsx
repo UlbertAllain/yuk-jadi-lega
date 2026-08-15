@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { CmsImage } from "@/components/shared/cms-image";
 import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getArticles } from "@/lib/data";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Artikel & Insight",
-  description: "Artikel praktis tentang legalitas usaha, badan usaha, perizinan, merek, dan dokumen bisnis.",
-};
+  description: "Artikel dan insight seputar legalitas bisnis, perizinan, badan usaha, merek, dan dokumen perusahaan.",
+  path: "/artikel",
+});
 
 export default async function ArticlesPage() {
   const articles = await getArticles();

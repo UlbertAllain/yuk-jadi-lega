@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { ServicesBrowser } from "@/components/site/services-browser";
 import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getServiceCategories, getServices } from "@/lib/data";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Layanan Legalitas Bisnis",
-  description:
-    "Cari layanan pendirian perusahaan, perizinan, HKI, kontrak, pertanahan, keimigrasian, pajak, dan konsultasi di Yuk Jadi Legal.",
-};
+  description: "Cari layanan pendirian perusahaan, perizinan, HKI, kontrak, pertanahan, keimigrasian, pajak, dan konsultasi di Yuk Jadi Legal.",
+  path: "/layanan",
+});
 
 export default async function ServicesPage({
   searchParams,

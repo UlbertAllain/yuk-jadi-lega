@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { Check } from "lucide-react";
 import { getTeamMembers } from "@/lib/data";
 import { CmsImage } from "@/components/shared/cms-image";
 import { PublicPageHero } from "@/components/site/public-page-hero";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Tentang Kami",
   description: "Kenali cara Yuk Jadi Legal membantu bisnis memahami dan mengurus kebutuhan legal secara lebih sederhana.",
-};
+  path: "/tentang-kami",
+});
 
 const values = [
   ["Mudah dipahami", "Bahasa yang dekat dengan pemilik bisnis tanpa kehilangan konteks."],

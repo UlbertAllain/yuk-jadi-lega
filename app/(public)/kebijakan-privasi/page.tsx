@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Kebijakan Privasi",
   description: "Informasi mengenai pengelolaan data yang dikirim melalui website Yuk Jadi Legal.",
-};
+  path: "/kebijakan-privasi",
+});
 
 export default function PrivacyPage() {
   return (

@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getWhatsAppHref } from "@/lib/contact";
 import { getFaqs, getSiteSettings } from "@/lib/data";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "FAQ",
-  description: "Pertanyaan umum seputar layanan dan konsultasi Yuk Jadi Legal.",
-};
+  description: "Temukan jawaban atas pertanyaan umum seputar layanan dan proses legalitas bisnis di Yuk Jadi Legal.",
+  path: "/faq",
+});
 
 export default async function FaqPage() {
   const [faqs, settings] = await Promise.all([getFaqs(), getSiteSettings()]);

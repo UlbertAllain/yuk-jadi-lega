@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { Mail, MapPin, MessageCircle, Timer } from "lucide-react";
 import { LeadForm } from "@/components/site/lead-form";
 import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getWhatsAppHref } from "@/lib/contact";
 import { getServices, getSiteSettings } from "@/lib/data";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Kontak & Konsultasi",
   description: "Hubungi Yuk Jadi Legal dan konsultasikan kebutuhan legalitas bisnis Anda.",
-};
+  path: "/kontak",
+});
 
 export default async function ContactPage() {
   const [settings, services] = await Promise.all([getSiteSettings(), getServices()]);

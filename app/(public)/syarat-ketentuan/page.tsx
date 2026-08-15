@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Syarat & Ketentuan",
   description: "Syarat dan ketentuan penggunaan website dan layanan Yuk Jadi Legal.",
-};
+  path: "/syarat-ketentuan",
+});
 
 export default function TermsPage() {
   return (

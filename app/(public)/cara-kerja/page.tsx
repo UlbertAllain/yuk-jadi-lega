@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { ArrowRight, Check, FileCheck2, MessageSquareText, RefreshCw, Route } from "lucide-react";
 import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getWhatsAppHref } from "@/lib/contact";
 import { getSiteSettings } from "@/lib/data";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Cara Kerja",
   description: "Alur konsultasi dan pengurusan layanan Yuk Jadi Legal dari awal sampai selesai.",
-};
+  path: "/cara-kerja",
+});
 
 const steps = [
   [MessageSquareText, "Ceritakan kebutuhan", "Mulai dari kondisi bisnis dan masalah yang ingin diselesaikan."],

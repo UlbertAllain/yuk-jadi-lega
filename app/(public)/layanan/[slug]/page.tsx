@@ -3,19 +3,23 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Clock3, FileText, ShieldCheck } from "lucide-react";
 import { LeadForm } from "@/components/site/lead-form";
+import { JsonLd } from "@/components/shared/json-ld";
 import { getWhatsAppHref } from "@/lib/contact";
 import { getServiceBySlug, getServiceCategories, getServices, getSiteSettings } from "@/lib/data";
 import { servicePriceLabel } from "@/lib/format";
+import { absoluteUrl, createPageMetadata, getSiteUrl } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
   if (!service) return { title: "Layanan Tidak Ditemukan" };
-  return {
+
+  return createPageMetadata({
     title: service.seoTitle || service.title,
     description: service.seoDescription || service.shortDescription,
+    path: `/layanan/${service.slug}`,
     keywords: service.keywords,
-  };
+  });
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -35,9 +39,35 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const whatsappHref = getWhatsAppHref(settings.whatsapp, `Halo Yuk Jadi Legal, saya sedang melihat layanan ${service.title} dan ingin konsultasi.`);
   const consultationHref = whatsappHref || "/kontak";
   const serviceOptions = allServices.map(({ id, title, slug: serviceSlug }) => ({ id, title, slug: serviceSlug }));
+  const canonicalUrl = absoluteUrl(`/layanan/${service.slug}`);
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Beranda",
+        item: getSiteUrl(),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Layanan",
+        item: absoluteUrl("/layanan"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: service.title,
+        item: canonicalUrl,
+      },
+    ],
+  };
 
   return (
     <main className="bg-brand-surface">
+      <JsonLd data={breadcrumbJsonLd} />
       <section className="relative overflow-hidden border-b border-brand-navy/10 bg-white">
         <div className="page-hero-grid absolute inset-0 opacity-65" />
         <div className="page-shell relative py-10 lg:py-14">

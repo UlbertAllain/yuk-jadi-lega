@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { KbliBrowser } from "@/components/site/kbli-browser";
 import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getKbliEntries } from "@/lib/data";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "KBLI 2020",
   description: "Cari referensi KBLI 2020 berdasarkan kode, judul, dan uraian kegiatan usaha.",
-};
+  path: "/kbli",
+});
 
 export default async function KbliPage() {
   const entries = await getKbliEntries();
