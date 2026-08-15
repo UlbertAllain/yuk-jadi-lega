@@ -67,37 +67,9 @@ service cloud.firestore {
     }
 
     match /leads/{leadId} {
-      allow create: if request.resource.data.keys().hasOnly([
-          'name',
-          'whatsapp',
-          'email',
-          'serviceSlug',
-          'message',
-          'source',
-          'status',
-          'createdAt',
-          'updatedAt'
-        ])
-        && request.resource.data.name is string
-        && request.resource.data.name.size() >= 2
-        && request.resource.data.name.size() <= 120
-        && request.resource.data.whatsapp is string
-        && request.resource.data.whatsapp.size() >= 8
-        && request.resource.data.whatsapp.size() <= 30
-        && (!('email' in request.resource.data)
-          || (request.resource.data.email is string
-            && request.resource.data.email.size() <= 160))
-        && (!('serviceSlug' in request.resource.data)
-          || (request.resource.data.serviceSlug is string
-            && request.resource.data.serviceSlug.size() <= 120))
-        && request.resource.data.message is string
-        && request.resource.data.message.size() >= 3
-        && request.resource.data.message.size() <= 3000
-        && request.resource.data.status == 'baru'
-        && request.resource.data.source == 'website-form'
-        && request.resource.data.createdAt is timestamp
-        && request.resource.data.updatedAt is timestamp;
-
+      // Public submissions go through /api/leads using Firebase Admin SDK.
+      // Browser clients cannot create leads directly anymore.
+      allow create: if false;
       allow read, update, delete: if isAdmin();
     }
   }

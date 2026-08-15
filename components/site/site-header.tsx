@@ -11,6 +11,7 @@ const plainNavItems = [
   ["Tentang", "/tentang-kami"],
   ["Insight", "/artikel"],
   ["KBLI", "/kbli"],
+  ["Kontak", "/kontak"],
 ] as const;
 
 function selectedServices(settings: SiteSettings, services: Service[]) {

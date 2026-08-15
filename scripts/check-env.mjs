@@ -6,7 +6,6 @@ const required = [
   "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
   "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
   "NEXT_PUBLIC_FIREBASE_APP_ID",
-  "NEXT_PUBLIC_FIREBASE_APP_CHECK_SITE_KEY",
   "FIREBASE_ADMIN_PROJECT_ID",
   "FIREBASE_ADMIN_CLIENT_EMAIL",
   "FIREBASE_ADMIN_PRIVATE_KEY",
@@ -16,8 +15,13 @@ const required = [
 ];
 
 const optional = [
+  "NEXT_PUBLIC_FIREBASE_APP_CHECK_SITE_KEY",
   "NEXT_PUBLIC_FIREBASE_APP_CHECK_DEBUG",
   "FIREBASE_APP_CHECK_ENFORCE_CUSTOM_API",
+  "NEXT_PUBLIC_GA_MEASUREMENT_ID",
+  "RESEND_API_KEY",
+  "LEAD_NOTIFICATION_FROM",
+  "LEAD_NOTIFICATION_TO",
 ];
 
 const missing = required.filter((key) => !process.env[key]?.trim());
@@ -50,13 +54,33 @@ if (privateKey && !privateKey.includes("BEGIN PRIVATE KEY")) {
 
 if (process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET) {
   warnings.push(
-    "NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET sudah tidak dipakai di V8. Hapus dari Vercel setelah signed upload terverifikasi.",
+    "NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET sudah tidak dipakai sejak V8. Hapus setelah signed upload terverifikasi.",
   );
 }
 
 if (process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME) {
   warnings.push(
-    "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME tidak diperlukan lagi; V8 mengambil cloud name dari server signature endpoint.",
+    "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME tidak diperlukan lagi; cloud name berasal dari server signature endpoint.",
+  );
+}
+
+const appCheckEnforced = process.env.FIREBASE_APP_CHECK_ENFORCE_CUSTOM_API === "true";
+if (appCheckEnforced && !process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_SITE_KEY?.trim()) {
+  warnings.push(
+    "FIREBASE_APP_CHECK_ENFORCE_CUSTOM_API=true tetapi NEXT_PUBLIC_FIREBASE_APP_CHECK_SITE_KEY belum diisi.",
+  );
+}
+
+const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+if (gaId && !/^G-[A-Z0-9]+$/i.test(gaId)) {
+  warnings.push("NEXT_PUBLIC_GA_MEASUREMENT_ID biasanya berbentuk G-XXXXXXXXXX.");
+}
+
+const resendKeys = ["RESEND_API_KEY", "LEAD_NOTIFICATION_FROM", "LEAD_NOTIFICATION_TO"];
+const configuredResendKeys = resendKeys.filter((key) => process.env[key]?.trim());
+if (configuredResendKeys.length > 0 && configuredResendKeys.length < resendKeys.length) {
+  warnings.push(
+    "Notifikasi email lead belum lengkap. Isi RESEND_API_KEY, LEAD_NOTIFICATION_FROM, dan LEAD_NOTIFICATION_TO sekaligus, atau kosongkan semuanya.",
   );
 }
 

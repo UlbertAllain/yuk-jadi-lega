@@ -1,9 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { db } from "@/lib/firebase";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import type { ServiceOption } from "@/types";
 
 type FormState = "idle" | "loading" | "success" | "error";
@@ -40,22 +39,29 @@ export function LeadForm({
       return;
     }
 
-    if (!db) {
-      setState("error");
-      return;
-    }
-
     try {
-      await addDoc(collection(db, "leads"), {
-        name: name.trim(),
-        whatsapp: whatsapp.trim(),
-        email: email.trim(),
-        serviceSlug,
-        message: message.trim(),
-        source: "website-form",
-        status: "baru",
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          whatsapp,
+          email,
+          serviceSlug,
+          message,
+          website,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Lead request failed with status ${response.status}`);
+      }
+
+      trackAnalyticsEvent("generate_lead", {
+        lead_source: "website_form",
+        service_slug: serviceSlug || "general",
       });
 
       setState("success");
