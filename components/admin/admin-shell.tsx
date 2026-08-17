@@ -33,7 +33,6 @@ const navigationGroups = [
       ["Dashboard", "/admin", Gauge],
       ["Layanan", "/admin/services", BriefcaseBusiness],
       ["Artikel", "/admin/articles", BookOpenText],
-      ["KBLI", "/admin/kbli", FileText],
     ],
   },
   {

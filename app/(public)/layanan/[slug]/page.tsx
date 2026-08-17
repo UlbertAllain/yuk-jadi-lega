@@ -94,8 +94,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:max-w-4xl">
             <MetaCard icon={<Clock3 className="h-4 w-4" />} label="Estimasi" value={service.duration || "Menyesuaikan proses"} />
-            <MetaCard icon={<FileText className="h-4 w-4" />} label="Dokumen" value="Checklist dibantu tim" />
-            <MetaCard icon={<ShieldCheck className="h-4 w-4" />} label="Pendampingan" value="Sesuai ruang lingkup" />
+            <MetaCard icon={<FileText className="h-4 w-4" />} label="Dokumen" value="Tim bantu cek kebutuhan" />
+            <MetaCard icon={<ShieldCheck className="h-4 w-4" />} label="Pendampingan" value="Dijelaskan sejak awal" />
           </div>
         </div>
       </section>
@@ -103,7 +103,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <section className="page-shell py-14 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
           <div>
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Apa yang perlu kamu tahu.</h2>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Yang perlu Anda ketahui.</h2>
           </div>
           <div>
             <p className="max-w-4xl text-lg font-medium leading-8 text-brand-ink sm:text-xl">{service.description}</p>
@@ -119,8 +119,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       {(service.inclusions.length || service.requirements.length) ? (
         <section className="border-y border-brand-navy/9 bg-white py-14 lg:py-20">
           <div className="page-shell grid gap-5 lg:grid-cols-2">
-            <InfoList title="Yang Anda dapatkan" subtitle="Ruang lingkup layanan" items={service.inclusions} tone="navy" />
-            <InfoList title="Yang perlu disiapkan" subtitle="Checklist awal" items={service.requirements} tone="paper" />
+            <InfoList title="Yang Anda dapatkan" subtitle="Termasuk dalam layanan" items={service.inclusions} tone="navy" />
+            <InfoList title="Yang perlu disiapkan" subtitle="Dokumen dan informasi awal" items={service.requirements} tone="paper" />
           </div>
         </section>
       ) : null}
@@ -129,7 +129,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <section className="page-shell py-14 lg:py-20">
           <div className="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
             <div>
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Langkahnya terlihat dari awal.</h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Bagaimana proses layanan ini berjalan.</h2>
             </div>
             <ol className="grid gap-3 sm:grid-cols-2">
               {service.processSteps.map((step, index) => (
@@ -147,7 +147,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <section className="border-y border-brand-navy/9 bg-brand-paper py-14 lg:py-20">
           <div className="page-shell grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
             <div>
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Pertanyaan sebelum mulai.</h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Pertanyaan yang sering muncul sebelum mulai.</h2>
             </div>
             <div className="overflow-hidden rounded-[24px] border border-brand-navy/10 bg-white">
               {service.faqs.map((faq, index) => (
@@ -168,8 +168,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <section className="page-shell py-14 lg:py-20">
         <div className="grid overflow-hidden rounded-[28px] border border-brand-navy/10 bg-white shadow-[0_22px_60px_rgba(6,23,46,.07)] lg:grid-cols-[.72fr_1.28fr]">
           <div className="bg-brand-navy p-7 text-white sm:p-8">
-            <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.04em]">Pastikan konteksnya jelas sebelum mulai.</h2>
-            <p className="mt-4 text-sm font-normal leading-7 text-slate-200">Tim akan menindaklanjuti informasi awal melalui kontak yang kamu berikan.</p>
+            <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.04em]">Ceritakan kondisi usaha Anda sebelum mulai.</h2>
+            <p className="mt-4 text-sm font-normal leading-7 text-slate-200">Tim akan menghubungi Anda melalui kontak yang diberikan untuk memastikan kebutuhan dan langkah berikutnya.</p>
           </div>
           <LeadForm services={serviceOptions} defaultService={service.slug} />
         </div>
@@ -180,7 +180,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <div className="page-shell">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Kebutuhan lain di kategori yang sama.</h2>
+                <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Layanan lain yang mungkin relevan.</h2>
               </div>
               <Link href={`/layanan?category=${service.categorySlug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark">Lihat kategori <ArrowRight className="h-4 w-4" /></Link>
             </div>

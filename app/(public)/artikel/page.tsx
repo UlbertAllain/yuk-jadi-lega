@@ -6,8 +6,8 @@ import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getArticles } from "@/lib/data";
 
 export const metadata = createPageMetadata({
-  title: "Artikel & Insight",
-  description: "Artikel dan insight seputar legalitas bisnis, perizinan, badan usaha, merek, dan dokumen perusahaan.",
+  title: "Artikel & Panduan",
+  description: "Artikel praktis seputar legalitas bisnis, perizinan, badan usaha, merek, dan dokumen perusahaan.",
   path: "/artikel",
 });
 
@@ -32,7 +32,7 @@ export default async function ArticlesPage() {
               ) : (
                 <div className="insight-placeholder absolute inset-0" />
               )}
-              <span className="absolute left-5 top-5 rounded-full bg-brand-navy px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.11em] text-white">Featured</span>
+              <span className="absolute left-5 top-5 rounded-full bg-brand-navy px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.11em] text-white">Pilihan</span>
             </div>
             <div className="flex flex-col justify-between p-7 sm:p-9 lg:p-10">
               <div>
@@ -65,7 +65,7 @@ export default async function ArticlesPage() {
                   <h2 className="mt-3 line-clamp-3 text-xl font-semibold leading-[1.18] tracking-[-0.03em] text-brand-ink">{article.title}</h2>
                   <p className="mt-3 line-clamp-3 text-sm font-normal leading-6 text-brand-muted">{article.excerpt}</p>
                   <div className="mt-5 flex items-center justify-between border-t border-brand-navy/8 pt-4">
-                    <span className="text-xs font-semibold text-brand-muted">Baca insight</span>
+                    <span className="text-xs font-semibold text-brand-muted">Baca artikel</span>
                     <ArrowUpRight className="h-4 w-4 text-brand-navy/35 transition group-hover:text-brand-gold-dark" />
                   </div>
                 </div>

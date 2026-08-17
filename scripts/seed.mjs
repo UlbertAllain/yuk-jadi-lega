@@ -98,7 +98,7 @@ async function seedCollection(name, items) {
 }
 
 if (reset) {
-  for (const name of ["serviceCategories", "services", "kbli"]) {
+  for (const name of ["serviceCategories", "services"]) {
     await clearCollection(name);
   }
 }
@@ -106,7 +106,6 @@ if (reset) {
 await seedCollection("serviceCategories", raw.serviceCategories);
 await seedCollection("services", raw.services);
 await seedCollection("articles", raw.articles);
-await seedCollection("kbli", raw.kbli || []);
 await seedCollection("testimonials", raw.testimonials);
 await seedCollection("partners", raw.partners);
 await seedCollection("faqs", raw.faqs);

@@ -56,6 +56,7 @@ async function run() {
   addCheck("Open Graph image", "/opengraph-image.png");
   addCheck("Twitter image", "/twitter-image.png");
   addCheck("Admin compatibility redirect", "/admin/dashboard");
+  addCheck("KBLI API proxy", "/api/kbli?q=software&limit=1");
 
   for (const location of sitemapLocations) {
     addCheck(`Sitemap ${pathnameFromUrl(location)}`, pathnameFromUrl(location));

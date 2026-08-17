@@ -34,7 +34,6 @@ Membuat company profile legal service yang terasa sebagai versi modern/level-up 
 /admin/login
 /admin/services
 /admin/articles
-/admin/kbli
 /admin/partners
 /admin/testimonials
 /admin/faqs

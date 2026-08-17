@@ -105,17 +105,6 @@ export type CaseStudy = {
   featured: boolean;
 };
 
-export type KbliEntry = {
-  id: string;
-  code: string;
-  title: string;
-  description: string;
-  category?: string;
-  source?: string;
-  order?: number;
-  published: boolean;
-};
-
 export type SiteStat = {
   label: string;
   value: string;

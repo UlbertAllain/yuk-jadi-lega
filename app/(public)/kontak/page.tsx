@@ -26,8 +26,8 @@ export default async function ContactPage() {
   return (
     <main className="bg-brand-surface">
       <PublicPageHero
-        title="Ceritakan kebutuhan bisnis. Tim bantu petakan langkahnya."
-        description="Tidak harus tahu nama layanannya. Jelaskan kondisi bisnis, tujuan, dan kebutuhan awal agar tim bisa mengarahkan pilihan yang paling relevan."
+        title="Ceritakan kebutuhan bisnis Anda, kami bantu tentukan langkah berikutnya."
+        description="Anda tidak perlu tahu nama layanannya terlebih dahulu. Ceritakan kondisi usaha dan tujuan Anda, lalu tim kami akan membantu mengarahkan kebutuhan yang paling sesuai."
       />
 
       <section className="page-shell grid gap-8 py-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-10 lg:py-16">
@@ -49,7 +49,7 @@ export default async function ContactPage() {
 
         <div className="overflow-hidden rounded-[26px] border border-brand-navy/10 bg-white shadow-[0_22px_60px_rgba(6,23,46,.08)]">
           <div className="border-b border-brand-navy/10 bg-brand-navy px-6 py-5 text-white sm:px-8">
-            <p className="text-sm font-normal text-slate-200">Isi informasi awal agar tim memahami konteks sebelum menghubungi Anda.</p>
+            <p className="text-sm font-normal text-slate-200">Isi beberapa informasi singkat agar tim kami bisa memahami kebutuhan Anda sebelum menghubungi.</p>
           </div>
           <LeadForm services={serviceOptions} />
         </div>

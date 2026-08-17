@@ -23,7 +23,7 @@ Admin:
 - CRUD konten yang memang perlu berubah
 - lead management sederhana
 - website settings/homepage sections
-- CRUD + import KBLI
+- KBLI 2025 via server-side API proxy (tanpa CRUD CMS)
 - media upload via Cloudinary
 
 Tidak ada payment gateway, akun client, client portal, invoice, tracking dokumen, chat, membership, atau CRM kompleks.
@@ -65,7 +65,7 @@ scripts/
 
 ## Seed
 
-`data/seed-data.json` digunakan sekali untuk mengisi data awal Firestore. Seed memuat 9 kategori, katalog layanan, subset KBLI terverifikasi, artikel, FAQ, dan pengaturan dasar. Partner, client, testimonial, team, studi kasus, kontak, serta statistik sengaja kosong karena harus menggunakan data resmi Yuk Jadi Legal.
+`data/seed-data.json` digunakan sekali untuk mengisi data awal Firestore. Seed memuat 9 kategori, katalog layanan, artikel, FAQ, dan pengaturan dasar. KBLI tidak lagi disimpan di seed/Firestore karena dibaca melalui API. Partner, client, testimonial, team, studi kasus, kontak, serta statistik sengaja kosong karena harus menggunakan data resmi Yuk Jadi Legal.
 
 ## Clean-code decisions
 

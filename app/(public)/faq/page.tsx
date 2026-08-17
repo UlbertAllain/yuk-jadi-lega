@@ -20,7 +20,7 @@ export default async function FaqPage() {
     <main className="bg-brand-surface">
       <PublicPageHero
         title="Jawaban untuk pertanyaan yang paling sering muncul."
-        description="Baca hal dasar tentang konsultasi, proses, persyaratan, dan layanan sebelum menghubungi tim."
+        description="Temukan jawaban singkat tentang konsultasi, dokumen, waktu pengerjaan, dan layanan yang paling sering ditanyakan."
         meta={<p className="text-xs font-semibold text-brand-muted"><strong className="text-brand-ink">{faqs.length}</strong> pertanyaan tersedia</p>}
       />
 
@@ -29,7 +29,7 @@ export default async function FaqPage() {
           <div className="sticky top-28 rounded-[24px] bg-brand-navy p-6 text-white shadow-[0_22px_54px_rgba(6,23,46,.14)]">
             <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-soft">Butuh jawaban spesifik?</p>
             <h2 className="mt-3 text-2xl font-semibold leading-[1.1] tracking-[-0.035em]">Kondisi setiap bisnis bisa berbeda.</h2>
-            <p className="mt-3 text-sm font-normal leading-7 text-slate-200">Kalau pertanyaannya sangat spesifik, konsultasikan konteksnya agar jawabannya lebih relevan.</p>
+            <p className="mt-3 text-sm font-normal leading-7 text-slate-200">Kalau kondisi bisnis Anda tidak sama dengan contoh di sini, ceritakan detailnya agar tim bisa memberi arahan yang lebih sesuai.</p>
             <a href={consultationHref} target={whatsappHref ? "_blank" : undefined} rel={whatsappHref ? "noreferrer" : undefined} className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-gold px-4 py-2.5 text-sm font-semibold text-brand-navy">
               Kirim pertanyaan <ArrowUpRight className="h-4 w-4" />
             </a>

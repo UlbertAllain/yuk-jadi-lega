@@ -27,7 +27,7 @@
 - [ ] Deep-link `/layanan?category=<slug>` bekerja
 - [ ] Detail layanan dapat dibuka dari slug
 - [ ] Detail artikel dapat dibuka dari slug
-- [ ] Halaman KBLI dapat dicari berdasarkan kode/judul/uraian
+- [ ] Halaman KBLI 2025 dapat mencari berdasarkan kode atau judul melalui `/api/kbli`
 - [ ] Tombol WhatsApp memakai nomor dari Site Settings
 - [ ] Jika WhatsApp kosong, CTA konsultasi mengarah ke halaman kontak
 
@@ -47,8 +47,6 @@
 - [ ] CRUD kategori layanan bekerja
 - [ ] CRUD layanan bekerja
 - [ ] CRUD artikel bekerja
-- [ ] CRUD KBLI bekerja
-- [ ] Import JSON KBLI bekerja
 - [ ] CRUD partner/client bekerja
 - [ ] CRUD testimonial bekerja
 - [ ] CRUD FAQ bekerja

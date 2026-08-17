@@ -25,4 +25,4 @@ Semua harga, estimasi waktu, persyaratan, dan ruang lingkup layanan tetap perlu 
 
 ## KBLI
 
-Subset KBLI pada seed berasal dari kode/judul yang diverifikasi melalui publikasi KBLI 2020 BPS dan direktori OSS RBA. CMS menyediakan import JSON agar dataset resmi yang lebih lengkap dapat dimasukkan tanpa menambah hardcode di source.
+KBLI tidak lagi disimpan pada `data/seed-data.json` atau Firestore. Halaman `/kbli` memakai endpoint internal `/api/kbli` yang mem-proxy API KBLI 2025 secara server-side. Admin tidak memiliki CRUD KBLI karena data ini merupakan reference/master data eksternal, bukan konten marketing Yuk Jadi Legal.

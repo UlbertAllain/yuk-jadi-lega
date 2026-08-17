@@ -6,7 +6,6 @@ import type {
   CaseStudy,
   Faq,
   Partner,
-  KbliEntry,
   Service,
   ServiceCategory,
   SiteSettings,
@@ -151,15 +150,6 @@ export const getCaseStudies = cache(async (): Promise<CaseStudy[]> => {
   return [...cases].sort((a, b) => {
     if (a.featured !== b.featured) return Number(b.featured) - Number(a.featured);
     return a.title.localeCompare(b.title, "id");
-  });
-});
-
-export const getKbliEntries = cache(async (): Promise<KbliEntry[]> => {
-  const items = await publishedCollection<KbliEntry>("kbli");
-  return [...items].sort((a, b) => {
-    const orderA = a.order ?? Number.MAX_SAFE_INTEGER;
-    const orderB = b.order ?? Number.MAX_SAFE_INTEGER;
-    return orderA - orderB || a.code.localeCompare(b.code, "id");
   });
 });
 
