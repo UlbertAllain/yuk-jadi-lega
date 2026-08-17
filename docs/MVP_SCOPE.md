@@ -5,7 +5,7 @@
 Membuat company profile legal service yang terasa sebagai versi modern/level-up dari benchmark seperti Bukalegal, dengan fokus:
 
 1. calon klien cepat memahami layanan;
-2. trust dibangun lewat partner, testimonial, team, studi kasus, dan konten edukasi;
+2. trust dibangun lewat partner, testimonial, team, dan konten edukasi;
 3. conversion diarahkan ke konsultasi/WhatsApp;
 4. tim Yuk Jadi Legal bisa mengelola konten sendiri melalui CMS;
 5. tidak over-engineered menjadi legal SaaS.
@@ -38,7 +38,6 @@ Membuat company profile legal service yang terasa sebagai versi modern/level-up 
 /admin/testimonials
 /admin/faqs
 /admin/team
-/admin/case-studies
 /admin/leads
 /admin/settings
 ```

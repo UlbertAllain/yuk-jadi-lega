@@ -94,16 +94,6 @@ export type TeamMember = {
   published: boolean;
 };
 
-export type CaseStudy = {
-  id: string;
-  title: string;
-  client: string;
-  challenge: string;
-  solution: string;
-  result: string;
-  published: boolean;
-  featured: boolean;
-};
 
 export type SiteStat = {
   label: string;
@@ -114,10 +104,8 @@ export type SiteSettings = {
   id: string;
   brandName: string;
   brandTagline: string;
-  heroEyebrow: string;
   heroTitle: string;
   heroDescription: string;
-  servicesEyebrow?: string;
   servicesTitle?: string;
   servicesDescription?: string;
   whyUsTitle?: string;

@@ -110,7 +110,6 @@ await seedCollection("testimonials", raw.testimonials);
 await seedCollection("partners", raw.partners);
 await seedCollection("faqs", raw.faqs);
 await seedCollection("teamMembers", raw.teamMembers);
-await seedCollection("caseStudies", raw.caseStudies);
 
 const { id: settingsId, ...settings } = raw.siteSettings;
 const settingsBatch = writeBatch(db);
@@ -123,7 +122,7 @@ await settingsBatch.commit();
 console.log("\nSeed selesai.");
 console.log(`Mode: ${reset ? "reset + seed" : "merge seed"}`);
 console.log(
-  "Partner, client, testimonial, tim, studi kasus, kontak, dan statistik tetap diisi melalui CMS sesuai data resmi.",
+  "Partner, client, testimonial, tim, kontak, dan statistik tetap diisi melalui CMS sesuai data resmi.",
 );
 console.log(
   "Masukkan data resmi Yuk Jadi Legal melalui CMS sebelum website dipublikasikan.\n",

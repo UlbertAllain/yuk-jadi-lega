@@ -3,7 +3,6 @@ import { adminDb } from "@/lib/firebase-admin";
 import { DEFAULT_SITE_SETTINGS } from "@/lib/site-defaults";
 import type {
   Article,
-  CaseStudy,
   Faq,
   Partner,
   Service,
@@ -144,14 +143,6 @@ export const getTeamMembers = cache(async (): Promise<TeamMember[]> => {
   return [...team].sort((a, b) => a.order - b.order);
 });
 
-export const getCaseStudies = cache(async (): Promise<CaseStudy[]> => {
-  const cases = await publishedCollection<CaseStudy>("caseStudies");
-
-  return [...cases].sort((a, b) => {
-    if (a.featured !== b.featured) return Number(b.featured) - Number(a.featured);
-    return a.title.localeCompare(b.title, "id");
-  });
-});
 
 export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
   if (!adminDb) return DEFAULT_SITE_SETTINGS;

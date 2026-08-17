@@ -103,7 +103,7 @@ export default function SettingsAdminPage() {
       <AdminPageHeader
         eyebrow="Website"
         title="Pengaturan"
-        description="Kelola identitas, konten homepage, kontak, statistik, dan tautan sosial tanpa mengubah source code."
+        description="Atur identitas brand, konten homepage, informasi kontak, statistik, dan tautan sosial yang tampil di website."
       />
 
       {loading ? (
@@ -160,7 +160,7 @@ export default function SettingsAdminPage() {
             </Field>
           </SettingsSection>
 
-          <SettingsSection title="Value proposition homepage">
+          <SettingsSection title="Alasan memilih Yuk Jadi Legal">
             <Field label="Judul">
               <textarea rows={2} className={textareaClass} value={settings.whyUsTitle || ""} onChange={(event) => update("whyUsTitle", event.target.value)} />
             </Field>
@@ -169,7 +169,7 @@ export default function SettingsAdminPage() {
             </Field>
           </SettingsSection>
 
-          <SettingsSection title="CTA konsultasi homepage">
+          <SettingsSection title="Ajakan konsultasi homepage">
             <Field label="Judul">
               <textarea rows={2} className={textareaClass} value={settings.ctaTitle || ""} onChange={(event) => update("ctaTitle", event.target.value)} />
             </Field>
@@ -178,9 +178,9 @@ export default function SettingsAdminPage() {
             </Field>
           </SettingsSection>
 
-          <SettingsSection title="Menu navigasi / dropdown">
+          <SettingsSection title="Menu navigasi">
             <p className="-mt-1 text-xs leading-5 text-slate-500">
-              Tentukan layanan dan kategori yang muncul saat pengunjung mengarahkan cursor ke menu Layanan atau Kategori di navbar.
+              Pilih layanan dan kategori yang ingin ditampilkan pada menu Layanan dan Kategori di bagian atas website.
             </p>
             <NavigationMenuSettings
               services={services}

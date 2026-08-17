@@ -4,11 +4,9 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   id: "main",
   brandName: "Yuk Jadi Legal",
   brandTagline: "Pendamping legal bisnis untuk pendirian, perizinan, HKI, kontrak, dan kebutuhan perusahaan lainnya.",
-  heroEyebrow: "",
   heroTitle: "Bisnis Anda sudah berjalan. Sekarang, pastikan legalitasnya jelas.",
   heroDescription:
     "Mulai dari pendirian usaha, perizinan, perlindungan merek, hingga dokumen bisnis. Kami membantu memetakan dan menjalankan prosesnya dengan lebih jelas sejak awal.",
-  servicesEyebrow: "",
   servicesTitle: "Layanan legal yang paling dibutuhkan bisnis.",
   servicesDescription:
     "Pilih layanan utama yang paling relevan untuk tahap bisnis Anda sekarang.",

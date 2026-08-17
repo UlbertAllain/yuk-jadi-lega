@@ -60,7 +60,7 @@ export default function AdminLoginPage() {
             Kelola website dari satu tempat.
           </h1>
           <p className="mt-5 text-sm leading-7 text-slate-300">
-            Perbarui layanan, artikel, partner, testimoni, FAQ, tim, studi kasus, dan konsultasi yang masuk tanpa mengubah kode.
+            Perbarui layanan, artikel, partner, testimoni, FAQ, tim, dan konsultasi yang masuk dari satu tempat.
           </p>
         </div>
       </section>

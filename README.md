@@ -214,7 +214,6 @@ testimonials
 partners
 faqs
 teamMembers
-caseStudies
 siteSettings/main
 ```
 
@@ -363,7 +362,6 @@ testimonials/{id}
 partners/{id}
 faqs/{id}
 teamMembers/{id}
-caseStudies/{id}
 leads/{id}
 siteSettings/main
 ```

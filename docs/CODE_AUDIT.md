@@ -12,7 +12,6 @@ Public:
 - partner/client
 - testimonial
 - team
-- studi kasus
 - artikel
 - FAQ
 - KBLI searchable
@@ -60,12 +59,12 @@ scripts/
 - Firestore adalah source of truth untuk konten dinamis.
 - Runtime public **tidak memakai fallback seed/local data**.
 - Jika Firebase belum dikonfigurasi atau collection kosong, query collection mengembalikan array kosong.
-- Section opsional seperti partner, testimonial, team, studi kasus, dan statistik tidak dirender jika datanya kosong.
+- Section opsional seperti partner, testimonial, team, dan statistik tidak dirender jika datanya kosong.
 - `DEFAULT_SITE_SETTINGS` hanya menyediakan identitas/layout minimum agar aplikasi tetap dapat dirender sebelum `siteSettings/main` tersedia; ia tidak berisi klaim client, partner, testimonial, harga, atau statistik.
 
 ## Seed
 
-`data/seed-data.json` digunakan sekali untuk mengisi data awal Firestore. Seed memuat 9 kategori, katalog layanan, artikel, FAQ, dan pengaturan dasar. KBLI tidak lagi disimpan di seed/Firestore karena dibaca melalui API. Partner, client, testimonial, team, studi kasus, kontak, serta statistik sengaja kosong karena harus menggunakan data resmi Yuk Jadi Legal.
+`data/seed-data.json` digunakan sekali untuk mengisi data awal Firestore. Seed memuat 9 kategori, katalog layanan, artikel, FAQ, dan pengaturan dasar. KBLI tidak lagi disimpan di seed/Firestore karena dibaca melalui API. Partner, client, testimonial, team, kontak, serta statistik sengaja kosong karena harus menggunakan data resmi Yuk Jadi Legal.
 
 ## Clean-code decisions
 

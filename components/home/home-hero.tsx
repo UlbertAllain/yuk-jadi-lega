@@ -7,7 +7,7 @@ import type { Service, ServiceCategory, SiteSettings } from "@/types";
 
 const fallbackProof = [
   { value: "Online", label: "Proses terarah" },
-  { value: "Jelas", label: "Biaya & scope" },
+  { value: "Jelas", label: "Biaya & kebutuhan" },
   { value: "Aman", label: "Dokumen bisnis" },
 ];
 

@@ -46,7 +46,7 @@ Jalankan:
 npm run seed
 ```
 
-Seed mengisi kategori layanan, layanan, artikel, FAQ, dan pengaturan dasar. Partner/client, testimonial, tim, studi kasus, kontak, dan statistik sengaja kosong sampai data resmi Yuk Jadi Legal dimasukkan.
+Seed mengisi kategori layanan, layanan, artikel, FAQ, dan pengaturan dasar. Partner/client, testimonial, tim, kontak, dan statistik sengaja kosong sampai data resmi Yuk Jadi Legal dimasukkan.
 
 Setelah sukses, hapus `SEED_ADMIN_PASSWORD` jika tidak diperlukan lagi.
 
@@ -95,7 +95,6 @@ http://localhost:3000/admin/login
 4. Tambahkan partner/client resmi.
 5. Tambahkan testimonial asli.
 6. Tambahkan profil tim resmi.
-7. Tambahkan studi kasus jika sudah ada data yang layak dipublikasikan.
 8. Kirim form konsultasi dari public.
 9. Buka Leads admin dan ubah status.
 10. Test mobile + desktop.

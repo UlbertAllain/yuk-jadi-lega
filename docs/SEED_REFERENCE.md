@@ -13,7 +13,6 @@ Yang **tidak** disalin sebagai milik Yuk Jadi Legal:
 - client
 - testimonial
 - team
-- studi kasus
 - achievement
 - alamat
 - email

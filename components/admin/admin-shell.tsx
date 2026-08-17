@@ -10,7 +10,6 @@ import {
   BriefcaseBusiness,
   Building2,
   CircleHelp,
-  FileText,
   Gauge,
   Handshake,
   LogOut,
@@ -42,7 +41,6 @@ const navigationGroups = [
       ["Testimoni", "/admin/testimonials", Star],
       ["FAQ", "/admin/faqs", CircleHelp],
       ["Tim", "/admin/team", Users],
-      ["Studi Kasus", "/admin/case-studies", FileText],
     ],
   },
   {
