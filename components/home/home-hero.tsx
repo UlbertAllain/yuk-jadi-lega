@@ -32,41 +32,41 @@ export function HomeHero({
 
   return (
     <section className="border-b border-brand-navy/10 bg-brand-surface">
-      <div className="page-shell grid gap-12 py-14 lg:grid-cols-[minmax(0,.9fr)_minmax(420px,1.1fr)] lg:items-center lg:gap-16 lg:py-20 xl:min-h-[620px]">
+      <div className="page-shell grid gap-9 py-10 sm:py-12 lg:grid-cols-[minmax(0,.9fr)_minmax(420px,1.1fr)] lg:items-center lg:gap-16 lg:py-20 xl:min-h-[620px]">
         <div className="max-w-[660px]">
-          <h1 className="max-w-[640px] text-[clamp(2.75rem,5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.055em] text-brand-navy-dark">
+          <h1 className="max-w-[640px] text-[clamp(2.35rem,10.5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.052em] text-brand-navy-dark">
             {settings.heroTitle}
           </h1>
 
-          <p className="mt-6 max-w-[580px] text-base leading-8 text-brand-muted">
+          <p className="mt-5 max-w-[580px] text-[15px] leading-7 text-brand-muted sm:mt-6 sm:text-base sm:leading-8">
             {settings.heroDescription}
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
-            <Link
-              href="/layanan"
-              className="button-gold inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold"
-            >
-              Lihat layanan <ArrowRight className="h-4 w-4" />
-            </Link>
+          <div className="mt-7 grid gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-3">
             <a
               href={consultationHref}
               target={consultationExternal ? "_blank" : undefined}
               rel={consultationExternal ? "noreferrer" : undefined}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy transition hover:text-brand-gold-dark"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:order-2 sm:min-h-0 sm:w-auto sm:bg-transparent sm:px-0 sm:py-0 sm:text-brand-navy sm:hover:bg-transparent sm:hover:text-brand-gold-dark"
             >
               Konsultasi gratis <ArrowUpRight className="h-4 w-4" />
             </a>
+            <Link
+              href="/layanan"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 border border-brand-navy/14 bg-white px-5 py-3 text-sm font-semibold text-brand-navy sm:order-1 sm:min-h-0 sm:w-auto sm:border-0 sm:bg-brand-gold sm:px-5 sm:py-3.5 sm:text-brand-navy-dark"
+            >
+              Lihat layanan <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
-          <div className="mt-10 grid max-w-[620px] border-y border-brand-navy/10 sm:grid-cols-3">
+          <div className="mt-8 grid grid-cols-3 border-y border-brand-navy/10 sm:mt-10">
             {visibleProof.map((item) => (
               <div
                 key={item.label}
-                className="border-b border-brand-navy/10 py-4 last:border-b-0 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0"
+                className="border-r border-brand-navy/10 px-2 py-3.5 first:pl-0 last:border-r-0 last:pr-0 sm:px-5 sm:py-4"
               >
-                <p className="text-base font-semibold text-brand-navy-dark">{item.value}</p>
-                <p className="mt-1 text-xs text-brand-muted">{item.label}</p>
+                <p className="truncate text-sm font-semibold text-brand-navy-dark sm:text-base">{item.value}</p>
+                <p className="mt-1 text-[10px] leading-4 text-brand-muted sm:text-xs">{item.label}</p>
               </div>
             ))}
           </div>
