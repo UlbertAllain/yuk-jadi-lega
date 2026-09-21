@@ -52,7 +52,7 @@ export default async function AboutPage() {
         description="Yuk Jadi Legal membantu pemilik usaha memahami dan mengurus kebutuhan badan usaha, perizinan, merek, serta dokumen bisnis dengan langkah yang lebih jelas dari awal."
       />
 
-      <section className="page-shell py-16 lg:py-24">
+      <section className="page-shell py-12 sm:py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16">
           <div>
             <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">
@@ -77,7 +77,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-brand-navy-dark py-16 text-white lg:py-20">
+      <section className="bg-brand-navy-dark py-12 text-white sm:py-16 lg:py-20">
         <div className="page-shell grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
           <div>
             <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-4xl">
@@ -103,7 +103,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="page-shell py-16 lg:py-24">
+      <section className="page-shell py-12 sm:py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-14">
           <div>
             <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">
@@ -127,7 +127,7 @@ export default async function AboutPage() {
       </section>
 
       {team.length ? (
-        <section className="border-y border-brand-navy/9 bg-white py-16 lg:py-24">
+        <section className="border-y border-brand-navy/9 bg-white py-12 sm:py-16 lg:py-24">
           <div className="page-shell">
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-14">
               <h2 className="section-title">Tim yang mendampingi proses Anda.</h2>
@@ -160,7 +160,7 @@ export default async function AboutPage() {
         </section>
       ) : null}
 
-      <section className="border-t border-brand-navy/9 bg-brand-paper py-14 lg:py-20">
+      <section className="border-t border-brand-navy/9 bg-brand-paper py-12 sm:py-14 lg:py-20">
         <div className="page-shell flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
@@ -170,7 +170,7 @@ export default async function AboutPage() {
               Ceritakan kondisi usaha Anda. Tim kami akan membantu memetakan kebutuhan awal sebelum Anda memutuskan layanan.
             </p>
           </div>
-          <Link href="/kontak" className="button-gold inline-flex shrink-0 items-center gap-2 px-5 py-3 text-sm font-semibold">
+          <Link href="/kontak" className="button-gold inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 px-5 py-3 text-sm font-semibold sm:min-h-0 sm:w-auto">
             Konsultasikan kebutuhan <span aria-hidden="true">→</span>
           </Link>
         </div>
