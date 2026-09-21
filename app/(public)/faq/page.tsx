@@ -21,30 +21,48 @@ export default async function FaqPage() {
       <PublicPageHero
         title="Jawaban untuk pertanyaan yang paling sering muncul."
         description="Temukan jawaban singkat tentang konsultasi, dokumen, waktu pengerjaan, dan layanan yang paling sering ditanyakan."
-        meta={<p className="text-xs font-semibold text-brand-muted"><strong className="text-brand-ink">{faqs.length}</strong> pertanyaan tersedia</p>}
+        meta={
+          <p className="text-xs font-semibold text-brand-muted">
+            <strong className="text-brand-ink">{faqs.length}</strong> pertanyaan tersedia
+          </p>
+        }
       />
 
-      <section className="page-shell grid gap-8 py-12 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-10 lg:py-16">
+      <section className="page-shell grid gap-10 py-14 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-14 lg:py-20">
         <aside>
-          <div className="sticky top-28 rounded-[24px] bg-brand-navy p-6 text-white shadow-[0_22px_54px_rgba(6,23,46,.14)]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-soft">Butuh jawaban spesifik?</p>
-            <h2 className="mt-3 text-2xl font-semibold leading-[1.1] tracking-[-0.035em]">Kondisi setiap bisnis bisa berbeda.</h2>
-            <p className="mt-3 text-sm font-normal leading-7 text-slate-200">Kalau kondisi bisnis Anda tidak sama dengan contoh di sini, ceritakan detailnya agar tim bisa memberi arahan yang lebih sesuai.</p>
-            <a href={consultationHref} target={whatsappHref ? "_blank" : undefined} rel={whatsappHref ? "noreferrer" : undefined} className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-gold px-4 py-2.5 text-sm font-semibold text-brand-navy">
+          <div className="sticky top-28 border-y border-brand-navy/12 py-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
+              Butuh jawaban spesifik?
+            </p>
+            <h2 className="mt-4 text-2xl font-semibold leading-[1.1] tracking-[-0.035em] text-brand-ink">
+              Kondisi setiap bisnis bisa berbeda.
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-brand-muted">
+              Kalau kondisi bisnis Anda tidak sama dengan contoh di sini, ceritakan detailnya agar tim bisa memberi
+              arahan yang lebih sesuai.
+            </p>
+            <a
+              href={consultationHref}
+              target={whatsappHref ? "_blank" : undefined}
+              rel={whatsappHref ? "noreferrer" : undefined}
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
+            >
               Kirim pertanyaan <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
         </aside>
 
-        <div className="overflow-hidden rounded-[24px] border border-brand-navy/10 bg-white shadow-[0_14px_36px_rgba(6,23,46,.05)]">
+        <div className="border-y border-brand-navy/14">
           {faqs.map((faq, index) => (
-            <details key={faq.id} className="group border-b border-brand-navy/9 last:border-b-0 open:bg-brand-paper/55">
-              <summary className="grid cursor-pointer list-none grid-cols-[34px_minmax(0,1fr)_36px] items-center gap-3 px-5 py-5 sm:px-6">
-                <span className="text-[10px] font-semibold text-brand-gold-dark">{String(index + 1).padStart(2, "0")}</span>
+            <details key={faq.id} className="group border-b border-brand-navy/9 last:border-b-0">
+              <summary className="grid cursor-pointer list-none grid-cols-[34px_minmax(0,1fr)_24px] items-center gap-3 py-5">
+                <span className="text-[10px] font-semibold text-brand-gold-dark">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <span className="text-base font-semibold leading-6 text-brand-ink">{faq.question}</span>
-                <span className="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/12 bg-white text-brand-navy transition group-open:rotate-45 group-open:border-brand-gold group-open:bg-brand-gold">+</span>
+                <span className="text-xl leading-none text-brand-navy transition group-open:rotate-45">+</span>
               </summary>
-              <p className="px-[72px] pb-5 pr-8 text-sm font-normal leading-7 text-brand-muted">{faq.answer}</p>
+              <p className="pb-5 pl-[47px] pr-8 text-sm leading-7 text-brand-muted">{faq.answer}</p>
             </details>
           ))}
         </div>
