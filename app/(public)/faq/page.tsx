@@ -28,8 +28,8 @@ export default async function FaqPage() {
         }
       />
 
-      <section className="page-shell grid gap-10 py-14 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-14 lg:py-20">
-        <aside>
+      <section className="page-shell grid gap-8 py-10 sm:py-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-14 lg:py-20">
+        <aside className="order-2 lg:order-1">
           <div className="sticky top-28 border-y border-brand-navy/12 py-5">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
               Butuh jawaban spesifik?
@@ -52,7 +52,7 @@ export default async function FaqPage() {
           </div>
         </aside>
 
-        <div className="border-y border-brand-navy/14">
+        <div className="order-1 border-y border-brand-navy/14 lg:order-2">
           {faqs.map((faq, index) => (
             <details key={faq.id} className="group border-b border-brand-navy/9 last:border-b-0">
               <summary className="grid cursor-pointer list-none grid-cols-[34px_minmax(0,1fr)_24px] items-center gap-3 py-5">
