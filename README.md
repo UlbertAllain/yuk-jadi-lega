@@ -52,10 +52,11 @@ Yang **sengaja tidak masuk scope company profile + CMS**:
 - Tailwind CSS v4
 - Firebase Authentication
 - Cloud Firestore
+- Firebase Admin SDK untuk endpoint server terproteksi
 - Cloudinary (optional media upload)
 - Lucide React
 
-> Tidak menggunakan `firebase-admin`. CMS memakai Firebase client SDK dan Firestore Security Rules.
+> Public CMS memakai Firebase client SDK + Firestore Security Rules. Firebase Admin SDK hanya digunakan di endpoint server yang memerlukan verifikasi privileged, seperti signed upload Cloudinary.
 
 ---
 
@@ -258,6 +259,17 @@ Panduan lengkap V8 ada di `docs/PRODUCTION-HARDENING-V8.md`.
 ```bash
 npm run dev
 ```
+
+## Quality Gate
+
+Sebelum merge atau deploy, jalankan:
+
+```bash
+npm run verify
+npm run quality:scan
+```
+
+`npm run verify` menjalankan ESLint, TypeScript typecheck, lalu production build secara berurutan. Temuan `quality:scan` harus direview satu per satu; jangan menjalankan auto-fix secara buta hanya untuk mengejar skor.
 
 Buka:
 

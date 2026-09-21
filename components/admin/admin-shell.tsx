@@ -23,7 +23,7 @@ import { auth, db, isFirebaseConfigured } from "@/lib/firebase";
 import { cn } from "@/lib/format";
 import { BrandMark } from "@/components/shared/brand-mark";
 
-const subscribeToClientReady = () => () => {};
+const subscribeToClientReady = () => () => undefined;
 
 const navigationGroups = [
   {

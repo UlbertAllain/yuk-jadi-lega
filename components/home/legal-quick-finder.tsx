@@ -13,7 +13,13 @@ const needs = [
   { id: "change", number: "04", label: "Perubahan usaha", helper: "Data, pengurus, modal", slugs: ["perubahan-perusahaan", "konsultasi"] },
 ] as const;
 
-export function LegalQuickFinder({ services, categories }: { services: Service[]; categories: ServiceCategory[] }) {
+export function LegalQuickFinder({
+  services,
+  categories,
+}: {
+  services: Service[];
+  categories: ServiceCategory[];
+}) {
   const [active, setActive] = useState<(typeof needs)[number]["id"]>("start");
   const need = needs.find((item) => item.id === active) || needs[0];
   const categoryMap = useMemo(() => new Map(categories.map((item) => [item.slug, item.name])), [categories]);
@@ -26,61 +32,69 @@ export function LegalQuickFinder({ services, categories }: { services: Service[]
   }, [need, services]);
 
   return (
-    <div className="finder-v71 relative overflow-hidden rounded-[22px] border border-brand-navy/16 bg-white shadow-[0_28px_70px_rgba(5,31,58,.13)]">
-      <div className="border-b border-brand-navy/10 px-5 py-5 sm:px-6">
-        <h2 className="text-lg font-semibold tracking-[-0.025em] text-brand-navy-dark">Temukan layanan yang sesuai</h2>
-        <p className="mt-1 text-xs leading-5 text-brand-muted">Pilih kebutuhan utama Anda untuk melihat rekomendasi layanan.</p>
+    <div className="border-y border-brand-navy/14 bg-white sm:rounded-[14px] sm:border lg:rounded-[18px]">
+      <div className="border-b border-brand-navy/10 py-4 sm:px-5 sm:py-5">
+        <h2 className="text-base font-semibold tracking-[-0.025em] text-brand-navy-dark sm:text-lg">
+          Temukan layanan yang sesuai
+        </h2>
+        <p className="mt-1 text-xs leading-5 text-brand-muted">
+          Pilih kebutuhan utama untuk melihat layanan yang paling relevan.
+        </p>
       </div>
 
-      <div className="p-4 sm:p-5">
-        <div className="grid grid-cols-2 gap-2.5">
+      <div className="py-4 sm:p-5">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-2">
           {needs.map((item) => {
             const selected = item.id === active;
+
             return (
               <button
                 key={item.id}
                 type="button"
                 aria-pressed={selected}
                 onClick={() => setActive(item.id)}
-                className={`finder-option-v71 group relative min-h-[78px] overflow-hidden rounded-[14px] border px-4 py-3 text-left transition ${
+                className={`min-h-[64px] border-b px-1 py-2.5 text-left transition sm:min-h-[72px] sm:rounded-[10px] sm:border sm:px-3 ${
                   selected
-                    ? "border-brand-navy bg-white shadow-[0_8px_24px_rgba(5,31,58,.08)]"
-                    : "border-brand-navy/12 bg-brand-cloud hover:border-brand-navy/25 hover:bg-white"
+                    ? "border-brand-navy text-brand-navy"
+                    : "border-brand-navy/10 text-brand-muted hover:text-brand-navy"
                 }`}
               >
-                <span className={`absolute inset-y-3 left-0 w-[3px] rounded-r-full transition ${selected ? "bg-brand-gold" : "bg-transparent group-hover:bg-brand-navy/15"}`} />
-                <div className="flex items-center justify-between gap-3">
-                  <span className={`text-[10px] font-semibold tabular-nums ${selected ? "text-brand-gold-dark" : "text-brand-muted"}`}>{item.number}</span>
-                  <span className={`grid h-4 w-4 place-items-center rounded-full border ${selected ? "border-brand-gold bg-brand-gold" : "border-brand-navy/22 bg-white"}`}>
-                    {selected ? <span className="h-1.5 w-1.5 rounded-full bg-brand-navy-dark" /> : null}
-                  </span>
-                </div>
-                <span className="mt-2 block text-sm font-semibold leading-5 text-brand-navy-dark">{item.label}</span>
+                <span className="text-[9px] font-semibold tabular-nums text-brand-gold-dark">{item.number}</span>
+                <span className="mt-1.5 block text-sm font-semibold leading-5">{item.label}</span>
+                <span className="mt-0.5 hidden text-[10px] leading-4 text-brand-muted sm:block">{item.helper}</span>
               </button>
             );
           })}
         </div>
 
-        <div className="mt-4 overflow-hidden rounded-[16px] border border-brand-navy/12 bg-white">
-          <div className="flex items-center justify-between border-b border-brand-navy/8 bg-brand-bluewash/55 px-4 py-3">
-            <p className="text-xs font-semibold text-brand-navy-dark">Rekomendasi untuk {need.label.toLowerCase()}</p>
-            <Link href={`/layanan?category=${need.slugs[0]}`} className="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-navy hover:text-brand-gold-dark">
+        <div className="mt-5 border-y border-brand-navy/12">
+          <div className="flex items-center justify-between border-b border-brand-navy/8 py-3">
+            <p className="text-xs font-semibold text-brand-navy-dark">
+              Untuk {need.label.toLowerCase()}
+            </p>
+            <Link
+              href={`/layanan?category=${need.slugs[0]}`}
+              className="inline-flex min-h-10 items-center gap-1 text-[11px] font-semibold text-brand-navy"
+            >
               Semua <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
           <div className="divide-y divide-brand-navy/8">
             {recommendations.map((service) => (
-              <Link key={service.id} href={`/layanan/${service.slug}`} className="group grid grid-cols-[minmax(0,1fr)_30px] items-center gap-3 px-4 py-3.5 transition hover:bg-brand-cloud">
+              <Link
+                key={service.id}
+                href={`/layanan/${service.slug}`}
+                className="group grid min-h-[62px] grid-cols-[minmax(0,1fr)_28px] items-center gap-3 py-3"
+              >
                 <div className="min-w-0">
-                  <p className="truncate text-[12px] font-semibold text-brand-navy-dark">{service.title}</p>
-                  <p className="mt-1 truncate text-[10px] text-brand-muted">
-                    {categoryMap.get(service.categorySlug) || "Layanan legal"} · {servicePriceLabel(service.startingPrice, service.priceType)}
+                  <p className="line-clamp-1 text-[12px] font-semibold text-brand-navy-dark">{service.title}</p>
+                  <p className="mt-1 line-clamp-1 text-[10px] text-brand-muted">
+                    {categoryMap.get(service.categorySlug) || "Layanan legal"} ·{" "}
+                    {servicePriceLabel(service.startingPrice, service.priceType)}
                   </p>
                 </div>
-                <span className="grid h-7 w-7 place-items-center rounded-full border border-brand-navy/10 bg-white text-brand-navy transition group-hover:border-brand-gold group-hover:bg-brand-gold">
-                  <ChevronRight className="h-3.5 w-3.5" />
-                </span>
+                <ChevronRight className="h-4 w-4 text-brand-navy/55 transition group-hover:text-brand-gold-dark" />
               </Link>
             ))}
           </div>

@@ -52,9 +52,9 @@ export function Modal({
       className="fixed inset-0 z-[100] overflow-y-auto bg-slate-950/50 p-4 backdrop-blur-sm"
       role="presentation"
     >
-      <div
-        className="mx-auto my-5 w-full max-w-3xl rounded-[2rem] bg-white shadow-2xl"
-        role="dialog"
+      <dialog
+        open
+        className="mx-auto my-5 w-full max-w-3xl rounded-[2rem] border-0 bg-white p-0 shadow-2xl"
         aria-modal="true"
         aria-label={title}
       >
@@ -72,7 +72,7 @@ export function Modal({
           </button>
         </div>
         <div className="p-6">{children}</div>
-      </div>
+      </dialog>
     </div>
   );
 }

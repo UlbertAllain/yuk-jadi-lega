@@ -57,7 +57,10 @@ const notes = [
 
 export default async function HowItWorksPage() {
   const settings = await getSiteSettings();
-  const whatsappHref = getWhatsAppHref(settings.whatsapp, "Halo Yuk Jadi Legal, saya ingin mulai konsultasi legalitas bisnis.");
+  const whatsappHref = getWhatsAppHref(
+    settings.whatsapp,
+    "Halo Yuk Jadi Legal, saya ingin mulai konsultasi legalitas bisnis.",
+  );
   const consultationHref = whatsappHref || "/kontak";
 
   return (
@@ -67,11 +70,13 @@ export default async function HowItWorksPage() {
         description="Kami menjelaskan apa yang perlu disiapkan, apa yang sedang diproses, dan kapan Anda perlu mengambil tindakan berikutnya."
       />
 
-      <section className="page-shell py-16 lg:py-24">
+      <section className="page-shell py-12 sm:py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16">
-          <div>
-            <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">Sebelum mulai, Anda tidak perlu menyiapkan semuanya sendiri.</h2>
-            <p className="mt-5 max-w-md text-sm leading-7 text-brand-muted">
+          <div className="text-center lg:text-left">
+            <h2 className="mx-auto max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl lg:mx-0">
+              Sebelum mulai, Anda tidak perlu menyiapkan semuanya sendiri.
+            </h2>
+            <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-brand-muted lg:mx-0">
               Konsultasi awal justru digunakan untuk membantu mengetahui apa yang sudah siap dan apa yang masih perlu dilengkapi.
             </p>
           </div>
@@ -90,22 +95,27 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="border-y border-brand-navy/9 bg-white py-16 lg:py-24">
+      <section className="border-y border-brand-navy/9 bg-white py-12 sm:py-16 lg:py-24">
         <div className="page-shell">
-          <div className="max-w-2xl">
+          <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
             <h2 className="section-title">Bagaimana prosesnya berjalan?</h2>
-            <p className="mt-4 text-sm leading-7 text-brand-muted">Setiap layanan bisa memiliki detail yang berbeda, tetapi alur kerjanya tetap mengikuti empat tahap utama berikut.</p>
+            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-brand-muted lg:mx-0">
+              Setiap layanan bisa memiliki detail yang berbeda, tetapi alur kerjanya tetap mengikuti empat tahap utama berikut.
+            </p>
           </div>
 
           <ol className="mt-10 divide-y divide-brand-navy/10 border-y border-brand-navy/10">
             {steps.map((step) => (
-              <li key={step.number} className="grid gap-5 py-7 md:grid-cols-[76px_.9fr_1.1fr] md:items-start md:gap-8 lg:py-8">
+              <li
+                key={step.number}
+                className="grid gap-5 py-7 md:grid-cols-[76px_.9fr_1.1fr] md:items-start md:gap-8 lg:py-8"
+              >
                 <span className="text-lg font-semibold tabular-nums text-brand-gold-dark">{step.number}</span>
                 <div>
                   <h3 className="text-2xl font-semibold tracking-[-0.03em] text-brand-ink">{step.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-brand-muted">{step.description}</p>
                 </div>
-                <div className="rounded-[18px] bg-brand-cloud px-5 py-4">
+                <div className="border-l border-brand-navy/12 pl-5">
                   <p className="text-xs font-semibold text-brand-navy">Yang Anda dapatkan dari tahap ini</p>
                   <p className="mt-2 text-sm leading-6 text-brand-muted">{step.result}</p>
                 </div>
@@ -115,11 +125,15 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-brand-navy py-16 text-white lg:py-20">
+      <section className="bg-brand-navy-dark py-12 text-white sm:py-16 lg:py-20">
         <div className="page-shell grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
-          <div>
-            <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-4xl">Selama proses, Anda tetap tahu tiga hal penting.</h2>
-            <p className="mt-4 max-w-md text-sm leading-7 text-slate-300">Kami berusaha menjaga komunikasi tetap sederhana agar Anda tidak perlu memahami istilah teknis untuk mengetahui perkembangan layanan.</p>
+          <div className="text-center lg:text-left">
+            <h2 className="mx-auto max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-4xl lg:mx-0">
+              Selama proses, Anda tetap tahu tiga hal penting.
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-slate-300 lg:mx-0">
+              Kami berusaha menjaga komunikasi tetap sederhana agar Anda tidak perlu memahami istilah teknis untuk mengetahui perkembangan layanan.
+            </p>
           </div>
           <div className="grid gap-x-8 sm:grid-cols-3">
             {duringProcess.map(([title, description], index) => (
@@ -133,11 +147,15 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="page-shell py-16 lg:py-20">
+      <section className="page-shell py-12 sm:py-16 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-14">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Hal yang dapat memengaruhi waktu pengerjaan.</h2>
-            <p className="mt-4 text-sm leading-7 text-brand-muted">Kami akan memberi perkiraan sejak awal, tetapi beberapa hal memang bergantung pada kondisi usaha dan proses di luar tim kami.</p>
+          <div className="text-center lg:text-left">
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
+              Hal yang dapat memengaruhi waktu pengerjaan.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-brand-muted">
+              Kami akan memberi perkiraan sejak awal, tetapi beberapa hal memang bergantung pada kondisi usaha dan proses di luar tim kami.
+            </p>
           </div>
           <div className="divide-y divide-brand-navy/10 border-y border-brand-navy/10">
             {notes.map((item, index) => (
@@ -150,13 +168,22 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="border-t border-brand-navy/9 bg-brand-paper py-14 lg:py-20">
-        <div className="page-shell flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+      <section className="border-t border-brand-navy/9 bg-brand-paper py-12 sm:py-14 lg:py-20">
+        <div className="page-shell flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left">
           <div>
-            <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-brand-ink">Belum tahu harus mulai dari mana?</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">Ceritakan kondisi usaha Anda terlebih dahulu. Tim kami akan membantu menentukan langkah awal yang paling relevan.</p>
+            <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
+              Belum tahu harus mulai dari mana?
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
+              Ceritakan kondisi usaha Anda terlebih dahulu. Tim kami akan membantu menentukan langkah awal yang paling relevan.
+            </p>
           </div>
-          <a href={consultationHref} target={whatsappHref ? "_blank" : undefined} rel={whatsappHref ? "noreferrer" : undefined} className="button-gold inline-flex shrink-0 items-center gap-2 px-5 py-3 text-sm font-semibold">
+          <a
+            href={consultationHref}
+            target={whatsappHref ? "_blank" : undefined}
+            rel={whatsappHref ? "noreferrer" : undefined}
+            className="button-gold inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 px-5 py-3 text-sm font-semibold sm:min-h-0 sm:w-auto"
+          >
             Mulai konsultasi <ArrowRight className="h-4 w-4" />
           </a>
         </div>

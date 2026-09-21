@@ -17,7 +17,9 @@ export default async function ContactPage() {
   const serviceOptions = services.map(({ id, title, slug }) => ({ id, title, slug }));
 
   const contacts = [
-    whatsappHref ? { label: "WhatsApp", value: `+${settings.whatsapp}`, href: whatsappHref, icon: MessageCircle } : null,
+    whatsappHref
+      ? { label: "WhatsApp", value: `+${settings.whatsapp}`, href: whatsappHref, icon: MessageCircle }
+      : null,
     settings.email ? { label: "Email", value: settings.email, href: `mailto:${settings.email}`, icon: Mail } : null,
     settings.address ? { label: "Alamat", value: settings.address, icon: MapPin } : null,
     settings.officeHours ? { label: "Jam kantor", value: settings.officeHours, icon: Timer } : null,
@@ -30,26 +32,52 @@ export default async function ContactPage() {
         description="Anda tidak perlu tahu nama layanannya terlebih dahulu. Ceritakan kondisi usaha dan tujuan Anda, lalu tim kami akan membantu mengarahkan kebutuhan yang paling sesuai."
       />
 
-      <section className="page-shell grid gap-8 py-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-10 lg:py-16">
-        <div className="grid content-start gap-3 sm:grid-cols-2 lg:grid-cols-1">
-          {contacts.map((contact) => {
-            const Icon = contact.icon;
-            const content = (
-              <div className="card-premium flex min-h-[132px] gap-4 rounded-[22px] p-5">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-navy text-white"><Icon className="h-5 w-5" /></span>
-                <div className="min-w-0">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.11em] text-brand-gold-dark">{contact.label}</p>
-                  <p className="mt-2 break-words text-sm font-semibold leading-6 text-brand-ink">{contact.value}</p>
+      <section className="page-shell grid gap-10 py-10 sm:py-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-16 lg:py-20">
+        <div className="order-2 content-start lg:order-1">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">Kontak</p>
+
+          <div className="mt-4 border-y border-brand-navy/12">
+            {contacts.map((contact) => {
+              const Icon = contact.icon;
+              const content = (
+                <div className="grid grid-cols-[34px_minmax(0,1fr)] gap-4 border-b border-brand-navy/8 py-5 last:border-b-0">
+                  <Icon className="mt-0.5 h-5 w-5 text-brand-navy" />
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.11em] text-brand-muted">
+                      {contact.label}
+                    </p>
+                    <p className="mt-2 break-words text-sm font-semibold leading-6 text-brand-ink">
+                      {contact.value}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-            return contact.href ? <a key={contact.label} href={contact.href} target={contact.href.startsWith("http") ? "_blank" : undefined} rel={contact.href.startsWith("http") ? "noreferrer" : undefined}>{content}</a> : <div key={contact.label}>{content}</div>;
-          })}
+              );
+
+              return contact.href ? (
+                <a
+                  key={contact.label}
+                  href={contact.href}
+                  target={contact.href.startsWith("http") ? "_blank" : undefined}
+                  rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
+                  className="block transition hover:bg-white/40"
+                >
+                  {content}
+                </a>
+              ) : (
+                <div key={contact.label}>{content}</div>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="overflow-hidden rounded-[26px] border border-brand-navy/10 bg-white shadow-[0_22px_60px_rgba(6,23,46,.08)]">
-          <div className="border-b border-brand-navy/10 bg-brand-navy px-6 py-5 text-white sm:px-8">
-            <p className="text-sm font-normal text-slate-200">Isi beberapa informasi singkat agar tim kami bisa memahami kebutuhan Anda sebelum menghubungi.</p>
+        <div className="order-1 lg:order-2 lg:border-l lg:border-brand-navy/14 lg:pl-12">
+          <div className="mb-5 sm:mb-6">
+            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink">
+              Mulai konsultasi
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
+              Isi beberapa informasi singkat agar tim kami bisa memahami kebutuhan Anda sebelum menghubungi.
+            </p>
           </div>
           <LeadForm services={serviceOptions} />
         </div>

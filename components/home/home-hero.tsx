@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getWhatsAppHref } from "@/lib/contact";
@@ -10,20 +9,6 @@ const fallbackProof = [
   { value: "Jelas", label: "Biaya & kebutuhan" },
   { value: "Aman", label: "Dokumen bisnis" },
 ];
-
-
-function splitHeroTitle(title: string) {
-  const words = title.trim().split(/\s+/);
-
-  if (words.length <= 3) {
-    return { lead: title, accent: "" };
-  }
-
-  return {
-    lead: words.slice(0, -2).join(" "),
-    accent: words.slice(-2).join(" "),
-  };
-}
 
 export function HomeHero({
   settings,
@@ -40,70 +25,54 @@ export function HomeHero({
   );
   const consultationHref = whatsappHref || "/kontak";
   const consultationExternal = Boolean(whatsappHref);
-  const proof = settings.stats.filter((item) => item.value.trim() && item.value.trim() !== "—").slice(0, 3);
+  const proof = settings.stats
+    .filter((item) => item.value.trim() && item.value.trim() !== "—")
+    .slice(0, 3);
   const visibleProof = proof.length ? proof : fallbackProof;
-  const title = splitHeroTitle(settings.heroTitle);
 
   return (
-    <section className="hero-v74 relative overflow-hidden border-b border-brand-navy/10 bg-[linear-gradient(180deg,#fffef9_0%,#fbf8ef_100%)]">
-      <div className="hero-v74-grid absolute inset-0" />
-      <div className="hero-v74-glow absolute left-[4%] top-[12%] h-44 w-44 rounded-full" />
-      <div className="hero-v74-architecture absolute bottom-0 left-0 top-0 hidden w-[34%] lg:block">
-        <Image src="/visuals/hero-columns.svg" alt="" fill priority className="object-contain object-left-bottom opacity-[0.78]" />
-      </div>
-      <div className="hero-v74-orbit absolute left-[14%] top-[18%] hidden h-[420px] w-[420px] rounded-full lg:block" />
-
-      <div className="page-shell relative grid gap-10 py-14 lg:grid-cols-[.95fr_1.05fr] lg:items-center lg:gap-14 lg:py-20 xl:min-h-[650px]">
-        <div className="relative max-w-[650px] pl-0 lg:pl-6 xl:pl-12">
-          <div className="absolute bottom-2 left-0 top-4 hidden w-px bg-gradient-to-b from-brand-gold/0 via-brand-gold/55 to-brand-gold/0 lg:block" />
-
-          <h1 className="max-w-[620px] text-[clamp(2.85rem,4.8vw,5rem)] font-semibold leading-[0.98] tracking-[-0.058em] text-brand-navy-dark">
-            {title.lead}
-            {title.accent ? (
-              <>
-                <br />
-                <span className="bg-[linear-gradient(180deg,#d9b53a_0%,#b98b12_100%)] bg-clip-text text-transparent">
-                  {title.accent}
-                </span>
-              </>
-            ) : null}
+    <section className="border-b border-brand-navy/10 bg-brand-surface">
+      <div className="page-shell grid gap-9 py-10 sm:py-12 lg:grid-cols-[minmax(0,.9fr)_minmax(420px,1.1fr)] lg:items-center lg:gap-16 lg:py-20 xl:min-h-[620px]">
+        <div className="mx-auto max-w-[660px] text-center lg:mx-0 lg:text-left">
+          <h1 className="mx-auto max-w-[640px] text-[clamp(2.35rem,10.5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.052em] text-brand-navy-dark lg:mx-0">
+            {settings.heroTitle}
           </h1>
 
-          <p className="mt-6 max-w-[560px] text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
+          <p className="mx-auto mt-5 max-w-[580px] text-[15px] leading-7 text-brand-muted sm:mt-6 sm:text-base sm:leading-8 lg:mx-0">
             {settings.heroDescription}
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/layanan" className="button-gold inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold">
-              Lihat layanan <ArrowRight className="h-4 w-4" />
-            </Link>
+          <div className="mt-7 grid gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center lg:justify-start sm:gap-x-5 sm:gap-y-3">
             <a
               href={consultationHref}
               target={consultationExternal ? "_blank" : undefined}
               rel={consultationExternal ? "noreferrer" : undefined}
-              className="button-outline inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:order-2 sm:min-h-0 sm:w-auto sm:bg-transparent sm:px-0 sm:py-0 sm:text-brand-navy sm:hover:bg-transparent sm:hover:text-brand-gold-dark"
             >
               Konsultasi gratis <ArrowUpRight className="h-4 w-4" />
             </a>
+            <Link
+              href="/layanan"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 border border-brand-navy/14 bg-white px-5 py-3 text-sm font-semibold text-brand-navy sm:order-1 sm:min-h-0 sm:w-auto sm:border-0 sm:bg-brand-gold sm:px-5 sm:py-3.5 sm:text-brand-navy-dark"
+            >
+              Lihat layanan <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
-          <div className="mt-10 grid max-w-[620px] gap-3 sm:grid-cols-3">
+          <div className="mx-auto mt-8 grid max-w-[560px] grid-cols-3 border-y border-brand-navy/10 sm:mt-10">
             {visibleProof.map((item) => (
               <div
                 key={item.label}
-                className="relative rounded-[18px] border border-brand-navy/10 bg-white/86 px-4 py-4 pl-5 shadow-[0_14px_32px_rgba(4,29,54,.05)] backdrop-blur-sm"
+                className="border-r border-brand-navy/10 px-2 py-3.5 first:pl-0 last:border-r-0 last:pr-0 sm:px-5 sm:py-4 lg:text-left"
               >
-                <span className="absolute bottom-4 left-0 top-4 w-[3px] rounded-r-full bg-brand-gold" />
-                <p className="text-sm font-semibold text-brand-navy-dark sm:text-base">{item.value}</p>
-                <p className="mt-1 text-[10px] font-medium text-brand-muted">{item.label}</p>
+                <p className="truncate text-sm font-semibold text-brand-navy-dark sm:text-base">{item.value}</p>
+                <p className="mt-1 text-[10px] leading-4 text-brand-muted sm:text-xs">{item.label}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="relative lg:pl-2">
-          <div className="absolute -right-14 -top-14 h-52 w-52 rounded-full bg-brand-gold/10 blur-3xl" />
-          <div className="absolute -bottom-12 -left-10 h-44 w-44 rounded-full bg-brand-bluewash/90 blur-3xl" />
+        <div className="lg:pl-2">
           <LegalQuickFinder services={services} categories={categories} />
         </div>
       </div>

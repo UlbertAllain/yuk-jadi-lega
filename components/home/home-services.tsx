@@ -27,24 +27,26 @@ export function HomeServices({
 
   return (
     <>
-      <section className="services-v863 relative overflow-hidden border-b border-brand-navy/8 py-20 lg:py-24">
-        <div className="services-v863-glow absolute -right-24 top-0 h-80 w-80 rounded-full" />
-        <div className="page-shell relative">
-          <div className="grid gap-5 lg:grid-cols-[1fr_360px] lg:items-end lg:gap-12">
-            <h2 className="section-title max-w-[760px]">{settings.servicesTitle}</h2>
+      <section className="border-b border-brand-navy/8 bg-white py-14 sm:py-16 lg:py-24">
+        <div className="page-shell">
+          <div className="grid gap-6 text-center lg:grid-cols-[1fr_360px] lg:items-end lg:gap-12 lg:text-left">
+            <h2 className="mx-auto max-w-[760px] section-title lg:mx-0">{settings.servicesTitle}</h2>
             <div>
               <p className="text-sm leading-7 text-brand-muted">{settings.servicesDescription}</p>
-              <Link href="/layanan" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy transition hover:text-brand-gold-dark">
+              <Link
+                href="/layanan"
+                className="mt-4 inline-flex items-center justify-center gap-2 text-sm font-semibold text-brand-navy transition hover:text-brand-gold-dark"
+              >
                 Lihat semua layanan <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-[1.13fr_.87fr] lg:items-stretch">
+          <div className="mt-8 grid gap-7 sm:mt-10 lg:grid-cols-[1.08fr_.92fr] lg:items-stretch">
             {spotlight ? <SpotlightService service={spotlight} /> : null}
 
             {supporting.length ? (
-              <div className="service-list-v863 overflow-hidden rounded-[26px] border border-brand-navy/10">
+              <div className="border-y border-brand-navy/12">
                 {supporting.slice(0, 4).map((service) => (
                   <ServiceRow
                     key={service.id}
@@ -58,32 +60,31 @@ export function HomeServices({
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-b border-white/10 bg-[linear-gradient(110deg,#061d36_0%,#082e53_54%,#0c426b_100%)] py-14 text-white lg:py-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(212,176,49,.10),transparent_24%)]" />
-        <div className="page-shell relative">
-          <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-center lg:gap-12">
-            <div>
-              <h2 className="max-w-[380px] text-[2rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.35rem]">
-                {settings.whyUsTitle}
-              </h2>
-              <p className="mt-4 max-w-[400px] text-sm leading-7 text-slate-300">
-                {settings.whyUsDescription}
-              </p>
-              <Link href="/kontak" className="mt-6 inline-flex items-center gap-2 rounded-[12px] bg-brand-gold px-4 py-3 text-sm font-semibold text-brand-navy-dark transition hover:bg-brand-gold-soft">
-                Konsultasi gratis <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
+      <section className="border-b border-white/10 bg-brand-navy-dark py-14 text-white sm:py-16 lg:py-20">
+        <div className="page-shell grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
+          <div className="text-center lg:text-left">
+            <h2 className="mx-auto max-w-[380px] text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.35rem] lg:mx-0">
+              {settings.whyUsTitle}
+            </h2>
+            <p className="mx-auto mt-4 max-w-[420px] text-sm leading-7 text-slate-300 lg:mx-0">
+              {settings.whyUsDescription}
+            </p>
+            <Link
+              href="/kontak"
+              className="mt-7 inline-flex items-center justify-center gap-2 text-sm font-semibold text-brand-gold-soft transition hover:text-white"
+            >
+              Konsultasi gratis <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
 
-            <div className="grid gap-x-7 gap-y-6 sm:grid-cols-2 xl:grid-cols-3">
-              {whyItems.map(([title, description], index) => (
-                <article key={title} className="relative border-b border-white/13 pb-5 pl-5 xl:min-h-[120px]">
-                  <span className="absolute bottom-5 left-0 top-0 w-px bg-gradient-to-b from-brand-gold/80 to-brand-gold/10" />
-                  <p className="text-[10px] font-semibold tabular-nums text-brand-gold-soft">0{index + 1}</p>
-                  <h3 className="mt-2 text-sm font-semibold text-white">{title}</h3>
-                  <p className="mt-2 text-[12px] leading-5 text-slate-300">{description}</p>
-                </article>
-              ))}
-            </div>
+          <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2 xl:grid-cols-3">
+            {whyItems.map(([title, description], index) => (
+              <article key={title} className="border-t border-white/18 pt-4 xl:min-h-[128px]">
+                <p className="text-[10px] font-semibold tabular-nums text-brand-gold-soft">0{index + 1}</p>
+                <h3 className="mt-3 text-sm font-semibold text-white">{title}</h3>
+                <p className="mt-2 text-[12px] leading-5 text-slate-300">{description}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -95,25 +96,30 @@ function SpotlightService({ service }: { service: Service }) {
   const bullets = (service.inclusions.length ? service.inclusions : service.benefits).slice(0, 3);
 
   return (
-    <Link href={`/layanan/${service.slug}`} className="service-feature-v863 group relative min-h-[470px] overflow-hidden rounded-[28px] border border-brand-navy/14 text-white">
+    <Link
+      href={`/layanan/${service.slug}`}
+      className="service-feature-v863 group relative min-h-[390px] sm:min-h-[430px] lg:min-h-[450px] overflow-hidden rounded-[14px] border border-brand-navy/14 text-white"
+    >
       <div className="service-feature-v863-bg absolute inset-0" />
       <div className="service-feature-v863-photo absolute inset-y-0 right-0 hidden w-[52%] md:block">
         <Image src="/visuals/service-building.svg" alt="" fill className="object-cover object-center" />
       </div>
       <div className="service-feature-v863-overlay absolute inset-0" />
 
-      <div className="relative flex h-full min-h-[470px] flex-col justify-between p-7 sm:p-8 lg:p-9">
+      <div className="relative flex h-full min-h-[390px] flex-col justify-between p-5 sm:min-h-[430px] sm:p-8 lg:min-h-[450px] lg:p-9">
         <div className="max-w-[560px]">
-          <h3 className="max-w-[500px] text-[2rem] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[2.45rem]">{service.title}</h3>
-          <p className="mt-4 max-w-[490px] text-sm leading-7 text-slate-200">{service.shortDescription}</p>
+          <h3 className="max-w-[500px] text-[1.75rem] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[2.35rem]">
+            {service.title}
+          </h3>
+          <p className="mt-4 max-w-[490px] text-sm leading-7 text-slate-200">
+            {service.shortDescription}
+          </p>
 
           {bullets.length ? (
             <ul className="mt-7 grid max-w-[560px] gap-x-6 gap-y-3 sm:grid-cols-2">
               {bullets.map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-xs leading-5 text-slate-100">
-                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-gold text-brand-navy-dark">
-                    <Check className="h-3 w-3" />
-                  </span>
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-gold-soft" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -121,17 +127,19 @@ function SpotlightService({ service }: { service: Service }) {
           ) : null}
         </div>
 
-        <div className="mt-10 flex flex-col gap-5 border-t border-white/15 pt-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mt-10 flex flex-col gap-5 border-t border-white/18 pt-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-[11px] text-slate-300">Mulai dari</p>
-            <p className="mt-1 text-2xl font-semibold text-white">{servicePriceLabel(service.startingPrice, service.priceType)}</p>
+            <p className="mt-1 text-2xl font-semibold text-white">
+              {servicePriceLabel(service.startingPrice, service.priceType)}
+            </p>
             {service.duration ? (
               <p className="mt-2 inline-flex items-center gap-1.5 text-[11px] text-slate-300">
                 <Clock3 className="h-3.5 w-3.5 text-brand-gold-soft" /> {service.duration}
               </p>
             ) : null}
           </div>
-          <span className="inline-flex w-fit items-center gap-2 rounded-[14px] bg-brand-gold px-4 py-3 text-sm font-semibold text-brand-navy-dark transition group-hover:bg-brand-gold-soft">
+          <span className="inline-flex w-fit items-center gap-2 border-b border-brand-gold pb-1 text-sm font-semibold text-white">
             Lihat detail <ArrowUpRight className="h-4 w-4" />
           </span>
         </div>
@@ -142,20 +150,26 @@ function SpotlightService({ service }: { service: Service }) {
 
 function ServiceRow({ service, categoryName }: { service: Service; categoryName: string }) {
   return (
-    <Link href={`/layanan/${service.slug}`} className="service-row-v863 group grid min-h-[128px] grid-cols-[1fr_auto] items-center gap-5 border-b border-brand-navy/8 px-5 py-5 last:border-b-0 sm:px-6">
+    <Link
+      href={`/layanan/${service.slug}`}
+      className="group grid min-h-[118px] grid-cols-[1fr_auto] items-center gap-5 border-b border-brand-navy/8 py-5 last:border-b-0"
+    >
       <div className="min-w-0">
         <p className="text-[11px] text-brand-muted">{categoryName}</p>
-        <h3 className="mt-1.5 text-lg font-semibold leading-[1.2] tracking-[-0.025em] text-brand-navy-dark sm:text-xl">{service.title}</h3>
+        <h3 className="mt-1.5 text-lg font-semibold leading-[1.2] tracking-[-0.025em] text-brand-navy-dark sm:text-xl">
+          {service.title}
+        </h3>
         <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] text-brand-muted">
           <span>
-            Mulai <strong className="font-semibold text-brand-navy-dark">{servicePriceLabel(service.startingPrice, service.priceType)}</strong>
+            Mulai{" "}
+            <strong className="font-semibold text-brand-navy-dark">
+              {servicePriceLabel(service.startingPrice, service.priceType)}
+            </strong>
           </span>
           {service.duration ? <span>{service.duration}</span> : null}
         </div>
       </div>
-      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-brand-navy/12 bg-white/70 text-brand-navy transition group-hover:border-brand-gold group-hover:bg-brand-gold group-hover:text-brand-navy-dark">
-        <ArrowUpRight className="h-4 w-4" />
-      </span>
+      <ArrowUpRight className="h-5 w-5 shrink-0 text-brand-navy transition group-hover:text-brand-gold-dark" />
     </Link>
   );
 }

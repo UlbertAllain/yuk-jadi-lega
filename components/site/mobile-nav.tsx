@@ -23,14 +23,14 @@ export function MobileNav({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative lg:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         aria-expanded={open}
         aria-controls="mobile-navigation"
         aria-label={open ? "Tutup navigasi" : "Buka navigasi"}
         onClick={() => setOpen((current) => !current)}
-        className="grid h-11 w-11 place-items-center border border-brand-navy/15 bg-brand-surface text-brand-navy"
+        className="grid h-11 w-11 place-items-center text-brand-navy"
       >
         {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </button>
@@ -38,12 +38,21 @@ export function MobileNav({
       {open ? (
         <div
           id="mobile-navigation"
-          className="surface-shadow absolute right-0 top-14 max-h-[78vh] w-[min(24rem,calc(100vw-2rem))] overflow-y-auto border border-brand-navy/10 bg-brand-surface"
+          className="fixed inset-x-0 top-[61px] z-50 max-h-[calc(100dvh-61px)] overflow-y-auto border-t border-brand-navy/10 bg-brand-surface"
         >
-          <div className="h-[3px] bg-brand-gold" />
-          <div className="p-4">
+          <div className="page-shell pb-6 pt-2">
+            <a
+              href={consultationHref}
+              target={consultationExternal ? "_blank" : undefined}
+              rel={consultationExternal ? "noreferrer" : undefined}
+              onClick={() => setOpen(false)}
+              className="my-3 flex min-h-12 items-center justify-between bg-brand-navy px-4 py-3 text-sm font-semibold text-white"
+            >
+              Konsultasi gratis <ArrowUpRight className="h-4 w-4 text-brand-gold-soft" />
+            </a>
+
             <details className="group border-y border-brand-navy/10">
-              <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-sm font-semibold text-brand-ink">
+              <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-brand-ink">
                 Layanan utama <ChevronDown className="h-4 w-4 transition group-open:rotate-180" />
               </summary>
               <div className="grid border-t border-brand-navy/8 pb-2">
@@ -52,7 +61,7 @@ export function MobileNav({
                     key={service.id}
                     href={`/layanan/${service.slug}`}
                     onClick={() => setOpen(false)}
-                    className="grid grid-cols-[30px_1fr] gap-2 border-b border-brand-navy/8 py-3 text-sm font-semibold text-slate-600 transition hover:text-brand-navy"
+                    className="grid min-h-12 grid-cols-[30px_1fr] items-center gap-2 border-b border-brand-navy/8 py-3 text-sm font-semibold text-slate-600"
                   >
                     <span className="text-[9px] font-semibold text-brand-gold-dark">
                       {String(index + 1).padStart(2, "0")}
@@ -63,7 +72,7 @@ export function MobileNav({
                 <Link
                   href="/layanan"
                   onClick={() => setOpen(false)}
-                  className="mt-2 inline-flex items-center gap-2 py-2 text-xs font-semibold text-brand-navy"
+                  className="mt-2 inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-brand-navy"
                 >
                   Semua layanan <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
@@ -71,7 +80,7 @@ export function MobileNav({
             </details>
 
             <details className="group border-b border-brand-navy/10">
-              <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-sm font-semibold text-brand-ink">
+              <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-brand-ink">
                 Kategori <ChevronDown className="h-4 w-4 transition group-open:rotate-180" />
               </summary>
               <div className="grid grid-cols-2 border-t border-brand-navy/8 pb-2">
@@ -80,7 +89,7 @@ export function MobileNav({
                     key={category.id}
                     href={`/layanan?category=${category.slug}`}
                     onClick={() => setOpen(false)}
-                    className="border-b border-brand-navy/8 py-3 pr-3 text-xs font-semibold text-slate-600 transition even:border-l even:pl-3 hover:text-brand-navy"
+                    className="min-h-14 border-b border-brand-navy/8 py-3 pr-3 text-xs font-semibold text-slate-600 even:border-l even:pl-3"
                   >
                     <span className="mb-1 block text-[9px] font-semibold text-brand-gold-dark">
                       {String(index + 1).padStart(2, "0")}
@@ -97,22 +106,12 @@ export function MobileNav({
                   key={href}
                   href={href}
                   onClick={() => setOpen(false)}
-                  className="border-b border-brand-navy/8 py-4 text-sm font-semibold text-slate-600 transition hover:text-brand-navy"
+                  className="flex min-h-12 items-center border-b border-brand-navy/8 py-3 text-sm font-semibold text-slate-600"
                 >
                   {label}
                 </Link>
               ))}
             </nav>
-
-            <a
-              href={consultationHref}
-              target={consultationExternal ? "_blank" : undefined}
-              rel={consultationExternal ? "noreferrer" : undefined}
-              onClick={() => setOpen(false)}
-              className="mt-4 flex items-center justify-between bg-brand-navy px-4 py-3.5 text-sm font-semibold text-white sm:hidden"
-            >
-              Konsultasi <ArrowUpRight className="h-4 w-4 text-brand-gold-soft" />
-            </a>
           </div>
         </div>
       ) : null}
