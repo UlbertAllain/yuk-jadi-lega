@@ -7,13 +7,19 @@ type LeadNotificationInput = {
   message: string;
 };
 
+const HTML_ESCAPE_REPLACEMENTS = [
+  ["&", "&amp;"],
+  ["<", "&lt;"],
+  [">", "&gt;"],
+  ['"', "&quot;"],
+  ["'", "&#039;"],
+] as const;
+
 function escapeHtml(value: string) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+  return HTML_ESCAPE_REPLACEMENTS.reduce(
+    (escaped, [character, entity]) => escaped.replaceAll(character, entity),
+    value,
+  );
 }
 
 export async function sendLeadNotification(input: LeadNotificationInput) {
