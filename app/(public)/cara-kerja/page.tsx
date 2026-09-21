@@ -70,7 +70,7 @@ export default async function HowItWorksPage() {
         description="Kami menjelaskan apa yang perlu disiapkan, apa yang sedang diproses, dan kapan Anda perlu mengambil tindakan berikutnya."
       />
 
-      <section className="page-shell py-16 lg:py-24">
+      <section className="page-shell py-12 sm:py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16">
           <div>
             <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">
@@ -95,7 +95,7 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="border-y border-brand-navy/9 bg-white py-16 lg:py-24">
+      <section className="border-y border-brand-navy/9 bg-white py-12 sm:py-16 lg:py-24">
         <div className="page-shell">
           <div className="max-w-2xl">
             <h2 className="section-title">Bagaimana prosesnya berjalan?</h2>
@@ -125,7 +125,7 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-brand-navy-dark py-16 text-white lg:py-20">
+      <section className="bg-brand-navy-dark py-12 text-white sm:py-16 lg:py-20">
         <div className="page-shell grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
           <div>
             <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-4xl">
@@ -147,7 +147,7 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="page-shell py-16 lg:py-20">
+      <section className="page-shell py-12 sm:py-16 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-14">
           <div>
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
@@ -168,7 +168,7 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="border-t border-brand-navy/9 bg-brand-paper py-14 lg:py-20">
+      <section className="border-t border-brand-navy/9 bg-brand-paper py-12 sm:py-14 lg:py-20">
         <div className="page-shell flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
@@ -182,7 +182,7 @@ export default async function HowItWorksPage() {
             href={consultationHref}
             target={whatsappHref ? "_blank" : undefined}
             rel={whatsappHref ? "noreferrer" : undefined}
-            className="button-gold inline-flex shrink-0 items-center gap-2 px-5 py-3 text-sm font-semibold"
+            className="button-gold inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 px-5 py-3 text-sm font-semibold sm:min-h-0 sm:w-auto"
           >
             Mulai konsultasi <ArrowRight className="h-4 w-4" />
           </a>
