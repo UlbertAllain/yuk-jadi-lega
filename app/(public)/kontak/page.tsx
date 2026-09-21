@@ -32,8 +32,8 @@ export default async function ContactPage() {
         description="Anda tidak perlu tahu nama layanannya terlebih dahulu. Ceritakan kondisi usaha dan tujuan Anda, lalu tim kami akan membantu mengarahkan kebutuhan yang paling sesuai."
       />
 
-      <section className="page-shell grid gap-12 py-14 lg:grid-cols-[.7fr_1.3fr] lg:gap-16 lg:py-20">
-        <div className="content-start">
+      <section className="page-shell grid gap-10 py-10 sm:py-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-16 lg:py-20">
+        <div className="order-2 content-start lg:order-1">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">Kontak</p>
 
           <div className="mt-4 border-y border-brand-navy/12">
@@ -70,8 +70,8 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <div className="border-t border-brand-navy/14 pt-5 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
-          <div className="mb-6">
+        <div className="order-1 lg:order-2 lg:border-l lg:border-brand-navy/14 lg:pl-12">
+          <div className="mb-5 sm:mb-6">
             <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink">
               Mulai konsultasi
             </h2>
