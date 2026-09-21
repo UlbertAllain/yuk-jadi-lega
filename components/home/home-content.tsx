@@ -24,7 +24,7 @@ export function HomeContent({
   return (
     <>
       {visibleArticles.length ? (
-        <section className="border-b border-brand-navy/8 bg-brand-surface py-20 lg:py-24">
+        <section className="border-b border-brand-navy/8 bg-brand-surface py-14 sm:py-16 lg:py-24">
           <div className="page-shell">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <h2 className="section-title">Insight</h2>
@@ -36,7 +36,7 @@ export function HomeContent({
               </Link>
             </div>
 
-            <div className="mt-10 grid gap-8 md:grid-cols-3">
+            <div className="mt-8 grid gap-8 sm:mt-10 md:grid-cols-3">
               {visibleArticles.map((article, index) => (
                 <Link key={article.id} href={`/artikel/${article.slug}`} className="group block">
                   <div className="relative aspect-[16/9] overflow-hidden rounded-[8px] bg-brand-bluewash">
@@ -81,7 +81,7 @@ export function HomeContent({
       ) : null}
 
       {faqs.length ? (
-        <section className="border-b border-brand-navy/8 bg-white py-20 lg:py-24">
+        <section className="border-b border-brand-navy/8 bg-white py-14 sm:py-16 lg:py-24">
           <div className="page-shell grid gap-10 lg:grid-cols-[330px_minmax(0,1fr)] lg:gap-16">
             <div>
               <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-brand-navy-dark sm:text-4xl">
@@ -120,7 +120,7 @@ export function HomeContent({
         </section>
       ) : null}
 
-      <section className="border-t border-brand-navy/10 bg-brand-paper py-14 lg:py-16">
+      <section className="border-t border-brand-navy/10 bg-brand-paper py-12 sm:py-14 lg:py-16">
         <div className="page-shell grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
           <div>
             <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
@@ -135,7 +135,7 @@ export function HomeContent({
               href={consultationHref}
               target={consultationExternal ? "_blank" : undefined}
               rel={consultationExternal ? "noreferrer" : undefined}
-              className="inline-flex items-center gap-2 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:min-h-0 sm:w-auto"
             >
               Konsultasi sekarang <ArrowRight className="h-4 w-4" />
             </a>
