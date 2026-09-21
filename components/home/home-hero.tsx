@@ -33,16 +33,16 @@ export function HomeHero({
   return (
     <section className="border-b border-brand-navy/10 bg-brand-surface">
       <div className="page-shell grid gap-9 py-10 sm:py-12 lg:grid-cols-[minmax(0,.9fr)_minmax(420px,1.1fr)] lg:items-center lg:gap-16 lg:py-20 xl:min-h-[620px]">
-        <div className="max-w-[660px]">
-          <h1 className="max-w-[640px] text-[clamp(2.35rem,10.5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.052em] text-brand-navy-dark">
+        <div className="mx-auto max-w-[660px] text-center lg:mx-0 lg:text-left">
+          <h1 className="mx-auto max-w-[640px] text-[clamp(2.35rem,10.5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.052em] text-brand-navy-dark lg:mx-0">
             {settings.heroTitle}
           </h1>
 
-          <p className="mt-5 max-w-[580px] text-[15px] leading-7 text-brand-muted sm:mt-6 sm:text-base sm:leading-8">
+          <p className="mx-auto mt-5 max-w-[580px] text-[15px] leading-7 text-brand-muted sm:mt-6 sm:text-base sm:leading-8 lg:mx-0">
             {settings.heroDescription}
           </p>
 
-          <div className="mt-7 grid gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-3">
+          <div className="mt-7 grid gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center lg:justify-start sm:gap-x-5 sm:gap-y-3">
             <a
               href={consultationHref}
               target={consultationExternal ? "_blank" : undefined}
@@ -59,11 +59,11 @@ export function HomeHero({
             </Link>
           </div>
 
-          <div className="mt-8 grid grid-cols-3 border-y border-brand-navy/10 sm:mt-10">
+          <div className="mx-auto mt-8 grid max-w-[560px] grid-cols-3 border-y border-brand-navy/10 sm:mt-10">
             {visibleProof.map((item) => (
               <div
                 key={item.label}
-                className="border-r border-brand-navy/10 px-2 py-3.5 first:pl-0 last:border-r-0 last:pr-0 sm:px-5 sm:py-4"
+                className="border-r border-brand-navy/10 px-2 py-3.5 first:pl-0 last:border-r-0 last:pr-0 sm:px-5 sm:py-4 lg:text-left"
               >
                 <p className="truncate text-sm font-semibold text-brand-navy-dark sm:text-base">{item.value}</p>
                 <p className="mt-1 text-[10px] leading-4 text-brand-muted sm:text-xs">{item.label}</p>
