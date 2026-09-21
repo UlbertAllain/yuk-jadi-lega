@@ -56,7 +56,7 @@ export function HomeTrust({
             <div className="mt-8 grid gap-7 sm:mt-10 sm:gap-8 lg:grid-cols-3">
               {visibleTestimonials.map((testimonial) => (
                 <article key={testimonial.id} className="border-t border-brand-navy/16 pt-5 text-center lg:text-left">
-                  <div className="flex items-center gap-1 text-brand-gold">
+                  <div className="flex items-center justify-center gap-1 text-brand-gold lg:justify-start">
                     {Array.from({
                       length: Math.max(1, Math.min(5, testimonial.rating || 5)),
                     }).map((_, starIndex) => (
