@@ -45,14 +45,14 @@ export default async function ArticlesPage() {
               )}
             </div>
 
-            <div>
+            <div className="text-center lg:text-left">
               <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
                 {leadArticle.category}
               </p>
               <h2 className="mt-4 text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">
                 {leadArticle.title}
               </h2>
-              <p className="mt-5 text-[15px] leading-7 text-brand-muted">{leadArticle.excerpt}</p>
+              <p className="mx-auto mt-5 max-w-xl text-[15px] leading-7 text-brand-muted lg:mx-0">{leadArticle.excerpt}</p>
               <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy">
                 Baca artikel <ArrowUpRight className="h-4 w-4" />
               </span>
