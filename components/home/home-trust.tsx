@@ -18,11 +18,11 @@ export function HomeTrust({
     <section className="border-b border-brand-navy/8 bg-brand-surface">
       {visiblePartners.length ? (
         <div className="border-b border-brand-navy/8">
-          <div className="page-shell py-14 lg:py-16">
+          <div className="page-shell py-10 sm:py-12 lg:py-16">
             <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-brand-muted">
               Dipercaya berbagai bisnis dan organisasi
             </p>
-            <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-7 sm:grid-cols-3 lg:grid-cols-5">
+            <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 sm:mt-8 sm:gap-x-8 sm:gap-y-7 sm:grid-cols-3 lg:grid-cols-5">
               {visiblePartners.map((partner) => (
                 <div key={partner.id} className="flex min-h-12 items-center justify-center">
                   {partner.logoUrl ? (
@@ -44,7 +44,7 @@ export function HomeTrust({
       ) : null}
 
       {visibleTestimonials.length ? (
-        <div className="py-20 lg:py-24">
+        <div className="py-14 sm:py-16 lg:py-24">
           <div className="page-shell">
             <div className="grid gap-4 md:grid-cols-[1fr_420px] md:items-end md:gap-10">
               <h2 className="section-title max-w-2xl">Apa kata klien kami?</h2>
@@ -53,7 +53,7 @@ export function HomeTrust({
               </p>
             </div>
 
-            <div className="mt-10 grid gap-8 lg:grid-cols-3">
+            <div className="mt-8 grid gap-7 sm:mt-10 sm:gap-8 lg:grid-cols-3">
               {visibleTestimonials.map((testimonial) => (
                 <article key={testimonial.id} className="border-t border-brand-navy/16 pt-5">
                   <div className="flex items-center gap-1 text-brand-gold">
@@ -63,7 +63,7 @@ export function HomeTrust({
                       <Star key={starIndex} className="h-3.5 w-3.5 fill-current" />
                     ))}
                   </div>
-                  <blockquote className="mt-5 min-h-[110px] text-sm leading-7 text-brand-ink">
+                  <blockquote className="mt-4 text-sm leading-7 text-brand-ink sm:mt-5 sm:min-h-[110px]">
                     “{testimonial.quote}”
                   </blockquote>
                   <div className="mt-6 flex items-center gap-3">
