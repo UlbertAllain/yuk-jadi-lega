@@ -111,14 +111,14 @@ export default async function ArticlePage({
             </Link>
 
             <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_.5fr] lg:items-end lg:gap-16">
-              <div>
+              <div className="text-center lg:text-left">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
                   {article.category}
                 </p>
-                <h1 className="mt-5 max-w-5xl text-[clamp(2.8rem,5vw,5rem)] font-semibold leading-[.96] tracking-[-0.06em] text-brand-ink">
+                <h1 className="mx-auto mt-5 max-w-5xl text-[clamp(2.8rem,5vw,5rem)] font-semibold leading-[.96] tracking-[-0.06em] text-brand-ink lg:mx-0">
                   {article.title}
                 </h1>
-                <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{article.excerpt}</p>
+                <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600 lg:mx-0">{article.excerpt}</p>
               </div>
 
               <div className="border-t border-brand-navy/12 pt-5 lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0">
