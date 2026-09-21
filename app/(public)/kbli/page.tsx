@@ -41,23 +41,31 @@ export default function KbliPage() {
       />
 
       <section className="border-b border-brand-navy/8 bg-white">
-        <div className="page-shell grid gap-8 py-12 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-14 lg:py-14">
+        <div className="page-shell grid gap-10 py-12 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-14 lg:py-16">
           <div>
-            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">Apa itu KBLI dan kenapa perlu dipilih dengan tepat?</h2>
+            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
+              Apa itu KBLI dan kenapa perlu dipilih dengan tepat?
+            </h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-brand-muted">
               KBLI membantu menjelaskan bidang kegiatan usaha Anda saat mengurus legalitas dan perizinan. Pemilihan kode yang tepat membuat kegiatan usaha yang didaftarkan lebih sesuai dengan bisnis yang benar-benar dijalankan.
             </p>
             <p className="mt-3 max-w-xl text-sm leading-7 text-brand-muted">
               Jika usaha Anda menjalankan beberapa aktivitas, Anda dapat mencari masing-masing kegiatan yang relevan dan menentukan mana yang paling sesuai dengan kebutuhan usaha.
             </p>
-            <Link href="/kontak" className="mt-6 inline-flex items-center text-sm font-semibold text-brand-navy underline decoration-brand-gold/60 underline-offset-4 transition hover:text-brand-gold-dark">
+            <Link
+              href="/kontak"
+              className="mt-6 inline-flex items-center text-sm font-semibold text-brand-navy underline decoration-brand-gold/60 underline-offset-4 transition hover:text-brand-gold-dark"
+            >
               Masih bingung memilih KBLI? Konsultasikan dengan kami.
             </Link>
           </div>
 
-          <div className="grid gap-3">
+          <div className="divide-y divide-brand-navy/10 border-y border-brand-navy/12">
             {educationSteps.map((step) => (
-              <article key={step.number} className="grid gap-4 rounded-[20px] border border-brand-navy/10 bg-brand-cloud/70 p-5 sm:grid-cols-[52px_minmax(0,1fr)] sm:items-start">
+              <article
+                key={step.number}
+                className="grid gap-4 py-5 sm:grid-cols-[52px_minmax(0,1fr)] sm:items-start sm:py-6"
+              >
                 <span className="text-sm font-semibold tabular-nums text-brand-gold-dark">{step.number}</span>
                 <div>
                   <h3 className="text-base font-semibold text-brand-ink">{step.title}</h3>
