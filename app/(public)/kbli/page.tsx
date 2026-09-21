@@ -41,7 +41,7 @@ export default function KbliPage() {
       />
 
       <section className="border-b border-brand-navy/8 bg-white">
-        <div className="page-shell grid gap-10 py-12 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-14 lg:py-16">
+        <div className="page-shell grid gap-8 py-10 sm:gap-10 sm:py-12 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-14 lg:py-16">
           <div>
             <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
               Apa itu KBLI dan kenapa perlu dipilih dengan tepat?
@@ -77,7 +77,7 @@ export default function KbliPage() {
         </div>
       </section>
 
-      <section className="page-shell py-10 lg:py-14">
+      <section className="page-shell py-8 sm:py-10 lg:py-14">
         <KbliBrowser />
       </section>
     </main>
