@@ -99,23 +99,36 @@ export default async function ArticlePage({
   return (
     <main className="bg-brand-surface">
       <JsonLd data={[breadcrumbJsonLd, articleJsonLd]} />
+
       <article>
-        <header className="legal-grid-bg border-b border-brand-navy/10">
+        <header className="border-b border-brand-navy/10 bg-white">
           <div className="page-shell py-14 lg:py-20">
-            <Link href="/artikel" className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 transition hover:text-brand-navy">
+            <Link
+              href="/artikel"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 transition hover:text-brand-navy"
+            >
               <ArrowLeft className="h-4 w-4" /> Semua artikel
             </Link>
 
             <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_.5fr] lg:items-end lg:gap-16">
               <div>
-                <p className="eyebrow">{article.category}</p>
-                <h1 className="mt-6 max-w-5xl text-[clamp(2.8rem,5vw,5rem)] font-semibold leading-[.96] tracking-[-0.06em] text-brand-ink">{article.title}</h1>
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
+                  {article.category}
+                </p>
+                <h1 className="mt-5 max-w-5xl text-[clamp(2.8rem,5vw,5rem)] font-semibold leading-[.96] tracking-[-0.06em] text-brand-ink">
+                  {article.title}
+                </h1>
                 <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{article.excerpt}</p>
               </div>
-              <div className="border-l-2 border-brand-gold pl-5">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-400">Diterbitkan</p>
+
+              <div className="border-t border-brand-navy/12 pt-5 lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-400">
+                  Diterbitkan
+                </p>
                 <p className="mt-2 text-sm font-semibold text-brand-ink">{formatDate(article.publishedAt)}</p>
-                <p className="mt-4 text-xs leading-6 text-slate-500">Artikel ini membantu Anda memahami topik dasarnya sebelum menentukan langkah yang paling sesuai untuk bisnis.</p>
+                <p className="mt-4 text-xs leading-6 text-slate-500">
+                  Artikel ini membantu Anda memahami topik dasarnya sebelum menentukan langkah yang paling sesuai untuk bisnis.
+                </p>
               </div>
             </div>
           </div>
@@ -130,20 +143,27 @@ export default async function ArticlePage({
         <div className="page-shell grid gap-10 py-16 lg:grid-cols-[220px_minmax(0,760px)] lg:justify-center lg:gap-14 lg:py-20">
           <aside className="hidden lg:block">
             <div className="sticky top-28 border-t border-brand-navy/14 py-5">
-              <p className="text-xs leading-6 text-slate-500">Artikel ini bersifat sebagai panduan umum. Jika kondisi usaha Anda berbeda atau lebih kompleks, konsultasikan detailnya sebelum mengambil keputusan.</p>
+              <p className="text-xs leading-6 text-slate-500">
+                Artikel ini bersifat sebagai panduan umum. Jika kondisi usaha Anda berbeda atau lebih kompleks, konsultasikan detailnya sebelum mengambil keputusan.
+              </p>
             </div>
           </aside>
           <div className="whitespace-pre-line text-[1.05rem] leading-9 text-slate-700">{article.content}</div>
         </div>
       </article>
 
-      <section className="bg-brand-navy py-16 text-white lg:py-20">
+      <section className="bg-brand-navy-dark py-16 text-white lg:py-20">
         <div className="page-shell flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <h2 className="max-w-2xl text-3xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-4xl">Ada kondisi bisnis yang ingin Anda pastikan?</h2>
-          </div>
-          <a href={consultationHref} target={whatsappHref ? "_blank" : undefined} rel={whatsappHref ? "noreferrer" : undefined} className="inline-flex items-center gap-3 bg-white px-6 py-3 text-sm font-semibold text-brand-navy">
-            Konsultasi <ArrowRight className="h-4 w-4 text-brand-gold-dark" />
+          <h2 className="max-w-2xl text-3xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-4xl">
+            Ada kondisi bisnis yang ingin Anda pastikan?
+          </h2>
+          <a
+            href={consultationHref}
+            target={whatsappHref ? "_blank" : undefined}
+            rel={whatsappHref ? "noreferrer" : undefined}
+            className="inline-flex items-center gap-3 text-sm font-semibold text-white hover:text-brand-gold-soft"
+          >
+            Konsultasi <ArrowRight className="h-4 w-4 text-brand-gold-soft" />
           </a>
         </div>
       </section>
