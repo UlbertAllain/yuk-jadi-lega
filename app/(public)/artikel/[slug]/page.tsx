@@ -152,16 +152,16 @@ export default async function ArticlePage({
         </div>
       </article>
 
-      <section className="bg-brand-navy-dark py-16 text-white lg:py-20">
+      <section className="border-t border-brand-navy/10 bg-brand-paper py-16 lg:py-20">
         <div className="page-shell flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
-          <h2 className="max-w-2xl text-3xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-4xl">
+          <h2 className="max-w-2xl text-3xl font-semibold leading-[1.05] tracking-[-0.05em] text-brand-ink sm:text-4xl">
             Ada kondisi bisnis yang ingin Anda pastikan?
           </h2>
           <a
             href={consultationHref}
             target={whatsappHref ? "_blank" : undefined}
             rel={whatsappHref ? "noreferrer" : undefined}
-            className="inline-flex items-center gap-3 text-sm font-semibold text-white hover:text-brand-gold-soft"
+            className="inline-flex items-center gap-3 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
           >
             Konsultasi <ArrowRight className="h-4 w-4 text-brand-gold-soft" />
           </a>
