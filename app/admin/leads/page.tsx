@@ -111,6 +111,7 @@ export default function LeadsAdminPage() {
                     </td>
                     <td className="px-5 py-4">
                       <select
+                        aria-label={`Status konsultasi ${lead.name}`}
                         value={lead.status}
                         onChange={(event) =>
                           void changeStatus(
