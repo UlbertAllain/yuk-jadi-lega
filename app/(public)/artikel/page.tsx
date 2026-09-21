@@ -27,11 +27,11 @@ export default async function ArticlesPage() {
         }
       />
 
-      <section className="page-shell py-14 lg:py-20">
+      <section className="page-shell py-10 sm:py-14 lg:py-20">
         {leadArticle ? (
           <Link
             href={`/artikel/${leadArticle.slug}`}
-            className="group grid gap-8 border-y border-brand-navy/12 py-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-12"
+            className="group grid gap-6 border-y border-brand-navy/12 py-6 sm:gap-8 sm:py-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-12"
           >
             <div className="relative aspect-[16/10] overflow-hidden rounded-[8px] bg-brand-paper lg:aspect-[4/3]">
               {leadArticle.coverImageUrl ? (
@@ -61,7 +61,7 @@ export default async function ArticlesPage() {
         ) : null}
 
         {restArticles.length ? (
-          <div className="mt-10 grid gap-x-8 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-8 grid gap-x-8 gap-y-8 sm:mt-10 sm:gap-y-10 md:grid-cols-2 xl:grid-cols-3">
             {restArticles.map((article, index) => (
               <Link key={article.id} href={`/artikel/${article.slug}`} className="group block">
                 <div className="relative aspect-[16/9] overflow-hidden rounded-[8px] bg-brand-paper">
