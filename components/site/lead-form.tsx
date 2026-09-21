@@ -98,7 +98,7 @@ export function LeadForm({
   }
 
   return (
-    <form onSubmit={submit} className="relative bg-white p-6 sm:p-8">
+    <form onSubmit={submit} className="relative bg-white p-0 sm:p-8">
       <div className="pointer-events-none absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
         <label>
           Website
@@ -111,7 +111,7 @@ export function LeadForm({
         </label>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
         <FieldLabel label="Nama lengkap">
           <input
             value={name}
@@ -167,7 +167,7 @@ export function LeadForm({
         </FieldLabel>
       </div>
 
-      <label className="mt-5 grid gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-brand-ink">
+      <label className="mt-4 grid gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-brand-ink sm:mt-5">
         Ceritakan kebutuhan Anda
         <textarea
           value={message}
@@ -191,14 +191,14 @@ export function LeadForm({
         </p>
       ) : null}
 
-      <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-brand-navy/10 pt-6">
+      <div className="mt-6 flex flex-col gap-4 border-t border-brand-navy/10 pt-5 sm:mt-7 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:pt-6">
         <p className="max-w-sm text-[10px] leading-5 text-slate-400">
           Dengan mengirim form, Anda menyetujui informasi awal digunakan untuk menindaklanjuti konsultasi.
         </p>
         <button
           type="submit"
           disabled={state === "loading"}
-          className="inline-flex h-12 items-center gap-3 bg-brand-navy px-6 text-sm font-semibold text-white transition hover:bg-brand-navy-dark disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-12 w-full items-center justify-center gap-3 bg-brand-navy px-6 text-sm font-semibold text-white transition hover:bg-brand-navy-dark disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
           {state === "loading" ? "Mengirim..." : "Kirim Konsultasi"}
           <ArrowRight className="h-4 w-4 text-brand-gold-soft" />
