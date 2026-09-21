@@ -120,13 +120,13 @@ export function HomeContent({
         </section>
       ) : null}
 
-      <section className="bg-brand-navy-dark py-14 text-white lg:py-16">
+      <section className="border-t border-brand-navy/10 bg-brand-paper py-14 lg:py-16">
         <div className="page-shell grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
           <div>
-            <h2 className="text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
               {settings.ctaTitle}
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-300">
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
               {settings.ctaDescription}
             </p>
           </div>
@@ -135,13 +135,13 @@ export function HomeContent({
               href={consultationHref}
               target={consultationExternal ? "_blank" : undefined}
               rel={consultationExternal ? "noreferrer" : undefined}
-              className="button-gold inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold"
+              className="inline-flex items-center gap-2 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
             >
               Konsultasi sekarang <ArrowRight className="h-4 w-4" />
             </a>
             <Link
               href="/layanan"
-              className="text-sm font-semibold text-white transition hover:text-brand-gold-soft"
+              className="text-sm font-semibold text-brand-navy transition hover:text-brand-gold-dark"
             >
               Lihat layanan
             </Link>
