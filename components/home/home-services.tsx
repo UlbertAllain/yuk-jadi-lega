@@ -27,7 +27,7 @@ export function HomeServices({
 
   return (
     <>
-      <section className="border-b border-brand-navy/8 bg-white py-20 lg:py-24">
+      <section className="border-b border-brand-navy/8 bg-white py-14 sm:py-16 lg:py-24">
         <div className="page-shell">
           <div className="grid gap-6 lg:grid-cols-[1fr_360px] lg:items-end lg:gap-12">
             <h2 className="section-title max-w-[760px]">{settings.servicesTitle}</h2>
@@ -42,7 +42,7 @@ export function HomeServices({
             </div>
           </div>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-[1.08fr_.92fr] lg:items-stretch">
+          <div className="mt-8 grid gap-7 sm:mt-10 lg:grid-cols-[1.08fr_.92fr] lg:items-stretch">
             {spotlight ? <SpotlightService service={spotlight} /> : null}
 
             {supporting.length ? (
@@ -60,10 +60,10 @@ export function HomeServices({
         </div>
       </section>
 
-      <section className="border-b border-white/10 bg-brand-navy-dark py-16 text-white lg:py-20">
+      <section className="border-b border-white/10 bg-brand-navy-dark py-14 text-white sm:py-16 lg:py-20">
         <div className="page-shell grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
           <div>
-            <h2 className="max-w-[380px] text-[2rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.35rem]">
+            <h2 className="max-w-[380px] text-[2rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white ">
               {settings.whyUsTitle}
             </h2>
             <p className="mt-4 max-w-[420px] text-sm leading-7 text-slate-300">
@@ -98,7 +98,7 @@ function SpotlightService({ service }: { service: Service }) {
   return (
     <Link
       href={`/layanan/${service.slug}`}
-      className="service-feature-v863 group relative min-h-[450px] overflow-hidden rounded-[14px] border border-brand-navy/14 text-white"
+      className="service-feature-v863 group relative min-h-[390px] sm:min-h-[430px] lg:min-h-[450px] overflow-hidden rounded-[14px] border border-brand-navy/14 text-white"
     >
       <div className="service-feature-v863-bg absolute inset-0" />
       <div className="service-feature-v863-photo absolute inset-y-0 right-0 hidden w-[52%] md:block">
@@ -106,9 +106,9 @@ function SpotlightService({ service }: { service: Service }) {
       </div>
       <div className="service-feature-v863-overlay absolute inset-0" />
 
-      <div className="relative flex h-full min-h-[450px] flex-col justify-between p-7 sm:p-8 lg:p-9">
+      <div className="relative flex h-full min-h-[390px] flex-col justify-between p-5 sm:min-h-[430px] sm:p-8 lg:min-h-[450px] lg:p-9">
         <div className="max-w-[560px]">
-          <h3 className="max-w-[500px] text-[2rem] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[2.35rem]">
+          <h3 className="max-w-[500px] text-[1.75rem] sm:text-[2.35rem] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[2.35rem]">
             {service.title}
           </h3>
           <p className="mt-4 max-w-[490px] text-sm leading-7 text-slate-200">
