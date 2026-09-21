@@ -42,14 +42,14 @@ export default function KbliPage() {
 
       <section className="border-b border-brand-navy/8 bg-white">
         <div className="page-shell grid gap-8 py-10 sm:gap-10 sm:py-12 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-14 lg:py-16">
-          <div>
+          <div className="text-center lg:text-left">
             <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
               Apa itu KBLI dan kenapa perlu dipilih dengan tepat?
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-brand-muted">
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-brand-muted lg:mx-0">
               KBLI membantu menjelaskan bidang kegiatan usaha Anda saat mengurus legalitas dan perizinan. Pemilihan kode yang tepat membuat kegiatan usaha yang didaftarkan lebih sesuai dengan bisnis yang benar-benar dijalankan.
             </p>
-            <p className="mt-3 max-w-xl text-sm leading-7 text-brand-muted">
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-brand-muted lg:mx-0">
               Jika usaha Anda menjalankan beberapa aktivitas, Anda dapat mencari masing-masing kegiatan yang relevan dan menentukan mana yang paling sesuai dengan kebutuhan usaha.
             </p>
             <Link
