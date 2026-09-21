@@ -54,11 +54,11 @@ export default async function AboutPage() {
 
       <section className="page-shell py-12 sm:py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16">
-          <div>
-            <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">
+          <div className="text-center lg:text-left">
+            <h2 className="mx-auto max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl lg:mx-0">
               Kami membantu Anda memahami apa yang perlu dilakukan, bukan sekadar mengurus dokumen.
             </h2>
-            <p className="mt-5 max-w-lg text-sm leading-7 text-brand-muted">
+            <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-brand-muted lg:mx-0">
               Banyak pemilik usaha sudah tahu tujuan bisnisnya, tetapi belum tentu tahu dokumen, izin, atau proses legal apa yang perlu disiapkan. Di situlah kami membantu: memetakan kebutuhan terlebih dahulu, lalu menjelaskan langkah yang paling relevan untuk kondisi usaha Anda.
             </p>
           </div>
@@ -80,10 +80,10 @@ export default async function AboutPage() {
       <section className="bg-brand-navy-dark py-12 text-white sm:py-16 lg:py-20">
         <div className="page-shell grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
           <div>
-            <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-4xl">
+            <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-4xl lg:mx-0">
               Kebutuhan legal yang bisa kami bantu.
             </h2>
-            <p className="mt-4 max-w-md text-sm leading-7 text-slate-300">
+            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-slate-300 lg:mx-0">
               Anda tidak harus hafal nama layanannya. Ceritakan kegiatan usaha dan tujuan yang ingin dicapai, lalu tim membantu mengarahkan kebutuhan yang paling sesuai.
             </p>
             <Link href="/layanan" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-gold-soft hover:text-white">
@@ -105,11 +105,11 @@ export default async function AboutPage() {
 
       <section className="page-shell py-12 sm:py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-14">
-          <div>
+          <div className="text-center lg:text-left">
             <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">
               Cara kami mendampingi klien.
             </h2>
-            <p className="mt-4 max-w-md text-sm leading-7 text-brand-muted">
+            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-brand-muted lg:mx-0">
               Tujuannya sederhana: membuat Anda tetap paham apa yang sedang terjadi selama proses berjalan.
             </p>
           </div>
@@ -129,9 +129,9 @@ export default async function AboutPage() {
       {team.length ? (
         <section className="border-y border-brand-navy/9 bg-white py-12 sm:py-16 lg:py-24">
           <div className="page-shell">
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-14">
+            <div className="grid gap-6 text-center lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-14 lg:text-left">
               <h2 className="section-title">Tim yang mendampingi proses Anda.</h2>
-              <p className="section-copy">
+              <p className="mx-auto max-w-md section-copy lg:mx-0">
                 Di balik setiap konsultasi dan proses layanan, ada tim yang membantu memahami kebutuhan bisnis Anda.
               </p>
             </div>
@@ -161,7 +161,7 @@ export default async function AboutPage() {
       ) : null}
 
       <section className="border-t border-brand-navy/9 bg-brand-paper py-12 sm:py-14 lg:py-20">
-        <div className="page-shell flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div className="page-shell flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left">
           <div>
             <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
               Belum yakin harus mulai dari layanan yang mana?
