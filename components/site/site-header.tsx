@@ -51,10 +51,10 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b border-brand-navy/10 bg-white">
-      <div className="page-shell flex h-[70px] items-center justify-between">
+      <div className="page-shell flex h-[60px] items-center justify-between lg:h-[70px]">
         <Link href="/" className="flex items-center gap-2.5" aria-label="Yuk Jadi Legal">
-          <BrandMark frameClassName="h-10 w-10 rounded-[8px]" />
-          <span className="text-[14px] font-semibold tracking-[-0.02em] text-brand-navy-dark">
+          <BrandMark frameClassName="h-9 w-9 rounded-[8px] lg:h-10 lg:w-10" />
+          <span className="text-[13px] font-semibold tracking-[-0.02em] text-brand-navy-dark sm:text-[14px]">
             Yuk Jadi <span className="text-brand-gold-dark">Legal</span>
           </span>
         </Link>
