@@ -28,10 +28,10 @@ export function HomeProcess() {
   return (
     <section className="border-b border-brand-navy/8 bg-white py-12 sm:py-16 lg:py-20">
       <div className="page-shell">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left">
           <div>
             <h2 className="section-title">Bagaimana prosesnya?</h2>
-            <p className="mt-3 max-w-xl text-sm leading-7 text-brand-muted">
+            <p className="mx-auto mt-3 max-w-xl text-sm md:mx-0 leading-7 text-brand-muted">
               Empat langkah sederhana dari konsultasi sampai dokumen siap digunakan.
             </p>
           </div>
@@ -43,9 +43,9 @@ export function HomeProcess() {
           </Link>
         </div>
 
-        <div className="mt-8 grid gap-x-6 gap-y-6 sm:mt-10 sm:gap-x-8 sm:gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-x-6 gap-y-6 text-center sm:mt-10 sm:gap-x-8 sm:gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
-            <article key={step.number} className="border-t border-brand-navy/16 pt-5">
+            <article key={step.number} className="border-t border-brand-navy/16 pt-5 sm:text-left lg:text-center">
               <p className="text-xs font-semibold tabular-nums text-brand-gold-dark">{step.number}</p>
               <h3 className="mt-3 text-lg font-semibold text-brand-navy-dark sm:mt-5">{step.title}</h3>
               <p className="mt-2 text-sm leading-6 text-brand-muted">{step.description}</p>
