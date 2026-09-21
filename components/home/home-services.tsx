@@ -63,7 +63,7 @@ export function HomeServices({
       <section className="border-b border-white/10 bg-brand-navy-dark py-14 text-white sm:py-16 lg:py-20">
         <div className="page-shell grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
           <div>
-            <h2 className="max-w-[380px] text-[2rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white ">
+            <h2 className="max-w-[380px] text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.35rem]">
               {settings.whyUsTitle}
             </h2>
             <p className="mt-4 max-w-[420px] text-sm leading-7 text-slate-300">
@@ -108,7 +108,7 @@ function SpotlightService({ service }: { service: Service }) {
 
       <div className="relative flex h-full min-h-[390px] flex-col justify-between p-5 sm:min-h-[430px] sm:p-8 lg:min-h-[450px] lg:p-9">
         <div className="max-w-[560px]">
-          <h3 className="max-w-[500px] text-[1.75rem] sm:text-[2.35rem] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[2.35rem]">
+          <h3 className="max-w-[500px] text-[1.75rem] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[2.35rem]">
             {service.title}
           </h3>
           <p className="mt-4 max-w-[490px] text-sm leading-7 text-slate-200">
