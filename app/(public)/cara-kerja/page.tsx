@@ -72,11 +72,11 @@ export default async function HowItWorksPage() {
 
       <section className="page-shell py-12 sm:py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16">
-          <div>
-            <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl">
+          <div className="text-center lg:text-left">
+            <h2 className="mx-auto max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl lg:mx-0">
               Sebelum mulai, Anda tidak perlu menyiapkan semuanya sendiri.
             </h2>
-            <p className="mt-5 max-w-md text-sm leading-7 text-brand-muted">
+            <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-brand-muted lg:mx-0">
               Konsultasi awal justru digunakan untuk membantu mengetahui apa yang sudah siap dan apa yang masih perlu dilengkapi.
             </p>
           </div>
@@ -97,9 +97,9 @@ export default async function HowItWorksPage() {
 
       <section className="border-y border-brand-navy/9 bg-white py-12 sm:py-16 lg:py-24">
         <div className="page-shell">
-          <div className="max-w-2xl">
+          <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
             <h2 className="section-title">Bagaimana prosesnya berjalan?</h2>
-            <p className="mt-4 text-sm leading-7 text-brand-muted">
+            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-brand-muted lg:mx-0">
               Setiap layanan bisa memiliki detail yang berbeda, tetapi alur kerjanya tetap mengikuti empat tahap utama berikut.
             </p>
           </div>
@@ -127,11 +127,11 @@ export default async function HowItWorksPage() {
 
       <section className="bg-brand-navy-dark py-12 text-white sm:py-16 lg:py-20">
         <div className="page-shell grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
-          <div>
-            <h2 className="max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-4xl">
+          <div className="text-center lg:text-left">
+            <h2 className="mx-auto max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-4xl lg:mx-0">
               Selama proses, Anda tetap tahu tiga hal penting.
             </h2>
-            <p className="mt-4 max-w-md text-sm leading-7 text-slate-300">
+            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-slate-300 lg:mx-0">
               Kami berusaha menjaga komunikasi tetap sederhana agar Anda tidak perlu memahami istilah teknis untuk mengetahui perkembangan layanan.
             </p>
           </div>
@@ -149,7 +149,7 @@ export default async function HowItWorksPage() {
 
       <section className="page-shell py-12 sm:py-16 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-14">
-          <div>
+          <div className="text-center lg:text-left">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
               Hal yang dapat memengaruhi waktu pengerjaan.
             </h2>
@@ -169,7 +169,7 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="border-t border-brand-navy/9 bg-brand-paper py-12 sm:py-14 lg:py-20">
-        <div className="page-shell flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div className="page-shell flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left">
           <div>
             <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
               Belum tahu harus mulai dari mana?
