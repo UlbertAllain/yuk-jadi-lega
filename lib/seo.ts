@@ -76,33 +76,27 @@ export function createPageMetadata({
       images: [imageUrl],
     },
   };
-
-  if (type === "article") {
-    return {
-      ...baseMetadata,
-      openGraph: {
-        type: "article",
-        locale: "id_ID",
-        siteName: "Yuk Jadi Legal",
-        url: canonicalUrl,
-        title,
-        description,
-        images: [socialImage],
-        publishedTime,
-      },
-    };
-  }
+  const openGraphBase = {
+    locale: "id_ID",
+    siteName: "Yuk Jadi Legal",
+    url: canonicalUrl,
+    title,
+    description,
+    images: [socialImage],
+  };
 
   return {
     ...baseMetadata,
-    openGraph: {
-      type: "website",
-      locale: "id_ID",
-      siteName: "Yuk Jadi Legal",
-      url: canonicalUrl,
-      title,
-      description,
-      images: [socialImage],
-    },
+    openGraph:
+      type === "article"
+        ? {
+            ...openGraphBase,
+            type: "article",
+            publishedTime,
+          }
+        : {
+            ...openGraphBase,
+            type: "website",
+          },
   };
 }
