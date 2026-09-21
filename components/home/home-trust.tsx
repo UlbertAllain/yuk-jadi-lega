@@ -46,16 +46,16 @@ export function HomeTrust({
       {visibleTestimonials.length ? (
         <div className="py-14 sm:py-16 lg:py-24">
           <div className="page-shell">
-            <div className="grid gap-4 md:grid-cols-[1fr_420px] md:items-end md:gap-10">
-              <h2 className="section-title max-w-2xl">Apa kata klien kami?</h2>
-              <p className="text-sm leading-7 text-brand-muted">
+            <div className="grid gap-4 text-center md:grid-cols-[1fr_420px] md:items-end md:gap-10 md:text-left">
+              <h2 className="mx-auto max-w-2xl section-title md:mx-0">Apa kata klien kami?</h2>
+              <p className="mx-auto max-w-md text-sm leading-7 text-brand-muted md:mx-0">
                 Pengalaman klien setelah menggunakan layanan Yuk Jadi Legal.
               </p>
             </div>
 
             <div className="mt-8 grid gap-7 sm:mt-10 sm:gap-8 lg:grid-cols-3">
               {visibleTestimonials.map((testimonial) => (
-                <article key={testimonial.id} className="border-t border-brand-navy/16 pt-5">
+                <article key={testimonial.id} className="border-t border-brand-navy/16 pt-5 text-center lg:text-left">
                   <div className="flex items-center gap-1 text-brand-gold">
                     {Array.from({
                       length: Math.max(1, Math.min(5, testimonial.rating || 5)),
@@ -66,7 +66,7 @@ export function HomeTrust({
                   <blockquote className="mt-4 text-sm leading-7 text-brand-ink sm:mt-5 sm:min-h-[110px]">
                     “{testimonial.quote}”
                   </blockquote>
-                  <div className="mt-6 flex items-center gap-3">
+                  <div className="mt-6 flex items-center justify-center gap-3 lg:justify-start">
                     <Avatar testimonial={testimonial} />
                     <div className="min-w-0">
                       <p className="truncate text-xs font-semibold text-brand-navy-dark">
