@@ -89,7 +89,7 @@ export default async function ServiceDetailPage({
       <JsonLd data={breadcrumbJsonLd} />
 
       <section className="border-b border-brand-navy/10 bg-white">
-        <div className="page-shell py-10 lg:py-16">
+        <div className="page-shell py-8 sm:py-10 lg:py-16">
           <Link
             href="/layanan"
             className="inline-flex items-center gap-2 text-xs font-semibold text-brand-muted transition hover:text-brand-navy"
@@ -97,18 +97,18 @@ export default async function ServiceDetailPage({
             <ArrowLeft className="h-4 w-4" /> Kembali ke layanan
           </Link>
 
-          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end lg:gap-16">
+          <div className="mt-6 grid gap-7 sm:mt-8 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end lg:gap-16">
             <div>
               <p className="text-sm font-medium text-brand-gold-dark">{categoryName}</p>
-              <h1 className="mt-3 max-w-4xl text-[clamp(2.45rem,4.8vw,4.8rem)] font-semibold leading-[1.02] tracking-[-0.055em] text-brand-ink">
+              <h1 className="mt-3 max-w-4xl text-[clamp(2.2rem,9.5vw,4.8rem)] font-semibold leading-[1.02] tracking-[-0.055em] text-brand-ink">
                 {service.title}
               </h1>
-              <p className="mt-5 max-w-3xl text-[16px] leading-8 text-brand-muted">
+              <p className="mt-4 max-w-3xl text-[15px] leading-7 text-brand-muted sm:mt-5 sm:text-[16px] sm:leading-8">
                 {service.shortDescription}
               </p>
             </div>
 
-            <div className="border-y border-brand-navy/14 py-5">
+            <div className="border-y border-brand-navy/14 py-4 sm:py-5">
               <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-muted">
                 Biaya layanan
               </p>
@@ -120,14 +120,14 @@ export default async function ServiceDetailPage({
                 href={consultationHref}
                 target={whatsappHref ? "_blank" : undefined}
                 rel={whatsappHref ? "noreferrer" : undefined}
-                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
+                className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:min-h-0 sm:w-auto sm:bg-transparent sm:px-0 sm:py-0 sm:text-brand-navy sm:hover:bg-transparent sm:hover:text-brand-gold-dark"
               >
                 Konsultasikan layanan <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-brand-navy/10 pt-5 text-xs text-brand-muted">
+          <div className="mt-7 grid gap-3 border-t sm:mt-10 sm:flex sm:flex-wrap sm:gap-x-8 sm:gap-y-3 border-brand-navy/10 pt-5 text-xs text-brand-muted">
             <span className="inline-flex items-center gap-2">
               <Clock3 className="h-4 w-4 text-brand-gold-dark" />
               Estimasi: <strong className="font-semibold text-brand-ink">{service.duration || "Menyesuaikan proses"}</strong>
@@ -138,9 +138,9 @@ export default async function ServiceDetailPage({
         </div>
       </section>
 
-      <section className="page-shell py-14 lg:py-20">
+      <section className="page-shell py-12 sm:py-14 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
-          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
+          <h2 className="text-[1.75rem] font-semibold tracking-[-0.04em] text-brand-ink sm:text-3xl">
             Yang perlu Anda ketahui.
           </h2>
 
@@ -164,7 +164,7 @@ export default async function ServiceDetailPage({
       </section>
 
       {service.inclusions.length || service.requirements.length ? (
-        <section className="border-y border-brand-navy/9 bg-white py-14 lg:py-20">
+        <section className="border-y border-brand-navy/9 bg-white py-12 sm:py-14 lg:py-20">
           <div className="page-shell grid gap-10 lg:grid-cols-2 lg:gap-16">
             <InfoList
               title="Yang Anda dapatkan"
@@ -181,9 +181,9 @@ export default async function ServiceDetailPage({
       ) : null}
 
       {service.processSteps.length ? (
-        <section className="page-shell py-14 lg:py-20">
+        <section className="page-shell py-12 sm:py-14 lg:py-20">
           <div className="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
+            <h2 className="text-[1.75rem] font-semibold tracking-[-0.04em] text-brand-ink sm:text-3xl">
               Bagaimana proses layanan ini berjalan.
             </h2>
 
@@ -202,9 +202,9 @@ export default async function ServiceDetailPage({
       ) : null}
 
       {service.faqs.length ? (
-        <section className="border-y border-brand-navy/9 bg-brand-paper py-14 lg:py-20">
+        <section className="border-y border-brand-navy/9 bg-brand-paper py-12 sm:py-14 lg:py-20">
           <div className="page-shell grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-14">
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
+            <h2 className="text-[1.75rem] font-semibold tracking-[-0.04em] text-brand-ink sm:text-3xl">
               Pertanyaan yang sering muncul sebelum mulai.
             </h2>
 
@@ -246,7 +246,7 @@ export default async function ServiceDetailPage({
         <section className="border-t border-brand-navy/9 bg-white py-14 lg:py-20">
           <div className="page-shell">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
+              <h2 className="text-[1.75rem] font-semibold tracking-[-0.04em] text-brand-ink sm:text-3xl">
                 Layanan lain yang mungkin relevan.
               </h2>
               <Link
