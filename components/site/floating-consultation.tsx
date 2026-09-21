@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { getWhatsAppHref } from "@/lib/contact";
 
 export function FloatingConsultation({ whatsapp }: { whatsapp: string }) {
@@ -14,10 +14,13 @@ export function FloatingConsultation({ whatsapp }: { whatsapp: string }) {
       target="_blank"
       rel="noreferrer"
       aria-label="Konsultasi melalui WhatsApp"
-      className="fixed bottom-5 right-5 z-40 flex items-center gap-3 border border-white/15 bg-brand-navy px-4 py-3 text-xs font-semibold text-white shadow-[0_16px_44px_rgba(7,26,52,.22)] transition hover:bg-brand-navy-dark"
+      className="fixed bottom-3 left-4 right-4 z-40 flex min-h-12 items-center justify-between gap-3 border border-white/15 bg-brand-navy px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(7,26,52,.18)] transition hover:bg-brand-navy-dark sm:bottom-5 sm:left-auto sm:right-5 sm:min-h-0 sm:w-auto sm:text-xs"
     >
-      <MessageCircle className="h-4 w-4 text-brand-gold-soft" />
-      <span className="hidden sm:inline">Konsultasi</span>
+      <span className="flex items-center gap-2.5">
+        <MessageCircle className="h-4 w-4 text-brand-gold-soft" />
+        Konsultasi via WhatsApp
+      </span>
+      <ArrowUpRight className="h-4 w-4 text-brand-gold-soft sm:hidden" />
     </a>
   );
 }
