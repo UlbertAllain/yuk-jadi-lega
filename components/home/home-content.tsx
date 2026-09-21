@@ -26,7 +26,7 @@ export function HomeContent({
       {visibleArticles.length ? (
         <section className="border-b border-brand-navy/8 bg-brand-surface py-14 sm:py-16 lg:py-24">
           <div className="page-shell">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left">
               <h2 className="section-title">Insight</h2>
               <Link
                 href="/artikel"
@@ -83,16 +83,16 @@ export function HomeContent({
       {faqs.length ? (
         <section className="border-b border-brand-navy/8 bg-white py-14 sm:py-16 lg:py-24">
           <div className="page-shell grid gap-10 lg:grid-cols-[330px_minmax(0,1fr)] lg:gap-16">
-            <div>
+            <div className="text-center lg:text-left">
               <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-brand-navy-dark sm:text-4xl">
                 Pertanyaan umum
               </h2>
-              <p className="mt-4 text-sm leading-7 text-brand-muted">
+              <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-brand-muted lg:mx-0">
                 Jawaban untuk hal yang paling sering ditanyakan sebelum memilih layanan.
               </p>
               <Link
                 href="/faq"
-                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
+                className="mt-5 inline-flex items-center justify-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
               >
                 Lihat semua FAQ <ArrowRight className="h-4 w-4" />
               </Link>
@@ -121,16 +121,16 @@ export function HomeContent({
       ) : null}
 
       <section className="border-t border-brand-navy/10 bg-brand-paper py-12 sm:py-14 lg:py-16">
-        <div className="page-shell grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
+        <div className="page-shell grid gap-7 text-center lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:text-left">
           <div>
             <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
               {settings.ctaTitle}
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
+            <p className="mx-auto mt-2 max-w-2xl text-sm leading-7 text-brand-muted lg:mx-0">
               {settings.ctaDescription}
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 lg:justify-end">
             <a
               href={consultationHref}
               target={consultationExternal ? "_blank" : undefined}
