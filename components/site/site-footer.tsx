@@ -19,9 +19,9 @@ export function SiteFooter({
 
   return (
     <footer className="bg-brand-navy-dark text-white">
-      <div className="page-shell py-11 lg:py-14">
-        <div className="grid gap-9 border-b border-white/10 pb-9 lg:grid-cols-[1.25fr_.7fr_1fr_.9fr]">
-          <div>
+      <div className="page-shell py-9 sm:py-11 lg:py-14">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 border-b border-white/10 pb-8 sm:gap-x-8 sm:pb-9 lg:grid-cols-[1.25fr_.7fr_1fr_.9fr] lg:gap-9">
+          <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5">
               <BrandMark frameClassName="h-11 w-11 rounded-[8px]" />
               <p className="text-sm font-semibold">
@@ -61,7 +61,7 @@ export function SiteFooter({
             </div>
           </div>
 
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <p className="mb-4 text-[9px] font-semibold uppercase tracking-[0.11em] text-brand-gold-soft">
               Hubungi kami
             </p>
@@ -87,9 +87,9 @@ export function SiteFooter({
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 pt-6 text-[10px] text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 pt-5 text-[10px] text-slate-400 sm:flex-row sm:pt-6 sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {settings.brandName}. Semua hak dilindungi.</p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
             <Link href="/kbli">KBLI</Link>
             <Link href="/faq">FAQ</Link>
             <Link href="/kebijakan-privasi">Kebijakan Privasi</Link>
