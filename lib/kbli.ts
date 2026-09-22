@@ -1,3 +1,5 @@
+import { TENDERX_KBLI_ENDPOINT } from "@/lib/external-urls";
+
 export type KbliApiItem = {
   code: string;
   title: string;
@@ -26,7 +28,6 @@ type TenderXKbliResponse = {
   data?: unknown;
 };
 
-const TENDERX_KBLI_ENDPOINT = "https://tenderx.id/api/v1/kbli";
 
 function normalizeItem(item: TenderXKbliItem): KbliApiItem | null {
   const code = String(item.kode ?? "").trim();

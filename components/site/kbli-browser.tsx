@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, ExternalLink, Search, X } from "lucide-react";
 import type { KbliApiItem, KbliApiResponse } from "@/lib/kbli";
+import { BPS_KBLI_URL } from "@/lib/external-urls";
 
 const PAGE_SIZE = 20;
-const BPS_KBLI_URL = "https://klasifikasi.web.bps.go.id/app/kbli";
 
 type ApiError = {
   error?: string;
@@ -136,14 +136,7 @@ function KbliGuidance() {
           Hasil pencarian membantu menemukan kode yang relevan. Pastikan pilihan akhir benar-benar sesuai dengan
           aktivitas usaha yang dijalankan.
         </p>
-        <a
-          href={BPS_KBLI_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-5 inline-flex items-center gap-2 text-xs font-semibold text-brand-navy hover:text-brand-gold-dark"
-        >
-          Lihat daftar resmi KBLI <ExternalLink className="h-3.5 w-3.5" />
-        </a>
+        <KbliOfficialLink className="mt-5 text-xs hover:text-brand-gold-dark" />
       </div>
     </aside>
   );
@@ -273,15 +266,21 @@ function KbliErrorState() {
       <p className="mt-2 text-sm leading-7 text-brand-muted">
         Silakan coba beberapa saat lagi atau gunakan daftar resmi KBLI untuk melanjutkan pencarian.
       </p>
-      <a
-        href={BPS_KBLI_URL}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy"
-      >
-        Lihat daftar resmi KBLI <ExternalLink className="h-4 w-4" />
-      </a>
+      <KbliOfficialLink className="mt-4 text-sm" />
     </div>
+  );
+}
+
+function KbliOfficialLink({ className }: { className: string }) {
+  return (
+    <a
+      href={BPS_KBLI_URL}
+      target="_blank"
+      rel="noreferrer"
+      className={`inline-flex items-center gap-2 font-semibold text-brand-navy ${className}`}
+    >
+      Lihat daftar resmi KBLI <ExternalLink className="h-4 w-4" />
+    </a>
   );
 }
 
