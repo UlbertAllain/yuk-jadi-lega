@@ -1,3 +1,5 @@
+import { RESEND_EMAILS_ENDPOINT } from "@/lib/external-urls";
+
 type LeadNotificationInput = {
   id: string;
   name: string;
@@ -38,7 +40,7 @@ export async function sendLeadNotification(input: LeadNotificationInput) {
   const adminUrl = siteUrl ? `${siteUrl}/admin/leads` : "";
   const serviceLabel = input.serviceSlug || "Konsultasi umum";
 
-  const response = await fetch("https://api.resend.com/emails", {
+  const response = await fetch(RESEND_EMAILS_ENDPOINT, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
