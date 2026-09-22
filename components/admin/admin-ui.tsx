@@ -121,6 +121,7 @@ export function IconButton({
           : "border-slate-200 text-slate-700",
       )}
     >
+      <span className="sr-only">{label}</span>
       {children}
     </button>
   );
