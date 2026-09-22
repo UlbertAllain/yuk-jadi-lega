@@ -5,6 +5,7 @@ import { getToken as getAppCheckToken } from "firebase/app-check";
 import { ImagePlus, Loader2, Trash2 } from "lucide-react";
 import { CmsImage } from "@/components/shared/cms-image";
 import { appCheck, auth } from "@/lib/firebase";
+import { cloudinaryImageUploadUrl } from "@/lib/external-urls";
 
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -84,7 +85,7 @@ export function MediaUploader({
       form.append("signature", signed.signature);
 
       const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${signed.cloudName}/image/upload`,
+        cloudinaryImageUploadUrl(signed.cloudName),
         {
           method: "POST",
           body: form,
