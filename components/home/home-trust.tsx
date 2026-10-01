@@ -44,7 +44,7 @@ export function HomeTrust({
       ) : null}
 
       {visibleTestimonials.length ? (
-        <div className="py-14 sm:py-16 lg:py-24">
+        <div className="py-12 sm:py-14 lg:py-16">
           <div className="page-shell">
             <div className="grid gap-4 text-center md:text-left lg:grid-cols-12 lg:items-end lg:gap-x-10 xl:gap-x-12">
               <h2 className="mx-auto max-w-2xl section-title md:mx-0 lg:col-span-4">
@@ -57,7 +57,7 @@ export function HomeTrust({
 
             <div className="mt-8 grid gap-7 sm:mt-10 sm:gap-8 lg:grid-cols-3">
               {visibleTestimonials.map((testimonial) => (
-                <article key={testimonial.id} className="border-t border-brand-navy/16 pt-5 text-center lg:text-left">
+                <article key={testimonial.id} className="motion-reveal border-t border-brand-navy/12 pt-5 text-center lg:text-left">
                   <div className="flex items-center justify-center gap-1 text-brand-gold lg:justify-start">
                     {Array.from({
                       length: Math.max(1, Math.min(5, testimonial.rating || 5)),

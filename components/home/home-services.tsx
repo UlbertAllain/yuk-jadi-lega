@@ -20,14 +20,11 @@ const trustItems = [
   },
 ] as const;
 
-function serviceVisualClass(categorySlug: string) {
-  if (categorySlug.includes("pendirian")) return "visual-service-company";
-  if (categorySlug.includes("izin") || categorySlug.includes("perizinan")) return "visual-service-permit";
-  if (categorySlug.includes("hki") || categorySlug.includes("merek") || categorySlug.includes("kontrak")) {
-    return "visual-service-brand";
-  }
-  return "visual-service-consult";
-}
+const serviceCardLayout = [
+  "asym-shape-a asym-tone-a lg:col-span-5 lg:min-h-[286px]",
+  "asym-shape-b asym-tone-b lg:col-span-3 lg:mt-10 lg:min-h-[222px]",
+  "asym-shape-c asym-tone-c lg:col-span-4 lg:mt-3 lg:min-h-[258px]",
+] as const;
 
 export function HomeServices({
   featuredServices,
@@ -42,8 +39,8 @@ export function HomeServices({
   return (
     <>
       <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
-        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-          <div className="max-w-2xl lg:col-span-4">
+        <div className="page-shell">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
               Layanan kami
             </p>
@@ -52,30 +49,25 @@ export function HomeServices({
             </h2>
           </div>
 
-          <div className="mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
+          <div className="mt-7 grid gap-3 lg:mt-9 lg:grid-cols-12 lg:items-start lg:gap-4">
             {services.map((service, index) => (
               <Link
                 key={service.id}
                 href={"/layanan/" + service.slug}
-                className="premium-row motion-reveal group grid grid-cols-[108px_minmax(0,1fr)] gap-4 border-b border-brand-navy/10 py-5 first:border-t sm:grid-cols-[145px_minmax(0,1fr)] sm:gap-6"
+                className={"asym-card motion-reveal group flex flex-col p-5 sm:p-6 lg:p-7 " + serviceCardLayout[index]}
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
-                <div
-                  className={"h-[88px] rounded-[12px] bg-cover bg-center sm:h-[106px] " + serviceVisualClass(service.categorySlug)}
-                  aria-hidden="true"
-                />
-                <div className="min-w-0 self-center">
-                  <h3 className="editorial-heading text-lg font-semibold leading-[1.1] tracking-[-0.02em] text-brand-ink sm:text-[1.35rem]">
-                    {service.title}
-                  </h3>
-                  <p className="mt-1.5 line-clamp-2 text-sm leading-6 text-brand-muted">
-                    {service.shortDescription}
-                  </p>
-                  <span className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-brand-navy">
-                    Lihat layanan
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
+                <span className="block h-[2px] w-10 bg-brand-gold" />
+                <h3 className="editorial-heading mt-5 text-xl font-semibold leading-[1.08] tracking-[-0.025em] text-brand-ink sm:text-[1.45rem]">
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-brand-muted">
+                  {service.shortDescription}
+                </p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-7 text-xs font-semibold text-brand-navy">
+                  Lihat layanan
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </span>
               </Link>
             ))}
           </div>
@@ -83,8 +75,8 @@ export function HomeServices({
       </section>
 
       <section className="soft-wave-top border-b border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-16">
-        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-          <div className="lg:col-span-4">
+        <div className="page-shell">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
               Kenapa Yuk Jadi Legal
             </p>
@@ -93,17 +85,17 @@ export function HomeServices({
             </h2>
           </div>
 
-          <div className="mt-7 grid max-w-3xl gap-5 lg:col-span-8 lg:mt-0 lg:max-w-none">
+          <div className="mt-7 grid gap-4 lg:mt-9 lg:grid-cols-3">
             {trustItems.map(({ icon: Icon, title, description }, index) => (
               <article
                 key={title}
-                className="motion-reveal grid grid-cols-[46px_minmax(0,1fr)] gap-4"
+                className="premium-card motion-reveal grid grid-cols-[46px_minmax(0,1fr)] gap-4 p-5 lg:block lg:min-h-[220px] lg:p-6"
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
                 <span className="grid h-11 w-11 place-items-center rounded-full border border-brand-navy/7 bg-white text-brand-gold-dark shadow-[0_6px_18px_rgba(4,29,54,.035)]">
                   <Icon className="h-5 w-5" />
                 </span>
-                <div>
+                <div className="lg:mt-5">
                   <h3 className="editorial-heading text-lg font-semibold text-brand-ink">{title}</h3>
                   <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
                 </div>

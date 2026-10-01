@@ -52,33 +52,61 @@ export default async function HowItWorksPage() {
 
   return (
     <main className="bg-brand-surface">
-      <section className="relative overflow-hidden border-b border-brand-navy/8 bg-brand-paper">
-        <div className="legal-hero-photo pointer-events-none absolute inset-y-0 right-0 w-[48%] sm:w-[42%]" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f6f1e4_0%,#f6f1e4_48%,rgba(246,241,228,.92)_62%,rgba(246,241,228,.18)_100%)]" />
-        <div className="page-shell relative py-9 sm:py-12 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:py-16 xl:gap-x-12">
-          <div className="max-w-[650px] lg:col-span-7">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">Cara kerja</p>
-            <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.6rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink lg:text-[4.15rem]">
-              Dari konsultasi sampai selesai, alurnya tetap jelas.
-            </h1>
-            <p className="mt-4 max-w-[520px] text-[15px] leading-7 text-brand-muted sm:text-base">
-              Kami membuat proses legalitas bisnis terasa lebih mudah, terarah, dan aman untuk Anda.
-            </p>
-            <a
-              href={consultationHref}
-              target={whatsappHref ? "_blank" : undefined}
-              rel={whatsappHref ? "noreferrer" : undefined}
-              className="group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
-            >
-              Mulai konsultasi
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
+      <section className="border-b border-brand-navy/8 bg-white">
+        <div className="page-shell py-9 sm:py-12 lg:py-16">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-x-12">
+            <div className="motion-reveal max-w-[650px] lg:col-span-7">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">
+                Cara kerja
+              </p>
+              <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.5rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink lg:text-[4.05rem]">
+                Dari kebutuhan yang belum jelas, menjadi langkah yang terarah.
+              </h1>
+              <p className="mt-4 max-w-[540px] text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
+                Anda cukup ceritakan kondisi bisnis. Kami bantu memetakan kebutuhan, menjalankan proses, dan menjaga agar Anda tetap tahu apa yang sedang terjadi.
+              </p>
+              <a
+                href={consultationHref}
+                target={whatsappHref ? "_blank" : undefined}
+                rel={whatsappHref ? "noreferrer" : undefined}
+                className="group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
+              >
+                Mulai konsultasi
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
+
+            <div className="motion-reveal lg:col-span-5">
+              <div className="rounded-[20px] bg-brand-navy-dark p-5 text-white sm:p-6">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-gold-soft">
+                  Alur singkat
+                </p>
+                <div className="mt-5 grid gap-0">
+                  {steps.map(({ icon: Icon, title }, index) => (
+                    <div
+                      key={title}
+                      className="relative grid grid-cols-[42px_minmax(0,1fr)] gap-3 pb-5 last:pb-0"
+                    >
+                      {index < steps.length - 1 ? (
+                        <span className="absolute left-[20px] top-10 h-[calc(100%-1.25rem)] w-px bg-white/12" />
+                      ) : null}
+                      <span className="relative z-10 grid h-10 w-10 place-items-center rounded-full border border-white/12 bg-white/[0.06] text-brand-gold-soft">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <div className="pt-2">
+                        <p className="text-sm font-medium text-white">{title}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="page-shell py-8 sm:py-10 lg:py-14">
-        <div className="motion-reveal grid gap-6 rounded-[18px] border border-brand-navy/7 bg-brand-paper/70 p-5 sm:p-7 lg:grid-cols-12 lg:items-center lg:gap-x-10 lg:p-8 xl:gap-x-12">
+        <div className="motion-reveal mx-auto grid max-w-5xl gap-6 rounded-[18px] border border-brand-navy/7 bg-brand-paper/70 p-5 sm:p-7 lg:grid-cols-12 lg:items-center lg:gap-x-10 lg:p-8 xl:gap-x-12">
           <div className="lg:col-span-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Sebelum mulai</p>
             <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.05] tracking-[-0.03em] text-brand-ink sm:text-[2.5rem]">
@@ -98,15 +126,15 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="page-shell pb-8 sm:pb-10 lg:pb-14">
-        <div className="rounded-[18px] border border-brand-navy/7 bg-white p-5 sm:p-7 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:p-8 xl:gap-x-12">
-          <div className="lg:col-span-4">
+        <div className="rounded-[18px] border border-brand-navy/7 bg-white p-5 sm:p-7 lg:p-8">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Langkah kerja kami</p>
             <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
               Proses yang terarah, dari awal hingga selesai.
             </h2>
           </div>
 
-          <div className="flow-list mt-7 lg:col-span-8 lg:mt-0">
+          <div className="flow-list mx-auto mt-8 max-w-5xl lg:mt-10">
             {steps.map(({ icon: Icon, title, description, result }, index) => (
               <article
                 key={title}
@@ -132,14 +160,14 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="bg-brand-paper py-9 sm:py-11 lg:py-14">
-        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-          <div className="lg:col-span-4">
+        <div className="page-shell">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Selama proses</p>
             <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.5rem]">
               Anda tetap tahu setiap perkembangannya.
             </h2>
           </div>
-          <div className="mt-6 grid gap-3 lg:col-span-8 lg:mt-0">
+          <div className="mt-7 grid gap-3 lg:mt-9 lg:grid-cols-3">
             {clarity.map(({ icon: Icon, title, description }, index) => (
               <article
                 key={title}
