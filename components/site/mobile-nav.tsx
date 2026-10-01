@@ -61,9 +61,9 @@ export function MobileNav({
                     key={service.id}
                     href={`/layanan/${service.slug}`}
                     onClick={() => setOpen(false)}
-                    className="grid min-h-12 grid-cols-[30px_1fr] items-center gap-2 border-b border-brand-navy/8 py-3 text-sm font-semibold text-slate-600"
+                    className="grid min-h-12 grid-cols-[30px_1fr] items-center gap-2 border-b border-brand-navy/8 py-3 text-[13px] font-semibold leading-5 text-slate-600"
                   >
-                    <span className="text-[9px] font-semibold text-brand-gold-dark">
+                    <span className="text-[10px] font-semibold text-brand-gold-dark">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     {service.title}
@@ -91,7 +91,7 @@ export function MobileNav({
                     onClick={() => setOpen(false)}
                     className="min-h-14 border-b border-brand-navy/8 py-3 pr-3 text-xs font-semibold text-slate-600 even:border-l even:pl-3"
                   >
-                    <span className="mb-1 block text-[9px] font-semibold text-brand-gold-dark">
+                    <span className="mb-1 block text-[10px] font-semibold text-brand-gold-dark">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     {category.name}
