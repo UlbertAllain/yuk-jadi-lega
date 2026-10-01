@@ -30,7 +30,7 @@ export function HomeServices({
       <section className="relative overflow-hidden border-b border-brand-navy/8 bg-white py-12 sm:py-14 lg:py-[4.5rem]">
         <div className="page-shell">
           <div className="grid gap-5 lg:grid-cols-[1fr_360px] lg:items-end lg:gap-12">
-            <h2 className="editorial-rule max-w-[760px] pt-4 section-title">{settings.servicesTitle}</h2>
+            <h2 className="max-w-[760px] section-title">{settings.servicesTitle}</h2>
             <div>
               <p className="text-sm leading-7 text-brand-muted">{settings.servicesDescription}</p>
               <Link
@@ -63,7 +63,6 @@ export function HomeServices({
       <section className="relative overflow-hidden border-b border-white/10 bg-brand-navy-dark py-12 text-white sm:py-14 lg:py-16">
         <div className="page-shell relative grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
           <div>
-            <div className="mb-5 h-[2px] w-10 bg-brand-gold" />
             <h2 className="max-w-[380px] text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-[2.35rem]">
               {settings.whyUsTitle}
             </h2>
