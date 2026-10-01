@@ -144,7 +144,7 @@ export function ServicesBrowser({
                 </span>
 
                 <div className="min-w-0">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-muted">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.09em] text-brand-muted">
                     {categoryMap.get(service.categorySlug) || "Layanan legal"}
                   </p>
                   <h2 className="mt-1 text-lg font-semibold leading-[1.18] tracking-[-0.025em] text-brand-ink sm:mt-2 sm:text-2xl">
@@ -155,13 +155,13 @@ export function ServicesBrowser({
 
                 <div className="grid grid-cols-2 gap-4 border-t border-brand-navy/8 pt-3 text-xs md:block md:border-0 md:pt-0 md:text-right">
                   <div>
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.1em] text-brand-muted">Biaya</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.09em] text-brand-muted">Biaya</p>
                     <p className="mt-1 font-semibold text-brand-ink">
                       {servicePriceLabel(service.startingPrice, service.priceType)}
                     </p>
                   </div>
                   <div className="md:mt-4">
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.1em] text-brand-muted">Estimasi</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.09em] text-brand-muted">Estimasi</p>
                     <p className="mt-1 inline-flex items-center gap-1.5 font-semibold text-brand-ink">
                       <Clock3 className="h-3.5 w-3.5 text-brand-gold-dark" />
                       {service.duration || "Menyesuaikan"}

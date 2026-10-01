@@ -1,57 +1,68 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, FileCheck2, FileSearch2, MessageSquareMore, Settings2 } from "lucide-react";
 
 const steps = [
   {
-    number: "01",
-    title: "Konsultasi",
-    description: "Sampaikan kebutuhan legal bisnis Anda kepada tim kami.",
+    icon: MessageSquareMore,
+    title: "Ceritakan kebutuhan",
+    description: "Sampaikan rencana atau kendala bisnis Anda melalui konsultasi.",
   },
   {
-    number: "02",
-    title: "Penawaran",
-    description: "Dapatkan penawaran terbaik yang sesuai kebutuhan Anda.",
+    icon: FileSearch2,
+    title: "Kami petakan",
+    description: "Tim menganalisis kebutuhan dan menentukan langkah yang paling relevan.",
   },
   {
-    number: "03",
-    title: "Proses",
-    description: "Tim kami memproses dokumen hingga selesai.",
+    icon: Settings2,
+    title: "Proses berjalan",
+    description: "Pengurusan dijalankan sesuai ruang lingkup yang telah disepakati.",
   },
   {
-    number: "04",
-    title: "Selesai",
-    description: "Dokumen legalitas siap digunakan dengan lebih aman.",
+    icon: FileCheck2,
+    title: "Hasil diserahkan",
+    description: "Hasil diperiksa lalu diserahkan beserta arahan bila ada langkah lanjutan.",
   },
 ] as const;
 
 export function HomeProcess() {
   return (
-    <section className="border-b border-brand-navy/8 bg-white py-12 sm:py-16 lg:py-20">
-      <div className="page-shell">
-        <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left">
-          <div>
-            <h2 className="section-title">Bagaimana prosesnya?</h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm md:mx-0 leading-7 text-brand-muted">
-              Empat langkah sederhana dari konsultasi sampai dokumen siap digunakan.
-            </p>
-          </div>
-          <Link
-            href="/cara-kerja"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
-          >
-            Lihat alur lengkap <ArrowRight className="h-4 w-4" />
-          </Link>
+    <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
+      <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+        <div className="max-w-2xl lg:col-span-4">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
+            Cara kerja kami
+          </p>
+          <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+            Dari konsultasi sampai legalitas selesai.
+          </h2>
         </div>
 
-        <div className="mt-8 grid gap-x-6 gap-y-6 text-center sm:mt-10 sm:gap-x-8 sm:gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step) => (
-            <article key={step.number} className="border-t border-brand-navy/16 pt-5 sm:text-left lg:text-center">
-              <p className="text-xs font-semibold tabular-nums text-brand-gold-dark">{step.number}</p>
-              <h3 className="mt-3 text-lg font-semibold text-brand-navy-dark sm:mt-5">{step.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-brand-muted">{step.description}</p>
+        <div className="flow-list mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
+          {steps.map(({ icon: Icon, title, description }, index) => (
+            <article
+              key={title}
+              className={"flow-card motion-reveal " + (index % 2 === 1 ? "flow-card-offset" : "")}
+              style={{ animationDelay: String(index * 70) + "ms" }}
+            >
+              <span className="flow-node" aria-hidden="true" />
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-gold-pale text-brand-navy sm:h-12 sm:w-12">
+                <Icon className="h-5 w-5" />
+              </span>
+              <div className="min-w-0">
+                <h3 className="editorial-heading text-lg font-semibold leading-tight text-brand-ink">{title}</h3>
+                <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
+              </div>
             </article>
           ))}
         </div>
+
+        <Link
+          href="/cara-kerja"
+          className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark lg:col-span-8 lg:col-start-5"
+        >
+          Lihat cara kerja lengkap
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </Link>
       </div>
     </section>
   );

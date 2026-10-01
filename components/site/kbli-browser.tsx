@@ -97,7 +97,7 @@ export function KbliBrowser() {
   }
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[250px_minmax(0,1fr)] xl:grid-cols-[270px_minmax(0,1fr)] xl:gap-12">
+    <div className="grid gap-6 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[270px_minmax(0,1fr)]">
       <KbliGuidance />
 
       <div className="min-w-0">
@@ -156,14 +156,14 @@ function KbliSearchBar({
   onQueryChange: (value: string) => void;
 }) {
   return (
-    <div className="border-y border-brand-navy/12 py-4">
+    <div className="rounded-[14px] border border-brand-navy/10 bg-white p-3 sm:p-4">
       <div className="relative">
         <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-brand-navy" />
         <input
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
           placeholder="Cari jenis usaha, misalnya software, restoran, konstruksi, atau kode KBLI..."
-          className="h-14 w-full rounded-[8px] border border-brand-navy/14 bg-white pl-12 pr-11 text-sm font-medium text-brand-ink outline-none transition placeholder:font-normal placeholder:text-brand-muted/75 focus:border-brand-gold/55"
+          className="h-12 w-full rounded-[8px] border border-brand-navy/14 bg-brand-surface pl-11 pr-10 text-sm font-medium text-brand-ink outline-none transition placeholder:font-normal placeholder:text-brand-muted/75 focus:border-brand-gold/55 sm:h-14 sm:pl-12 sm:pr-11"
         />
         {query ? (
           <button
@@ -177,7 +177,7 @@ function KbliSearchBar({
         ) : null}
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-brand-muted">
+      <div className="mt-3 flex flex-col gap-1 text-[11px] leading-5 text-brand-muted sm:flex-row sm:items-center sm:justify-between sm:text-xs">
         <p>
           {loading
             ? "Sedang mencari..."
@@ -220,16 +220,16 @@ function KbliResults({
 
   return (
     <>
-      <div className="mt-8 divide-y divide-brand-navy/10 border-y border-brand-navy/12">
+      <div className="mt-5 grid gap-3 sm:mt-7 sm:block sm:divide-y sm:divide-brand-navy/10 sm:border-y sm:border-brand-navy/12">
         {items.map((entry) => (
           <article
             key={entry.code}
-            className="grid gap-4 py-5 sm:grid-cols-[120px_minmax(0,1fr)] sm:items-start sm:py-6"
+            className="grid gap-2 rounded-[12px] border border-brand-navy/10 bg-white p-4 sm:grid-cols-[120px_minmax(0,1fr)] sm:items-start sm:gap-4 sm:rounded-none sm:border-0 sm:bg-transparent sm:px-0 sm:py-5"
           >
             <div>
               <span className="font-mono text-sm font-semibold text-brand-navy">{entry.code}</span>
             </div>
-            <h2 className="text-lg font-semibold tracking-[-0.025em] text-brand-ink sm:text-xl">
+            <h2 className="text-base font-semibold leading-6 tracking-[-0.02em] text-brand-ink sm:text-lg">
               {entry.title}
             </h2>
           </article>
@@ -261,7 +261,7 @@ function KbliResults({
 
 function KbliErrorState() {
   return (
-    <div className="mt-8 border-y border-amber-300 py-10 text-center">
+    <div className="mt-5 rounded-[14px] border border-amber-300 bg-white p-6 text-center">
       <p className="text-lg font-semibold text-brand-ink">Pencarian KBLI sedang tidak tersedia.</p>
       <p className="mt-2 text-sm leading-7 text-brand-muted">
         Silakan coba beberapa saat lagi atau gunakan daftar resmi KBLI untuk melanjutkan pencarian.
@@ -287,11 +287,11 @@ function KbliOfficialLink({ className }: { className: string }) {
 function KbliLoadingState() {
   return (
     <div
-      className="mt-8 divide-y divide-brand-navy/8 border-y border-brand-navy/12"
+      className="mt-5 grid gap-3"
       aria-label="Memuat KBLI"
     >
       {Array.from({ length: 5 }).map((_, index) => (
-        <div key={index} className="h-24 animate-pulse bg-white/50" />
+        <div key={index} className="h-20 animate-pulse rounded-[12px] border border-brand-navy/8 bg-white/60" />
       ))}
     </div>
   );
@@ -299,7 +299,7 @@ function KbliLoadingState() {
 
 function KbliEmptyState() {
   return (
-    <div className="mt-8 border-y border-brand-navy/12 py-14 text-center">
+    <div className="mt-5 rounded-[14px] border border-brand-navy/10 bg-white p-7 text-center">
       <p className="text-xl font-semibold tracking-[-0.03em] text-brand-ink">
         Belum menemukan KBLI yang sesuai?
       </p>
