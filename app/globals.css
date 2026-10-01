@@ -107,17 +107,17 @@ summary::-webkit-details-marker {
 
 .section-title {
   color: var(--color-brand-ink);
-  font-size: clamp(2rem, 3.4vw, 3.45rem);
+  font-size: clamp(1.9rem, 2.9vw, 3rem);
   font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.045em;
+  line-height: 1.06;
+  letter-spacing: -0.04em;
 }
 
 .section-copy {
   color: var(--color-brand-muted);
   font-size: 0.9375rem;
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 1.75;
 }
 
 .insight-placeholder {
