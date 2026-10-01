@@ -26,8 +26,8 @@ export default async function ContactPage() {
 
   return (
     <main className="bg-brand-surface">
-      <section className="border-b border-brand-navy/10">
-        <div className="page-shell grid gap-9 py-10 sm:py-12 lg:grid-cols-[.82fr_1.18fr] lg:items-start lg:gap-12 lg:py-14">
+      <section className="editorial-surface border-b border-brand-navy/10">
+        <div className="page-shell relative grid gap-9 py-10 sm:py-12 lg:grid-cols-[.82fr_1.18fr] lg:items-start lg:gap-12 lg:py-14">
           <div className="lg:sticky lg:top-28">
             <p className="text-xs font-semibold uppercase tracking-[0.11em] text-brand-gold-dark">
               Konsultasi
@@ -75,7 +75,7 @@ export default async function ContactPage() {
             ) : null}
           </div>
 
-          <div className="rounded-[18px] border border-brand-navy/10 bg-white p-5 shadow-[0_18px_50px_rgba(4,29,54,0.06)] sm:p-7">
+          <div className="editorial-panel rounded-[18px] border border-brand-navy/10 bg-white/90 p-5 shadow-[0_18px_50px_rgba(4,29,54,0.06)] backdrop-blur-[1px] sm:p-7">
             <div className="border-b border-brand-navy/10 pb-5">
               <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-[1.85rem]">
                 Mulai konsultasi
