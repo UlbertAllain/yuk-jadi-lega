@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -5,53 +6,100 @@ const steps = [
   {
     number: "01",
     title: "Konsultasi",
-    description: "Sampaikan kebutuhan legal bisnis Anda kepada tim kami.",
+    description: "Sampaikan kebutuhan dan kondisi usaha Anda.",
   },
   {
     number: "02",
-    title: "Penawaran",
-    description: "Dapatkan penawaran terbaik yang sesuai kebutuhan Anda.",
+    title: "Pemetaan",
+    description: "Tim menyusun kebutuhan, dokumen, biaya, dan estimasi proses.",
   },
   {
     number: "03",
-    title: "Proses",
-    description: "Tim kami memproses dokumen hingga selesai.",
+    title: "Pengerjaan",
+    description: "Proses dijalankan dengan update pada tahap yang penting.",
   },
   {
     number: "04",
     title: "Selesai",
-    description: "Dokumen legalitas siap digunakan dengan lebih aman.",
+    description: "Hasil diserahkan beserta arahan bila masih ada langkah lanjutan.",
+  },
+] as const;
+
+const visuals = [
+  {
+    src: "/visuals/process-consult.svg",
+    label: "Mulai dari kondisi usaha Anda",
+  },
+  {
+    src: "/visuals/process-work.svg",
+    label: "Proses dibuat terarah dan transparan",
+  },
+  {
+    src: "/visuals/process-finish.svg",
+    label: "Hasil diperiksa sebelum diserahkan",
   },
 ] as const;
 
 export function HomeProcess() {
   return (
-    <section className="border-b border-brand-navy/8 bg-white py-12 sm:py-16 lg:py-20">
+    <section className="overflow-hidden border-b border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-16">
       <div className="page-shell">
-        <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left">
+        <div className="grid gap-5 lg:grid-cols-[1fr_360px] lg:items-end lg:gap-12">
           <div>
-            <h2 className="section-title">Bagaimana prosesnya?</h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm md:mx-0 leading-7 text-brand-muted">
-              Empat langkah sederhana dari konsultasi sampai dokumen siap digunakan.
+            <p className="text-xs font-semibold uppercase tracking-[0.11em] text-brand-gold-dark">
+              Cara kerja
             </p>
+            <h2 className="editorial-rule mt-2 max-w-2xl pt-4 section-title">
+              Proses legal tidak harus terasa rumit.
+            </h2>
           </div>
-          <Link
-            href="/cara-kerja"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
-          >
-            Lihat alur lengkap <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div>
+            <p className="text-sm leading-7 text-brand-muted">
+              Empat langkah utama dari konsultasi sampai hasil siap digunakan.
+            </p>
+            <Link
+              href="/cara-kerja"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
+            >
+              Lihat alur lengkap <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
 
-        <div className="mt-8 grid gap-x-6 gap-y-6 text-center sm:mt-10 sm:gap-x-8 sm:gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step) => (
-            <article key={step.number} className="border-t border-brand-navy/16 pt-5 sm:text-left lg:text-center">
-              <p className="text-xs font-semibold tabular-nums text-brand-gold-dark">{step.number}</p>
-              <h3 className="mt-3 text-lg font-semibold text-brand-navy-dark sm:mt-5">{step.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-brand-muted">{step.description}</p>
-            </article>
+        <div className="mt-7 grid gap-3 md:grid-cols-3">
+          {visuals.map((visual, index) => (
+            <div
+              key={visual.src}
+              className={
+                index === 1
+                  ? "relative overflow-hidden rounded-[16px] border border-brand-navy/10 bg-white md:-translate-y-3"
+                  : "relative overflow-hidden rounded-[16px] border border-brand-navy/10 bg-white"
+              }
+            >
+              <div className="relative aspect-[16/7]">
+                <Image src={visual.src} alt="" fill className="object-cover" />
+              </div>
+              <p className="border-t border-brand-navy/8 px-4 py-3 text-xs font-semibold text-brand-ink">
+                {visual.label}
+              </p>
+            </div>
           ))}
         </div>
+
+        <ol className="mt-7 grid gap-0 border-y border-brand-navy/12 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step) => (
+            <li
+              key={step.number}
+              className="grid grid-cols-[34px_minmax(0,1fr)] gap-3 border-b border-brand-navy/8 py-4 last:border-b-0 sm:border-b sm:px-4 sm:first:pl-0 sm:last:pr-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
+            >
+              <span className="text-xs font-semibold tabular-nums text-brand-gold-dark">{step.number}</span>
+              <div>
+                <h3 className="text-sm font-semibold text-brand-navy-dark">{step.title}</h3>
+                <p className="mt-1.5 text-xs leading-5 text-brand-muted">{step.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
