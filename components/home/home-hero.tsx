@@ -32,9 +32,9 @@ export function HomeHero({
 
   return (
     <section className="border-b border-brand-navy/10 bg-brand-surface">
-      <div className="page-shell grid gap-9 py-10 sm:py-12 lg:grid-cols-[minmax(0,.9fr)_minmax(420px,1.1fr)] lg:items-center lg:gap-16 lg:py-20 xl:min-h-[620px]">
+      <div className="page-shell grid gap-9 py-10 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] lg:items-center lg:gap-14 lg:py-20 xl:min-h-[600px]">
         <div className="mx-auto max-w-[660px] text-center lg:mx-0 lg:text-left">
-          <h1 className="mx-auto max-w-[640px] text-[clamp(2.35rem,10.5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.052em] text-brand-navy-dark lg:mx-0">
+          <h1 className="mx-auto max-w-[660px] text-[clamp(2.35rem,8.5vw,4.3rem)] font-semibold leading-[1] tracking-[-0.048em] text-brand-navy-dark lg:mx-0">
             {settings.heroTitle}
           </h1>
 
