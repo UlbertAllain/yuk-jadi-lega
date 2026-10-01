@@ -11,28 +11,24 @@ export const metadata = createPageMetadata({
 
 const steps = [
   {
-    number: "01",
     icon: MessageSquareMore,
     title: "Ceritakan kebutuhan",
     description: "Sampaikan rencana atau kondisi bisnis Anda melalui konsultasi.",
     result: "Kami memahami kebutuhan Anda dan memberikan arahan awal.",
   },
   {
-    number: "02",
     icon: FileSearch2,
     title: "Kami petakan",
     description: "Tim menganalisis kebutuhan Anda dan menentukan langkah yang tepat.",
     result: "Anda mendapat gambaran proses, dokumen, estimasi waktu, dan biaya.",
   },
   {
-    number: "03",
     icon: Settings2,
     title: "Proses berjalan",
     description: "Kami menjalankan proses sesuai ruang lingkup dan regulasi yang berlaku.",
     result: "Pengurusan dijalankan tim dan Anda tetap mendapat kabar pada tahap penting.",
   },
   {
-    number: "04",
     icon: FileCheck2,
     title: "Hasil diserahkan",
     description: "Hasil akhir diperiksa lalu diserahkan beserta arahan berikutnya.",
@@ -110,20 +106,18 @@ export default async function HowItWorksPage() {
             </h2>
           </div>
 
-          <ol className="editorial-timeline mt-7 lg:col-span-8 lg:mt-0">
-            {steps.map(({ number, icon: Icon, title, description, result }, index) => (
-              <li
-                key={number}
-                className="motion-reveal relative grid grid-cols-[42px_52px_minmax(0,1fr)] gap-3 pb-8 last:pb-0 sm:grid-cols-[50px_58px_minmax(0,1fr)] sm:gap-4"
+          <div className="flow-list mt-7 lg:col-span-8 lg:mt-0">
+            {steps.map(({ icon: Icon, title, description, result }, index) => (
+              <article
+                key={title}
+                className={"flow-card motion-reveal " + (index % 2 === 1 ? "flow-card-offset" : "")}
                 style={{ animationDelay: String(index * 80) + "ms" }}
               >
-                <span className="relative z-10 grid h-9 w-9 place-items-center rounded-full bg-brand-gold-pale text-[11px] font-semibold text-brand-ink sm:h-10 sm:w-10">
-                  {number}
-                </span>
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-paper text-brand-navy sm:h-12 sm:w-12">
+                <span className="flow-node" aria-hidden="true" />
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-gold-pale text-brand-navy sm:h-12 sm:w-12">
                   <Icon className="h-5 w-5" />
                 </span>
-                <div>
+                <div className="min-w-0">
                   <h3 className="editorial-heading text-lg font-semibold leading-tight text-brand-ink">{title}</h3>
                   <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
                   <div className="mt-3 rounded-[11px] bg-brand-paper px-4 py-3">
@@ -131,9 +125,9 @@ export default async function HowItWorksPage() {
                     <p className="mt-1 text-sm leading-6 text-brand-ink">{result}</p>
                   </div>
                 </div>
-              </li>
+              </article>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 

@@ -33,25 +33,21 @@ const serviceAreas = [
 
 const principles = [
   {
-    number: "01",
     icon: UsersRound,
     title: "Berpihak pada kebutuhan klien",
     description: "Kami mulai dari kondisi bisnis Anda agar solusi yang diberikan tetap relevan dan realistis.",
   },
   {
-    number: "02",
     icon: FileText,
     title: "Proses yang jelas",
     description: "Setiap langkah dijelaskan dengan bahasa yang sederhana, tanpa membuat proses terasa lebih rumit.",
   },
   {
-    number: "03",
     icon: ShieldCheck,
     title: "Mengutamakan kepatuhan",
     description: "Pengurusan diarahkan agar sesuai dengan regulasi dan kebutuhan bisnis yang berlaku.",
   },
   {
-    number: "04",
     icon: Building2,
     title: "Fokus pada pertumbuhan Anda",
     description: "Legalitas yang rapi menjadi fondasi agar bisnis lebih siap berjalan dan berkembang.",
@@ -157,26 +153,24 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <ol className="editorial-timeline mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
-            {principles.map(({ number, icon: Icon, title, description }, index) => (
-              <li
-                key={number}
-                className="motion-reveal relative grid grid-cols-[42px_52px_minmax(0,1fr)] gap-3 pb-7 last:pb-0 sm:grid-cols-[50px_58px_minmax(0,1fr)] sm:gap-4"
+          <div className="flow-list mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
+            {principles.map(({ icon: Icon, title, description }, index) => (
+              <article
+                key={title}
+                className={"flow-card motion-reveal " + (index % 2 === 1 ? "flow-card-offset" : "")}
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
-                <span className="relative z-10 grid h-9 w-9 place-items-center rounded-full bg-brand-gold-pale text-[11px] font-semibold text-brand-ink sm:h-10 sm:w-10">
-                  {number}
-                </span>
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-paper text-brand-navy sm:h-12 sm:w-12">
+                <span className="flow-node" aria-hidden="true" />
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-gold-pale text-brand-navy sm:h-12 sm:w-12">
                   <Icon className="h-5 w-5" />
                 </span>
-                <div className="pt-0.5">
+                <div className="min-w-0">
                   <h3 className="editorial-heading text-lg font-semibold leading-tight text-brand-ink">{title}</h3>
                   <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
                 </div>
-              </li>
+              </article>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 

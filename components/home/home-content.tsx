@@ -41,12 +41,12 @@ export function HomeContent({
               </Link>
             </div>
 
-            <div className="mt-7 grid gap-4 lg:col-span-8 lg:mt-0 lg:grid-cols-[1.1fr_.9fr]">
+            <div className="mt-7 grid gap-4 lg:col-span-8 lg:mt-0">
               <Link
                 href={"/artikel/" + featuredArticle.slug}
-                className="motion-reveal group overflow-hidden rounded-[16px] border border-brand-navy/10 bg-white"
+                className="motion-reveal group overflow-hidden rounded-[16px] border border-brand-navy/10 bg-white lg:grid lg:grid-cols-[1.05fr_.95fr]"
               >
-                <div className="relative aspect-[16/9] overflow-hidden bg-brand-paper">
+                <div className="relative aspect-[16/9] overflow-hidden bg-brand-paper lg:aspect-auto lg:min-h-[250px]">
                   {featuredArticle.coverImageUrl ? (
                     <CmsImage
                       src={featuredArticle.coverImageUrl}
@@ -71,12 +71,12 @@ export function HomeContent({
                 </div>
               </Link>
 
-              <div className="grid gap-3">
+              <div className="grid gap-3 sm:grid-cols-2">
                 {otherArticles.map((article, index) => (
                   <Link
                     key={article.id}
                     href={"/artikel/" + article.slug}
-                    className="motion-reveal group grid grid-cols-[104px_minmax(0,1fr)] gap-3 rounded-[13px] border border-brand-navy/9 bg-white p-3"
+                    className="motion-reveal group grid grid-cols-[104px_minmax(0,1fr)] gap-3 rounded-[13px] border border-brand-navy/9 bg-white p-3 sm:grid-cols-[88px_minmax(0,1fr)]"
                     style={{ animationDelay: String((index + 1) * 70) + "ms" }}
                   >
                     <div className="relative h-[82px] overflow-hidden rounded-[9px] bg-brand-paper">
