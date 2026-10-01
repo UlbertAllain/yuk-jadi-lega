@@ -20,14 +20,11 @@ const trustItems = [
   },
 ] as const;
 
-function serviceVisualClass(categorySlug: string) {
-  if (categorySlug.includes("pendirian")) return "visual-service-company";
-  if (categorySlug.includes("izin") || categorySlug.includes("perizinan")) return "visual-service-permit";
-  if (categorySlug.includes("hki") || categorySlug.includes("merek") || categorySlug.includes("kontrak")) {
-    return "visual-service-brand";
-  }
-  return "visual-service-consult";
-}
+const serviceCardLayout = [
+  "asym-shape-a asym-tone-a lg:col-span-5 lg:min-h-[286px]",
+  "asym-shape-b asym-tone-b lg:col-span-3 lg:mt-10 lg:min-h-[222px]",
+  "asym-shape-c asym-tone-c lg:col-span-4 lg:mt-3 lg:min-h-[258px]",
+] as const;
 
 export function HomeServices({
   featuredServices,
@@ -52,30 +49,25 @@ export function HomeServices({
             </h2>
           </div>
 
-          <div className="mt-7 grid gap-4 lg:mt-9 lg:grid-cols-3">
+          <div className="mt-7 grid gap-3 lg:mt-9 lg:grid-cols-12 lg:items-start lg:gap-4">
             {services.map((service, index) => (
               <Link
                 key={service.id}
                 href={"/layanan/" + service.slug}
-                className="premium-card motion-reveal group grid grid-cols-[108px_minmax(0,1fr)] gap-4 overflow-hidden p-3 sm:grid-cols-[145px_minmax(0,1fr)] sm:gap-6 lg:block lg:p-0"
+                className={"asym-card motion-reveal group flex flex-col p-5 sm:p-6 lg:p-7 " + serviceCardLayout[index]}
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
-                <div
-                  className={"h-[88px] rounded-[10px] bg-cover bg-center sm:h-[106px] lg:h-[176px] lg:rounded-none " + serviceVisualClass(service.categorySlug)}
-                  aria-hidden="true"
-                />
-                <div className="min-w-0 self-center lg:p-5">
-                  <h3 className="editorial-heading text-lg font-semibold leading-[1.1] tracking-[-0.02em] text-brand-ink sm:text-[1.35rem]">
-                    {service.title}
-                  </h3>
-                  <p className="mt-1.5 line-clamp-2 text-sm leading-6 text-brand-muted">
-                    {service.shortDescription}
-                  </p>
-                  <span className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-brand-navy">
-                    Lihat layanan
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
+                <span className="block h-[2px] w-10 bg-brand-gold" />
+                <h3 className="editorial-heading mt-5 text-xl font-semibold leading-[1.08] tracking-[-0.025em] text-brand-ink sm:text-[1.45rem]">
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-brand-muted">
+                  {service.shortDescription}
+                </p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-7 text-xs font-semibold text-brand-navy">
+                  Lihat layanan
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </span>
               </Link>
             ))}
           </div>

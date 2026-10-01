@@ -12,23 +12,26 @@ const serviceAreas = [
   {
     title: "Badan usaha",
     description: "Pendirian PT, CV, Yayasan, dan badan usaha lainnya sesuai kebutuhan bisnis Anda.",
-    visual: "visual-service-company",
   },
   {
     title: "Perizinan",
     description: "Membantu pengurusan OSS, NIB, dan perizinan usaha sesuai kegiatan bisnis.",
-    visual: "visual-service-permit",
   },
   {
     title: "Merek & dokumen",
     description: "Pendaftaran merek, dokumen legal, kontrak, dan kebutuhan perlindungan bisnis.",
-    visual: "visual-service-brand",
   },
   {
     title: "Konsultasi legal",
     description: "Membantu memetakan kebutuhan dan arah awal ketika Anda belum tahu harus mulai dari mana.",
-    visual: "visual-service-consult",
   },
+] as const;
+
+const serviceAreaCardLayout = [
+  "asym-shape-a asym-tone-a lg:min-h-[252px]",
+  "asym-shape-b asym-tone-b lg:mt-12 lg:min-h-[194px]",
+  "asym-shape-c asym-tone-c lg:mt-3 lg:min-h-[238px]",
+  "asym-shape-d asym-tone-a lg:mt-9 lg:min-h-[208px]",
 ] as const;
 
 const principles = [
@@ -125,21 +128,25 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="mt-7 grid gap-x-7 lg:mt-9 lg:grid-cols-2">
+          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:mt-9 lg:grid-cols-[1.15fr_.82fr_1.05fr_.9fr] lg:items-start lg:gap-4">
             {serviceAreas.map((item, index) => (
               <article
                 key={item.title}
-                className="premium-row motion-reveal grid grid-cols-[110px_minmax(0,1fr)] gap-4 border-b border-brand-navy/10 py-5 first:border-t sm:grid-cols-[155px_minmax(0,1fr)] sm:gap-6"
+                className={"asym-card motion-reveal flex flex-col p-5 sm:p-6 " + serviceAreaCardLayout[index]}
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
-                <div className={"h-[90px] rounded-[12px] bg-cover bg-center sm:h-[105px] " + item.visual} />
-                <div className="self-center">
-                  <h3 className="editorial-heading text-lg font-semibold text-brand-ink sm:text-xl">{item.title}</h3>
-                  <p className="mt-1.5 text-sm leading-6 text-brand-muted">{item.description}</p>
-                  <Link href="/layanan" className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-brand-navy">
-                    Lihat detail <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
+                <span className="block h-[2px] w-8 bg-brand-gold" />
+                <h3 className="editorial-heading mt-5 text-lg font-semibold leading-tight text-brand-ink sm:text-xl">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-brand-muted">{item.description}</p>
+                <Link
+                  href="/layanan"
+                  className="group mt-auto inline-flex items-center gap-2 pt-6 text-xs font-semibold text-brand-navy"
+                >
+                  Lihat detail
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </Link>
               </article>
             ))}
           </div>
