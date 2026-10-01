@@ -30,7 +30,8 @@ export function HomeHero({
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f6f1e4_0%,#f6f1e4_48%,rgba(246,241,228,.92)_62%,rgba(246,241,228,.2)_100%)]" />
 
       <div className="page-shell relative py-9 sm:py-12 lg:py-16">
-        <div className="max-w-[680px]">
+        <div className="lg:grid lg:grid-cols-12 lg:items-end lg:gap-x-10 xl:gap-x-12">
+          <div className="max-w-[680px] lg:col-span-7">
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">
             Legalitas bisnis, langkah lebih tenang
           </p>
@@ -73,13 +74,14 @@ export function HomeHero({
               </div>
             ))}
           </div>
-        </div>
+          </div>
 
-        <div className="motion-reveal mt-8 max-w-xl sm:mt-10">
-          <LegalQuickFinder
-            consultationHref={consultationHref}
-            consultationExternal={consultationExternal}
-          />
+          <div className="motion-reveal mt-8 max-w-xl sm:mt-10 lg:col-span-5 lg:mt-0 lg:max-w-none">
+            <LegalQuickFinder
+              consultationHref={consultationHref}
+              consultationExternal={consultationExternal}
+            />
+          </div>
         </div>
       </div>
     </section>

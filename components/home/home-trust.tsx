@@ -46,9 +46,11 @@ export function HomeTrust({
       {visibleTestimonials.length ? (
         <div className="py-14 sm:py-16 lg:py-24">
           <div className="page-shell">
-            <div className="grid gap-4 text-center md:grid-cols-[1fr_420px] md:items-end md:gap-10 md:text-left">
-              <h2 className="mx-auto max-w-2xl section-title md:mx-0">Apa kata klien kami?</h2>
-              <p className="mx-auto max-w-md text-sm leading-7 text-brand-muted md:mx-0">
+            <div className="grid gap-4 text-center md:text-left lg:grid-cols-12 lg:items-end lg:gap-x-10 xl:gap-x-12">
+              <h2 className="mx-auto max-w-2xl section-title md:mx-0 lg:col-span-4">
+                Apa kata klien kami?
+              </h2>
+              <p className="mx-auto max-w-md text-sm leading-7 text-brand-muted md:mx-0 lg:col-span-8 lg:max-w-2xl">
                 Pengalaman klien setelah menggunakan layanan Yuk Jadi Legal.
               </p>
             </div>

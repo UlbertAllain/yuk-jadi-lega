@@ -26,8 +26,8 @@ export function HomeContent({
     <>
       {featuredArticle ? (
         <section className="border-b border-brand-navy/8 bg-brand-surface py-10 sm:py-12 lg:py-16">
-          <div className="page-shell">
-            <div className="flex items-end justify-between gap-4">
+          <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+            <div className="lg:col-span-4">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
                   Insight
@@ -36,12 +36,13 @@ export function HomeContent({
                   Wawasan untuk langkah bisnis yang lebih pasti.
                 </h2>
               </div>
-              <Link href="/artikel" className="hidden text-xs font-semibold text-brand-navy sm:inline-flex">
+              <Link href="/artikel" className="mt-4 hidden text-xs font-semibold text-brand-navy sm:inline-flex">
                 Lihat semua →
               </Link>
             </div>
+            </div>
 
-            <div className="mt-7 grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
+            <div className="mt-7 grid gap-4 lg:col-span-8 lg:mt-0 lg:grid-cols-[1.1fr_.9fr]">
               <Link
                 href={"/artikel/" + featuredArticle.slug}
                 className="motion-reveal group overflow-hidden rounded-[16px] border border-brand-navy/10 bg-white"
@@ -107,13 +108,15 @@ export function HomeContent({
 
       {faqs.length ? (
         <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
-          <div className="page-shell max-w-4xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">FAQ</p>
-            <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
-              Pertanyaan yang sering diajukan.
-            </h2>
+          <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+            <div className="lg:col-span-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">FAQ</p>
+              <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+                Pertanyaan yang sering diajukan.
+              </h2>
+            </div>
 
-            <div className="mt-6 grid gap-2">
+            <div className="mt-6 grid gap-2 lg:col-span-8 lg:mt-0">
               {faqs.slice(0, 5).map((faq) => (
                 <details key={faq.id} className="group rounded-[10px] border border-brand-navy/10 bg-brand-surface px-4">
                   <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_22px] items-center gap-4 py-4">
@@ -130,8 +133,8 @@ export function HomeContent({
 
       <section className="relative overflow-hidden border-t border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-14">
         <div className="visual-cta-leaves pointer-events-none absolute inset-y-0 right-0 w-[150px] bg-contain bg-right-bottom bg-no-repeat opacity-90 sm:w-[220px]" />
-        <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
-          <div className="max-w-2xl">
+        <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+          <div className="max-w-2xl lg:col-span-8">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
               Masih ada pertanyaan?
             </p>
@@ -144,7 +147,7 @@ export function HomeContent({
             href={consultationHref}
             target={consultationExternal ? "_blank" : undefined}
             rel={consultationExternal ? "noreferrer" : undefined}
-            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
+            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto lg:col-span-4 lg:justify-self-end"
           >
             Konsultasi sekarang
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

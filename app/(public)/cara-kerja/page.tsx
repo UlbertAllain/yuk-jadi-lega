@@ -59,8 +59,8 @@ export default async function HowItWorksPage() {
       <section className="relative overflow-hidden border-b border-brand-navy/8 bg-brand-paper">
         <div className="legal-hero-photo pointer-events-none absolute inset-y-0 right-0 w-[48%] sm:w-[42%]" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f6f1e4_0%,#f6f1e4_48%,rgba(246,241,228,.92)_62%,rgba(246,241,228,.18)_100%)]" />
-        <div className="page-shell relative py-9 sm:py-12 lg:py-16">
-          <div className="max-w-[650px]">
+        <div className="page-shell relative py-9 sm:py-12 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:py-16 xl:gap-x-12">
+          <div className="max-w-[650px] lg:col-span-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">Cara kerja</p>
             <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.6rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink">
               Dari konsultasi sampai selesai, alurnya tetap jelas.
@@ -82,8 +82,8 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="page-shell py-8 sm:py-10 lg:py-14">
-        <div className="motion-reveal grid gap-6 rounded-[22px] bg-brand-paper p-5 sm:p-7 lg:grid-cols-[1fr_280px] lg:items-center lg:p-9">
-          <div>
+        <div className="motion-reveal grid gap-6 rounded-[22px] bg-brand-paper p-5 sm:p-7 lg:grid-cols-12 lg:items-center lg:gap-x-10 lg:p-9 xl:gap-x-12">
+          <div className="lg:col-span-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Sebelum mulai</p>
             <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.05] tracking-[-0.03em] text-brand-ink sm:text-[2.5rem]">
               Cukup ceritakan kondisi bisnis Anda saat ini.
@@ -92,7 +92,7 @@ export default async function HowItWorksPage() {
               Sampaikan jenis usaha, rencana Anda, dan kebutuhan legalitas yang sedang dibutuhkan. Tim kami akan membantu memetakan langkah terbaik.
             </p>
           </div>
-          <div className="rounded-[16px] bg-white/80 p-4">
+          <div className="rounded-[16px] bg-white/80 p-4 lg:col-span-5">
             <MessageSquareMore className="h-6 w-6 text-brand-gold-dark" />
             <p className="mt-3 text-sm leading-6 text-brand-ink">
               “Anda tidak perlu menyiapkan dokumen rumit. Cukup ceritakan kebutuhan Anda, sisanya kami bantu.”
@@ -102,13 +102,15 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="page-shell pb-8 sm:pb-10 lg:pb-14">
-        <div className="rounded-[22px] border border-brand-navy/8 bg-white p-5 sm:p-7 lg:p-9">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Langkah kerja kami</p>
-          <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
-            Proses yang terarah, dari awal hingga selesai.
-          </h2>
+        <div className="rounded-[22px] border border-brand-navy/8 bg-white p-5 sm:p-7 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:p-9 xl:gap-x-12">
+          <div className="lg:col-span-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Langkah kerja kami</p>
+            <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+              Proses yang terarah, dari awal hingga selesai.
+            </h2>
+          </div>
 
-          <ol className="editorial-timeline mt-7">
+          <ol className="editorial-timeline mt-7 lg:col-span-8 lg:mt-0">
             {steps.map(({ number, icon: Icon, title, description, result }, index) => (
               <li
                 key={number}
@@ -136,12 +138,14 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="bg-brand-paper py-9 sm:py-11 lg:py-14">
-        <div className="page-shell">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Selama proses</p>
-          <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.5rem]">
-            Anda tetap tahu setiap perkembangannya.
-          </h2>
-          <div className="mt-6 grid gap-3">
+        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+          <div className="lg:col-span-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Selama proses</p>
+            <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.5rem]">
+              Anda tetap tahu setiap perkembangannya.
+            </h2>
+          </div>
+          <div className="mt-6 grid gap-3 lg:col-span-8 lg:mt-0">
             {clarity.map(({ icon: Icon, title, description }, index) => (
               <article
                 key={title}
@@ -163,8 +167,8 @@ export default async function HowItWorksPage() {
 
       <section className="relative overflow-hidden border-t border-brand-navy/8 bg-brand-paper py-10 sm:py-12">
         <div className="visual-cta-leaves pointer-events-none absolute inset-y-0 right-0 w-[150px] bg-contain bg-right-bottom bg-no-repeat sm:w-[220px]" />
-        <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
-          <div>
+        <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+          <div className="lg:col-span-8">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Siap mulai?</p>
             <h2 className="editorial-heading mt-2 max-w-xl text-[2rem] font-semibold leading-[1.04] text-brand-ink sm:text-[2.4rem]">
               Konsultasikan kebutuhan Anda sekarang juga.
@@ -174,7 +178,7 @@ export default async function HowItWorksPage() {
             href={consultationHref}
             target={whatsappHref ? "_blank" : undefined}
             rel={whatsappHref ? "noreferrer" : undefined}
-            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
+            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto lg:col-span-4 lg:justify-self-end"
           >
             Mulai konsultasi
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

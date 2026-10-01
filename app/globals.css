@@ -22,7 +22,7 @@
 
 :root {
   --page-gutter: clamp(1.25rem, 3vw, 2rem);
-  --page-max: 86.25rem;
+  --page-max: 80rem;
 }
 
 html {

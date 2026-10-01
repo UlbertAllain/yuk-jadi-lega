@@ -64,8 +64,8 @@ export default function AboutPage() {
       <section className="relative overflow-hidden border-b border-brand-navy/8 bg-brand-paper">
         <div className="legal-hero-photo pointer-events-none absolute inset-y-0 right-0 w-[48%] sm:w-[42%]" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f6f1e4_0%,#f6f1e4_50%,rgba(246,241,228,.9)_64%,rgba(246,241,228,.15)_100%)]" />
-        <div className="page-shell relative py-9 sm:py-12 lg:py-16">
-          <div className="max-w-[670px]">
+        <div className="page-shell relative py-9 sm:py-12 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:py-16 xl:gap-x-12">
+          <div className="max-w-[670px] lg:col-span-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">Tentang kami</p>
             <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.7rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink">
               Legalitas bisnis seharusnya membantu usaha berjalan, bukan membuat pemiliknya bingung.
@@ -92,34 +92,39 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="page-shell py-9 sm:py-11 lg:py-16">
-        <div className="motion-reveal max-w-3xl">
+      <section className="page-shell py-9 sm:py-11 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:py-16 xl:gap-x-12">
+        <div className="motion-reveal lg:col-span-4">
           <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Kenapa kami ada</p>
           <h2 className="editorial-heading mt-2 text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-ink sm:text-[3rem]">
             Berawal dari satu masalah yang sering kami lihat.
           </h2>
-          <p className="mt-4 text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
-            Banyak pemilik usaha punya ide besar dan semangat tinggi, tetapi terhambat oleh proses legalitas yang terasa rumit, membingungkan, dan memakan waktu. Tujuan kami sederhana: membuat urusan legal terasa lebih mudah dipahami, supaya legalitas menjadi fondasi bisnis, bukan beban.
-          </p>
         </div>
 
-        <blockquote className="motion-reveal mt-7 max-w-3xl rounded-[18px] bg-brand-paper p-5 sm:p-7">
+        <div className="mt-5 lg:col-span-8 lg:mt-0">
+          <p className="motion-reveal text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
+            Banyak pemilik usaha punya ide besar dan semangat tinggi, tetapi terhambat oleh proses legalitas yang terasa rumit, membingungkan, dan memakan waktu. Tujuan kami sederhana: membuat urusan legal terasa lebih mudah dipahami, supaya legalitas menjadi fondasi bisnis, bukan beban.
+          </p>
+
+        <blockquote className="motion-reveal mt-7 rounded-[18px] bg-brand-paper p-5 sm:p-7">
           <span className="editorial-heading text-4xl leading-none text-brand-gold">“</span>
           <p className="editorial-heading mt-1 text-xl font-semibold leading-[1.25] tracking-[-0.02em] text-brand-ink sm:text-[1.6rem]">
             Kami ingin pemilik usaha bisa merasa lebih tenang karena tahu apa yang perlu dilakukan dan ke mana prosesnya berjalan.
           </p>
           <div className="mt-4 h-[2px] w-10 bg-brand-gold" />
         </blockquote>
+        </div>
       </section>
 
       <section className="border-y border-brand-navy/8 bg-white py-9 sm:py-11 lg:py-16">
-        <div className="page-shell">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Yang kami bantu</p>
-          <h2 className="editorial-heading mt-2 max-w-2xl text-[2.1rem] font-semibold leading-[1.03] tracking-[-0.035em] text-brand-ink sm:text-[2.8rem]">
-            Solusi legal untuk setiap tahap perjalanan bisnis Anda.
-          </h2>
+        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+          <div className="lg:col-span-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Yang kami bantu</p>
+            <h2 className="editorial-heading mt-2 max-w-2xl text-[2.1rem] font-semibold leading-[1.03] tracking-[-0.035em] text-brand-ink sm:text-[2.8rem]">
+              Solusi legal untuk setiap tahap perjalanan bisnis Anda.
+            </h2>
+          </div>
 
-          <div className="mt-7 max-w-3xl">
+          <div className="mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
             {serviceAreas.map((item, index) => (
               <article
                 key={item.title}
@@ -141,16 +146,18 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-brand-surface py-9 sm:py-11 lg:py-16">
-        <div className="page-shell">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Prinsip kami</p>
-          <h2 className="editorial-heading mt-2 max-w-xl text-[2.1rem] font-semibold leading-[1.03] tracking-[-0.035em] text-brand-ink sm:text-[2.8rem]">
-            Cara kami mendampingi Anda.
-          </h2>
-          <p className="mt-3 max-w-xl text-sm leading-7 text-brand-muted">
-            Kami tidak hanya membantu mengurus dokumen, tetapi juga membantu Anda memahami langkah yang sedang dijalankan.
-          </p>
+        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+          <div className="lg:col-span-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Prinsip kami</p>
+            <h2 className="editorial-heading mt-2 max-w-xl text-[2.1rem] font-semibold leading-[1.03] tracking-[-0.035em] text-brand-ink sm:text-[2.8rem]">
+              Cara kami mendampingi Anda.
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-7 text-brand-muted">
+              Kami tidak hanya membantu mengurus dokumen, tetapi juga membantu Anda memahami langkah yang sedang dijalankan.
+            </p>
+          </div>
 
-          <ol className="editorial-timeline mt-7 max-w-3xl">
+          <ol className="editorial-timeline mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
             {principles.map(({ number, icon: Icon, title, description }, index) => (
               <li
                 key={number}
@@ -175,8 +182,8 @@ export default function AboutPage() {
 
       <section className="relative overflow-hidden border-t border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-14">
         <div className="visual-cta-leaves pointer-events-none absolute inset-y-0 right-0 w-[150px] bg-contain bg-right-bottom bg-no-repeat sm:w-[220px]" />
-        <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
-          <div>
+        <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+          <div className="lg:col-span-8">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Siap melangkah lebih tenang?</p>
             <h2 className="editorial-heading mt-2 max-w-xl text-[2rem] font-semibold leading-[1.04] text-brand-ink sm:text-[2.5rem]">
               Konsultasikan kebutuhan legalitas bisnis Anda sekarang.
@@ -187,7 +194,7 @@ export default function AboutPage() {
           </div>
           <Link
             href="/kontak"
-            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
+            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto lg:col-span-4 lg:justify-self-end"
           >
             Konsultasi sekarang
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -42,8 +42,8 @@ export function HomeServices({
   return (
     <>
       <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
-        <div className="page-shell">
-          <div className="max-w-2xl">
+        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+          <div className="max-w-2xl lg:col-span-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
               Layanan kami
             </p>
@@ -52,7 +52,7 @@ export function HomeServices({
             </h2>
           </div>
 
-          <div className="mt-7 max-w-3xl">
+          <div className="mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
             {services.map((service, index) => (
               <Link
                 key={service.id}
@@ -83,15 +83,17 @@ export function HomeServices({
       </section>
 
       <section className="soft-wave-top border-b border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-16">
-        <div className="page-shell">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
-            Kenapa Yuk Jadi Legal
-          </p>
-          <h2 className="editorial-heading mt-2 max-w-xl text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
-            Legalitas bisnis, tanpa bikin pusing.
-          </h2>
+        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
+          <div className="lg:col-span-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
+              Kenapa Yuk Jadi Legal
+            </p>
+            <h2 className="editorial-heading mt-2 max-w-xl text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+              Legalitas bisnis, tanpa bikin pusing.
+            </h2>
+          </div>
 
-          <div className="mt-7 grid max-w-3xl gap-5">
+          <div className="mt-7 grid max-w-3xl gap-5 lg:col-span-8 lg:mt-0 lg:max-w-none">
             {trustItems.map(({ icon: Icon, title, description }, index) => (
               <article
                 key={title}
