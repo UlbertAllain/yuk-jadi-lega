@@ -35,7 +35,7 @@ export function HomeHero({
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">
             Legalitas bisnis, langkah lebih tenang
           </p>
-          <h1 className="editorial-heading mt-3 max-w-[650px] text-[clamp(2.55rem,8vw,4.9rem)] font-semibold leading-[.98] tracking-[-0.045em] text-brand-navy-dark">
+          <h1 className="editorial-heading mt-3 max-w-[650px] text-[clamp(2.55rem,8vw,4.9rem)] font-semibold leading-[.98] tracking-[-0.045em] text-brand-navy-dark lg:text-[4.35rem]">
             {settings.heroTitle}
           </h1>
           <p className="mt-5 max-w-[560px] text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
@@ -76,7 +76,7 @@ export function HomeHero({
           </div>
           </div>
 
-          <div className="motion-reveal mt-8 max-w-xl sm:mt-10 lg:col-span-5 lg:mt-0 lg:max-w-none">
+          <div className="motion-reveal mt-8 max-w-xl sm:mt-10 lg:col-span-5 lg:mt-0 lg:max-w-none lg:self-center">
             <LegalQuickFinder
               consultationHref={consultationHref}
               consultationExternal={consultationExternal}

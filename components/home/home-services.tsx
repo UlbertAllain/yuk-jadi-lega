@@ -57,7 +57,7 @@ export function HomeServices({
               <Link
                 key={service.id}
                 href={"/layanan/" + service.slug}
-                className="motion-reveal group grid grid-cols-[108px_minmax(0,1fr)] gap-4 border-b border-brand-navy/10 py-5 first:border-t sm:grid-cols-[145px_minmax(0,1fr)] sm:gap-6"
+                className="premium-row motion-reveal group grid grid-cols-[108px_minmax(0,1fr)] gap-4 border-b border-brand-navy/10 py-5 first:border-t sm:grid-cols-[145px_minmax(0,1fr)] sm:gap-6"
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
                 <div
@@ -100,7 +100,7 @@ export function HomeServices({
                 className="motion-reveal grid grid-cols-[46px_minmax(0,1fr)] gap-4"
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-brand-gold-dark shadow-[0_8px_22px_rgba(4,29,54,.05)]">
+                <span className="grid h-11 w-11 place-items-center rounded-full border border-brand-navy/7 bg-white text-brand-gold-dark shadow-[0_6px_18px_rgba(4,29,54,.035)]">
                   <Icon className="h-5 w-5" />
                 </span>
                 <div>

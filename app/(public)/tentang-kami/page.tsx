@@ -63,7 +63,7 @@ export default function AboutPage() {
         <div className="page-shell relative py-9 sm:py-12 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:py-16 xl:gap-x-12">
           <div className="max-w-[670px] lg:col-span-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">Tentang kami</p>
-            <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.7rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink">
+            <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.7rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink lg:text-[4.15rem]">
               Legalitas bisnis seharusnya membantu usaha berjalan, bukan membuat pemiliknya bingung.
             </h1>
             <p className="mt-4 max-w-[560px] text-[15px] leading-7 text-brand-muted sm:text-base">
@@ -101,7 +101,7 @@ export default function AboutPage() {
             Banyak pemilik usaha punya ide besar dan semangat tinggi, tetapi terhambat oleh proses legalitas yang terasa rumit, membingungkan, dan memakan waktu. Tujuan kami sederhana: membuat urusan legal terasa lebih mudah dipahami, supaya legalitas menjadi fondasi bisnis, bukan beban.
           </p>
 
-        <blockquote className="motion-reveal mt-7 rounded-[18px] bg-brand-paper p-5 sm:p-7">
+        <blockquote className="motion-reveal premium-card mt-7 bg-brand-paper/70 p-5 sm:p-7">
           <span className="editorial-heading text-4xl leading-none text-brand-gold">“</span>
           <p className="editorial-heading mt-1 text-xl font-semibold leading-[1.25] tracking-[-0.02em] text-brand-ink sm:text-[1.6rem]">
             Kami ingin pemilik usaha bisa merasa lebih tenang karena tahu apa yang perlu dilakukan dan ke mana prosesnya berjalan.
@@ -124,7 +124,7 @@ export default function AboutPage() {
             {serviceAreas.map((item, index) => (
               <article
                 key={item.title}
-                className="motion-reveal grid grid-cols-[110px_minmax(0,1fr)] gap-4 border-b border-brand-navy/10 py-5 first:border-t sm:grid-cols-[155px_minmax(0,1fr)] sm:gap-6"
+                className="premium-row motion-reveal grid grid-cols-[110px_minmax(0,1fr)] gap-4 border-b border-brand-navy/10 py-5 first:border-t sm:grid-cols-[155px_minmax(0,1fr)] sm:gap-6"
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
                 <div className={"h-[90px] rounded-[12px] bg-cover bg-center sm:h-[105px] " + item.visual} />

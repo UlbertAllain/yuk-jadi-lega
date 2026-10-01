@@ -44,7 +44,7 @@ export function HomeContent({
             <div className="mt-7 grid gap-4 lg:col-span-8 lg:mt-0">
               <Link
                 href={"/artikel/" + featuredArticle.slug}
-                className="motion-reveal group overflow-hidden rounded-[16px] border border-brand-navy/10 bg-white lg:grid lg:grid-cols-[1.05fr_.95fr]"
+                className="premium-card motion-reveal group overflow-hidden lg:grid lg:grid-cols-[1.05fr_.95fr]"
               >
                 <div className="relative aspect-[16/9] overflow-hidden bg-brand-paper lg:aspect-auto lg:min-h-[250px]">
                   {featuredArticle.coverImageUrl ? (
@@ -76,7 +76,7 @@ export function HomeContent({
                   <Link
                     key={article.id}
                     href={"/artikel/" + article.slug}
-                    className="motion-reveal group grid grid-cols-[104px_minmax(0,1fr)] gap-3 rounded-[13px] border border-brand-navy/9 bg-white p-3 sm:grid-cols-[88px_minmax(0,1fr)]"
+                    className="premium-card motion-reveal group grid grid-cols-[104px_minmax(0,1fr)] gap-3 p-3 sm:grid-cols-[88px_minmax(0,1fr)]"
                     style={{ animationDelay: String((index + 1) * 70) + "ms" }}
                   >
                     <div className="relative h-[82px] overflow-hidden rounded-[9px] bg-brand-paper">
@@ -117,7 +117,7 @@ export function HomeContent({
 
             <div className="mt-6 grid gap-2 lg:col-span-8 lg:mt-0">
               {faqs.slice(0, 5).map((faq) => (
-                <details key={faq.id} className="group rounded-[10px] border border-brand-navy/10 bg-brand-surface px-4">
+                <details key={faq.id} className="group rounded-[10px] border border-brand-navy/8 bg-brand-surface/70 px-4 transition hover:border-brand-gold/20 hover:bg-white">
                   <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_22px] items-center gap-4 py-4">
                     <span className="text-sm font-medium leading-6 text-brand-ink">{faq.question}</span>
                     <span className="text-lg text-brand-navy transition group-open:rotate-45">+</span>

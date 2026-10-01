@@ -58,7 +58,7 @@ export default async function HowItWorksPage() {
         <div className="page-shell relative py-9 sm:py-12 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:py-16 xl:gap-x-12">
           <div className="max-w-[650px] lg:col-span-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">Cara kerja</p>
-            <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.6rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink">
+            <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.6rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink lg:text-[4.15rem]">
               Dari konsultasi sampai selesai, alurnya tetap jelas.
             </h1>
             <p className="mt-4 max-w-[520px] text-[15px] leading-7 text-brand-muted sm:text-base">
@@ -78,7 +78,7 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="page-shell py-8 sm:py-10 lg:py-14">
-        <div className="motion-reveal grid gap-6 rounded-[22px] bg-brand-paper p-5 sm:p-7 lg:grid-cols-12 lg:items-center lg:gap-x-10 lg:p-9 xl:gap-x-12">
+        <div className="motion-reveal grid gap-6 rounded-[18px] border border-brand-navy/7 bg-brand-paper/70 p-5 sm:p-7 lg:grid-cols-12 lg:items-center lg:gap-x-10 lg:p-8 xl:gap-x-12">
           <div className="lg:col-span-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Sebelum mulai</p>
             <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.05] tracking-[-0.03em] text-brand-ink sm:text-[2.5rem]">
@@ -88,7 +88,7 @@ export default async function HowItWorksPage() {
               Sampaikan jenis usaha, rencana Anda, dan kebutuhan legalitas yang sedang dibutuhkan. Tim kami akan membantu memetakan langkah terbaik.
             </p>
           </div>
-          <div className="rounded-[16px] bg-white/80 p-4 lg:col-span-5">
+          <div className="premium-card p-4 lg:col-span-5">
             <MessageSquareMore className="h-6 w-6 text-brand-gold-dark" />
             <p className="mt-3 text-sm leading-6 text-brand-ink">
               “Anda tidak perlu menyiapkan dokumen rumit. Cukup ceritakan kebutuhan Anda, sisanya kami bantu.”
@@ -98,7 +98,7 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="page-shell pb-8 sm:pb-10 lg:pb-14">
-        <div className="rounded-[22px] border border-brand-navy/8 bg-white p-5 sm:p-7 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:p-9 xl:gap-x-12">
+        <div className="rounded-[18px] border border-brand-navy/7 bg-white p-5 sm:p-7 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:p-8 xl:gap-x-12">
           <div className="lg:col-span-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Langkah kerja kami</p>
             <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
@@ -143,7 +143,7 @@ export default async function HowItWorksPage() {
             {clarity.map(({ icon: Icon, title, description }, index) => (
               <article
                 key={title}
-                className="motion-reveal grid grid-cols-[44px_minmax(0,1fr)] gap-4 rounded-[13px] bg-white p-4"
+                className="premium-card motion-reveal grid grid-cols-[44px_minmax(0,1fr)] gap-4 p-4"
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-brand-gold-pale text-brand-gold-dark">
