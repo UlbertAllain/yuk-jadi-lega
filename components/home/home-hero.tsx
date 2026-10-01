@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getWhatsAppHref } from "@/lib/contact";
@@ -35,7 +34,7 @@ export function HomeHero({
     <section className="editorial-surface border-b border-brand-navy/10">
       <div className="page-shell relative grid gap-9 py-10 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] lg:items-center lg:gap-14 lg:py-20 xl:min-h-[600px]">
         <div className="mx-auto max-w-[660px] text-left lg:mx-0">
-          <h1 className="editorial-rule max-w-[660px] pt-4 text-[clamp(2.35rem,8.5vw,4.3rem)] font-semibold leading-[1] tracking-[-0.048em] text-brand-navy-dark">
+          <h1 className="max-w-[660px] text-[clamp(2.35rem,8.5vw,4.3rem)] font-semibold leading-[1] tracking-[-0.048em] text-brand-navy-dark">
             {settings.heroTitle}
           </h1>
 
@@ -73,13 +72,8 @@ export function HomeHero({
           </div>
         </div>
 
-        <div className="editorial-panel relative lg:pl-2">
-          <div className="pointer-events-none absolute -right-8 -top-10 hidden h-[300px] w-[300px] opacity-[0.18] lg:block">
-            <Image src="/visuals/hero-columns.svg" alt="" fill className="object-contain object-right-top" />
-          </div>
-          <div className="relative">
-            <LegalQuickFinder services={services} categories={categories} />
-          </div>
+        <div className="lg:pl-2">
+          <LegalQuickFinder services={services} categories={categories} />
         </div>
       </div>
     </section>
