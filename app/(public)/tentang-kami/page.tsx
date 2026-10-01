@@ -53,8 +53,8 @@ export default async function AboutPage() {
         description="Yuk Jadi Legal membantu pemilik usaha memahami dan mengurus badan usaha, perizinan, merek, dan dokumen bisnis dengan langkah yang lebih jelas."
       />
 
-      <section className="page-shell py-9 sm:py-11 lg:py-14">
-        <div className="max-w-3xl">
+      <section className="page-shell relative py-9 sm:py-11 lg:py-14">
+        <div className="max-w-3xl border-l-2 border-brand-gold/70 pl-4 sm:pl-5">
           <p className="text-xs font-semibold uppercase tracking-[0.11em] text-brand-gold-dark">Cara kami bekerja</p>
           <h2 className="mt-2 text-2xl font-semibold leading-[1.12] tracking-[-0.035em] text-brand-ink sm:text-3xl">
             Bukan sekadar mengurus dokumen. Kami bantu Anda memahami apa yang perlu dilakukan.
