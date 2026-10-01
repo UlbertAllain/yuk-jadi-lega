@@ -94,8 +94,8 @@ export default async function ServiceDetailPage({
     <main className="bg-brand-surface">
       <JsonLd data={breadcrumbJsonLd} />
 
-      <section className="border-b border-brand-navy/10 bg-white">
-        <div className="page-shell py-7 sm:py-9 lg:py-12">
+      <section className="editorial-surface border-b border-brand-navy/10">
+        <div className="page-shell relative py-7 sm:py-9 lg:py-12">
           <Link
             href="/layanan"
             className="inline-flex items-center gap-2 text-xs font-semibold text-brand-muted transition hover:text-brand-navy"
@@ -123,7 +123,7 @@ export default async function ServiceDetailPage({
               </div>
             </div>
 
-            <aside className="rounded-[16px] border border-brand-navy/12 bg-brand-surface p-5 sm:p-6">
+            <aside className="editorial-panel rounded-[16px] border border-brand-navy/12 bg-white/85 p-5 backdrop-blur-[1px] sm:p-6">
               <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-brand-muted">
                 Biaya layanan
               </p>
