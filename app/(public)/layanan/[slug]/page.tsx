@@ -100,7 +100,7 @@ export default async function ServiceDetailPage({
           <div className="mt-6 grid gap-7 sm:mt-8 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end lg:gap-16">
             <div>
               <p className="text-sm font-medium text-brand-gold-dark">{categoryName}</p>
-              <h1 className="mt-3 max-w-4xl text-[clamp(2.2rem,9.5vw,4.8rem)] font-semibold leading-[1.02] tracking-[-0.055em] text-brand-ink">
+              <h1 className="mt-3 max-w-4xl text-[clamp(2.2rem,5vw,4.15rem)] font-semibold leading-[1.03] tracking-[-0.048em] text-brand-ink">
                 {service.title}
               </h1>
               <p className="mt-4 max-w-3xl text-[15px] leading-7 text-brand-muted sm:mt-5 sm:text-[16px] sm:leading-8">
