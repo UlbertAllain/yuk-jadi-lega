@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SearchCheck } from "lucide-react";
 import { createPageMetadata } from "@/lib/seo";
 import { KbliBrowser } from "@/components/site/kbli-browser";
 import { PublicPageHero } from "@/components/site/public-page-hero";
@@ -12,18 +13,18 @@ export const metadata = createPageMetadata({
 const educationSteps = [
   {
     number: "01",
-    title: "Kenali kegiatan utama usaha",
-    description: "Mulai dari apa yang benar-benar dilakukan, dijual, atau diberikan oleh usaha Anda kepada pelanggan.",
+    title: "Kenali kegiatan utama",
+    description: "Mulai dari apa yang benar-benar dilakukan, dijual, atau diberikan usaha Anda.",
   },
   {
     number: "02",
-    title: "Cari dengan kata yang sederhana",
-    description: "Gunakan jenis usaha atau aktivitas utama, misalnya software, restoran, konstruksi, laundry, atau perdagangan.",
+    title: "Cari dengan kata sederhana",
+    description: "Gunakan istilah seperti software, restoran, konstruksi, laundry, atau perdagangan.",
   },
   {
     number: "03",
-    title: "Pilih kode yang paling sesuai",
-    description: "Baca nama kegiatan usahanya dan pastikan pilihannya sesuai dengan aktivitas bisnis yang memang dijalankan.",
+    title: "Cocokkan aktivitasnya",
+    description: "Baca nama kegiatan dan pastikan sesuai dengan aktivitas bisnis yang memang dijalankan.",
   },
 ] as const;
 
@@ -32,7 +33,7 @@ export default function KbliPage() {
     <main className="bg-brand-surface">
       <PublicPageHero
         title="Temukan kode KBLI yang sesuai dengan usaha Anda."
-        description="KBLI adalah kode yang digunakan untuk mengelompokkan kegiatan usaha di Indonesia. Cari berdasarkan jenis usaha, produk, atau aktivitas utama yang Anda jalankan."
+        description="Cari berdasarkan jenis usaha, produk, atau aktivitas utama. Anda tidak perlu membaca seluruh daftar KBLI satu per satu."
         meta={
           <p className="text-xs font-semibold text-brand-muted">
             Menggunakan klasifikasi KBLI 2025.
@@ -40,45 +41,42 @@ export default function KbliPage() {
         }
       />
 
-      <section className="border-b border-brand-navy/8 bg-white">
-        <div className="page-shell grid gap-8 py-10 sm:gap-10 sm:py-12 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-14 lg:py-16">
-          <div className="text-center lg:text-left">
-            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
-              Apa itu KBLI dan kenapa perlu dipilih dengan tepat?
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-brand-muted lg:mx-0">
-              KBLI membantu menjelaskan bidang kegiatan usaha Anda saat mengurus legalitas dan perizinan. Pemilihan kode yang tepat membuat kegiatan usaha yang didaftarkan lebih sesuai dengan bisnis yang benar-benar dijalankan.
-            </p>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-brand-muted lg:mx-0">
-              Jika usaha Anda menjalankan beberapa aktivitas, Anda dapat mencari masing-masing kegiatan yang relevan dan menentukan mana yang paling sesuai dengan kebutuhan usaha.
-            </p>
-            <Link
-              href="/kontak"
-              className="mt-6 inline-flex items-center text-sm font-semibold text-brand-navy underline decoration-brand-gold/60 underline-offset-4 transition hover:text-brand-gold-dark"
-            >
-              Masih bingung memilih KBLI? Konsultasikan dengan kami.
-            </Link>
-          </div>
-
-          <div className="divide-y divide-brand-navy/10 border-y border-brand-navy/12">
-            {educationSteps.map((step) => (
-              <article
-                key={step.number}
-                className="grid gap-4 py-5 sm:grid-cols-[52px_minmax(0,1fr)] sm:items-start sm:py-6"
-              >
-                <span className="text-sm font-semibold tabular-nums text-brand-gold-dark">{step.number}</span>
-                <div>
-                  <h3 className="text-base font-semibold text-brand-ink">{step.title}</h3>
-                  <p className="mt-1.5 text-sm leading-6 text-brand-muted">{step.description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+      <section className="page-shell py-7 sm:py-9 lg:py-12">
+        <KbliBrowser />
       </section>
 
-      <section className="page-shell py-8 sm:py-10 lg:py-14">
-        <KbliBrowser />
+      <section className="border-t border-brand-navy/9 bg-white py-9 sm:py-11 lg:py-14">
+        <div className="page-shell">
+          <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-10">
+            <div>
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-gold-pale">
+                <SearchCheck className="h-4 w-4 text-brand-navy" />
+              </span>
+              <h2 className="mt-4 text-2xl font-semibold tracking-[-0.035em] text-brand-ink">
+                Cara memilih KBLI dengan lebih tepat.
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-brand-muted">
+                KBLI menjelaskan kegiatan usaha saat mengurus legalitas dan perizinan. Fokuskan pencarian pada aktivitas yang benar-benar dijalankan.
+              </p>
+              <Link
+                href="/kontak"
+                className="mt-5 inline-flex text-sm font-semibold text-brand-navy underline decoration-brand-gold/60 underline-offset-4 hover:text-brand-gold-dark"
+              >
+                Masih bingung? Konsultasikan dengan kami.
+              </Link>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              {educationSteps.map((step) => (
+                <article key={step.number} className="rounded-[14px] border border-brand-navy/10 bg-brand-surface p-4">
+                  <span className="text-xs font-semibold text-brand-gold-dark">{step.number}</span>
+                  <h3 className="mt-3 text-base font-semibold text-brand-ink">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-brand-muted">{step.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
