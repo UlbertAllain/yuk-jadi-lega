@@ -1,5 +1,11 @@
 import { createPageMetadata } from "@/lib/seo";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  FileCheck2,
+  MessageCircleMore,
+  SearchCheck,
+} from "lucide-react";
 import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getWhatsAppHref } from "@/lib/contact";
 import { getSiteSettings } from "@/lib/data";
@@ -11,9 +17,21 @@ export const metadata = createPageMetadata({
 });
 
 const preparation = [
-  ["01", "Ceritakan kondisi usaha", "Sampaikan jenis usaha, kondisi saat ini, dan hal yang ingin Anda urus atau selesaikan."],
-  ["02", "Sampaikan tujuan Anda", "Misalnya ingin mendirikan badan usaha, mengurus izin, mendaftarkan merek, atau menyiapkan dokumen tertentu."],
-  ["03", "Kirim dokumen yang sudah ada", "Tidak perlu menyiapkan semuanya sendiri. Cukup kirim dokumen yang sudah tersedia, lalu tim akan membantu mengecek kekurangannya."],
+  {
+    icon: MessageCircleMore,
+    title: "Ceritakan kondisi usaha",
+    description: "Sampaikan kondisi saat ini dan hal yang ingin Anda urus atau selesaikan.",
+  },
+  {
+    icon: SearchCheck,
+    title: "Tentukan tujuan",
+    description: "Kami bantu memetakan layanan yang relevan dari tujuan bisnis Anda.",
+  },
+  {
+    icon: FileCheck2,
+    title: "Kirim yang sudah ada",
+    description: "Dokumen tidak harus lengkap. Tim akan membantu mengecek kekurangannya.",
+  },
 ] as const;
 
 const steps = [
@@ -21,38 +39,38 @@ const steps = [
     number: "01",
     title: "Konsultasi awal",
     description: "Kami mendengarkan kebutuhan dan kondisi usaha Anda terlebih dahulu agar tidak salah menentukan layanan.",
-    result: "Anda mendapat gambaran awal tentang kebutuhan yang perlu ditangani.",
+    result: "Gambaran awal kebutuhan yang perlu ditangani.",
   },
   {
     number: "02",
     title: "Pemetaan kebutuhan",
-    description: "Tim mengecek dokumen yang sudah ada, menentukan kebutuhan tambahan, serta menjelaskan perkiraan biaya dan waktu pengerjaan.",
-    result: "Anda tahu apa yang perlu disiapkan sebelum proses dimulai.",
+    description: "Tim mengecek dokumen, kebutuhan tambahan, perkiraan biaya, dan waktu pengerjaan.",
+    result: "Daftar hal yang perlu disiapkan sebelum proses dimulai.",
   },
   {
     number: "03",
-    title: "Pengerjaan & informasi perkembangan",
-    description: "Setelah kebutuhan disepakati, tim menjalankan proses dan memberi informasi pada tahap-tahap yang memang perlu Anda ketahui.",
-    result: "Anda tidak perlu menebak-nebak posisi proses atau langkah berikutnya.",
+    title: "Pengerjaan & update",
+    description: "Setelah kebutuhan disepakati, tim menjalankan proses dan memberi kabar pada tahap yang penting.",
+    result: "Status proses dan tindakan berikutnya tetap jelas.",
   },
   {
     number: "04",
-    title: "Pemeriksaan akhir & serah terima",
-    description: "Hasil akhir diperiksa dan diserahkan. Jika masih ada langkah lanjutan, tim akan menjelaskannya sebelum proses ditutup.",
-    result: "Anda menerima hasil beserta penjelasan tentang penggunaannya atau langkah berikutnya.",
+    title: "Serah terima",
+    description: "Hasil akhir diperiksa dan diserahkan beserta penjelasan jika masih ada langkah lanjutan.",
+    result: "Dokumen dan arahan penggunaan atau langkah berikutnya.",
   },
 ] as const;
 
 const duringProcess = [
-  ["Dokumen yang perlu disiapkan", "Tim membantu menjelaskan dokumen apa yang sudah cukup dan apa yang masih perlu dilengkapi."],
-  ["Perkiraan biaya dan waktu", "Informasi awal dibicarakan sebelum proses berjalan. Jika ada perubahan, Anda akan diberi tahu terlebih dahulu."],
-  ["Status dan tindakan berikutnya", "Anda akan mengetahui kapan cukup menunggu dan kapan ada informasi atau dokumen yang perlu diberikan."],
+  ["Dokumen", "Apa yang sudah cukup dan apa yang masih perlu dilengkapi."],
+  ["Biaya & waktu", "Perubahan penting dibicarakan sebelum proses dilanjutkan."],
+  ["Status", "Anda tahu kapan cukup menunggu dan kapan perlu bertindak."],
 ] as const;
 
 const notes = [
-  "Waktu pengerjaan dapat berbeda tergantung jenis layanan dan kecepatan proses dari instansi terkait.",
-  "Kebutuhan dokumen dapat menyesuaikan bentuk badan usaha, kegiatan bisnis, dan kondisi masing-masing klien.",
-  "Jika muncul kebutuhan atau biaya tambahan di luar kesepakatan awal, tim akan membicarakannya dengan Anda sebelum dilanjutkan.",
+  "Waktu pengerjaan dapat berbeda tergantung jenis layanan dan proses instansi terkait.",
+  "Kebutuhan dokumen dapat menyesuaikan bentuk badan usaha dan kondisi masing-masing klien.",
+  "Kebutuhan atau biaya tambahan di luar kesepakatan awal akan dibicarakan sebelum dilanjutkan.",
 ] as const;
 
 export default async function HowItWorksPage() {
@@ -67,57 +85,55 @@ export default async function HowItWorksPage() {
     <main className="bg-brand-surface">
       <PublicPageHero
         title="Dari konsultasi sampai selesai, Anda tahu apa yang sedang dikerjakan."
-        description="Kami menjelaskan apa yang perlu disiapkan, apa yang sedang diproses, dan kapan Anda perlu mengambil tindakan berikutnya."
+        description="Alurnya dibuat sederhana: pahami kebutuhan, siapkan yang diperlukan, ikuti progres, lalu terima hasil dengan penjelasan yang jelas."
       />
 
-      <section className="page-shell py-12 sm:py-16 lg:py-24">
-        <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16">
-          <div className="text-center lg:text-left">
-            <h2 className="mx-auto max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-brand-ink sm:text-4xl lg:mx-0">
-              Sebelum mulai, Anda tidak perlu menyiapkan semuanya sendiri.
-            </h2>
-            <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-brand-muted lg:mx-0">
-              Konsultasi awal justru digunakan untuk membantu mengetahui apa yang sudah siap dan apa yang masih perlu dilengkapi.
-            </p>
-          </div>
+      <section className="page-shell py-9 sm:py-11 lg:py-14">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.11em] text-brand-gold-dark">Sebelum mulai</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
+            Tidak perlu menyiapkan semuanya sendiri.
+          </h2>
+          <p className="mt-3 text-sm leading-7 text-brand-muted">
+            Konsultasi awal dipakai untuk mengetahui apa yang sudah siap dan apa yang masih perlu dilengkapi.
+          </p>
+        </div>
 
-          <div className="divide-y divide-brand-navy/10 border-y border-brand-navy/10">
-            {preparation.map(([number, title, description]) => (
-              <article key={number} className="grid gap-4 py-6 sm:grid-cols-[64px_minmax(0,1fr)] sm:py-7">
-                <span className="text-sm font-semibold tabular-nums text-brand-gold-dark">{number}</span>
-                <div>
-                  <h3 className="text-xl font-semibold tracking-[-0.025em] text-brand-ink">{title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-brand-muted">{description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          {preparation.map(({ icon: Icon, title, description }) => (
+            <article key={title} className="rounded-[14px] border border-brand-navy/10 bg-white p-4 sm:p-5">
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-gold-pale text-brand-navy">
+                <Icon className="h-4.5 w-4.5" />
+              </span>
+              <h3 className="mt-4 text-base font-semibold text-brand-ink">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-brand-muted">{description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="border-y border-brand-navy/9 bg-white py-12 sm:py-16 lg:py-24">
+      <section className="border-y border-brand-navy/9 bg-white py-9 sm:py-11 lg:py-14">
         <div className="page-shell">
-          <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
-            <h2 className="section-title">Bagaimana prosesnya berjalan?</h2>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-brand-muted lg:mx-0">
-              Setiap layanan bisa memiliki detail yang berbeda, tetapi alur kerjanya tetap mengikuti empat tahap utama berikut.
-            </p>
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.11em] text-brand-gold-dark">Alur utama</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
+              Empat tahap dari awal sampai selesai.
+            </h2>
           </div>
 
-          <ol className="mt-10 divide-y divide-brand-navy/10 border-y border-brand-navy/10">
+          <ol className="mt-7 grid gap-4 md:grid-cols-2">
             {steps.map((step) => (
-              <li
-                key={step.number}
-                className="grid gap-5 py-7 md:grid-cols-[76px_.9fr_1.1fr] md:items-start md:gap-8 lg:py-8"
-              >
-                <span className="text-lg font-semibold tabular-nums text-brand-gold-dark">{step.number}</span>
-                <div>
-                  <h3 className="text-2xl font-semibold tracking-[-0.03em] text-brand-ink">{step.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-brand-muted">{step.description}</p>
+              <li key={step.number} className="relative rounded-[16px] border border-brand-navy/10 bg-brand-surface p-5 sm:p-6">
+                <div className="flex items-center gap-3">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-navy text-xs font-semibold text-white">
+                    {step.number}
+                  </span>
+                  <h3 className="text-lg font-semibold tracking-[-0.025em] text-brand-ink">{step.title}</h3>
                 </div>
-                <div className="border-l border-brand-navy/12 pl-5">
-                  <p className="text-xs font-semibold text-brand-navy">Yang Anda dapatkan dari tahap ini</p>
-                  <p className="mt-2 text-sm leading-6 text-brand-muted">{step.result}</p>
+                <p className="mt-4 text-sm leading-7 text-brand-muted">{step.description}</p>
+                <div className="mt-4 rounded-[10px] bg-brand-gold-pale px-3.5 py-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-gold-dark">Hasil tahap ini</p>
+                  <p className="mt-1.5 text-sm leading-6 text-brand-ink">{step.result}</p>
                 </div>
               </li>
             ))}
@@ -125,21 +141,20 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-brand-navy-dark py-12 text-white sm:py-16 lg:py-20">
-        <div className="page-shell grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-14">
-          <div className="text-center lg:text-left">
-            <h2 className="mx-auto max-w-md text-3xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-4xl lg:mx-0">
-              Selama proses, Anda tetap tahu tiga hal penting.
+      <section className="bg-brand-navy-dark py-9 text-white sm:py-11 lg:py-14">
+        <div className="page-shell">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.11em] text-brand-gold-soft">Selama proses</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-white sm:text-3xl">
+              Tiga hal yang tetap harus jelas.
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-slate-300 lg:mx-0">
-              Kami berusaha menjaga komunikasi tetap sederhana agar Anda tidak perlu memahami istilah teknis untuk mengetahui perkembangan layanan.
-            </p>
           </div>
-          <div className="grid gap-x-8 sm:grid-cols-3">
-            {duringProcess.map(([title, description], index) => (
-              <article key={title} className="border-t border-white/15 py-5 sm:py-6">
-                <span className="text-[10px] font-semibold text-brand-gold-soft">0{index + 1}</span>
-                <h3 className="mt-3 text-lg font-semibold text-white">{title}</h3>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {duringProcess.map(([title, description]) => (
+              <article key={title} className="rounded-[14px] border border-white/12 bg-white/[0.04] p-4 sm:p-5">
+                <CheckCircle2 className="h-5 w-5 text-brand-gold-soft" />
+                <h3 className="mt-4 text-base font-semibold text-white">{title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-300">{description}</p>
               </article>
             ))}
@@ -147,42 +162,40 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="page-shell py-12 sm:py-16 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-14">
-          <div className="text-center lg:text-left">
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
-              Hal yang dapat memengaruhi waktu pengerjaan.
+      <section className="page-shell py-9 sm:py-11 lg:py-14">
+        <div className="rounded-[16px] border border-brand-navy/10 bg-white p-5 sm:p-6 lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-10">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.11em] text-brand-gold-dark">Perlu diketahui</p>
+            <h2 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-brand-ink sm:text-2xl">
+              Waktu pengerjaan bisa berbeda.
             </h2>
-            <p className="mt-4 text-sm leading-7 text-brand-muted">
-              Kami akan memberi perkiraan sejak awal, tetapi beberapa hal memang bergantung pada kondisi usaha dan proses di luar tim kami.
-            </p>
           </div>
-          <div className="divide-y divide-brand-navy/10 border-y border-brand-navy/10">
-            {notes.map((item, index) => (
-              <div key={item} className="grid gap-3 py-5 sm:grid-cols-[46px_minmax(0,1fr)] sm:py-6">
-                <span className="text-xs font-semibold text-brand-gold-dark">0{index + 1}</span>
-                <p className="text-sm leading-7 text-brand-muted">{item}</p>
+          <div className="mt-5 grid gap-3 lg:mt-0">
+            {notes.map((item) => (
+              <div key={item} className="flex gap-3">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gold" />
+                <p className="text-sm leading-6 text-brand-muted">{item}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-brand-navy/9 bg-brand-paper py-12 sm:py-14 lg:py-20">
-        <div className="page-shell flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left">
+      <section className="border-t border-brand-navy/9 bg-brand-paper py-9 sm:py-11 lg:py-14">
+        <div className="page-shell grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
           <div>
-            <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-brand-ink">
+            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink">
               Belum tahu harus mulai dari mana?
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
-              Ceritakan kondisi usaha Anda terlebih dahulu. Tim kami akan membantu menentukan langkah awal yang paling relevan.
+              Ceritakan kondisi usaha Anda. Tim akan membantu menentukan langkah awal yang paling relevan.
             </p>
           </div>
           <a
             href={consultationHref}
             target={whatsappHref ? "_blank" : undefined}
             rel={whatsappHref ? "noreferrer" : undefined}
-            className="button-gold inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 px-5 py-3 text-sm font-semibold sm:min-h-0 sm:w-auto"
+            className="button-gold inline-flex min-h-12 w-full items-center justify-center gap-2 px-5 py-3 text-sm font-semibold sm:w-auto"
           >
             Mulai konsultasi <ArrowRight className="h-4 w-4" />
           </a>
