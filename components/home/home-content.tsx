@@ -40,7 +40,6 @@ export function HomeContent({
                 Lihat semua →
               </Link>
             </div>
-            </div>
 
             <div className="mt-7 grid gap-4 lg:col-span-8 lg:mt-0 lg:grid-cols-[1.1fr_.9fr]">
               <Link
