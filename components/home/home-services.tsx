@@ -27,7 +27,7 @@ export function HomeServices({
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-brand-navy/8 bg-white py-12 sm:py-14 lg:py-18">
+      <section className="relative overflow-hidden border-b border-brand-navy/8 bg-white py-12 sm:py-14 lg:py-[4.5rem]">
         <div className="page-shell">
           <div className="grid gap-5 lg:grid-cols-[1fr_360px] lg:items-end lg:gap-12">
             <h2 className="editorial-rule max-w-[760px] pt-4 section-title">{settings.servicesTitle}</h2>
