@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getWhatsAppHref } from "@/lib/contact";
@@ -31,18 +32,18 @@ export function HomeHero({
   const visibleProof = proof.length ? proof : fallbackProof;
 
   return (
-    <section className="border-b border-brand-navy/10 bg-brand-surface">
-      <div className="page-shell grid gap-9 py-10 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] lg:items-center lg:gap-14 lg:py-20 xl:min-h-[600px]">
-        <div className="mx-auto max-w-[660px] text-center lg:mx-0 lg:text-left">
-          <h1 className="mx-auto max-w-[660px] text-[clamp(2.35rem,8.5vw,4.3rem)] font-semibold leading-[1] tracking-[-0.048em] text-brand-navy-dark lg:mx-0">
+    <section className="editorial-surface border-b border-brand-navy/10">
+      <div className="page-shell relative grid gap-9 py-10 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] lg:items-center lg:gap-14 lg:py-20 xl:min-h-[600px]">
+        <div className="mx-auto max-w-[660px] text-left lg:mx-0">
+          <h1 className="editorial-rule max-w-[660px] pt-4 text-[clamp(2.35rem,8.5vw,4.3rem)] font-semibold leading-[1] tracking-[-0.048em] text-brand-navy-dark">
             {settings.heroTitle}
           </h1>
 
-          <p className="mx-auto mt-5 max-w-[580px] text-[15px] leading-7 text-brand-muted sm:mt-6 sm:text-base sm:leading-8 lg:mx-0">
+          <p className="mt-5 max-w-[580px] text-[15px] leading-7 text-brand-muted sm:mt-6 sm:text-base sm:leading-8">
             {settings.heroDescription}
           </p>
 
-          <div className="mt-7 grid gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center lg:justify-start sm:gap-x-5 sm:gap-y-3">
+          <div className="mt-7 grid gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-3">
             <a
               href={consultationHref}
               target={consultationExternal ? "_blank" : undefined}
@@ -59,7 +60,7 @@ export function HomeHero({
             </Link>
           </div>
 
-          <div className="mx-auto mt-8 grid max-w-[560px] grid-cols-3 border-y border-brand-navy/10 sm:mt-10">
+          <div className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-brand-navy/10 sm:mt-10">
             {visibleProof.map((item) => (
               <div
                 key={item.label}
@@ -72,8 +73,13 @@ export function HomeHero({
           </div>
         </div>
 
-        <div className="lg:pl-2">
-          <LegalQuickFinder services={services} categories={categories} />
+        <div className="editorial-panel relative lg:pl-2">
+          <div className="pointer-events-none absolute -right-8 -top-10 hidden h-[300px] w-[300px] opacity-[0.18] lg:block">
+            <Image src="/visuals/hero-columns.svg" alt="" fill className="object-contain object-right-top" />
+          </div>
+          <div className="relative">
+            <LegalQuickFinder services={services} categories={categories} />
+          </div>
         </div>
       </div>
     </section>
