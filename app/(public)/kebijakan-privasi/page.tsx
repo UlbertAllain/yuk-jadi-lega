@@ -6,56 +6,52 @@ export const metadata = createPageMetadata({
   path: "/kebijakan-privasi",
 });
 
+const sections = [
+  [
+    "1. Informasi yang kami terima",
+    "Saat Anda mengirim formulir konsultasi, kami dapat menerima nama, nomor WhatsApp, email, layanan yang diminati, dan pesan yang Anda sampaikan.",
+  ],
+  [
+    "2. Penggunaan informasi",
+    "Informasi digunakan untuk menanggapi pertanyaan, memahami kebutuhan Anda, melakukan tindak lanjut konsultasi, serta meningkatkan kualitas layanan dan komunikasi kami.",
+  ],
+  [
+    "3. Penyimpanan dan perlindungan data",
+    "Kami menerapkan pengelolaan akses yang wajar untuk membantu menjaga data yang dikirim melalui website. Informasi disimpan selama masih diperlukan untuk tujuan layanan, administrasi, atau kewajiban yang berlaku.",
+  ],
+  [
+    "4. Layanan pihak ketiga",
+    "Website dapat menggunakan penyedia layanan pihak ketiga untuk mendukung komunikasi, penyimpanan media, atau operasional website. Saat Anda membuka layanan eksternal seperti WhatsApp, penggunaan data juga mengikuti kebijakan platform tersebut.",
+  ],
+  [
+    "5. Pertanyaan tentang privasi",
+    "Untuk pertanyaan mengenai informasi yang Anda kirim melalui website, hubungi tim Yuk Jadi Legal melalui kanal kontak resmi yang tersedia di website.",
+  ],
+] as const;
+
 export default function PrivacyPage() {
   return (
-    <main>
-      <section className="bg-brand-paper">
-        <div className="mx-auto max-w-4xl px-5 py-20 lg:px-8 lg:py-28">
-          <h1 className="text-5xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-6xl">
+    <main className="bg-brand-surface">
+      <header className="border-b border-brand-navy/10 bg-brand-paper">
+        <div className="page-shell max-w-4xl py-9 sm:py-11 lg:py-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.11em] text-brand-gold-dark">Dokumen legal</p>
+          <h1 className="mt-2 text-[clamp(2.2rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.045em] text-brand-ink">
             Kebijakan Privasi
           </h1>
-          <p className="mt-6 max-w-2xl text-sm leading-7 text-slate-600">
+          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-brand-muted">
             Kami menghargai privasi setiap pengunjung dan menggunakan informasi yang diberikan hanya untuk kebutuhan layanan yang relevan.
           </p>
         </div>
-      </section>
+      </header>
 
-      <section className="mx-auto max-w-4xl px-5 py-16 lg:px-8 lg:py-20">
-        <div className="space-y-10 text-sm leading-8 text-slate-700">
-          <section>
-            <h2 className="text-xl font-semibold text-slate-950">1. Informasi yang kami terima</h2>
-            <p className="mt-3">
-              Saat Anda mengirim formulir konsultasi, kami dapat menerima nama, nomor WhatsApp, email, layanan yang diminati, dan pesan yang Anda sampaikan.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-slate-950">2. Penggunaan informasi</h2>
-            <p className="mt-3">
-              Informasi digunakan untuk menanggapi pertanyaan, memahami kebutuhan Anda, melakukan tindak lanjut konsultasi, serta meningkatkan kualitas layanan dan komunikasi kami.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-slate-950">3. Penyimpanan dan perlindungan data</h2>
-            <p className="mt-3">
-              Kami menerapkan pengelolaan akses yang wajar untuk membantu menjaga data yang dikirim melalui website. Informasi disimpan selama masih diperlukan untuk tujuan layanan, administrasi, atau kewajiban yang berlaku.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-slate-950">4. Layanan pihak ketiga</h2>
-            <p className="mt-3">
-              Website dapat menggunakan penyedia layanan pihak ketiga untuk mendukung komunikasi, penyimpanan media, atau operasional website. Saat Anda membuka layanan eksternal seperti WhatsApp, penggunaan data juga mengikuti kebijakan platform tersebut.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-slate-950">5. Pertanyaan tentang privasi</h2>
-            <p className="mt-3">
-              Untuk pertanyaan mengenai informasi yang Anda kirim melalui website, hubungi tim Yuk Jadi Legal melalui kanal kontak resmi yang tersedia di website.
-            </p>
-          </section>
+      <section className="page-shell max-w-4xl py-8 sm:py-10 lg:py-14">
+        <div className="grid gap-3">
+          {sections.map(([title, body]) => (
+            <section key={title} className="rounded-[12px] border border-brand-navy/10 bg-white p-4 sm:p-5">
+              <h2 className="text-base font-semibold text-brand-ink sm:text-lg">{title}</h2>
+              <p className="mt-2 text-sm leading-7 text-brand-muted">{body}</p>
+            </section>
+          ))}
         </div>
       </section>
     </main>
