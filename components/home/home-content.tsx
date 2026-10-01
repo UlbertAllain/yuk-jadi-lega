@@ -24,9 +24,9 @@ export function HomeContent({
   return (
     <>
       {visibleArticles.length ? (
-        <section className="border-b border-brand-navy/8 bg-brand-surface py-14 sm:py-16 lg:py-24">
+        <section className="editorial-surface border-b border-brand-navy/8 py-10 sm:py-12 lg:py-16">
           <div className="page-shell">
-            <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left">
+            <div className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
               <h2 className="section-title">Insight</h2>
               <Link
                 href="/artikel"
@@ -81,18 +81,18 @@ export function HomeContent({
       ) : null}
 
       {faqs.length ? (
-        <section className="border-b border-brand-navy/8 bg-white py-14 sm:py-16 lg:py-24">
+        <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
           <div className="page-shell grid gap-10 lg:grid-cols-[330px_minmax(0,1fr)] lg:gap-16">
-            <div className="text-center lg:text-left">
+            <div>
               <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-brand-navy-dark sm:text-4xl">
                 Pertanyaan umum
               </h2>
-              <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-brand-muted lg:mx-0">
+              <p className="mt-4 max-w-md text-sm leading-7 text-brand-muted">
                 Jawaban untuk hal yang paling sering ditanyakan sebelum memilih layanan.
               </p>
               <Link
                 href="/faq"
-                className="mt-5 inline-flex items-center justify-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
               >
                 Lihat semua FAQ <ArrowRight className="h-4 w-4" />
               </Link>
@@ -120,28 +120,29 @@ export function HomeContent({
         </section>
       ) : null}
 
-      <section className="border-t border-brand-navy/10 bg-brand-paper py-12 sm:py-14 lg:py-16">
-        <div className="page-shell grid gap-7 text-center lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:text-left">
+      <section className="relative overflow-hidden border-t border-brand-navy/10 bg-brand-navy-dark py-10 text-white sm:py-12 lg:py-14">
+        <div className="page-shell relative grid gap-6 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
           <div>
-            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
+            <div className="mb-4 h-[2px] w-10 bg-brand-gold" />
+            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-white sm:text-3xl">
               {settings.ctaTitle}
             </h2>
-            <p className="mx-auto mt-2 max-w-2xl text-sm leading-7 text-brand-muted lg:mx-0">
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-300">
               {settings.ctaDescription}
             </p>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 lg:justify-end">
+          <div className="flex flex-col gap-3 sm:items-end">
             <a
               href={consultationHref}
               target={consultationExternal ? "_blank" : undefined}
               rel={consultationExternal ? "noreferrer" : undefined}
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:min-h-0 sm:w-auto"
+              className="button-gold inline-flex min-h-12 w-full items-center justify-center gap-2 px-5 py-3 text-sm font-semibold sm:w-auto"
             >
               Konsultasi sekarang <ArrowRight className="h-4 w-4" />
             </a>
             <Link
               href="/layanan"
-              className="text-sm font-semibold text-brand-navy transition hover:text-brand-gold-dark"
+              className="text-sm font-semibold text-brand-gold-soft transition hover:text-white"
             >
               Lihat layanan
             </Link>
