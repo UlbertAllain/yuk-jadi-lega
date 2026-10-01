@@ -120,14 +120,13 @@ export function HomeContent({
         </section>
       ) : null}
 
-      <section className="relative overflow-hidden border-t border-brand-navy/10 bg-brand-navy-dark py-10 text-white sm:py-12 lg:py-14">
-        <div className="page-shell relative grid gap-6 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
+      <section className="border-t border-brand-navy/10 bg-brand-paper py-10 sm:py-12 lg:py-14">
+        <div className="page-shell grid gap-6 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
           <div>
-            <div className="mb-4 h-[2px] w-10 bg-brand-gold" />
-            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-white sm:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
               {settings.ctaTitle}
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-300">
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
               {settings.ctaDescription}
             </p>
           </div>
@@ -136,13 +135,13 @@ export function HomeContent({
               href={consultationHref}
               target={consultationExternal ? "_blank" : undefined}
               rel={consultationExternal ? "noreferrer" : undefined}
-              className="button-gold inline-flex min-h-12 w-full items-center justify-center gap-2 px-5 py-3 text-sm font-semibold sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
             >
               Konsultasi sekarang <ArrowRight className="h-4 w-4" />
             </a>
             <Link
               href="/layanan"
-              className="text-sm font-semibold text-brand-gold-soft transition hover:text-white"
+              className="text-sm font-semibold text-brand-navy transition hover:text-brand-gold-dark"
             >
               Lihat layanan
             </Link>
