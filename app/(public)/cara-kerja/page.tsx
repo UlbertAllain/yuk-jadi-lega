@@ -103,7 +103,7 @@ export default async function HowItWorksPage() {
           {preparation.map(({ icon: Icon, title, description }) => (
             <article key={title} className="rounded-[14px] border border-brand-navy/10 bg-white p-4 sm:p-5">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-gold-pale text-brand-navy">
-                <Icon className="h-4.5 w-4.5" />
+                <Icon className="h-4 w-4" />
               </span>
               <h3 className="mt-4 text-base font-semibold text-brand-ink">{title}</h3>
               <p className="mt-2 text-sm leading-6 text-brand-muted">{description}</p>
