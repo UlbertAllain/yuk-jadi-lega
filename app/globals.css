@@ -255,3 +255,120 @@ summary::-webkit-details-marker {
     background: linear-gradient(180deg, rgba(4, 29, 54, 0.96), rgba(4, 29, 54, 0.9));
   }
 }
+
+
+/* === Mobile-first editorial refresh === */
+.editorial-heading {
+  font-family: Georgia, "Times New Roman", serif;
+  text-wrap: balance;
+}
+
+.legal-hero-photo {
+  background:
+    linear-gradient(180deg, rgba(246, 241, 228, 0.05), rgba(246, 241, 228, 0.08)),
+    url("https://images.unsplash.com/photo-1764106813759-9ef7bf42a0af?auto=format&fit=crop&w=1200&q=82");
+  background-size: cover;
+  background-position: center;
+}
+
+.visual-service-company {
+  background-image: url("https://images.unsplash.com/photo-1518384401463-d3876163c195?auto=format&fit=crop&w=700&q=82");
+}
+
+.visual-service-permit {
+  background-image: url("https://images.unsplash.com/photo-1761671614144-e8c003fff544?auto=format&fit=crop&w=700&q=82");
+}
+
+.visual-service-brand {
+  background-image:
+    linear-gradient(rgba(246, 241, 228, 0.15), rgba(246, 241, 228, 0.15)),
+    url("https://images.unsplash.com/photo-1518384401463-d3876163c195?auto=format&fit=crop&w=700&q=82");
+  background-position: 70% 45%;
+}
+
+.visual-service-consult {
+  background-image: url("https://images.unsplash.com/photo-1764106813759-9ef7bf42a0af?auto=format&fit=crop&w=700&q=82");
+  background-position: 50% 70%;
+}
+
+.visual-cta-leaves {
+  background:
+    radial-gradient(circle at 85% 90%, rgba(212, 176, 49, 0.18), transparent 38%),
+    radial-gradient(ellipse at 100% 100%, rgba(8, 46, 83, 0.12), transparent 48%);
+}
+
+.editorial-timeline {
+  position: relative;
+}
+
+.editorial-timeline::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  left: 1.12rem;
+  width: 1px;
+  background: rgba(8, 46, 83, 0.2);
+}
+
+.soft-wave-top {
+  position: relative;
+  overflow: hidden;
+}
+
+.soft-wave-top::before {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: -5%;
+  width: 110%;
+  height: 3rem;
+  border-radius: 0 0 50% 50%;
+  background: white;
+}
+
+.motion-reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@supports (animation-timeline: view()) {
+  .motion-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: editorial-reveal 0.65s cubic-bezier(.22,.61,.36,1) both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+}
+
+@keyframes editorial-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .legal-hero-photo {
+    opacity: 0.52;
+    width: 54%;
+    background-position: center right;
+  }
+
+  .editorial-timeline::before {
+    left: 1.12rem;
+  }
+}

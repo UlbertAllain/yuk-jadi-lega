@@ -20,61 +20,86 @@ export function HomeContent({
   const consultationHref = whatsappHref || "/kontak";
   const consultationExternal = Boolean(whatsappHref);
   const visibleArticles = articles.slice(0, 3);
+  const [featuredArticle, ...otherArticles] = visibleArticles;
 
   return (
     <>
-      {visibleArticles.length ? (
-        <section className="editorial-surface border-b border-brand-navy/8 py-10 sm:py-12 lg:py-16">
+      {featuredArticle ? (
+        <section className="border-b border-brand-navy/8 bg-brand-surface py-10 sm:py-12 lg:py-16">
           <div className="page-shell">
-            <div className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
-              <h2 className="section-title">Insight</h2>
-              <Link
-                href="/artikel"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
-              >
-                Lihat semua artikel <ArrowRight className="h-4 w-4" />
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
+                  Insight
+                </p>
+                <h2 className="editorial-heading mt-2 max-w-xl text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+                  Wawasan untuk langkah bisnis yang lebih pasti.
+                </h2>
+              </div>
+              <Link href="/artikel" className="hidden text-xs font-semibold text-brand-navy sm:inline-flex">
+                Lihat semua →
               </Link>
             </div>
 
-            <div className="mt-8 grid gap-8 sm:mt-10 md:grid-cols-3">
-              {visibleArticles.map((article, index) => (
-                <Link key={article.id} href={`/artikel/${article.slug}`} className="group block">
-                  <div className="relative aspect-[16/9] overflow-hidden rounded-[8px] bg-brand-bluewash">
-                    {article.coverImageUrl ? (
-                      <CmsImage
-                        src={article.coverImageUrl}
-                        alt={article.title}
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
-                      />
-                    ) : (
-                      <div
-                        className={`absolute inset-0 ${
-                          index === 0
-                            ? "article-placeholder-navy"
-                            : index === 1
-                              ? "article-placeholder-blue"
-                              : "article-placeholder-gold-v71"
-                        }`}
-                      />
-                    )}
-                  </div>
-                  <div className="pt-5">
-                    <div className="flex items-center justify-between gap-3 text-[10px] text-brand-muted">
-                      <span>{article.category}</span>
-                      <span>{article.publishedAt || "Insight"}</span>
+            <div className="mt-7 grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
+              <Link
+                href={"/artikel/" + featuredArticle.slug}
+                className="motion-reveal group overflow-hidden rounded-[16px] border border-brand-navy/10 bg-white"
+              >
+                <div className="relative aspect-[16/9] overflow-hidden bg-brand-paper">
+                  {featuredArticle.coverImageUrl ? (
+                    <CmsImage
+                      src={featuredArticle.coverImageUrl}
+                      alt={featuredArticle.title}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
+                    />
+                  ) : (
+                    <div className="visual-service-consult absolute inset-0 bg-cover bg-center" />
+                  )}
+                </div>
+                <div className="p-5">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-gold-dark">
+                    {featuredArticle.category}
+                  </p>
+                  <h3 className="editorial-heading mt-2 text-xl font-semibold leading-tight text-brand-ink sm:text-2xl">
+                    {featuredArticle.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-6 text-brand-muted">{featuredArticle.excerpt}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-brand-navy">
+                    Baca selengkapnya <ArrowUpRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </Link>
+
+              <div className="grid gap-3">
+                {otherArticles.map((article, index) => (
+                  <Link
+                    key={article.id}
+                    href={"/artikel/" + article.slug}
+                    className="motion-reveal group grid grid-cols-[104px_minmax(0,1fr)] gap-3 rounded-[13px] border border-brand-navy/9 bg-white p-3"
+                    style={{ animationDelay: String((index + 1) * 70) + "ms" }}
+                  >
+                    <div className="relative h-[82px] overflow-hidden rounded-[9px] bg-brand-paper">
+                      {article.coverImageUrl ? (
+                        <CmsImage src={article.coverImageUrl} alt={article.title} className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="visual-service-company absolute inset-0 bg-cover bg-center" />
+                      )}
                     </div>
-                    <h3 className="mt-3 line-clamp-2 text-lg font-semibold leading-[1.2] tracking-[-0.02em] text-brand-navy-dark">
-                      {article.title}
-                    </h3>
-                    <p className="mt-3 line-clamp-2 text-xs leading-5 text-brand-muted">
-                      {article.excerpt}
-                    </p>
-                    <span className="mt-5 inline-flex items-center gap-1 text-[11px] font-semibold text-brand-navy">
-                      Baca artikel <ArrowUpRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                    <div className="min-w-0 self-center">
+                      <p className="text-[9px] font-semibold uppercase tracking-[0.08em] text-brand-gold-dark">
+                        {article.category}
+                      </p>
+                      <h3 className="editorial-heading mt-1 line-clamp-2 text-[15px] font-semibold leading-[1.15] text-brand-ink">
+                        {article.title}
+                      </h3>
+                      <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-semibold text-brand-navy">
+                        Baca <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -82,37 +107,20 @@ export function HomeContent({
 
       {faqs.length ? (
         <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
-          <div className="page-shell grid gap-10 lg:grid-cols-[330px_minmax(0,1fr)] lg:gap-16">
-            <div>
-              <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-brand-navy-dark sm:text-4xl">
-                Pertanyaan umum
-              </h2>
-              <p className="mt-4 max-w-md text-sm leading-7 text-brand-muted">
-                Jawaban untuk hal yang paling sering ditanyakan sebelum memilih layanan.
-              </p>
-              <Link
-                href="/faq"
-                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
-              >
-                Lihat semua FAQ <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
+          <div className="page-shell max-w-4xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">FAQ</p>
+            <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+              Pertanyaan yang sering diajukan.
+            </h2>
 
-            <div className="border-y border-brand-navy/14">
-              {faqs.slice(0, 5).map((faq, index) => (
-                <details key={faq.id} className="group border-b border-brand-navy/8 last:border-b-0">
-                  <summary className="grid cursor-pointer list-none grid-cols-[28px_minmax(0,1fr)_24px] items-center gap-3 py-5">
-                    <span className="text-[10px] font-semibold text-brand-gold-dark">0{index + 1}</span>
-                    <span className="text-sm font-semibold leading-6 text-brand-navy-dark">
-                      {faq.question}
-                    </span>
-                    <span className="text-xl leading-none text-brand-navy transition group-open:rotate-45">
-                      +
-                    </span>
+            <div className="mt-6 grid gap-2">
+              {faqs.slice(0, 5).map((faq) => (
+                <details key={faq.id} className="group rounded-[10px] border border-brand-navy/10 bg-brand-surface px-4">
+                  <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_22px] items-center gap-4 py-4">
+                    <span className="text-sm font-medium leading-6 text-brand-ink">{faq.question}</span>
+                    <span className="text-lg text-brand-navy transition group-open:rotate-45">+</span>
                   </summary>
-                  <p className="pb-5 pl-[40px] pr-8 text-sm leading-7 text-brand-muted">
-                    {faq.answer}
-                  </p>
+                  <p className="pb-4 pr-6 text-sm leading-7 text-brand-muted">{faq.answer}</p>
                 </details>
               ))}
             </div>
@@ -120,32 +128,27 @@ export function HomeContent({
         </section>
       ) : null}
 
-      <section className="border-t border-brand-navy/10 bg-brand-paper py-10 sm:py-12 lg:py-14">
-        <div className="page-shell grid gap-6 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
-              {settings.ctaTitle}
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
-              {settings.ctaDescription}
+      <section className="relative overflow-hidden border-t border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-14">
+        <div className="visual-cta-leaves pointer-events-none absolute inset-y-0 right-0 w-[150px] bg-contain bg-right-bottom bg-no-repeat opacity-90 sm:w-[220px]" />
+        <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
+          <div className="max-w-2xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
+              Masih ada pertanyaan?
             </p>
+            <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.5rem]">
+              Konsultasikan sekarang, kami siap membantu.
+            </h2>
+            <p className="mt-2 max-w-xl text-sm leading-7 text-brand-muted">{settings.ctaDescription}</p>
           </div>
-          <div className="flex flex-col gap-3 sm:items-end">
-            <a
-              href={consultationHref}
-              target={consultationExternal ? "_blank" : undefined}
-              rel={consultationExternal ? "noreferrer" : undefined}
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
-            >
-              Konsultasi sekarang <ArrowRight className="h-4 w-4" />
-            </a>
-            <Link
-              href="/layanan"
-              className="text-sm font-semibold text-brand-navy transition hover:text-brand-gold-dark"
-            >
-              Lihat layanan
-            </Link>
-          </div>
+          <a
+            href={consultationHref}
+            target={consultationExternal ? "_blank" : undefined}
+            rel={consultationExternal ? "noreferrer" : undefined}
+            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
+          >
+            Konsultasi sekarang
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
         </div>
       </section>
     </>

@@ -1,135 +1,138 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Building2, FileText, MessageCircleMore, ShieldCheck } from "lucide-react";
+import { ArrowRight, Building2, FileText, ShieldCheck, UsersRound } from "lucide-react";
 import { createPageMetadata } from "@/lib/seo";
-import { getTeamMembers } from "@/lib/data";
-import { CmsImage } from "@/components/shared/cms-image";
 
 export const metadata = createPageMetadata({
   title: "Tentang Kami",
-  description: "Kenali Yuk Jadi Legal dan cara kami membantu pemilik usaha mengurus kebutuhan legal dengan proses yang lebih jelas dan mudah dipahami.",
+  description: "Kenali tujuan Yuk Jadi Legal dan cara kami membantu pemilik usaha memahami serta mengurus kebutuhan legalitas bisnis.",
   path: "/tentang-kami",
 });
 
 const serviceAreas = [
-  [Building2, "Badan usaha", "Pendirian dan perubahan administrasi badan usaha."],
-  [FileText, "Perizinan usaha", "NIB, OSS, izin usaha, dan kebutuhan kepatuhan bisnis."],
-  [ShieldCheck, "Merek & dokumen", "Merek, kontrak, perjanjian, dan dokumen pendukung."],
-  [MessageCircleMore, "Konsultasi legal", "Arah awal ketika kebutuhan Anda belum bisa ditentukan sendiri."],
+  {
+    title: "Badan usaha",
+    description: "Pendirian PT, CV, Yayasan, dan badan usaha lainnya sesuai kebutuhan bisnis Anda.",
+    visual: "visual-service-company",
+  },
+  {
+    title: "Perizinan",
+    description: "Membantu pengurusan OSS, NIB, dan perizinan usaha sesuai kegiatan bisnis.",
+    visual: "visual-service-permit",
+  },
+  {
+    title: "Merek & dokumen",
+    description: "Pendaftaran merek, dokumen legal, kontrak, dan kebutuhan perlindungan bisnis.",
+    visual: "visual-service-brand",
+  },
+  {
+    title: "Konsultasi legal",
+    description: "Membantu memetakan kebutuhan dan arah awal ketika Anda belum tahu harus mulai dari mana.",
+    visual: "visual-service-consult",
+  },
 ] as const;
 
 const principles = [
-  ["Bahasa yang lebih sederhana", "Kami menjelaskan kebutuhan tanpa mengharuskan Anda memahami istilah legal terlebih dahulu."],
-  ["Biaya dibahas sejak awal", "Ruang lingkup dan perkiraan biaya dibicarakan sebelum pekerjaan dilanjutkan."],
-  ["Ada kabar selama proses", "Perkembangan penting disampaikan agar Anda tidak menebak-nebak."],
-  ["Tetap bisa berdiskusi", "Jika kondisi berubah, langkah berikutnya dapat dibicarakan kembali bersama tim."],
+  {
+    number: "01",
+    icon: UsersRound,
+    title: "Berpihak pada kebutuhan klien",
+    description: "Kami mulai dari kondisi bisnis Anda agar solusi yang diberikan tetap relevan dan realistis.",
+  },
+  {
+    number: "02",
+    icon: FileText,
+    title: "Proses yang jelas",
+    description: "Setiap langkah dijelaskan dengan bahasa yang sederhana, tanpa membuat proses terasa lebih rumit.",
+  },
+  {
+    number: "03",
+    icon: ShieldCheck,
+    title: "Mengutamakan kepatuhan",
+    description: "Pengurusan diarahkan agar sesuai dengan regulasi dan kebutuhan bisnis yang berlaku.",
+  },
+  {
+    number: "04",
+    icon: Building2,
+    title: "Fokus pada pertumbuhan Anda",
+    description: "Legalitas yang rapi menjadi fondasi agar bisnis lebih siap berjalan dan berkembang.",
+  },
 ] as const;
 
-export default async function AboutPage() {
-  const team = await getTeamMembers();
-
+export default function AboutPage() {
   return (
     <main className="bg-brand-surface">
-      <section className="border-b border-brand-navy/10 bg-brand-paper">
-        <div className="page-shell grid gap-7 py-8 sm:py-10 lg:grid-cols-[1.02fr_.98fr] lg:items-center lg:gap-12 lg:py-14">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-gold-dark">
-              Tentang Yuk Jadi Legal
-            </p>
-            <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,4.5vw,4rem)] font-semibold leading-[1.03] tracking-[-0.046em] text-brand-ink">
+      <section className="relative overflow-hidden border-b border-brand-navy/8 bg-brand-paper">
+        <div className="legal-hero-photo pointer-events-none absolute inset-y-0 right-0 w-[48%] sm:w-[42%]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f6f1e4_0%,#f6f1e4_50%,rgba(246,241,228,.9)_64%,rgba(246,241,228,.15)_100%)]" />
+        <div className="page-shell relative py-9 sm:py-12 lg:py-16">
+          <div className="max-w-[670px]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">Tentang kami</p>
+            <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.7rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink">
               Legalitas bisnis seharusnya membantu usaha berjalan, bukan membuat pemiliknya bingung.
             </h1>
-            <p className="mt-4 max-w-2xl text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
-              Kami membantu pemilik usaha memahami dan mengurus badan usaha, perizinan, merek, serta dokumen bisnis dengan langkah yang lebih jelas.
+            <p className="mt-4 max-w-[560px] text-[15px] leading-7 text-brand-muted sm:text-base">
+              Yuk Jadi Legal hadir untuk membuat proses legalitas lebih jelas, lebih mudah dipahami, dan lebih manusiawi agar pemilik usaha bisa fokus mengembangkan bisnis.
             </p>
-          </div>
+            <Link
+              href="/kontak"
+              className="group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
+            >
+              Konsultasi sekarang
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
 
-          <div className="relative mx-auto w-full max-w-[520px] overflow-hidden rounded-[24px] bg-white">
-            <div className="relative aspect-[5/4]">
-              <Image src="/visuals/hero-columns.svg" alt="" fill className="object-cover object-center" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="page-shell py-8 sm:py-10 lg:py-14">
-        <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-12">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-gold-dark">
-              Kenapa kami ada
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold leading-[1.12] tracking-[-0.035em] text-brand-ink sm:text-3xl">
-              Banyak orang tahu tujuan bisnisnya, tapi belum tentu tahu jalur legal yang tepat.
-            </h2>
-          </div>
-
-          <div className="border-l-2 border-brand-gold/70 pl-5 sm:pl-7">
-            <p className="text-xl font-medium leading-8 tracking-[-0.025em] text-brand-ink sm:text-2xl sm:leading-9">
-              “Tugas kami bukan membuat proses terlihat rumit. Tugas kami membantu Anda tahu apa yang perlu dilakukan, kenapa perlu dilakukan, dan apa langkah berikutnya.”
-            </p>
-            <p className="mt-4 text-sm leading-7 text-brand-muted">
-              Karena itu konsultasi dimulai dari kondisi usaha, bukan dari daftar layanan yang harus Anda pahami sendiri.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-brand-navy/9 bg-white py-8 sm:py-10 lg:py-14">
-        <div className="page-shell">
-          <div className="grid gap-5 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-10">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-gold-dark">
-                Yang kami bantu
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
-                Kebutuhan legal yang dekat dengan operasional bisnis.
-              </h2>
-            </div>
-
-            <div className="grid gap-x-8 gap-y-0 sm:grid-cols-2">
-              {serviceAreas.map(([Icon, title, description]) => (
-                <article key={title} className="border-t border-brand-navy/10 py-5">
-                  <div className="flex items-start gap-3">
-                    <Icon className="mt-0.5 h-5 w-5 shrink-0 text-brand-gold-dark" />
-                    <div>
-                      <h3 className="text-base font-semibold text-brand-ink">{title}</h3>
-                      <p className="mt-1.5 text-sm leading-6 text-brand-muted">{description}</p>
-                    </div>
-                  </div>
-                </article>
+            <div className="mt-7 flex flex-wrap gap-3 text-xs font-semibold text-brand-ink">
+              {["Jelas", "Terarah", "Aman"].map((item) => (
+                <span key={item} className="rounded-full bg-white/75 px-3 py-2 shadow-[0_8px_22px_rgba(4,29,54,.05)]">
+                  {item}
+                </span>
               ))}
             </div>
           </div>
-
-          <Link
-            href="/layanan"
-            className="mt-5 inline-flex text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
-          >
-            Lihat semua layanan →
-          </Link>
         </div>
       </section>
 
-      <section className="page-shell py-8 sm:py-10 lg:py-14">
-        <div className="grid gap-7 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-10">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-gold-dark">
-              Cara kami mendampingi
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
-              Empat prinsip yang kami jaga.
-            </h2>
-          </div>
+      <section className="page-shell py-9 sm:py-11 lg:py-16">
+        <div className="motion-reveal max-w-3xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Kenapa kami ada</p>
+          <h2 className="editorial-heading mt-2 text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.035em] text-brand-ink sm:text-[3rem]">
+            Berawal dari satu masalah yang sering kami lihat.
+          </h2>
+          <p className="mt-4 text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
+            Banyak pemilik usaha punya ide besar dan semangat tinggi, tetapi terhambat oleh proses legalitas yang terasa rumit, membingungkan, dan memakan waktu. Tujuan kami sederhana: membuat urusan legal terasa lebih mudah dipahami, supaya legalitas menjadi fondasi bisnis, bukan beban.
+          </p>
+        </div>
 
-          <div className="grid gap-x-8 gap-y-0 sm:grid-cols-2">
-            {principles.map(([title, description], index) => (
-              <article key={title} className="grid grid-cols-[32px_minmax(0,1fr)] gap-3 border-t border-brand-navy/10 py-5">
-                <span className="text-xs font-semibold text-brand-gold-dark">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="text-base font-semibold text-brand-ink">{title}</h3>
-                  <p className="mt-1.5 text-sm leading-6 text-brand-muted">{description}</p>
+        <blockquote className="motion-reveal mt-7 max-w-3xl rounded-[18px] bg-brand-paper p-5 sm:p-7">
+          <span className="editorial-heading text-4xl leading-none text-brand-gold">“</span>
+          <p className="editorial-heading mt-1 text-xl font-semibold leading-[1.25] tracking-[-0.02em] text-brand-ink sm:text-[1.6rem]">
+            Kami ingin pemilik usaha bisa merasa lebih tenang karena tahu apa yang perlu dilakukan dan ke mana prosesnya berjalan.
+          </p>
+          <div className="mt-4 h-[2px] w-10 bg-brand-gold" />
+        </blockquote>
+      </section>
+
+      <section className="border-y border-brand-navy/8 bg-white py-9 sm:py-11 lg:py-16">
+        <div className="page-shell">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Yang kami bantu</p>
+          <h2 className="editorial-heading mt-2 max-w-2xl text-[2.1rem] font-semibold leading-[1.03] tracking-[-0.035em] text-brand-ink sm:text-[2.8rem]">
+            Solusi legal untuk setiap tahap perjalanan bisnis Anda.
+          </h2>
+
+          <div className="mt-7 max-w-3xl">
+            {serviceAreas.map((item, index) => (
+              <article
+                key={item.title}
+                className="motion-reveal grid grid-cols-[110px_minmax(0,1fr)] gap-4 border-b border-brand-navy/10 py-5 first:border-t sm:grid-cols-[155px_minmax(0,1fr)] sm:gap-6"
+                style={{ animationDelay: String(index * 70) + "ms" }}
+              >
+                <div className={"h-[90px] rounded-[12px] bg-cover bg-center sm:h-[105px] " + item.visual} />
+                <div className="self-center">
+                  <h3 className="editorial-heading text-lg font-semibold text-brand-ink sm:text-xl">{item.title}</h3>
+                  <p className="mt-1.5 text-sm leading-6 text-brand-muted">{item.description}</p>
+                  <Link href="/layanan" className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-brand-navy">
+                    Lihat detail <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
                 </div>
               </article>
             ))}
@@ -137,57 +140,57 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {team.length ? (
-        <section className="bg-brand-navy-dark py-8 text-white sm:py-10 lg:py-14">
-          <div className="page-shell">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-gold-soft">
-                Tim
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
-                Orang yang mendampingi proses Anda.
-              </h2>
-            </div>
+      <section className="bg-brand-surface py-9 sm:py-11 lg:py-16">
+        <div className="page-shell">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Prinsip kami</p>
+          <h2 className="editorial-heading mt-2 max-w-xl text-[2.1rem] font-semibold leading-[1.03] tracking-[-0.035em] text-brand-ink sm:text-[2.8rem]">
+            Cara kami mendampingi Anda.
+          </h2>
+          <p className="mt-3 max-w-xl text-sm leading-7 text-brand-muted">
+            Kami tidak hanya membantu mengurus dokumen, tetapi juga membantu Anda memahami langkah yang sedang dijalankan.
+          </p>
 
-            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {team.slice(0, 6).map((member, index) => (
-                <article key={member.id}>
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] bg-white/5 sm:aspect-[4/3]">
-                    {member.photoUrl ? (
-                      <CmsImage src={member.photoUrl} alt={member.name} className="h-full w-full object-cover" />
-                    ) : (
-                      <div className="grid h-full place-items-center">
-                        <span className="text-5xl font-semibold text-white/10">0{index + 1}</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="pt-3">
-                    <h3 className="text-sm font-semibold text-white sm:text-base">{member.name}</h3>
-                    <p className="mt-1 text-xs text-brand-gold-soft">{member.role}</p>
-                    <p className="mt-2 hidden text-sm leading-6 text-slate-300 sm:line-clamp-2">{member.bio}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
+          <ol className="editorial-timeline mt-7 max-w-3xl">
+            {principles.map(({ number, icon: Icon, title, description }, index) => (
+              <li
+                key={number}
+                className="motion-reveal relative grid grid-cols-[42px_52px_minmax(0,1fr)] gap-3 pb-7 last:pb-0 sm:grid-cols-[50px_58px_minmax(0,1fr)] sm:gap-4"
+                style={{ animationDelay: String(index * 70) + "ms" }}
+              >
+                <span className="relative z-10 grid h-9 w-9 place-items-center rounded-full bg-brand-gold-pale text-[11px] font-semibold text-brand-ink sm:h-10 sm:w-10">
+                  {number}
+                </span>
+                <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-paper text-brand-navy sm:h-12 sm:w-12">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div className="pt-0.5">
+                  <h3 className="editorial-heading text-lg font-semibold leading-tight text-brand-ink">{title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-      <section className="border-t border-brand-navy/9 bg-brand-paper py-8 sm:py-10 lg:py-12">
-        <div className="page-shell grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
+      <section className="relative overflow-hidden border-t border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-14">
+        <div className="visual-cta-leaves pointer-events-none absolute inset-y-0 right-0 w-[150px] bg-contain bg-right-bottom bg-no-repeat sm:w-[220px]" />
+        <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
           <div>
-            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink">
-              Belum yakin harus mulai dari layanan yang mana?
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Siap melangkah lebih tenang?</p>
+            <h2 className="editorial-heading mt-2 max-w-xl text-[2rem] font-semibold leading-[1.04] text-brand-ink sm:text-[2.5rem]">
+              Konsultasikan kebutuhan legalitas bisnis Anda sekarang.
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
-              Ceritakan kondisi usaha Anda. Tim akan membantu memetakan kebutuhan awal terlebih dahulu.
+            <p className="mt-2 max-w-xl text-sm leading-7 text-brand-muted">
+              Kami bantu memetakan kebutuhan dan memberi arah yang sesuai dengan kondisi bisnis Anda.
             </p>
           </div>
           <Link
             href="/kontak"
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
+            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
           >
-            Konsultasikan kebutuhan →
+            Konsultasi sekarang
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </section>

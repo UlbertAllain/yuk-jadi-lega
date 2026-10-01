@@ -1,7 +1,5 @@
-import Image from "next/image";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CircleDollarSign, FileCheck2, FileSearch2, MessageSquareMore, Settings2 } from "lucide-react";
 import { createPageMetadata } from "@/lib/seo";
-import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getWhatsAppHref } from "@/lib/contact";
 import { getSiteSettings } from "@/lib/data";
 
@@ -14,34 +12,38 @@ export const metadata = createPageMetadata({
 const steps = [
   {
     number: "01",
+    icon: MessageSquareMore,
     title: "Ceritakan kebutuhan",
-    description: "Sampaikan kondisi usaha, tujuan, dan kendala yang sedang Anda hadapi.",
-    result: "Kami memahami konteks bisnis sebelum menentukan layanan.",
+    description: "Sampaikan rencana atau kondisi bisnis Anda melalui konsultasi.",
+    result: "Kami memahami kebutuhan Anda dan memberikan arahan awal.",
   },
   {
     number: "02",
-    title: "Kami petakan kebutuhan",
-    description: "Tim mengecek dokumen yang sudah ada, kebutuhan tambahan, biaya, dan estimasi pengerjaan.",
-    result: "Anda tahu apa yang perlu disiapkan dan apa yang akan dikerjakan.",
+    icon: FileSearch2,
+    title: "Kami petakan",
+    description: "Tim menganalisis kebutuhan Anda dan menentukan langkah yang tepat.",
+    result: "Anda mendapat gambaran proses, dokumen, estimasi waktu, dan biaya.",
   },
   {
     number: "03",
+    icon: Settings2,
     title: "Proses berjalan",
-    description: "Pekerjaan dimulai setelah ruang lingkup disepakati. Update diberikan pada tahap yang memang penting.",
-    result: "Anda tidak perlu menebak posisi proses.",
+    description: "Kami menjalankan proses sesuai ruang lingkup dan regulasi yang berlaku.",
+    result: "Pengurusan dijalankan tim dan Anda tetap mendapat kabar pada tahap penting.",
   },
   {
     number: "04",
+    icon: FileCheck2,
     title: "Hasil diserahkan",
-    description: "Dokumen atau hasil akhir diperiksa sebelum diserahkan beserta arahan lanjutan bila diperlukan.",
-    result: "Anda menerima hasil dengan konteks penggunaannya.",
+    description: "Hasil akhir diperiksa lalu diserahkan beserta arahan berikutnya.",
+    result: "Anda menerima dokumen atau hasil layanan yang sudah siap digunakan.",
   },
 ] as const;
 
 const clarity = [
-  "Dokumen apa yang masih perlu dilengkapi",
-  "Perkiraan biaya dan waktu pengerjaan",
-  "Status proses dan tindakan berikutnya",
+  { icon: FileCheck2, title: "Dokumen", description: "Kami informasikan dokumen yang diperlukan di setiap tahap." },
+  { icon: CircleDollarSign, title: "Biaya & waktu", description: "Estimasi dibahas sejak awal dengan perkiraan waktu yang realistis." },
+  { icon: MessageSquareMore, title: "Update proses", description: "Perkembangan penting disampaikan sesuai tahapannya." },
 ] as const;
 
 export default async function HowItWorksPage() {
@@ -54,74 +56,77 @@ export default async function HowItWorksPage() {
 
   return (
     <main className="bg-brand-surface">
-      <PublicPageHero
-        title="Dari konsultasi sampai selesai, alurnya dibuat tetap jelas."
-        description="Anda tidak perlu datang dengan semua jawaban. Kami mulai dari kondisi usaha Anda, lalu memetakan kebutuhan dan langkah berikutnya."
-      />
-
-      <section className="page-shell py-8 sm:py-10 lg:py-14">
-        <div className="grid gap-7 lg:grid-cols-[.95fr_1.05fr] lg:items-center lg:gap-12">
-          <div className="relative overflow-hidden rounded-[18px] border border-brand-navy/10 bg-white">
-            <div className="relative aspect-[16/10] sm:aspect-[16/8] lg:aspect-[4/3]">
-              <Image src="/visuals/process-consult.svg" alt="" fill className="object-cover" />
-            </div>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-gold-dark">
-              Sebelum proses dimulai
+      <section className="relative overflow-hidden border-b border-brand-navy/8 bg-brand-paper">
+        <div className="legal-hero-photo pointer-events-none absolute inset-y-0 right-0 w-[48%] sm:w-[42%]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f6f1e4_0%,#f6f1e4_48%,rgba(246,241,228,.92)_62%,rgba(246,241,228,.18)_100%)]" />
+        <div className="page-shell relative py-9 sm:py-12 lg:py-16">
+          <div className="max-w-[650px]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">Cara kerja</p>
+            <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.6rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink">
+              Dari konsultasi sampai selesai, alurnya tetap jelas.
+            </h1>
+            <p className="mt-4 max-w-[520px] text-[15px] leading-7 text-brand-muted sm:text-base">
+              Kami membuat proses legalitas bisnis terasa lebih mudah, terarah, dan aman untuk Anda.
             </p>
-            <h2 className="mt-2 text-2xl font-semibold leading-[1.1] tracking-[-0.035em] text-brand-ink sm:text-3xl">
-              Mulai dari cerita, bukan dari formulir yang rumit.
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-brand-muted sm:text-[15px]">
-              Cukup ceritakan apa yang sedang terjadi pada bisnis Anda. Dokumen yang sudah ada bisa dikirim terlebih dahulu, lalu tim membantu mengecek apa yang masih kurang.
-            </p>
-
-            <div className="mt-5 grid gap-2.5">
-              {clarity.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-gold-dark" />
-                  <p className="text-sm leading-6 text-brand-ink">{item}</p>
-                </div>
-              ))}
-            </div>
+            <a
+              href={consultationHref}
+              target={whatsappHref ? "_blank" : undefined}
+              rel={whatsappHref ? "noreferrer" : undefined}
+              className="group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
+            >
+              Mulai konsultasi
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-brand-navy/9 bg-white py-8 sm:py-10 lg:py-14">
-        <div className="page-shell grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-12">
+      <section className="page-shell py-8 sm:py-10 lg:py-14">
+        <div className="motion-reveal grid gap-6 rounded-[22px] bg-brand-paper p-5 sm:p-7 lg:grid-cols-[1fr_280px] lg:items-center lg:p-9">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-gold-dark">
-              Alur utama
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-brand-ink sm:text-3xl">
-              Empat tahap yang mudah diikuti.
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Sebelum mulai</p>
+            <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.05] tracking-[-0.03em] text-brand-ink sm:text-[2.5rem]">
+              Cukup ceritakan kondisi bisnis Anda saat ini.
             </h2>
-            <p className="mt-3 text-sm leading-7 text-brand-muted">
-              Detail setiap layanan bisa berbeda, tetapi cara kerjanya tetap mengikuti alur yang sama.
+            <p className="mt-3 max-w-xl text-sm leading-7 text-brand-muted">
+              Sampaikan jenis usaha, rencana Anda, dan kebutuhan legalitas yang sedang dibutuhkan. Tim kami akan membantu memetakan langkah terbaik.
             </p>
           </div>
+          <div className="rounded-[16px] bg-white/80 p-4">
+            <MessageSquareMore className="h-6 w-6 text-brand-gold-dark" />
+            <p className="mt-3 text-sm leading-6 text-brand-ink">
+              “Anda tidak perlu menyiapkan dokumen rumit. Cukup ceritakan kebutuhan Anda, sisanya kami bantu.”
+            </p>
+          </div>
+        </div>
+      </section>
 
-          <ol className="relative border-l border-brand-navy/15 pl-6 sm:pl-8">
-            {steps.map((step) => (
-              <li key={step.number} className="relative pb-8 last:pb-0">
-                <span className="absolute -left-[2.35rem] top-0 grid h-8 w-8 place-items-center rounded-full border-4 border-white bg-brand-navy text-[10px] font-semibold text-white sm:-left-[2.55rem]">
-                  {step.number}
+      <section className="page-shell pb-8 sm:pb-10 lg:pb-14">
+        <div className="rounded-[22px] border border-brand-navy/8 bg-white p-5 sm:p-7 lg:p-9">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Langkah kerja kami</p>
+          <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+            Proses yang terarah, dari awal hingga selesai.
+          </h2>
+
+          <ol className="editorial-timeline mt-7">
+            {steps.map(({ number, icon: Icon, title, description, result }, index) => (
+              <li
+                key={number}
+                className="motion-reveal relative grid grid-cols-[42px_52px_minmax(0,1fr)] gap-3 pb-8 last:pb-0 sm:grid-cols-[50px_58px_minmax(0,1fr)] sm:gap-4"
+                style={{ animationDelay: String(index * 80) + "ms" }}
+              >
+                <span className="relative z-10 grid h-9 w-9 place-items-center rounded-full bg-brand-gold-pale text-[11px] font-semibold text-brand-ink sm:h-10 sm:w-10">
+                  {number}
                 </span>
-                <div className="grid gap-3 sm:grid-cols-[1fr_.9fr] sm:gap-8">
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-[-0.025em] text-brand-ink">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-7 text-brand-muted">{step.description}</p>
-                  </div>
-                  <div className="rounded-[12px] bg-brand-paper px-4 py-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-gold-dark">
-                      Hasil tahap ini
-                    </p>
-                    <p className="mt-1.5 text-sm leading-6 text-brand-ink">{step.result}</p>
+                <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-paper text-brand-navy sm:h-12 sm:w-12">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="editorial-heading text-lg font-semibold leading-tight text-brand-ink">{title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
+                  <div className="mt-3 rounded-[11px] bg-brand-paper px-4 py-3">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.09em] text-brand-gold-dark">Hasil tahap ini</p>
+                    <p className="mt-1 text-sm leading-6 text-brand-ink">{result}</p>
                   </div>
                 </div>
               </li>
@@ -130,47 +135,49 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="page-shell py-8 sm:py-10 lg:py-14">
-        <div className="grid gap-6 rounded-[18px] bg-brand-navy-dark p-5 text-white sm:p-7 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:p-9">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-gold-soft">
-              Setelah proses berjalan
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
-              Anda tetap tahu apa yang sedang terjadi.
-            </h2>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-3">
-            {clarity.map((item, index) => (
-              <div key={item} className="border-t border-white/15 pt-3">
-                <span className="text-[10px] font-semibold text-brand-gold-soft">
-                  {String(index + 1).padStart(2, "0")}
+      <section className="bg-brand-paper py-9 sm:py-11 lg:py-14">
+        <div className="page-shell">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Selama proses</p>
+          <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.5rem]">
+            Anda tetap tahu setiap perkembangannya.
+          </h2>
+          <div className="mt-6 grid gap-3">
+            {clarity.map(({ icon: Icon, title, description }, index) => (
+              <article
+                key={title}
+                className="motion-reveal grid grid-cols-[44px_minmax(0,1fr)] gap-4 rounded-[13px] bg-white p-4"
+                style={{ animationDelay: String(index * 70) + "ms" }}
+              >
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-brand-gold-pale text-brand-gold-dark">
+                  <Icon className="h-5 w-5" />
                 </span>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{item}</p>
-              </div>
+                <div>
+                  <h3 className="editorial-heading text-base font-semibold text-brand-ink">{title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-brand-navy/9 bg-brand-paper py-8 sm:py-10 lg:py-12">
-        <div className="page-shell grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
+      <section className="relative overflow-hidden border-t border-brand-navy/8 bg-brand-paper py-10 sm:py-12">
+        <div className="visual-cta-leaves pointer-events-none absolute inset-y-0 right-0 w-[150px] bg-contain bg-right-bottom bg-no-repeat sm:w-[220px]" />
+        <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
           <div>
-            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink">
-              Belum tahu harus mulai dari mana?
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Siap mulai?</p>
+            <h2 className="editorial-heading mt-2 max-w-xl text-[2rem] font-semibold leading-[1.04] text-brand-ink sm:text-[2.4rem]">
+              Konsultasikan kebutuhan Anda sekarang juga.
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
-              Ceritakan kondisi usaha Anda terlebih dahulu. Tim akan membantu menentukan langkah awal yang relevan.
-            </p>
           </div>
           <a
             href={consultationHref}
             target={whatsappHref ? "_blank" : undefined}
             rel={whatsappHref ? "noreferrer" : undefined}
-            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
+            className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
           >
-            Mulai konsultasi <ArrowRight className="h-4 w-4" />
+            Mulai konsultasi
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
         </div>
       </section>

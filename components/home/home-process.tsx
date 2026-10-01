@@ -1,62 +1,74 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, FileCheck2, FileSearch2, MessageSquareMore, Settings2 } from "lucide-react";
 
 const steps = [
-  ["01", "Konsultasi", "Ceritakan kebutuhan dan kondisi usaha Anda."],
-  ["02", "Pemetaan", "Tim menyusun kebutuhan, dokumen, biaya, dan estimasi proses."],
-  ["03", "Pengerjaan", "Proses dijalankan dengan update pada tahap yang penting."],
-  ["04", "Selesai", "Hasil diserahkan beserta arahan bila masih ada langkah lanjutan."],
+  {
+    number: "01",
+    icon: MessageSquareMore,
+    title: "Ceritakan kebutuhan",
+    description: "Sampaikan rencana atau kendala bisnis Anda melalui konsultasi.",
+  },
+  {
+    number: "02",
+    icon: FileSearch2,
+    title: "Kami petakan",
+    description: "Tim menganalisis kebutuhan dan menentukan langkah yang paling relevan.",
+  },
+  {
+    number: "03",
+    icon: Settings2,
+    title: "Proses berjalan",
+    description: "Pengurusan dijalankan sesuai ruang lingkup yang telah disepakati.",
+  },
+  {
+    number: "04",
+    icon: FileCheck2,
+    title: "Hasil diserahkan",
+    description: "Hasil diperiksa lalu diserahkan beserta arahan bila ada langkah lanjutan.",
+  },
 ] as const;
 
 export function HomeProcess() {
   return (
-    <section className="border-b border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-16">
-      <div className="page-shell grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-12">
-        <div>
-          <div className="relative overflow-hidden rounded-[18px] border border-brand-navy/10 bg-white">
-            <div className="relative aspect-[16/10] sm:aspect-[16/8] lg:aspect-[4/3]">
-              <Image
-                src="/visuals/process-work.svg"
-                alt=""
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-          <p className="mt-3 text-xs leading-5 text-brand-muted">
-            Alur dibuat sederhana supaya Anda tetap tahu apa yang sedang diproses.
+    <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
+      <div className="page-shell">
+        <div className="max-w-2xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
+            Cara kerja kami
           </p>
+          <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+            Dari konsultasi sampai legalitas selesai.
+          </h2>
         </div>
 
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-gold-dark">
-            Cara kerja
-          </p>
-          <h2 className="mt-2 section-title">Proses legal tidak harus terasa rumit.</h2>
-          <p className="mt-3 max-w-xl text-sm leading-7 text-brand-muted">
-            Empat langkah utama dari konsultasi sampai hasil siap digunakan.
-          </p>
-
-          <ol className="mt-6 border-l border-brand-navy/15 pl-5">
-            {steps.map(([number, title, description]) => (
-              <li key={number} className="relative pb-5 last:pb-0">
-                <span className="absolute -left-[1.7rem] top-0.5 grid h-6 w-6 place-items-center rounded-full bg-brand-navy text-[10px] font-semibold text-white">
-                  {number}
-                </span>
-                <h3 className="text-sm font-semibold text-brand-ink">{title}</h3>
+        <ol className="editorial-timeline mt-7 max-w-3xl">
+          {steps.map(({ number, icon: Icon, title, description }, index) => (
+            <li
+              key={number}
+              className="motion-reveal relative grid grid-cols-[42px_52px_minmax(0,1fr)] gap-3 pb-7 last:pb-0 sm:grid-cols-[50px_58px_minmax(0,1fr)] sm:gap-4"
+              style={{ animationDelay: String(index * 70) + "ms" }}
+            >
+              <span className="relative z-10 grid h-9 w-9 place-items-center rounded-full bg-brand-gold-pale text-[11px] font-semibold text-brand-ink sm:h-10 sm:w-10">
+                {number}
+              </span>
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-paper text-brand-navy sm:h-12 sm:w-12">
+                <Icon className="h-5 w-5" />
+              </span>
+              <div className="pt-0.5">
+                <h3 className="editorial-heading text-lg font-semibold leading-tight text-brand-ink">{title}</h3>
                 <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
-              </li>
-            ))}
-          </ol>
+              </div>
+            </li>
+          ))}
+        </ol>
 
-          <Link
-            href="/cara-kerja"
-            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
-          >
-            Lihat alur lengkap <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+        <Link
+          href="/cara-kerja"
+          className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
+        >
+          Lihat cara kerja lengkap
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </Link>
       </div>
     </section>
   );
