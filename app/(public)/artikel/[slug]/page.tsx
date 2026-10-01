@@ -102,7 +102,7 @@ export default async function ArticlePage({
 
       <article>
         <header className="border-b border-brand-navy/10 bg-white">
-          <div className="page-shell py-14 lg:py-20">
+          <div className="page-shell py-8 sm:py-10 lg:py-14">
             <Link
               href="/artikel"
               className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 transition hover:text-brand-navy"
@@ -110,18 +110,18 @@ export default async function ArticlePage({
               <ArrowLeft className="h-4 w-4" /> Semua artikel
             </Link>
 
-            <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_.5fr] lg:items-end lg:gap-16">
-              <div className="text-center lg:text-left">
+            <div className="mt-6 grid gap-6 lg:grid-cols-[1.1fr_.5fr] lg:items-end lg:gap-12">
+              <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
                   {article.category}
                 </p>
-                <h1 className="mx-auto mt-5 max-w-5xl text-[clamp(2.45rem,4.5vw,4.25rem)] font-semibold leading-[1] tracking-[-0.052em] text-brand-ink lg:mx-0">
+                <h1 className="mt-3 max-w-5xl text-[clamp(2.15rem,4.4vw,4rem)] font-semibold leading-[1.03] tracking-[-0.047em] text-brand-ink">
                   {article.title}
                 </h1>
-                <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-[17px] lg:mx-0">{article.excerpt}</p>
+                <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-600 sm:text-base sm:leading-8">{article.excerpt}</p>
               </div>
 
-              <div className="border-t border-brand-navy/12 pt-5 lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0">
+              <div className="rounded-[12px] border border-brand-navy/10 bg-brand-surface p-4 lg:rounded-none lg:border-y-0 lg:border-r-0 lg:border-l lg:bg-transparent lg:p-0 lg:pl-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.11em] text-slate-400">
                   Diterbitkan
                 </p>
@@ -135,12 +135,12 @@ export default async function ArticlePage({
         </header>
 
         {article.coverImageUrl ? (
-          <div className="page-shell pt-12 lg:pt-16">
-            <CmsImage src={article.coverImageUrl} alt={article.title} className="aspect-[16/7] w-full object-cover" />
+          <div className="page-shell pt-6 sm:pt-8 lg:pt-10">
+            <CmsImage src={article.coverImageUrl} alt={article.title} className="aspect-[16/10] w-full rounded-[12px] object-cover sm:aspect-[16/8] lg:aspect-[16/7]" />
           </div>
         ) : null}
 
-        <div className="page-shell grid gap-10 py-16 lg:grid-cols-[220px_minmax(0,760px)] lg:justify-center lg:gap-14 lg:py-20">
+        <div className="page-shell grid gap-8 py-10 sm:py-12 lg:grid-cols-[220px_minmax(0,760px)] lg:justify-center lg:gap-12 lg:py-14">
           <aside className="hidden lg:block">
             <div className="sticky top-28 border-t border-brand-navy/14 py-5">
               <p className="text-xs leading-6 text-slate-500">
@@ -148,20 +148,20 @@ export default async function ArticlePage({
               </p>
             </div>
           </aside>
-          <div className="whitespace-pre-line text-[1.05rem] leading-9 text-slate-700">{article.content}</div>
+          <div className="whitespace-pre-line text-base leading-8 text-slate-700 sm:text-[1.05rem] sm:leading-9">{article.content}</div>
         </div>
       </article>
 
-      <section className="border-t border-brand-navy/10 bg-brand-paper py-16 lg:py-20">
-        <div className="page-shell flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
-          <h2 className="max-w-2xl text-3xl font-semibold leading-[1.05] tracking-[-0.05em] text-brand-ink sm:text-4xl">
+      <section className="border-t border-brand-navy/10 bg-brand-paper py-9 sm:py-11 lg:py-14">
+        <div className="page-shell grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
+          <h2 className="max-w-2xl text-2xl font-semibold leading-[1.08] tracking-[-0.04em] text-brand-ink sm:text-3xl">
             Ada kondisi bisnis yang ingin Anda pastikan?
           </h2>
           <a
             href={consultationHref}
             target={whatsappHref ? "_blank" : undefined}
             rel={whatsappHref ? "noreferrer" : undefined}
-            className="inline-flex items-center gap-3 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-3 bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark sm:w-auto"
           >
             Konsultasi <ArrowRight className="h-4 w-4 text-brand-gold-soft" />
           </a>
