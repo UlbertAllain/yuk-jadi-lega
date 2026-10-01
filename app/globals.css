@@ -124,33 +124,19 @@ summary::-webkit-details-marker {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 86% 10%, rgba(212, 176, 49, 0.10), transparent 24rem),
-    linear-gradient(180deg, #fcfaf4 0%, #f9f5ea 100%);
+  background: linear-gradient(180deg, #fcfaf4 0%, #faf7ef 100%);
 }
 
 .editorial-surface::before {
   content: "";
   position: absolute;
   z-index: -1;
-  width: min(42vw, 34rem);
+  width: min(38vw, 30rem);
   aspect-ratio: 1;
-  right: -9rem;
-  top: -13rem;
-  border: 1px solid rgba(8, 46, 83, 0.09);
+  right: -11rem;
+  top: -14rem;
+  border: 1px solid rgba(8, 46, 83, 0.055);
   border-radius: 50%;
-}
-
-.editorial-surface::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  right: 7%;
-  bottom: 0;
-  width: 9rem;
-  height: 3px;
-  background: var(--color-brand-gold);
-  opacity: 0.65;
 }
 
 .editorial-panel {
@@ -188,11 +174,6 @@ summary::-webkit-details-marker {
     width: 18rem;
     right: -10rem;
     top: -8rem;
-  }
-
-  .editorial-surface::after {
-    right: 1.25rem;
-    width: 4rem;
   }
 
   .editorial-panel::before {
