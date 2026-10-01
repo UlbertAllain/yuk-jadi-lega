@@ -1,5 +1,5 @@
 import { createPageMetadata } from "@/lib/seo";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MessageCircleQuestion } from "lucide-react";
 import { PublicPageHero } from "@/components/site/public-page-hero";
 import { getWhatsAppHref } from "@/lib/contact";
 import { getFaqs, getSiteSettings } from "@/lib/data";
@@ -28,43 +28,39 @@ export default async function FaqPage() {
         }
       />
 
-      <section className="page-shell grid gap-8 py-10 sm:py-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-14 lg:py-20">
-        <aside className="order-2 lg:order-1">
-          <div className="sticky top-28 border-y border-brand-navy/12 py-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
-              Butuh jawaban spesifik?
-            </p>
-            <h2 className="mt-4 text-2xl font-semibold leading-[1.1] tracking-[-0.035em] text-brand-ink">
-              Kondisi setiap bisnis bisa berbeda.
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-brand-muted">
-              Kalau kondisi bisnis Anda tidak sama dengan contoh di sini, ceritakan detailnya agar tim bisa memberi
-              arahan yang lebih sesuai.
-            </p>
-            <a
-              href={consultationHref}
-              target={whatsappHref ? "_blank" : undefined}
-              rel={whatsappHref ? "noreferrer" : undefined}
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
-            >
-              Kirim pertanyaan <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </div>
-        </aside>
+      <section className="page-shell py-8 sm:py-10 lg:py-14">
+        <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-10">
+          <aside>
+            <div className="rounded-[14px] border border-brand-navy/10 bg-white p-4 lg:sticky lg:top-28 lg:p-5">
+              <MessageCircleQuestion className="h-5 w-5 text-brand-gold-dark" />
+              <h2 className="mt-4 text-lg font-semibold tracking-[-0.025em] text-brand-ink lg:text-xl">
+                Tidak menemukan jawaban yang pas?
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-brand-muted">
+                Kondisi setiap bisnis bisa berbeda. Ceritakan detailnya agar tim bisa memberi arahan yang lebih sesuai.
+              </p>
+              <a
+                href={consultationHref}
+                target={whatsappHref ? "_blank" : undefined}
+                rel={whatsappHref ? "noreferrer" : undefined}
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
+              >
+                Kirim pertanyaan <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </aside>
 
-        <div className="order-1 border-y border-brand-navy/14 lg:order-2">
-          {faqs.map((faq, index) => (
-            <details key={faq.id} className="group border-b border-brand-navy/9 last:border-b-0">
-              <summary className="grid cursor-pointer list-none grid-cols-[34px_minmax(0,1fr)_24px] items-center gap-3 py-5">
-                <span className="text-[10px] font-semibold text-brand-gold-dark">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="text-base font-semibold leading-6 text-brand-ink">{faq.question}</span>
-                <span className="text-xl leading-none text-brand-navy transition group-open:rotate-45">+</span>
-              </summary>
-              <p className="pb-5 pl-[47px] pr-8 text-sm leading-7 text-brand-muted">{faq.answer}</p>
-            </details>
-          ))}
+          <div className="divide-y divide-brand-navy/10 border-y border-brand-navy/12">
+            {faqs.map((faq) => (
+              <details key={faq.id} className="group">
+                <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_24px] items-center gap-4 py-4 sm:py-5">
+                  <span className="text-[15px] font-semibold leading-6 text-brand-ink sm:text-base">{faq.question}</span>
+                  <span className="text-xl leading-none text-brand-navy transition group-open:rotate-45">+</span>
+                </summary>
+                <p className="max-w-3xl pb-4 pr-6 text-sm leading-7 text-brand-muted sm:pb-5">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
     </main>
