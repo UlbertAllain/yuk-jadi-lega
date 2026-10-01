@@ -115,14 +115,14 @@ export default async function ArticlePage({
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
                   {article.category}
                 </p>
-                <h1 className="mx-auto mt-5 max-w-5xl text-[clamp(2.8rem,5vw,5rem)] font-semibold leading-[.96] tracking-[-0.06em] text-brand-ink lg:mx-0">
+                <h1 className="mx-auto mt-5 max-w-5xl text-[clamp(2.45rem,4.5vw,4.25rem)] font-semibold leading-[1] tracking-[-0.052em] text-brand-ink lg:mx-0">
                   {article.title}
                 </h1>
-                <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600 lg:mx-0">{article.excerpt}</p>
+                <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-[17px] lg:mx-0">{article.excerpt}</p>
               </div>
 
               <div className="border-t border-brand-navy/12 pt-5 lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-400">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.11em] text-slate-400">
                   Diterbitkan
                 </p>
                 <p className="mt-2 text-sm font-semibold text-brand-ink">{formatDate(article.publishedAt)}</p>
