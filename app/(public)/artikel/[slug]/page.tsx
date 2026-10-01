@@ -101,8 +101,8 @@ export default async function ArticlePage({
       <JsonLd data={[breadcrumbJsonLd, articleJsonLd]} />
 
       <article>
-        <header className="border-b border-brand-navy/10 bg-white">
-          <div className="page-shell py-8 sm:py-10 lg:py-14">
+        <header className="editorial-surface border-b border-brand-navy/10">
+          <div className="page-shell relative py-8 sm:py-10 lg:py-14">
             <Link
               href="/artikel"
               className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 transition hover:text-brand-navy"
