@@ -42,8 +42,8 @@ export function HomeServices({
   return (
     <>
       <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
-        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-          <div className="max-w-2xl lg:col-span-4">
+        <div className="page-shell">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
               Layanan kami
             </p>
@@ -52,19 +52,19 @@ export function HomeServices({
             </h2>
           </div>
 
-          <div className="mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
+          <div className="mt-7 grid gap-4 lg:mt-9 lg:grid-cols-3">
             {services.map((service, index) => (
               <Link
                 key={service.id}
                 href={"/layanan/" + service.slug}
-                className="premium-row motion-reveal group grid grid-cols-[108px_minmax(0,1fr)] gap-4 border-b border-brand-navy/10 py-5 first:border-t sm:grid-cols-[145px_minmax(0,1fr)] sm:gap-6"
+                className="premium-card motion-reveal group grid grid-cols-[108px_minmax(0,1fr)] gap-4 overflow-hidden p-3 sm:grid-cols-[145px_minmax(0,1fr)] sm:gap-6 lg:block lg:p-0"
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
                 <div
-                  className={"h-[88px] rounded-[12px] bg-cover bg-center sm:h-[106px] " + serviceVisualClass(service.categorySlug)}
+                  className={"h-[88px] rounded-[10px] bg-cover bg-center sm:h-[106px] lg:h-[176px] lg:rounded-none " + serviceVisualClass(service.categorySlug)}
                   aria-hidden="true"
                 />
-                <div className="min-w-0 self-center">
+                <div className="min-w-0 self-center lg:p-5">
                   <h3 className="editorial-heading text-lg font-semibold leading-[1.1] tracking-[-0.02em] text-brand-ink sm:text-[1.35rem]">
                     {service.title}
                   </h3>
@@ -83,8 +83,8 @@ export function HomeServices({
       </section>
 
       <section className="soft-wave-top border-b border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-16">
-        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-          <div className="lg:col-span-4">
+        <div className="page-shell">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
               Kenapa Yuk Jadi Legal
             </p>
@@ -93,17 +93,17 @@ export function HomeServices({
             </h2>
           </div>
 
-          <div className="mt-7 grid max-w-3xl gap-5 lg:col-span-8 lg:mt-0 lg:max-w-none">
+          <div className="mt-7 grid gap-4 lg:mt-9 lg:grid-cols-3">
             {trustItems.map(({ icon: Icon, title, description }, index) => (
               <article
                 key={title}
-                className="motion-reveal grid grid-cols-[46px_minmax(0,1fr)] gap-4"
+                className="premium-card motion-reveal grid grid-cols-[46px_minmax(0,1fr)] gap-4 p-5 lg:block lg:min-h-[220px] lg:p-6"
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
                 <span className="grid h-11 w-11 place-items-center rounded-full border border-brand-navy/7 bg-white text-brand-gold-dark shadow-[0_6px_18px_rgba(4,29,54,.035)]">
                   <Icon className="h-5 w-5" />
                 </span>
-                <div>
+                <div className="lg:mt-5">
                   <h3 className="editorial-heading text-lg font-semibold text-brand-ink">{title}</h3>
                   <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
                 </div>

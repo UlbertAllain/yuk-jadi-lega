@@ -78,7 +78,7 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="page-shell py-8 sm:py-10 lg:py-14">
-        <div className="motion-reveal grid gap-6 rounded-[18px] border border-brand-navy/7 bg-brand-paper/70 p-5 sm:p-7 lg:grid-cols-12 lg:items-center lg:gap-x-10 lg:p-8 xl:gap-x-12">
+        <div className="motion-reveal mx-auto grid max-w-5xl gap-6 rounded-[18px] border border-brand-navy/7 bg-brand-paper/70 p-5 sm:p-7 lg:grid-cols-12 lg:items-center lg:gap-x-10 lg:p-8 xl:gap-x-12">
           <div className="lg:col-span-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Sebelum mulai</p>
             <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.05] tracking-[-0.03em] text-brand-ink sm:text-[2.5rem]">
@@ -98,15 +98,15 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="page-shell pb-8 sm:pb-10 lg:pb-14">
-        <div className="rounded-[18px] border border-brand-navy/7 bg-white p-5 sm:p-7 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:p-8 xl:gap-x-12">
-          <div className="lg:col-span-4">
+        <div className="rounded-[18px] border border-brand-navy/7 bg-white p-5 sm:p-7 lg:p-8">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Langkah kerja kami</p>
             <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
               Proses yang terarah, dari awal hingga selesai.
             </h2>
           </div>
 
-          <div className="flow-list mt-7 lg:col-span-8 lg:mt-0">
+          <div className="flow-list mx-auto mt-8 max-w-5xl lg:mt-10">
             {steps.map(({ icon: Icon, title, description, result }, index) => (
               <article
                 key={title}
@@ -132,14 +132,14 @@ export default async function HowItWorksPage() {
       </section>
 
       <section className="bg-brand-paper py-9 sm:py-11 lg:py-14">
-        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-          <div className="lg:col-span-4">
+        <div className="page-shell">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Selama proses</p>
             <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.5rem]">
               Anda tetap tahu setiap perkembangannya.
             </h2>
           </div>
-          <div className="mt-6 grid gap-3 lg:col-span-8 lg:mt-0">
+          <div className="mt-7 grid gap-3 lg:mt-9 lg:grid-cols-3">
             {clarity.map(({ icon: Icon, title, description }, index) => (
               <article
                 key={title}

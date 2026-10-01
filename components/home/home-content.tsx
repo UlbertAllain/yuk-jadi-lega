@@ -26,9 +26,9 @@ export function HomeContent({
     <>
       {featuredArticle ? (
         <section className="border-b border-brand-navy/8 bg-brand-surface py-10 sm:py-12 lg:py-16">
-          <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-            <div className="lg:col-span-4">
-              <div>
+          <div className="page-shell">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="max-w-3xl">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
                   Insight
                 </p>
@@ -36,12 +36,12 @@ export function HomeContent({
                   Wawasan untuk langkah bisnis yang lebih pasti.
                 </h2>
               </div>
-              <Link href="/artikel" className="mt-4 hidden text-xs font-semibold text-brand-navy sm:inline-flex">
+              <Link href="/artikel" className="hidden shrink-0 text-xs font-semibold text-brand-navy sm:inline-flex">
                 Lihat semua →
               </Link>
             </div>
 
-            <div className="mt-7 grid gap-4 lg:col-span-8 lg:mt-0">
+            <div className="mt-7 grid gap-4 lg:mt-9 lg:grid-cols-[1.35fr_.65fr]">
               <Link
                 href={"/artikel/" + featuredArticle.slug}
                 className="premium-card motion-reveal group overflow-hidden lg:grid lg:grid-cols-[1.05fr_.95fr]"
@@ -71,7 +71,7 @@ export function HomeContent({
                 </div>
               </Link>
 
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                 {otherArticles.map((article, index) => (
                   <Link
                     key={article.id}
@@ -107,15 +107,15 @@ export function HomeContent({
 
       {faqs.length ? (
         <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
-          <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-            <div className="lg:col-span-4">
+          <div className="page-shell">
+            <div className="mx-auto max-w-3xl text-left">
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">FAQ</p>
               <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
                 Pertanyaan yang sering diajukan.
               </h2>
             </div>
 
-            <div className="mt-6 grid gap-2 lg:col-span-8 lg:mt-0">
+            <div className="mx-auto mt-7 grid max-w-4xl gap-2">
               {faqs.slice(0, 5).map((faq) => (
                 <details key={faq.id} className="group rounded-[10px] border border-brand-navy/8 bg-brand-surface/70 px-4 transition hover:border-brand-gold/20 hover:bg-white">
                   <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_22px] items-center gap-4 py-4">

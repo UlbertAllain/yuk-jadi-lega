@@ -27,8 +27,8 @@ const steps = [
 export function HomeProcess() {
   return (
     <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
-      <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-        <div className="max-w-2xl lg:col-span-4">
+      <div className="page-shell">
+        <div className="max-w-3xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
             Cara kerja kami
           </p>
@@ -37,7 +37,7 @@ export function HomeProcess() {
           </h2>
         </div>
 
-        <div className="flow-list mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
+        <div className="flow-list mx-auto mt-8 max-w-5xl lg:mt-10">
           {steps.map(({ icon: Icon, title, description }, index) => (
             <article
               key={title}
@@ -58,7 +58,7 @@ export function HomeProcess() {
 
         <Link
           href="/cara-kerja"
-          className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark lg:col-span-8 lg:col-start-5"
+          className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
         >
           Lihat cara kerja lengkap
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -112,15 +112,15 @@ export default function AboutPage() {
       </section>
 
       <section className="border-y border-brand-navy/8 bg-white py-9 sm:py-11 lg:py-16">
-        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-          <div className="lg:col-span-4">
+        <div className="page-shell">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Yang kami bantu</p>
             <h2 className="editorial-heading mt-2 max-w-2xl text-[2.1rem] font-semibold leading-[1.03] tracking-[-0.035em] text-brand-ink sm:text-[2.8rem]">
               Solusi legal untuk setiap tahap perjalanan bisnis Anda.
             </h2>
           </div>
 
-          <div className="mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
+          <div className="mt-7 grid gap-x-7 lg:mt-9 lg:grid-cols-2">
             {serviceAreas.map((item, index) => (
               <article
                 key={item.title}
@@ -142,8 +142,8 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-brand-surface py-9 sm:py-11 lg:py-16">
-        <div className="page-shell lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
-          <div className="lg:col-span-4">
+        <div className="page-shell">
+          <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Prinsip kami</p>
             <h2 className="editorial-heading mt-2 max-w-xl text-[2.1rem] font-semibold leading-[1.03] tracking-[-0.035em] text-brand-ink sm:text-[2.8rem]">
               Cara kami mendampingi Anda.
@@ -153,7 +153,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="flow-list mt-7 max-w-3xl lg:col-span-8 lg:mt-0 lg:max-w-none">
+          <div className="flow-list mx-auto mt-8 max-w-5xl lg:mt-10">
             {principles.map(({ icon: Icon, title, description }, index) => (
               <article
                 key={title}
