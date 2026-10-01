@@ -32,7 +32,7 @@ export default async function ContactPage() {
         description="Anda tidak perlu tahu nama layanannya terlebih dahulu. Ceritakan kondisi usaha dan tujuan Anda, lalu tim kami akan membantu mengarahkan kebutuhan yang paling sesuai."
       />
 
-      <section className="page-shell grid gap-10 py-10 sm:py-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-16 lg:py-20">
+      <section className="page-shell grid gap-9 py-10 sm:py-12 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-12 lg:py-16">
         <div className="order-2 content-start lg:order-1">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">Kontak</p>
 
@@ -43,10 +43,10 @@ export default async function ContactPage() {
                 <div className="grid grid-cols-[34px_minmax(0,1fr)] gap-4 border-b border-brand-navy/8 py-5 last:border-b-0">
                   <Icon className="mt-0.5 h-5 w-5 text-brand-navy" />
                   <div className="min-w-0">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.11em] text-brand-muted">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-brand-muted">
                       {contact.label}
                     </p>
-                    <p className="mt-2 break-words text-sm font-semibold leading-6 text-brand-ink">
+                    <p className="mt-2 break-words text-[15px] font-semibold leading-6 text-brand-ink">
                       {contact.value}
                     </p>
                   </div>
@@ -70,12 +70,12 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <div className="order-1 lg:order-2 lg:border-l lg:border-brand-navy/14 lg:pl-12">
+        <div className="order-1 lg:order-2 lg:border-l lg:border-brand-navy/14 lg:pl-10">
           <div className="mb-5 sm:mb-6">
-            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-brand-ink">
+            <h2 className="text-[1.65rem] font-semibold tracking-[-0.035em] text-brand-ink sm:text-[1.8rem]">
               Mulai konsultasi
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-brand-muted">
+            <p className="mt-2 max-w-2xl text-[15px] leading-7 text-brand-muted">
               Isi beberapa informasi singkat agar tim kami bisa memahami kebutuhan Anda sebelum menghubungi.
             </p>
           </div>
