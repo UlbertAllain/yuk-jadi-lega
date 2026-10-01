@@ -122,7 +122,7 @@ export function SiteHeader({
             <Link
               key={href}
               href={href}
-              className="flex h-full items-center px-3 text-[12px] font-medium text-brand-muted transition hover:text-brand-navy"
+              className="flex h-full items-center px-3 text-[13px] font-medium text-brand-muted transition hover:text-brand-navy"
             >
               {label}
             </Link>
@@ -166,7 +166,7 @@ function HeaderMenu({
     <div className="group relative flex h-full items-center">
       <Link
         href={href}
-        className="flex h-full items-center gap-1 px-3 text-[12px] font-medium text-brand-muted transition group-hover:text-brand-navy"
+        className="flex h-full items-center gap-1 px-3 text-[13px] font-medium text-brand-muted transition group-hover:text-brand-navy"
       >
         {label}
         <ChevronDown className="h-3.5 w-3.5 transition duration-200 group-hover:rotate-180" />
