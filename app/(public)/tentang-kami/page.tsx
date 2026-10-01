@@ -58,31 +58,36 @@ export default function AboutPage() {
   return (
     <main className="bg-brand-surface">
       <section className="relative overflow-hidden border-b border-brand-navy/8 bg-brand-paper">
-        <div className="legal-hero-photo pointer-events-none absolute inset-y-0 right-0 w-[48%] sm:w-[42%]" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f6f1e4_0%,#f6f1e4_50%,rgba(246,241,228,.9)_64%,rgba(246,241,228,.15)_100%)]" />
-        <div className="page-shell relative py-9 sm:py-12 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:py-16 xl:gap-x-12">
-          <div className="max-w-[670px] lg:col-span-7">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">Tentang kami</p>
-            <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.7rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink lg:text-[4.15rem]">
-              Legalitas bisnis seharusnya membantu usaha berjalan, bukan membuat pemiliknya bingung.
-            </h1>
-            <p className="mt-4 max-w-[560px] text-[15px] leading-7 text-brand-muted sm:text-base">
-              Yuk Jadi Legal hadir untuk membuat proses legalitas lebih jelas, lebih mudah dipahami, dan lebih manusiawi agar pemilik usaha bisa fokus mengembangkan bisnis.
-            </p>
-            <Link
-              href="/kontak"
-              className="group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
-            >
-              Konsultasi sekarang
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+        <div className="pointer-events-none absolute -right-24 -top-28 h-72 w-72 rounded-full border border-brand-navy/[0.06] sm:h-96 sm:w-96" />
+        <div className="page-shell relative py-10 sm:py-14 lg:py-20">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-x-12">
+            <div className="motion-reveal lg:col-span-4 lg:pt-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">
+                Tentang Yuk Jadi Legal
+              </p>
+              <p className="mt-5 max-w-sm text-[15px] leading-7 text-brand-muted">
+                Kami membantu pemilik usaha memahami dan mengurus legalitas tanpa membuat prosesnya terasa lebih rumit dari yang seharusnya.
+              </p>
+              <Link
+                href="/layanan"
+                className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-gold-dark"
+              >
+                Lihat yang kami bantu
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
 
-            <div className="mt-7 flex flex-wrap gap-3 text-xs font-semibold text-brand-ink">
-              {["Jelas", "Terarah", "Aman"].map((item) => (
-                <span key={item} className="rounded-full bg-white/75 px-3 py-2 shadow-[0_8px_22px_rgba(4,29,54,.05)]">
-                  {item}
-                </span>
-              ))}
+            <div className="motion-reveal lg:col-span-8">
+              <div className="h-[2px] w-12 bg-brand-gold" />
+              <h1 className="editorial-heading mt-5 max-w-[820px] text-[clamp(2.65rem,7vw,5.2rem)] font-semibold leading-[.98] tracking-[-0.05em] text-brand-ink lg:text-[4.7rem]">
+                Legalitas bisnis seharusnya membantu usaha berjalan, bukan membuat pemiliknya bingung.
+              </h1>
+
+              <div className="mt-7 flex flex-wrap gap-x-7 gap-y-3 border-t border-brand-navy/10 pt-5 text-xs font-semibold text-brand-ink">
+                <span>Lebih jelas</span>
+                <span>Lebih terarah</span>
+                <span>Lebih manusiawi</span>
+              </div>
             </div>
           </div>
         </div>

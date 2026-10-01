@@ -52,27 +52,55 @@ export default async function HowItWorksPage() {
 
   return (
     <main className="bg-brand-surface">
-      <section className="relative overflow-hidden border-b border-brand-navy/8 bg-brand-paper">
-        <div className="legal-hero-photo pointer-events-none absolute inset-y-0 right-0 w-[48%] sm:w-[42%]" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f6f1e4_0%,#f6f1e4_48%,rgba(246,241,228,.92)_62%,rgba(246,241,228,.18)_100%)]" />
-        <div className="page-shell relative py-9 sm:py-12 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:py-16 xl:gap-x-12">
-          <div className="max-w-[650px] lg:col-span-7">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">Cara kerja</p>
-            <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.6rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink lg:text-[4.15rem]">
-              Dari konsultasi sampai selesai, alurnya tetap jelas.
-            </h1>
-            <p className="mt-4 max-w-[520px] text-[15px] leading-7 text-brand-muted sm:text-base">
-              Kami membuat proses legalitas bisnis terasa lebih mudah, terarah, dan aman untuk Anda.
-            </p>
-            <a
-              href={consultationHref}
-              target={whatsappHref ? "_blank" : undefined}
-              rel={whatsappHref ? "noreferrer" : undefined}
-              className="group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
-            >
-              Mulai konsultasi
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
+      <section className="border-b border-brand-navy/8 bg-white">
+        <div className="page-shell py-9 sm:py-12 lg:py-16">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-x-12">
+            <div className="motion-reveal max-w-[650px] lg:col-span-7">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">
+                Cara kerja
+              </p>
+              <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.5rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink lg:text-[4.05rem]">
+                Dari kebutuhan yang belum jelas, menjadi langkah yang terarah.
+              </h1>
+              <p className="mt-4 max-w-[540px] text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
+                Anda cukup ceritakan kondisi bisnis. Kami bantu memetakan kebutuhan, menjalankan proses, dan menjaga agar Anda tetap tahu apa yang sedang terjadi.
+              </p>
+              <a
+                href={consultationHref}
+                target={whatsappHref ? "_blank" : undefined}
+                rel={whatsappHref ? "noreferrer" : undefined}
+                className="group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
+              >
+                Mulai konsultasi
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
+
+            <div className="motion-reveal lg:col-span-5">
+              <div className="rounded-[20px] bg-brand-navy-dark p-5 text-white sm:p-6">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-gold-soft">
+                  Alur singkat
+                </p>
+                <div className="mt-5 grid gap-0">
+                  {steps.map(({ icon: Icon, title }, index) => (
+                    <div
+                      key={title}
+                      className="relative grid grid-cols-[42px_minmax(0,1fr)] gap-3 pb-5 last:pb-0"
+                    >
+                      {index < steps.length - 1 ? (
+                        <span className="absolute left-[20px] top-10 h-[calc(100%-1.25rem)] w-px bg-white/12" />
+                      ) : null}
+                      <span className="relative z-10 grid h-10 w-10 place-items-center rounded-full border border-white/12 bg-white/[0.06] text-brand-gold-soft">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <div className="pt-2">
+                        <p className="text-sm font-medium text-white">{title}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
