@@ -28,10 +28,10 @@ const serviceAreas = [
 ] as const;
 
 const serviceAreaCardLayout = [
-  "asym-shape-a asym-tone-a lg:min-h-[252px]",
-  "asym-shape-b asym-tone-b lg:mt-12 lg:min-h-[194px]",
-  "asym-shape-c asym-tone-c lg:mt-3 lg:min-h-[238px]",
-  "asym-shape-d asym-tone-a lg:mt-9 lg:min-h-[208px]",
+  "asym-shape-a bg-brand-navy-dark text-white lg:min-h-[246px]",
+  "asym-shape-b bg-[#ead477] text-brand-navy-dark lg:mt-10 lg:min-h-[205px]",
+  "asym-shape-c bg-white text-brand-ink lg:mt-2 lg:min-h-[232px]",
+  "asym-shape-d bg-brand-bluewash text-brand-ink lg:mt-8 lg:min-h-[214px]",
 ] as const;
 
 const principles = [
@@ -135,14 +135,14 @@ export default function AboutPage() {
                 className={"asym-card motion-reveal flex flex-col p-5 sm:p-6 " + serviceAreaCardLayout[index]}
                 style={{ animationDelay: String(index * 70) + "ms" }}
               >
-                <span className="block h-[2px] w-8 bg-brand-gold" />
-                <h3 className="editorial-heading mt-5 text-lg font-semibold leading-tight text-brand-ink sm:text-xl">
+                <span className={"block h-[2px] w-8 " + (index === 0 ? "bg-brand-gold" : "bg-brand-navy")} />
+                <h3 className={"mt-5 text-lg font-bold leading-tight sm:text-xl " + (index === 0 ? "text-white" : "text-brand-navy-dark")}>
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-brand-muted">{item.description}</p>
+                <p className={"mt-2 text-sm leading-6 " + (index === 0 ? "text-white/70" : "text-brand-muted")}>{item.description}</p>
                 <Link
                   href="/layanan"
-                  className="group mt-auto inline-flex items-center gap-2 pt-6 text-xs font-semibold text-brand-navy"
+                  className={"group mt-auto inline-flex items-center gap-2 pt-6 text-xs font-semibold " + (index === 0 ? "text-brand-gold-soft" : "text-brand-navy")}
                 >
                   Lihat detail
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />

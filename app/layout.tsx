@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans } from "next/font/google";
+import { Archivo, Instrument_Sans } from "next/font/google";
 import { getSiteUrl } from "@/lib/seo";
 import "./globals.css";
 
@@ -7,6 +7,12 @@ const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-instrument-sans",
+});
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +36,7 @@ export default function RootLayout({
     <html
       lang="id"
       data-scroll-behavior="smooth"
-      className={instrumentSans.variable}
+      className={`${instrumentSans.variable} ${archivo.variable}`}
     >
       <body>{children}</body>
     </html>

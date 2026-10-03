@@ -17,27 +17,34 @@ export function HomeTrust({
   return (
     <section className="border-b border-brand-navy/8 bg-brand-surface">
       {visiblePartners.length ? (
-        <div className="border-b border-brand-navy/8">
-          <div className="page-shell py-10 sm:py-12 lg:py-16">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-brand-muted">
+        <div className="border-b border-brand-navy/8 py-9 sm:py-10">
+          <div className="page-shell">
+            <p className="text-center text-[11px] font-bold uppercase tracking-[0.17em] text-brand-muted">
               Dipercaya berbagai bisnis dan organisasi
             </p>
-            <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 sm:mt-8 sm:gap-x-8 sm:gap-y-7 sm:grid-cols-3 lg:grid-cols-5">
-              {visiblePartners.map((partner) => (
-                <div key={partner.id} className="flex min-h-12 items-center justify-center">
-                  {partner.logoUrl ? (
-                    <CmsImage
-                      src={partner.logoUrl}
-                      alt={partner.name}
-                      className="max-h-9 w-auto max-w-[145px] object-contain opacity-65 grayscale transition hover:opacity-100 hover:grayscale-0"
-                    />
-                  ) : (
-                    <span className="text-center text-sm font-semibold text-brand-navy/60">
-                      {partner.name}
-                    </span>
-                  )}
-                </div>
-              ))}
+
+            <div className="partner-marquee mt-7">
+              <div className="partner-marquee-track">
+                {[0, 1].map((groupIndex) => (
+                  <div key={groupIndex} className="partner-marquee-group" aria-hidden={groupIndex === 1}>
+                    {visiblePartners.map((partner) => (
+                      <div key={`${groupIndex}-${partner.id}`} className="partner-marquee-item">
+                        {partner.logoUrl ? (
+                          <CmsImage
+                            src={partner.logoUrl}
+                            alt={groupIndex === 0 ? partner.name : ""}
+                            className="max-h-10 w-auto max-w-[150px] object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+                          />
+                        ) : (
+                          <span className="text-sm font-semibold text-brand-navy/65">
+                            {partner.name}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
