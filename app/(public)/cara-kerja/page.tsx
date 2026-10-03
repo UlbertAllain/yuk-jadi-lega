@@ -53,54 +53,50 @@ export default async function HowItWorksPage() {
   return (
     <main className="bg-brand-surface">
       <section className="border-b border-brand-navy/8 bg-white">
-        <div className="page-shell py-9 sm:py-12 lg:py-16">
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-x-12">
-            <div className="motion-reveal max-w-[650px] lg:col-span-7">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">
+        <div className="page-shell py-10 sm:py-14 lg:py-16">
+          <div className="grid gap-7 lg:grid-cols-12 lg:items-end lg:gap-x-12">
+            <div className="motion-reveal lg:col-span-8">
+              <p className="text-[11px] font-bold uppercase tracking-[0.17em] text-brand-gold-dark">
                 Cara kerja
               </p>
-              <h1 className="editorial-heading mt-3 text-[clamp(2.45rem,7vw,4.5rem)] font-semibold leading-[.99] tracking-[-0.045em] text-brand-ink lg:text-[4.05rem]">
+              <h1 className="mt-4 max-w-[820px] text-[clamp(2.65rem,7vw,5rem)] font-extrabold leading-[.97] tracking-[-0.05em] text-brand-ink lg:text-[4.55rem]">
                 Dari kebutuhan yang belum jelas, menjadi langkah yang terarah.
               </h1>
-              <p className="mt-4 max-w-[540px] text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
-                Anda cukup ceritakan kondisi bisnis. Kami bantu memetakan kebutuhan, menjalankan proses, dan menjaga agar Anda tetap tahu apa yang sedang terjadi.
+            </div>
+
+            <div className="motion-reveal lg:col-span-4 lg:pb-1" style={{ animationDelay: "80ms" }}>
+              <p className="text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
+                Ceritakan kondisi bisnis Anda. Kami bantu memetakan kebutuhan, menjalankan proses, dan memberi update pada tahap penting.
               </p>
               <a
                 href={consultationHref}
                 target={whatsappHref ? "_blank" : undefined}
                 rel={whatsappHref ? "noreferrer" : undefined}
-                className="group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
+                className="group mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
               >
                 Mulai konsultasi
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
+          </div>
 
-            <div className="motion-reveal lg:col-span-5">
-              <div className="rounded-[20px] bg-brand-navy-dark p-5 text-white sm:p-6">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-gold-soft">
-                  Alur singkat
-                </p>
-                <div className="mt-5 grid gap-0">
-                  {steps.map(({ icon: Icon, title }, index) => (
-                    <div
-                      key={title}
-                      className="relative grid grid-cols-[42px_minmax(0,1fr)] gap-3 pb-5 last:pb-0"
-                    >
-                      {index < steps.length - 1 ? (
-                        <span className="absolute left-[20px] top-10 h-[calc(100%-1.25rem)] w-px bg-white/12" />
-                      ) : null}
-                      <span className="relative z-10 grid h-10 w-10 place-items-center rounded-full border border-white/12 bg-white/[0.06] text-brand-gold-soft">
-                        <Icon className="h-4 w-4" />
-                      </span>
-                      <div className="pt-2">
-                        <p className="text-sm font-medium text-white">{title}</p>
-                      </div>
-                    </div>
-                  ))}
+          <div className="motion-reveal mt-9 grid overflow-hidden rounded-[14px] border border-brand-navy/9 bg-brand-paper/45 sm:grid-cols-2 lg:mt-11 lg:grid-cols-4" style={{ animationDelay: "130ms" }}>
+            {steps.map(({ icon: Icon, title }, index) => (
+              <div
+                key={title}
+                className="grid grid-cols-[38px_minmax(0,1fr)] items-center gap-3 border-b border-brand-navy/8 px-4 py-4 last:border-b-0 sm:[&:nth-child(odd)]:border-r lg:border-b-0 lg:border-r lg:last:border-r-0"
+              >
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-navy text-brand-gold-soft">
+                  <Icon className="h-4 w-4" />
+                </span>
+                <div>
+                  <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-gold-dark">
+                    Tahap {index + 1}
+                  </p>
+                  <p className="mt-0.5 text-sm font-semibold text-brand-ink">{title}</p>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -108,8 +104,8 @@ export default async function HowItWorksPage() {
       <section className="page-shell py-8 sm:py-10 lg:py-14">
         <div className="motion-reveal mx-auto grid max-w-5xl gap-6 rounded-[18px] border border-brand-navy/7 bg-brand-paper/70 p-5 sm:p-7 lg:grid-cols-12 lg:items-center lg:gap-x-10 lg:p-8 xl:gap-x-12">
           <div className="lg:col-span-7">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Sebelum mulai</p>
-            <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.05] tracking-[-0.03em] text-brand-ink sm:text-[2.5rem]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-gold-dark">Sebelum mulai</p>
+            <h2 className="mt-2 text-[2rem] font-bold leading-[1.05] tracking-[-0.03em] text-brand-ink sm:text-[2.5rem]">
               Cukup ceritakan kondisi bisnis Anda saat ini.
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-7 text-brand-muted">
@@ -128,8 +124,8 @@ export default async function HowItWorksPage() {
       <section className="page-shell pb-8 sm:pb-10 lg:pb-14">
         <div className="rounded-[18px] border border-brand-navy/7 bg-white p-5 sm:p-7 lg:p-8">
           <div className="max-w-3xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Langkah kerja kami</p>
-            <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-gold-dark">Langkah kerja kami</p>
+            <h2 className="mt-2 text-[2rem] font-bold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
               Proses yang terarah, dari awal hingga selesai.
             </h2>
           </div>
@@ -146,10 +142,10 @@ export default async function HowItWorksPage() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <div className="min-w-0">
-                  <h3 className="editorial-heading text-lg font-semibold leading-tight text-brand-ink">{title}</h3>
+                  <h3 className="text-lg font-bold leading-tight text-brand-ink">{title}</h3>
                   <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
                   <div className="mt-3 rounded-[11px] bg-brand-paper px-4 py-3">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.09em] text-brand-gold-dark">Hasil tahap ini</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.09em] text-brand-gold-dark">Hasil tahap ini</p>
                     <p className="mt-1 text-sm leading-6 text-brand-ink">{result}</p>
                   </div>
                 </div>
@@ -162,8 +158,8 @@ export default async function HowItWorksPage() {
       <section className="bg-brand-paper py-9 sm:py-11 lg:py-14">
         <div className="page-shell">
           <div className="max-w-3xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Selama proses</p>
-            <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.5rem]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-gold-dark">Selama proses</p>
+            <h2 className="mt-2 text-[2rem] font-bold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.5rem]">
               Anda tetap tahu setiap perkembangannya.
             </h2>
           </div>
@@ -178,7 +174,7 @@ export default async function HowItWorksPage() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <div>
-                  <h3 className="editorial-heading text-base font-semibold text-brand-ink">{title}</h3>
+                  <h3 className="text-base font-bold text-brand-ink">{title}</h3>
                   <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
                 </div>
               </article>
@@ -191,8 +187,8 @@ export default async function HowItWorksPage() {
         <div className="visual-cta-leaves pointer-events-none absolute inset-y-0 right-0 w-[150px] bg-contain bg-right-bottom bg-no-repeat sm:w-[220px]" />
         <div className="page-shell relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center lg:grid-cols-12 lg:gap-x-10 xl:gap-x-12">
           <div className="lg:col-span-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">Siap mulai?</p>
-            <h2 className="editorial-heading mt-2 max-w-xl text-[2rem] font-semibold leading-[1.04] text-brand-ink sm:text-[2.4rem]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-gold-dark">Siap mulai?</p>
+            <h2 className="mt-2 max-w-xl text-[2rem] font-bold leading-[1.04] text-brand-ink sm:text-[2.4rem]">
               Konsultasikan kebutuhan Anda sekarang juga.
             </h2>
           </div>

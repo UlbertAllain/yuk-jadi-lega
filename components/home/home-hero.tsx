@@ -25,63 +25,61 @@ export function HomeHero({
   const consultationExternal = Boolean(whatsappHref);
 
   return (
-    <section className="relative overflow-hidden border-b border-brand-navy/8 bg-brand-paper">
-      <div className="legal-hero-photo pointer-events-none absolute inset-y-0 right-0 hidden w-[44%] sm:block lg:w-[40%]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f6f1e4_0%,#f6f1e4_48%,rgba(246,241,228,.92)_62%,rgba(246,241,228,.2)_100%)]" />
-
-      <div className="page-shell relative py-9 sm:py-12 lg:py-16">
-        <div className="lg:grid lg:grid-cols-12 lg:items-end lg:gap-x-10 xl:gap-x-12">
-          <div className="max-w-[680px] lg:col-span-7">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-gold-dark">
-            Legalitas bisnis, langkah lebih tenang
-          </p>
-          <h1 className="editorial-heading mt-3 max-w-[650px] text-[clamp(2.55rem,8vw,4.9rem)] font-semibold leading-[.98] tracking-[-0.045em] text-brand-navy-dark lg:text-[4.35rem]">
-            {settings.heroTitle}
-          </h1>
-          <p className="mt-5 max-w-[560px] text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
-            {settings.heroDescription}
-          </p>
-
-          <div className="mt-6 grid max-w-sm gap-2.5 sm:flex sm:max-w-none sm:flex-wrap">
-            <a
-              href={consultationHref}
-              target={consultationExternal ? "_blank" : undefined}
-              rel={consultationExternal ? "noreferrer" : undefined}
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-[11px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
-            >
-              Konsultasi
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <Link
-              href="/layanan"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-[11px] border border-brand-navy/35 bg-white/70 px-5 py-3 text-sm font-semibold text-brand-navy backdrop-blur-sm transition hover:border-brand-navy"
-            >
-              Lihat layanan
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+    <section className="relative overflow-hidden border-b border-brand-navy/8 bg-white">
+      <div className="pointer-events-none absolute -right-24 -top-28 h-80 w-80 rounded-full border border-brand-navy/[0.055] lg:h-[34rem] lg:w-[34rem]" />
+      <div className="page-shell relative py-10 sm:py-14 lg:py-16 xl:py-20">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-x-12">
+          <div className="motion-reveal lg:col-span-8">
+            <p className="text-[11px] font-bold uppercase tracking-[0.17em] text-brand-gold-dark">
+              Legalitas bisnis, langkah lebih tenang
+            </p>
+            <h1 className="mt-4 max-w-[850px] text-[clamp(2.8rem,8vw,5.35rem)] font-extrabold leading-[.96] tracking-[-0.055em] text-brand-navy-dark lg:text-[4.85rem]">
+              {settings.heroTitle}
+            </h1>
           </div>
 
-          <div className="mt-7 flex flex-wrap gap-3">
-            {proofItems.map(({ label, icon: Icon }) => (
-              <div
-                key={label}
-                className="inline-flex items-center gap-2 rounded-full bg-white/75 px-3 py-2 text-xs font-semibold text-brand-ink shadow-[0_8px_24px_rgba(4,29,54,.05)] backdrop-blur-sm"
+          <div className="motion-reveal lg:col-span-4 lg:pb-1" style={{ animationDelay: "80ms" }}>
+            <p className="max-w-[430px] text-[15px] leading-7 text-brand-muted sm:text-base sm:leading-8">
+              {settings.heroDescription}
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              <a
+                href={consultationHref}
+                target={consultationExternal ? "_blank" : undefined}
+                rel={consultationExternal ? "noreferrer" : undefined}
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-navy-dark"
               >
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-brand-gold-pale text-brand-gold-dark">
-                  <Icon className="h-3.5 w-3.5" />
-                </span>
-                {label}
-              </div>
-            ))}
-          </div>
-          </div>
+                Konsultasi
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <Link
+                href="/layanan"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] border border-brand-navy/22 bg-white px-5 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-navy/45"
+              >
+                Lihat layanan
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
 
-          <div className="motion-reveal mt-8 max-w-xl sm:mt-10 lg:col-span-5 lg:mt-0 lg:max-w-none lg:self-center">
-            <LegalQuickFinder
-              consultationHref={consultationHref}
-              consultationExternal={consultationExternal}
-            />
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+              {proofItems.map(({ label, icon: Icon }) => (
+                <span key={label} className="inline-flex items-center gap-2 text-xs font-semibold text-brand-ink">
+                  <span className="grid h-6 w-6 place-items-center rounded-full bg-brand-gold-pale text-brand-gold-dark">
+                    <Icon className="h-3.5 w-3.5" />
+                  </span>
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
+        </div>
+
+        <div className="motion-reveal mt-10 lg:mt-12" style={{ animationDelay: "130ms" }}>
+          <LegalQuickFinder
+            consultationHref={consultationHref}
+            consultationExternal={consultationExternal}
+          />
         </div>
       </div>
     </section>
