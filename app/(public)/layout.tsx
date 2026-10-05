@@ -9,7 +9,9 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <MotionObserver />
-      <SiteShell>{children}</SiteShell>
+      <div className="public-site">
+        <SiteShell>{children}</SiteShell>
+      </div>
       <GoogleAnalytics />
     </>
   );
