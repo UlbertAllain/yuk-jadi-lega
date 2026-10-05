@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Instrument_Sans } from "next/font/google";
+import { Instrument_Sans, Manrope } from "next/font/google";
 import { getSiteUrl } from "@/lib/seo";
 import "./globals.css";
 
@@ -9,7 +9,7 @@ const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
 });
 
-const archivo = Archivo({
+const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
@@ -36,7 +36,7 @@ export default function RootLayout({
     <html
       lang="id"
       data-scroll-behavior="smooth"
-      className={`${instrumentSans.variable} ${archivo.variable}`}
+      className={`${instrumentSans.variable} ${manrope.variable}`}
     >
       <body>{children}</body>
     </html>

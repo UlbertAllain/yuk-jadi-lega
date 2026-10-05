@@ -17,13 +17,13 @@ export function HomeTrust({
   return (
     <section className="border-b border-brand-navy/8 bg-brand-surface">
       {visiblePartners.length ? (
-        <div className="border-b border-brand-navy/8 py-9 sm:py-10">
+        <div className="border-b border-brand-navy/8 py-8 sm:py-9">
           <div className="page-shell">
-            <p className="text-center text-[11px] font-bold uppercase tracking-[0.17em] text-brand-muted">
+            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-muted">
               Dipercaya berbagai bisnis dan organisasi
             </p>
 
-            <div className="partner-marquee mt-7">
+            <div className="partner-marquee mt-6">
               <div className="partner-marquee-track">
                 {[0, 1].map((groupIndex) => (
                   <div key={groupIndex} className="partner-marquee-group" aria-hidden={groupIndex === 1}>
@@ -33,10 +33,10 @@ export function HomeTrust({
                           <CmsImage
                             src={partner.logoUrl}
                             alt={groupIndex === 0 ? partner.name : ""}
-                            className="max-h-10 w-auto max-w-[150px] object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+                            className="max-h-8 w-auto max-w-[132px] object-contain opacity-55 grayscale transition duration-300 hover:opacity-90"
                           />
                         ) : (
-                          <span className="text-sm font-semibold text-brand-navy/65">
+                          <span className="text-xs font-semibold text-brand-navy/55">
                             {partner.name}
                           </span>
                         )}

@@ -88,6 +88,7 @@ h6 {
 .public-site .editorial-heading {
   font-family: var(--font-display), var(--font-instrument-sans), "Segoe UI", Arial, sans-serif;
   font-optical-sizing: auto;
+  letter-spacing: -0.025em;
 }
 
 p {
@@ -539,10 +540,10 @@ summary::-webkit-details-marker {
 
 .motion-ready .motion-reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(10px);
   transition:
-    opacity 560ms cubic-bezier(.22,.61,.36,1),
-    transform 560ms cubic-bezier(.22,.61,.36,1);
+    opacity 430ms cubic-bezier(.22,.61,.36,1),
+    transform 430ms cubic-bezier(.22,.61,.36,1);
   will-change: opacity, transform;
 }
 
@@ -585,7 +586,7 @@ summary::-webkit-details-marker {
 .partner-marquee-track {
   display: flex;
   width: max-content;
-  animation: partner-marquee 24s linear infinite;
+  animation: partner-marquee 38s linear infinite;
 }
 
 .partner-marquee:hover .partner-marquee-track {
@@ -615,5 +616,76 @@ summary::-webkit-details-marker {
 @media (prefers-reduced-motion: reduce) {
   .partner-marquee-track {
     animation: none;
+  }
+}
+
+
+.corporate-card {
+  border: 1px solid rgba(8, 46, 83, 0.09);
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(4, 29, 54, 0.035);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.corporate-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(8, 46, 83, 0.17);
+  box-shadow: 0 12px 28px rgba(4, 29, 54, 0.05);
+}
+
+.process-grid {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.process-step {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.process-step-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-brand-navy);
+  color: var(--color-brand-gold-soft);
+}
+
+@media (min-width: 1024px) {
+  .process-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .process-grid::before {
+    content: "";
+    position: absolute;
+    top: 1.1rem;
+    left: 1.1rem;
+    right: 1.1rem;
+    height: 1px;
+    background: rgba(8, 46, 83, 0.12);
+  }
+
+  .process-step {
+    padding-left: 0;
+    padding-top: 3.4rem;
+  }
+
+  .process-step-icon {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    box-shadow: 0 0 0 6px var(--color-brand-paper);
   }
 }
