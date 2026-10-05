@@ -26,7 +26,7 @@ const steps = [
 
 export function HomeProcess() {
   return (
-    <section className="border-b border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-16">
+    <section className="border-b border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-14">
       <div className="page-shell">
         <div className="max-w-3xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
@@ -45,9 +45,12 @@ export function HomeProcess() {
               style={{ animationDelay: String(index * 60) + "ms" }}
             >
               <span className="process-step-icon">
-                <Icon className="h-4.5 w-4.5" />
+                <Icon className="h-5 w-5" />
               </span>
-              <h3 className="mt-4 text-base font-bold leading-tight text-brand-ink">{title}</h3>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
+                Tahap {index + 1}
+              </p>
+              <h3 className="mt-2 text-base font-bold leading-tight text-brand-ink">{title}</h3>
               <p className="mt-1.5 text-sm leading-6 text-brand-muted">{description}</p>
             </article>
           ))}

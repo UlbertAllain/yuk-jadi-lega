@@ -32,7 +32,7 @@ export function HomeServices({
 
   return (
     <>
-      <section className="border-b border-brand-navy/8 bg-brand-surface py-10 sm:py-12 lg:py-16">
+      <section className="border-b border-brand-navy/8 bg-brand-surface py-10 sm:py-12 lg:py-14">
         <div className="page-shell">
           <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
@@ -98,18 +98,23 @@ export function HomeServices({
             </h2>
           </div>
 
-          <div className="mt-7 grid gap-5 border-t border-brand-navy/10 pt-6 lg:mt-9 lg:grid-cols-3 lg:gap-8">
+          <div className="mt-7 grid border-t border-brand-navy/10 pt-6 lg:mt-9 lg:grid-cols-3">
             {trustItems.map(({ icon: Icon, title, description }, index) => (
               <article
                 key={title}
-                className="motion-reveal"
+                className="motion-reveal relative py-4 lg:min-h-[190px] lg:border-l lg:border-brand-navy/10 lg:px-7 lg:first:border-l-0 lg:first:pl-0"
                 style={{ animationDelay: String(index * 60) + "ms" }}
               >
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-gold-pale text-brand-gold-dark">
-                  <Icon className="h-4.5 w-4.5" />
-                </span>
-                <h3 className="mt-4 text-lg font-bold text-brand-ink">{title}</h3>
-                <p className="mt-1.5 text-sm leading-6 text-brand-muted">{description}</p>
+                <div className="flex items-center justify-between gap-4">
+                  <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-gold-pale text-brand-gold-dark">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="text-[10px] font-semibold tracking-[0.14em] text-brand-navy/35">
+                    0{index + 1}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-lg font-bold text-brand-ink">{title}</h3>
+                <p className="mt-2 max-w-sm text-sm leading-6 text-brand-muted">{description}</p>
               </article>
             ))}
           </div>
