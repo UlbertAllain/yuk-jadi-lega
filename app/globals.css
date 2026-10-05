@@ -88,6 +88,7 @@ h6 {
 .public-site .editorial-heading {
   font-family: var(--font-display), var(--font-instrument-sans), "Segoe UI", Arial, sans-serif;
   font-optical-sizing: auto;
+  letter-spacing: -0.025em;
 }
 
 p {
@@ -539,10 +540,10 @@ summary::-webkit-details-marker {
 
 .motion-ready .motion-reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(10px);
   transition:
-    opacity 560ms cubic-bezier(.22,.61,.36,1),
-    transform 560ms cubic-bezier(.22,.61,.36,1);
+    opacity 430ms cubic-bezier(.22,.61,.36,1),
+    transform 430ms cubic-bezier(.22,.61,.36,1);
   will-change: opacity, transform;
 }
 
@@ -585,7 +586,7 @@ summary::-webkit-details-marker {
 .partner-marquee-track {
   display: flex;
   width: max-content;
-  animation: partner-marquee 24s linear infinite;
+  animation: partner-marquee 42s linear infinite;
 }
 
 .partner-marquee:hover .partner-marquee-track {
@@ -600,11 +601,11 @@ summary::-webkit-details-marker {
 
 .partner-marquee-item {
   display: flex;
-  width: 190px;
-  min-height: 54px;
+  width: 220px;
+  min-height: 64px;
   align-items: center;
   justify-content: center;
-  padding-inline: 1.5rem;
+  padding-inline: 1.75rem;
 }
 
 @keyframes partner-marquee {
@@ -614,6 +615,130 @@ summary::-webkit-details-marker {
 
 @media (prefers-reduced-motion: reduce) {
   .partner-marquee-track {
+    animation: none;
+  }
+}
+
+
+.corporate-card {
+  border: 1px solid rgba(8, 46, 83, 0.09);
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(4, 29, 54, 0.035);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.corporate-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(8, 46, 83, 0.17);
+  box-shadow: 0 12px 28px rgba(4, 29, 54, 0.05);
+}
+
+.process-grid {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.process-step {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.process-step-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-brand-navy);
+  color: var(--color-brand-gold-soft);
+}
+
+@media (min-width: 1024px) {
+  .process-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .process-grid::before {
+    content: "";
+    position: absolute;
+    top: 1.28rem;
+    left: 1.3rem;
+    right: 1.3rem;
+    height: 2px;
+    background: rgba(8, 46, 83, 0.16);
+  }
+
+  .process-step {
+    padding-left: 0;
+    padding-top: 3.8rem;
+  }
+
+  .process-step-icon {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    box-shadow: 0 0 0 6px var(--color-brand-paper);
+  }
+}
+
+
+.testimonial-marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.testimonial-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: testimonial-marquee 50s linear infinite;
+}
+
+.testimonial-marquee:hover .testimonial-marquee-track {
+  animation-play-state: paused;
+}
+
+.testimonial-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+.testimonial-marquee-card {
+  width: min(82vw, 390px);
+  flex: 0 0 auto;
+  border: 1px solid rgba(8, 46, 83, 0.09);
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(4, 29, 54, 0.035);
+}
+
+@keyframes testimonial-marquee {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@media (min-width: 768px) {
+  .testimonial-marquee-card {
+    width: 410px;
+    padding: 1.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-marquee-track {
     animation: none;
   }
 }

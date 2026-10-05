@@ -50,11 +50,11 @@ export function SiteHeader({
   const categoryMap = new Map(categories.map((item) => [item.slug, item.name]));
 
   return (
-    <header className="sticky top-0 z-50 border-b border-brand-navy/10 bg-white">
-      <div className="page-shell flex h-[60px] items-center justify-between lg:h-[70px]">
+    <header className="sticky top-0 z-50 border-b border-brand-navy/10 bg-white/95 backdrop-blur-md">
+      <div className="page-shell flex h-[62px] items-center justify-between lg:h-[74px]">
         <Link href="/" className="flex items-center gap-2.5" aria-label="Yuk Jadi Legal">
-          <BrandMark frameClassName="h-9 w-9 rounded-[8px] lg:h-10 lg:w-10" />
-          <span className="text-[13px] font-semibold tracking-[-0.02em] text-brand-navy-dark sm:text-[14px]">
+          <BrandMark frameClassName="h-9 w-9 rounded-[8px] lg:h-11 lg:w-11" />
+          <span className="text-[13px] font-semibold tracking-[-0.02em] text-brand-navy-dark sm:text-[14px] lg:text-[15px]">
             Yuk Jadi <span className="text-brand-gold-dark">Legal</span>
           </span>
         </Link>
@@ -122,7 +122,7 @@ export function SiteHeader({
             <Link
               key={href}
               href={href}
-              className="flex h-full items-center px-3 text-[13px] font-medium text-brand-muted transition hover:text-brand-navy"
+              className="flex h-full items-center px-3.5 text-[14px] font-medium text-brand-muted transition hover:text-brand-navy"
             >
               {label}
             </Link>
@@ -134,7 +134,7 @@ export function SiteHeader({
             href={consultationHref}
             target={consultationExternal ? "_blank" : undefined}
             rel={consultationExternal ? "noreferrer" : undefined}
-            className="button-gold hidden items-center gap-2 px-4 py-2.5 text-xs font-semibold sm:inline-flex"
+            className="button-gold hidden items-center gap-2 px-4.5 py-2.5 text-[13px] font-semibold sm:inline-flex"
           >
             Konsultasi <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
@@ -166,7 +166,7 @@ function HeaderMenu({
     <div className="group relative flex h-full items-center">
       <Link
         href={href}
-        className="flex h-full items-center gap-1 px-3 text-[13px] font-medium text-brand-muted transition group-hover:text-brand-navy"
+        className="flex h-full items-center gap-1 px-3.5 text-[14px] font-medium text-brand-muted transition group-hover:text-brand-navy"
       >
         {label}
         <ChevronDown className="h-3.5 w-3.5 transition duration-200 group-hover:rotate-180" />
