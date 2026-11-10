@@ -26,32 +26,32 @@ const steps = [
 
 export function HomeProcess() {
   return (
-    <section className="border-b border-brand-navy/8 bg-white py-10 sm:py-12 lg:py-16">
+    <section className="border-b border-brand-navy/8 bg-brand-paper py-10 sm:py-12 lg:py-14">
       <div className="page-shell">
         <div className="max-w-3xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-gold-dark">
             Cara kerja kami
           </p>
-          <h2 className="editorial-heading mt-2 text-[2rem] font-semibold leading-[1.04] tracking-[-0.035em] text-brand-ink sm:text-[2.6rem]">
+          <h2 className="mt-2 text-[2rem] font-bold leading-[1.05] tracking-[-0.03em] text-brand-ink sm:text-[2.45rem]">
             Dari konsultasi sampai legalitas selesai.
           </h2>
         </div>
 
-        <div className="flow-list mx-auto mt-8 max-w-5xl lg:mt-10">
+        <div className="process-grid mt-8 lg:mt-10">
           {steps.map(({ icon: Icon, title, description }, index) => (
             <article
               key={title}
-              className={"flow-card motion-reveal " + (index % 2 === 1 ? "flow-card-offset" : "")}
-              style={{ animationDelay: String(index * 70) + "ms" }}
+              className="motion-reveal process-step"
+              style={{ animationDelay: String(index * 60) + "ms" }}
             >
-              <span className="flow-node" aria-hidden="true" />
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-gold-pale text-brand-navy sm:h-12 sm:w-12">
+              <span className="process-step-icon">
                 <Icon className="h-5 w-5" />
               </span>
-              <div className="min-w-0">
-                <h3 className="editorial-heading text-lg font-semibold leading-tight text-brand-ink">{title}</h3>
-                <p className="mt-1 text-sm leading-6 text-brand-muted">{description}</p>
-              </div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-gold-dark">
+                Tahap {index + 1}
+              </p>
+              <h3 className="mt-2 text-base font-bold leading-tight text-brand-ink">{title}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-brand-muted">{description}</p>
             </article>
           ))}
         </div>
